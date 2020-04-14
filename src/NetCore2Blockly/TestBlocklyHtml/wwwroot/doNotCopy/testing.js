@@ -182,5 +182,138 @@
     </block>
 </xml>`
 
+    },
+    {
+        name: "Put & POST",
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+    <variables>
+        <variable >n</variable>
+        <variable >var_Math2Values</variable>
+        <variable  type="TestBlocklyHtml_Math2Values">var_Math2Values</variable>
+    </variables>
+    <block id="set_n_initial" type="variables_set" y="-425" x="-598" inline="true">
+        <field  name="VAR">n</field>
+        <value name="VALUE">
+            <block  type="math_number">
+                <field name="NUM">90</field>
+            </block>
+        </value>
+        <next>
+            <block type="variables_set">
+                <field name="VAR">var_Math2Values</field>
+                <value name="VALUE">
+                    <block type="TestBlocklyHtml_Math2Values">
+                        <value name="val_x">
+                            <shadow type="math_number">
+                                <field name="NUM">10</field>
+                            </shadow>
+                            <block type="variables_get">
+                                <field name="VAR">n</field>
+                            </block>
+                        </value>
+                        <value name="val_y">
+                            <shadow type="math_number">
+                                <field name="NUM">10</field>
+                            </shadow>
+                        </value>
+                    </block>
+                </value>
+                <next>
+                    <block type="text_print">
+                        <value name="TEXT">
+                            <shadow type="text">
+                                <field name="TEXT">abc</field>
+                            </shadow>
+                            <block type="converttostring">
+                                <value name="ValueToConvert">
+                                    <block type="variables_get"><field name="VAR">var_Math2Values</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </value>
+                        <next>
+                            <block type="variables_set" inline="true">
+                                <field name="VAR">n</field>
+                                <value name="VALUE">
+                                    <block  type="api_MathDivideRest_POST"><value name="val_values"><shadow type="TestBlocklyHtml_Math2Values"></shadow><block type="variables_get"><field name="VAR">var_Math2Values</field>
+                                            </block>
+                                        </value>
+                                    </block>
+                                </value>
+                                <next>
+                                    <block type="text_print">
+                                        <value name="TEXT">
+                                            <shadow type="text"><field name="TEXT">abc</field>
+                                            </shadow>
+                                            <block type="variables_get"><field name="VAR">n</field>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="variables_set" inline="true"><field name="VAR" variabletype="TestBlocklyHtml_Math2Values">var_Math2Values</field><value name="VALUE"><block type="api_MathDivideRest__id__PUT"><value name="val_id"><shadow type="math_number"><field name="NUM">10</field>
+                                                            </shadow>
+                                                        </value>
+                                                        <value name="val_values">
+                                                            <shadow type="TestBlocklyHtml_Math2Values"></shadow>
+                                                            <block type="variables_get"><field name="VAR">var_Math2Values</field>
+                                                            </block>
+                                                        </value>
+                                                    </block>
+                                                </value>
+                                                <next>
+                                                    <block  type="text_print">
+                                                        <value name="TEXT">
+                                                            <shadow type="text"><field name="TEXT">abc</field>
+                                                            </shadow>
+                                                            <block type="variables_get"><field name="VAR" variabletype="TestBlocklyHtml_Math2Values">var_Math2Values</field>
+                                                            </block>
+                                                        </value>
+                                                        <next>
+                                                            <block type="variables_set" inline="true"><field name="VAR" variabletype="TestBlocklyHtml_Math2Values">var_Math2Values</field><value name="VALUE"><block type="converttojson"><value name="ValueToConvert"><block type="variables_get"><field name="VAR">var_Math2Values</field>
+                                                                            </block>
+                                                                        </value>
+                                                                    </block>
+                                                                </value>
+                                                                <next>
+                                                                    <block type="variables_set" inline="true">
+                                                                        <field name="VAR" variabletype="TestBlocklyHtml_Math2Values">var_Math2Values</field>
+                                                                        <value name="VALUE">
+                                                                            <block type="api_MathDivideRest__id__PUT"><value name="val_id"><shadow type="math_number"><field name="NUM">10</field>
+                                                                                    </shadow>
+                                                                                </value>
+                                                                                <value name="val_values">
+                                                                                    <shadow type="TestBlocklyHtml_Math2Values"></shadow>
+                                                                                    <block type="variables_get"><field name="VAR">var_Math2Values</field>
+                                                                                    </block>
+                                                                                </value>
+                                                                            </block>
+                                                                        </value>
+                                                                        <next>
+                                                                            <block type="text_print">
+                                                                                <value name="TEXT">
+                                                                                    <shadow type="text"><field name="TEXT">abc</field>
+                                                                                    </shadow>
+                                                                                    <block type="variables_get"><field name="VAR" variabletype="TestBlocklyHtml_Math2Values">var_Math2Values</field>
+                                                                                    </block>
+                                                                                </value>
+                                                                            </block>
+                                                                        </next>
+                                                                    </block>
+                                                                </next>
+                                                            </block>
+                                                        </next>
+                                                    </block>
+                                                </next>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </next>
+                            </block>
+                        </next>
+                    </block>
+                </next>
+            </block>
+        </next>
+    </block>
+</xml>`
     }
 ]

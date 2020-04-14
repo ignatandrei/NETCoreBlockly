@@ -18,6 +18,12 @@ namespace TestBlocklyHtml
 
             return null;
         }
+        [HttpGet("{x}/{y}")]
+        public int Multiply(int x, int y)
+        {
+            return x * y;
+        }
+
         [HttpPost("{x}/{y}")]
         public Math2Values GetData(int x, int y)
         {

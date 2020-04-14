@@ -1080,7 +1080,7 @@
             });
         }
         function SaveBlocks() {
-            var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+            var xml = Blockly.Xml.workspaceToDom(demoWorkspace,true);
             var xml_text = Blockly.Xml.domToPrettyText(xml);
             var n = formatDate(new Date());
             window.history.pushState({ dom: n }, xml_text, "?dom=" + n);
