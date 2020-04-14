@@ -8,4 +8,4 @@
         Multiply = 3,
         Divide = 4
     }
-    }
+}
