@@ -14,9 +14,13 @@ namespace TestBlocklyHtml
     {
         // GET: /<controller>/
         [HttpGet]
-        public IEnumerable<int> Get()
+        public IEnumerable<Math2Values> Get()
         {
-            return new int[] { 1, 2 };
+            return new Math2Values[]
+            {
+                new Math2Values(0,0),
+                new Math2Values(1,1)
+            };
         }
 
         [HttpGet("{id}", Name = "Get")]
