@@ -36,7 +36,7 @@ namespace TestBlocklyHtml
             {
                 app.UseDeveloperExceptionPage();
             }
-            //not do this in production, just developer testing
+            //just developer testing!
             app.UseFileServer(enableDirectoryBrowsing: true);
 
             app.UseRouting();

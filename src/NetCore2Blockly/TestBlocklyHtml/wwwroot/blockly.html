@@ -596,41 +596,43 @@
     </xml>
 
     <script>
-        var test = document.getElementById("LocalSiteFunctions");
-        if (!blockTextLocalSiteFunctions) {
-            window.alert('  the local functions are not generated yet. Please wait ');
-        }
-        window.alert('asdas');
-        test.innerHTML = blockTextLocalSiteFunctions;
-        Blockly.Blocks['converttojson'] = {
-            init: function () {
-                this.appendDummyInput()
-                    .appendField("ConvertToJSON");
-                this.appendValueInput("ValueToConvert")
-                    .setCheck(null);
-                this.setInputsInline(true);
-                this.setOutput(true, null);
-                this.setTooltip("Convert to JSON");
-                this.setHelpUrl("");
+        function LoadEverything() {//not proud, to be refactor
+            
+            if (typeof blockTextLocalSiteFunctions === 'undefined') {
+                window.alert('  the blockly  functions are not generated yet. Please refresh the page ');
+                return;
             }
-        };
+            var test = document.getElementById("LocalSiteFunctions");
+            test.innerHTML = blockTextLocalSiteFunctions;
+            Blockly.Blocks['converttojson'] = {
+                init: function () {
+                    this.appendDummyInput()
+                        .appendField("ConvertToJSON");
+                    this.appendValueInput("ValueToConvert")
+                        .setCheck(null);
+                    this.setInputsInline(true);
+                    this.setOutput(true, null);
+                    this.setTooltip("Convert to JSON");
+                    this.setHelpUrl("");
+                }
+            };
 
-        Blockly.Blocks['converttojson'] = {
-            init: function () {
-                this.appendDummyInput()
-                    .appendField("ConvertToJSON");
-                this.appendValueInput("ValueToConvert")
-                    .setCheck(null);
-                this.setInputsInline(true);
-                this.setOutput(true, null);
-                this.setTooltip("Convert to JSON");
-                this.setHelpUrl("");
-            }
-        };
-        Blockly.JavaScript['converttojson'] = function (block) {
-            var value_ValueToConvert = Blockly.JavaScript.valueToCode(block, 'ValueToConvert', Blockly.JavaScript.ORDER_ATOMIC);            
-            value_ValueToConvert = value_ValueToConvert.replace(/(\r\n|\n|\r)/gm, "")
-            var code = `(function(){
+            Blockly.Blocks['converttojson'] = {
+                init: function () {
+                    this.appendDummyInput()
+                        .appendField("ConvertToJSON");
+                    this.appendValueInput("ValueToConvert")
+                        .setCheck(null);
+                    this.setInputsInline(true);
+                    this.setOutput(true, null);
+                    this.setTooltip("Convert to JSON");
+                    this.setHelpUrl("");
+                }
+            };
+            Blockly.JavaScript['converttojson'] = function (block) {
+                var value_ValueToConvert = Blockly.JavaScript.valueToCode(block, 'ValueToConvert', Blockly.JavaScript.ORDER_ATOMIC);
+                value_ValueToConvert = value_ValueToConvert.replace(/(\r\n|\n|\r)/gm, "")
+                var code = `(function(){
                 var val=eval("${value_ValueToConvert}");
                 var json = JSON.parse(val); 
                 if(Array.isArray(json))
@@ -653,112 +655,112 @@
                   return  (objNew);                
                 })()
                 `;
-            //console.log(code);
-            //return ["'andrei'+" + value_valuetoimport, Blockly.JavaScript.ORDER_NONE];
-            return [code, Blockly.JavaScript.ORDER_NONE];
-            //
-            //
-            //var code = JSON.parse(value_valuetoimport);            
-            //return [code, Blockly.JavaScript.ORDER_NONE];
-        };
-        Blockly.Blocks['converttostring'] = {
-            init: function () {
-                this.appendDummyInput()
-                    .appendField("ConvertToString");
-                this.appendValueInput("ValueToConvert")
-                    .setCheck(null);
-                this.setInputsInline(true);
-                this.setOutput(true, null);
-                this.setTooltip("Convert to String");
-                this.setHelpUrl("");
-            }
-        };
-        Blockly.JavaScript['converttostring'] = function (block) {
-            var value_ValueToConvert = Blockly.JavaScript.valueToCode(block, 'ValueToConvert', Blockly.JavaScript.ORDER_ATOMIC);
-            value_ValueToConvert = value_ValueToConvert.replace(/(\r\n|\n|\r)/gm, "")
-            var code = `(function(){
+                //console.log(code);
+                //return ["'andrei'+" + value_valuetoimport, Blockly.JavaScript.ORDER_NONE];
+                return [code, Blockly.JavaScript.ORDER_NONE];
+                //
+                //
+                //var code = JSON.parse(value_valuetoimport);            
+                //return [code, Blockly.JavaScript.ORDER_NONE];
+            };
+            Blockly.Blocks['converttostring'] = {
+                init: function () {
+                    this.appendDummyInput()
+                        .appendField("ConvertToString");
+                    this.appendValueInput("ValueToConvert")
+                        .setCheck(null);
+                    this.setInputsInline(true);
+                    this.setOutput(true, null);
+                    this.setTooltip("Convert to String");
+                    this.setHelpUrl("");
+                }
+            };
+            Blockly.JavaScript['converttostring'] = function (block) {
+                var value_ValueToConvert = Blockly.JavaScript.valueToCode(block, 'ValueToConvert', Blockly.JavaScript.ORDER_ATOMIC);
+                value_ValueToConvert = value_ValueToConvert.replace(/(\r\n|\n|\r)/gm, "")
+                var code = `(function(){
                 var val=eval("${value_ValueToConvert}");
                 var json = JSON.stringify(val); 
                 return  (json);                
                 })()
                 `;
-            //console.log(code);
-            //return ["'andrei'+" + value_valuetoimport, Blockly.JavaScript.ORDER_NONE];
-            return [code, Blockly.JavaScript.ORDER_NONE];
-            //
-            //
-            //var code = JSON.parse(value_valuetoimport);            
-            //return [code, Blockly.JavaScript.ORDER_NONE];
-        };
-        
-        demoWorkspace = Blockly.inject('blocklyDiv',
-            {
-                media: 'media/',
-                toolbox: document.getElementById('toolbox')
-            });
-        if (glbVar)
-            glbVar(demoWorkspace);
-        //demoWorkspace.createVariable('var_SumArgs', 'TestWebAPISite_Controllers_SumArgs');
-        demoWorkspace.registerToolboxCategoryCallback('LocalSiteValues', registerValues);
-        
-        demoWorkspace.registerButtonCallback('crae',
-            function (button) { Blockly.Variables.createVariable(button.getTargetWorkspace(), null, 'TestWebAPISite_Controllers_SumArgs'); }
-        );
-        //demoWorkspace.registerToolboxCategoryCallback('LocalSiteFunctions', registerFunctions);
-        //function (ws) {
-        //    //var tb = ws.getToolbox();
-        //    //console.log(tb);
-        //    //window.alert('adsa');
-        //    registerFunctions();
-        //    //var tb = demoWorkspace.getToolbox();
-        //    //tb.refreshSelection();
-        //});
-        var urlParams = window.location.search.split('dom=');
-        
-        if (urlParams.length == 2) {
-            var str = urlParams[1];
-            
-            var xmlContent = window.localStorage.getItem(str);
-            
-            var dom = Blockly.Xml.textToDom(xmlContent);
-            Blockly.Xml.domToWorkspace(dom,demoWorkspace);
-        }
-        else {
-            Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
-        }
+                //console.log(code);
+                //return ["'andrei'+" + value_valuetoimport, Blockly.JavaScript.ORDER_NONE];
+                return [code, Blockly.JavaScript.ORDER_NONE];
+                //
+                //
+                //var code = JSON.parse(value_valuetoimport);            
+                //return [code, Blockly.JavaScript.ORDER_NONE];
+            };
+
+            demoWorkspace = Blockly.inject('blocklyDiv',
+                {
+                    media: 'media/',
+                    toolbox: document.getElementById('toolbox')
+                });
+            if (glbVar)
+                glbVar(demoWorkspace);
+            //demoWorkspace.createVariable('var_SumArgs', 'TestWebAPISite_Controllers_SumArgs');
+            demoWorkspace.registerToolboxCategoryCallback('LocalSiteValues', registerValues);
+
+            demoWorkspace.registerButtonCallback('crae',
+                function (button) { Blockly.Variables.createVariable(button.getTargetWorkspace(), null, 'TestWebAPISite_Controllers_SumArgs'); }
+            );
+            //demoWorkspace.registerToolboxCategoryCallback('LocalSiteFunctions', registerFunctions);
+            //function (ws) {
+            //    //var tb = ws.getToolbox();
+            //    //console.log(tb);
+            //    //window.alert('adsa');
+            //    registerFunctions();
+            //    //var tb = demoWorkspace.getToolbox();
+            //    //tb.refreshSelection();
+            //});
+            var urlParams = window.location.search.split('dom=');
+
+            if (urlParams.length == 2) {
+                var str = urlParams[1];
+
+                var xmlContent = window.localStorage.getItem(str);
+
+                var dom = Blockly.Xml.textToDom(xmlContent);
+                Blockly.Xml.domToWorkspace(dom, demoWorkspace);
+            }
+            else {
+                Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
+            }
             //Blockly.Xml.domToWorkspace(document.getElementById('testSite'), demoWorkspace);
-        
-        //var tb = demoWorkspace.getToolbox();
-        //console.log(tb.tree_);
-        //tb.refreshSelection();
-        //demoWorkspace.updateToolbox(tb);
 
-        // Exit is used to signal the end of a script.
-        Blockly.JavaScript.addReservedWords('exit');
+            //var tb = demoWorkspace.getToolbox();
+            //console.log(tb.tree_);
+            //tb.refreshSelection();
+            //demoWorkspace.updateToolbox(tb);
 
-        var outputArea = document.getElementById('output');
-        var runButton = document.getElementById('runButton');
-        var myInterpreter = null;
-        var runner;
+            // Exit is used to signal the end of a script.
+            Blockly.JavaScript.addReservedWords('exit');
 
-        function initApi(interpreter, globalObject) {
-            // Add an API function for the alert() block, generated for "text_print" blocks.
-            var wrapper = function (text) {
-                text = text ? text.toString() : '';
-                console.log(`step ${step}`);                
-                zip.file(`step${step}`, text);
-                outputArea.value = outputArea.value + '\n step' + step + ':' + text;
-            };
-            interpreter.setProperty(globalObject, 'alert',
-                interpreter.createNativeFunction(wrapper));
+            var outputArea = document.getElementById('output');
+            var runButton = document.getElementById('runButton');
+            var myInterpreter = null;
+            var runner;
 
-            // Add an API function for the prompt() block.
-            var wrapper = function (text) {
-                text = text ? text.toString() : '';
-                return interpreter.createPrimitive(prompt(text));
-            };
-            interpreter.setProperty(globalObject, 'prompt',
-                interpreter.createNativeFunction(wrapper));
+            function initApi(interpreter, globalObject) {
+                // Add an API function for the alert() block, generated for "text_print" blocks.
+                var wrapper = function (text) {
+                    text = text ? text.toString() : '';
+                    console.log(`step ${step}`);
+                    zip.file(`step${step}`, text);
+                    outputArea.value = outputArea.value + '\n step' + step + ':' + text;
+                };
+                interpreter.setProperty(globalObject, 'alert',
+                    interpreter.createNativeFunction(wrapper));
+
+                // Add an API function for the prompt() block.
+                var wrapper = function (text) {
+                    text = text ? text.toString() : '';
+                    return interpreter.createPrimitive(prompt(text));
+                };
+                interpreter.setProperty(globalObject, 'prompt',
+                    interpreter.createNativeFunction(wrapper));
                 //var wrapper = function (obj) {
                 //    var json = JSON.parse(obj);
                 //    var objNew = {};
@@ -773,265 +775,266 @@
                 //interpreter.setProperty(globalObject, 'resolveObject',
                 //    interpreter.createNativeFunction(wrapper));
 
-            var wrapper = function (href, callback) {
-                var req = new XMLHttpRequest();
-                req.open('GET', href, true);
-                req.onreadystatechange = function () {
-                    if (req.readyState == 4) {
-                        if (req.status == 200) {
-                            callback(req.responseText);
-                        } else {
-                            throw `${href} status :${req.status}`;
-                        }
-
-                    }
-                    else {
-                        //window.alert(`error ${href} ${req.status}`);
-                    }
-                };
-                req.send(null);
-            };
-            interpreter.setProperty(globalObject, 'getXhr',
-                interpreter.createAsyncFunction(wrapper));
-
-
-
-            var wrapper = function (href, objectToPost, callback) {
-                var data = `postXhr: href: ${href} obj: ${objectToPost}`;
-                //console.log(data);
-                //data = JSON.stringify(objectToPost);
-                data = objectToPost;
-                //console.log(`sending ${data}`);
-                var req = new XMLHttpRequest();
-
-                req.open('POST', href, true);
-                req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-                req.onreadystatechange = function () {
-                    if (req.readyState == 4) {
-                        if (req.status == 200) {
-                            var answer = req.responseText;
-                            if (answer) {
-                                callback(answer);
-                            }
-                            else {
-                                callback(true);
-                            }
-                        } else {
-                            throw `${href} status :${req.status}`;
-                        }
-
-                    }
-                    else {
-                        //window.alert(`error ${href} ${req.status}`);
-                    }
-                };
-                req.send(data);
-            };
-            interpreter.setProperty(globalObject, 'postXhr',
-                interpreter.createAsyncFunction(wrapper));
-
-            var wrapper = function (href, objectToPost, callback) {
-                var data = `putXhr: href: ${href} obj: ${objectToPost}`;
-                //console.log(data);
-                //data = JSON.stringify(objectToPost);
-                data = objectToPost;
-                //console.log(`sending ${data}`);
-                var req = new XMLHttpRequest();
-
-                req.open('PUT', href, true);
-                req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-                req.onreadystatechange = function () {
-                    if (req.readyState == 4) {
-                        if (req.status == 200) {
-                            var answer = req.responseText;
-                            if (answer) {
-                                callback(answer);
-                            }
-                            else {
-                                callback(true);
-                            }
-                        } else {
-                            throw `${href} status :${req.status}`;
-                        }
-
-                    }
-                    else {
-                        //window.alert(`error ${href} ${req.status}`);
-                    }
-                };
-                req.send(data);
-            };
-            interpreter.setProperty(globalObject, 'putXhr',
-                interpreter.createAsyncFunction(wrapper));
-
-
-            var wrapper = function (href, callback) {
-                var data = `deleteXhr: href: ${href} `;
-                //console.log(data);
-                
-                
-                var req = new XMLHttpRequest();
-
-                req.open('DELETE', href, true);
-                req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-                req.onreadystatechange = function () {
-                    if (req.readyState == 4) {
-                        if (req.status == 200) {
-                            var answer = req.responseText;
-                            if (answer) {
-                                callback(answer);
-                            }
-                            else {
-                                callback(true);
-                            }
-                        } else {
-                            throw `${href} status :${req.status}`;
-                        }
-
-                    }
-                    else {
-                        //window.alert(`error ${href} ${req.status}`);
-                    }
-                };
-                req.send(null);
-            };
-            interpreter.setProperty(globalObject, 'deleteXhr',
-                interpreter.createAsyncFunction(wrapper));
-
-
-            // Add an API for the wait block.  See wait_block.js
-            initInterpreterWaitForSeconds(interpreter, globalObject);
-
-            // Add an API function for highlighting blocks.
-            var wrapper = function (id) {
-                id = id ? id.toString() : '';
-                return interpreter.createPrimitive(highlightBlock(id));
-            };
-            interpreter.setProperty(globalObject, 'highlightBlock',
-                interpreter.createNativeFunction(wrapper));
-        }
-
-        var highlightPause = false;
-        var latestCode = '';
-        var step = 0;
-        var zip = new JSZip();
-        function highlightBlock(id) {
-            step++;
-            demoWorkspace.highlightBlock(id);
-            highlightPause = true;
-        }
-
-        function resetStepUi(clearOutput) {
-            step = 0;
-            
-            demoWorkspace.highlightBlock(null);
-            highlightPause = false;
-            runButton.disabled = '';
-
-            if (clearOutput) {
-                zip = new JSZip();
-                outputArea.value = 'Program output:\n=================';
-            }
-        }
-
-        function generateCodeAndLoadIntoInterpreter() {
-            // Generate JavaScript code and parse it.
-            Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
-            Blockly.JavaScript.addReservedWords('highlightBlock');
-            latestCode = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-
-            resetStepUi(true);
-        }
-
-        function resetInterpreter() {
-            myInterpreter = null;
-            if (runner) {
-                clearTimeout(runner);
-                runner = null;
-            }
-        }
-
-        function runCode() {
-            if (!myInterpreter) {
-                // First statement of this code.
-                // Clear the program output.
-                resetStepUi(true);
-                runButton.disabled = 'disabled';
-
-                // And then show generated code in an alert.
-                // In a timeout to allow the outputArea.value to reset first.
-                setTimeout(function () {
-                    console.log(latestCode);
-                    //alert('Ready to execute the following code\n' +
-                    //    '===================================\n' +
-                    //    latestCode);
-
-                    // Begin execution
-                    highlightPause = false;
-                    myInterpreter = new Interpreter(latestCode, initApi);
-                    runner = function () {
-                        if (myInterpreter) {
-                            var hasMore = myInterpreter.run();
-                            if (hasMore) {
-                                // Execution is currently blocked by some async call.
-                                // Try again later.
-                                setTimeout(runner, 10);
+                var wrapper = function (href, callback) {
+                    var req = new XMLHttpRequest();
+                    req.open('GET', href, true);
+                    req.onreadystatechange = function () {
+                        if (req.readyState == 4) {
+                            if (req.status == 200) {
+                                callback(req.responseText);
                             } else {
-                                // Program is complete.
-                                outputArea.value += '\n\n<< Program complete >>';
-                                
-                                resetInterpreter();
-                                resetStepUi(false);
+                                throw `${href} status :${req.status}`;
                             }
+
+                        }
+                        else {
+                            //window.alert(`error ${href} ${req.status}`);
                         }
                     };
-                    runner();
-                }, 1);
-                return;
+                    req.send(null);
+                };
+                interpreter.setProperty(globalObject, 'getXhr',
+                    interpreter.createAsyncFunction(wrapper));
+
+
+
+                var wrapper = function (href, objectToPost, callback) {
+                    var data = `postXhr: href: ${href} obj: ${objectToPost}`;
+                    //console.log(data);
+                    //data = JSON.stringify(objectToPost);
+                    data = objectToPost;
+                    //console.log(`sending ${data}`);
+                    var req = new XMLHttpRequest();
+
+                    req.open('POST', href, true);
+                    req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+                    req.onreadystatechange = function () {
+                        if (req.readyState == 4) {
+                            if (req.status == 200) {
+                                var answer = req.responseText;
+                                if (answer) {
+                                    callback(answer);
+                                }
+                                else {
+                                    callback(true);
+                                }
+                            } else {
+                                throw `${href} status :${req.status}`;
+                            }
+
+                        }
+                        else {
+                            //window.alert(`error ${href} ${req.status}`);
+                        }
+                    };
+                    req.send(data);
+                };
+                interpreter.setProperty(globalObject, 'postXhr',
+                    interpreter.createAsyncFunction(wrapper));
+
+                var wrapper = function (href, objectToPost, callback) {
+                    var data = `putXhr: href: ${href} obj: ${objectToPost}`;
+                    //console.log(data);
+                    //data = JSON.stringify(objectToPost);
+                    data = objectToPost;
+                    //console.log(`sending ${data}`);
+                    var req = new XMLHttpRequest();
+
+                    req.open('PUT', href, true);
+                    req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+                    req.onreadystatechange = function () {
+                        if (req.readyState == 4) {
+                            if (req.status == 200) {
+                                var answer = req.responseText;
+                                if (answer) {
+                                    callback(answer);
+                                }
+                                else {
+                                    callback(true);
+                                }
+                            } else {
+                                throw `${href} status :${req.status}`;
+                            }
+
+                        }
+                        else {
+                            //window.alert(`error ${href} ${req.status}`);
+                        }
+                    };
+                    req.send(data);
+                };
+                interpreter.setProperty(globalObject, 'putXhr',
+                    interpreter.createAsyncFunction(wrapper));
+
+
+                var wrapper = function (href, callback) {
+                    var data = `deleteXhr: href: ${href} `;
+                    //console.log(data);
+
+
+                    var req = new XMLHttpRequest();
+
+                    req.open('DELETE', href, true);
+                    req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+                    req.onreadystatechange = function () {
+                        if (req.readyState == 4) {
+                            if (req.status == 200) {
+                                var answer = req.responseText;
+                                if (answer) {
+                                    callback(answer);
+                                }
+                                else {
+                                    callback(true);
+                                }
+                            } else {
+                                throw `${href} status :${req.status}`;
+                            }
+
+                        }
+                        else {
+                            //window.alert(`error ${href} ${req.status}`);
+                        }
+                    };
+                    req.send(null);
+                };
+                interpreter.setProperty(globalObject, 'deleteXhr',
+                    interpreter.createAsyncFunction(wrapper));
+
+
+                // Add an API for the wait block.  See wait_block.js
+                initInterpreterWaitForSeconds(interpreter, globalObject);
+
+                // Add an API function for highlighting blocks.
+                var wrapper = function (id) {
+                    id = id ? id.toString() : '';
+                    return interpreter.createPrimitive(highlightBlock(id));
+                };
+                interpreter.setProperty(globalObject, 'highlightBlock',
+                    interpreter.createNativeFunction(wrapper));
             }
-        }
 
-        // Load the interpreter now, and upon future changes.
-        generateCodeAndLoadIntoInterpreter();
-        demoWorkspace.addChangeListener(function (event) {
-            if (!(event instanceof Blockly.Events.Ui)) {
-                // Something changed. Parser needs to be reloaded.
-                
-                resetInterpreter();
-                generateCodeAndLoadIntoInterpreter();
+            var highlightPause = false;
+            var latestCode = '';
+            var step = 0;
+            var zip = new JSZip();
+            function highlightBlock(id) {
+                step++;
+                demoWorkspace.highlightBlock(id);
+                highlightPause = true;
+            }
 
-                if (event.type == Blockly.Events.BLOCK_CREATE) {
-                    
-                    //console.log();
-                    var obj = event.getEventWorkspace_().getBlockById(event.blockId);
-                    //console.log(obj);
-                    var s = Blockly.Xml.domToText(obj);
-                    //console.log(s);
-                    if (obj.type == "text_print")
-                        return;
-                    //var print = event.getEventWorkspace_().getAllBlocks().find(it => it.type = 'text_print');
-                    //console.log(event.getEventWorkspace_().getAllBlocks());// .addTypedBlock
-                    //console.log(print);
-                    //event.getEventWorkspace_().addTopBlock(print);
-                    var dom = Blockly.Xml.textToDom(
-                        '<xml xmlns="http://www.w3.org/1999/xhtml">' +
-                        '  <block type="text_print" inline="true" x="21" y="23">' +
-                        ' <shadow type="text">'+
-                        '<field name = "TEXT"> abc</field>'+
-                        '</shadow >'+
-                        '  </block>' +
-                        '</xml>');
+            function resetStepUi(clearOutput) {
+                step = 0;
 
-                    
-                    Blockly.Xml.appendDomToWorkspace(dom, event.getEventWorkspace_());
-                    
+                demoWorkspace.highlightBlock(null);
+                highlightPause = false;
+                runButton.disabled = '';
+
+                if (clearOutput) {
+                    zip = new JSZip();
+                    outputArea.value = 'Program output:\n=================';
                 }
             }
-            
-        });
+
+            function generateCodeAndLoadIntoInterpreter() {
+                // Generate JavaScript code and parse it.
+                Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
+                Blockly.JavaScript.addReservedWords('highlightBlock');
+                latestCode = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+
+                resetStepUi(true);
+            }
+
+            function resetInterpreter() {
+                myInterpreter = null;
+                if (runner) {
+                    clearTimeout(runner);
+                    runner = null;
+                }
+            }
+
+            function runCode() {
+                if (!myInterpreter) {
+                    // First statement of this code.
+                    // Clear the program output.
+                    resetStepUi(true);
+                    runButton.disabled = 'disabled';
+
+                    // And then show generated code in an alert.
+                    // In a timeout to allow the outputArea.value to reset first.
+                    setTimeout(function () {
+                        console.log(latestCode);
+                        //alert('Ready to execute the following code\n' +
+                        //    '===================================\n' +
+                        //    latestCode);
+
+                        // Begin execution
+                        highlightPause = false;
+                        myInterpreter = new Interpreter(latestCode, initApi);
+                        runner = function () {
+                            if (myInterpreter) {
+                                var hasMore = myInterpreter.run();
+                                if (hasMore) {
+                                    // Execution is currently blocked by some async call.
+                                    // Try again later.
+                                    setTimeout(runner, 10);
+                                } else {
+                                    // Program is complete.
+                                    outputArea.value += '\n\n<< Program complete >>';
+
+                                    resetInterpreter();
+                                    resetStepUi(false);
+                                }
+                            }
+                        };
+                        runner();
+                    }, 1);
+                    return;
+                }
+            }
+
+            // Load the interpreter now, and upon future changes.
+            generateCodeAndLoadIntoInterpreter();
+            demoWorkspace.addChangeListener(function (event) {
+                if (!(event instanceof Blockly.Events.Ui)) {
+                    // Something changed. Parser needs to be reloaded.
+
+                    resetInterpreter();
+                    generateCodeAndLoadIntoInterpreter();
+
+                    if (event.type == Blockly.Events.BLOCK_CREATE) {
+
+                        //console.log();
+                        var obj = event.getEventWorkspace_().getBlockById(event.blockId);
+                        //console.log(obj);
+                        var s = Blockly.Xml.domToText(obj);
+                        //console.log(s);
+                        if (obj.type == "text_print")
+                            return;
+                        //var print = event.getEventWorkspace_().getAllBlocks().find(it => it.type = 'text_print');
+                        //console.log(event.getEventWorkspace_().getAllBlocks());// .addTypedBlock
+                        //console.log(print);
+                        //event.getEventWorkspace_().addTopBlock(print);
+                        var dom = Blockly.Xml.textToDom(
+                            '<xml xmlns="http://www.w3.org/1999/xhtml">' +
+                            '  <block type="text_print" inline="true" x="21" y="23">' +
+                            ' <shadow type="text">' +
+                            '<field name = "TEXT"> abc</field>' +
+                            '</shadow >' +
+                            '  </block>' +
+                            '</xml>');
+
+
+                        Blockly.Xml.appendDomToWorkspace(dom, event.getEventWorkspace_());
+
+                    }
+                }
+
+            });
+        }
         function downloadZip() {
             zip.generateAsync({ type: "blob" }).then(function (blob) { // 1) generate the zip file
                 saveAs(blob, "hello.zip");                          // 2) trigger the download
@@ -1054,6 +1057,7 @@
                 `${formatInt(date.getHours())}${formatInt(date.getMinutes())}${formatInt(date.getSeconds())}`;
             
         }
+        LoadEverything();
     </script>
     
 </body>
