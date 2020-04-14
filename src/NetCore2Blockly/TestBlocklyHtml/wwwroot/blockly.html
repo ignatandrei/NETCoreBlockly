@@ -73,7 +73,7 @@
                 
                 for (var i = 0; i < testBlocks.length; i++) {
                     if (testBlocks[i].name == name) {
-                        console.log(testBlocks[i]);
+                        //console.log(testBlocks[i]);
                         content = testBlocks[i].data;
                         break;
                     }
@@ -842,7 +842,7 @@
                 //console.log(data);
                 //data = JSON.stringify(objectToPost);
                 data = objectToPost;
-                //console.log(`sending ${data}`);
+                console.log(`sending ${data}`);
                 var req = new XMLHttpRequest();
 
                 req.open('POST', href, true);

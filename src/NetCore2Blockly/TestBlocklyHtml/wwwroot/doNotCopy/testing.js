@@ -27,7 +27,7 @@
 </xml>`
     },
     {
-        name: 'Get First item from GET REST call',
+        name: 'Get items from GET REST call',
         data: `<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
         <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
@@ -106,5 +106,81 @@
         </next>
     </block>
 </xml>`
+    },
+    {
+        name: 'Get and Post',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+    <variables>
+        <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
+        <variable id="43omA)lH5]@xKx#LjSes">var_Math2Values</variable>
+    </variables>
+    <block id="set_n_initial" type="variables_set" y="20" x="20" inline="true">
+        <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+        <value name="VALUE">
+            <block id="^+AKjl[KXHWUX=n4}L?7" type="math_number">
+                <field name="NUM">90</field>
+            </block>
+        </value>
+        <next>
+            <block id="nk~N#rsu:5QG!e4gxhme" type="variables_set">
+                <field id="43omA)lH5]@xKx#LjSes" name="VAR">var_Math2Values</field>
+                <value name="VALUE">
+                    <block id="lt7v_nQ5KX0)v-8DF!H]" type="converttojson">
+                        <value name="ValueToConvert">
+                            <block id="eS?yCGb}./iFL?fB4,~=" type="api_MathDivideRest__id__GET">
+                                <value name="val_id">
+                                    <shadow id="UcBEM8\`0J-gNi|INftgm" type="math_number"><field name="NUM">10</field>
+                                    </shadow>
+                                    <block id="~XYK(H)g|koScok3-!a@" type="variables_get"><field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </value>
+                    </block>
+                </value>
+                <next>
+                    <block id="UD*]u%TzE2T[?[w|mYsJ" type="text_print">
+                        <value name="TEXT">
+                            <shadow id="Cnq%+v{xRUh[zM{n2T-[" type="text">
+                                <field name="TEXT">abc</field>
+                            </shadow>
+                            <block id="rC1jdsCbZT=T?=iyyhC$" type="converttostring">
+                                <value name="ValueToConvert">
+                                    <block id="I_QjjCFVe%F[SVDSbl;_" type="variables_get"><field id="43omA)lH5]@xKx#LjSes" name="VAR">var_Math2Values</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </value>
+                        <next>
+                            <block id="S*YAhIdY3UIf!lxOIl#|" type="variables_set" inline="true">
+                                <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                                <value name="VALUE">
+                                    <block id="#LQ):*eTN,9ZeyppGw\`$" type="api_MathDivideRest_POST"><value name="val_values"><shadow id="uu8h,,H=];uz$mUZ-:)h" type="TestBlocklyHtml_Math2Values"></shadow><block id="$d;8$Ry*D-=CPj@S-I0?" type="variables_get"><field id="43omA)lH5]@xKx#LjSes" name="VAR">var_Math2Values</field>
+                                            </block>
+                                        </value>
+                                    </block>
+                                </value>
+                                <next>
+                                    <block id="1VW?m?|iKHE$U]1!6RIY" type="text_print">
+                                        <value name="TEXT">
+                                            <shadow id="|F}]ve!mpnRb*ln;h5IQ" type="text"><field name="TEXT">abc</field>
+                                            </shadow>
+                                            <block id="7S?u@L/]xoqsU.j!CT.k" type="variables_get"><field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                                            </block>
+                                        </value>
+                                    </block>
+                                </next>
+                            </block>
+                        </next>
+                    </block>
+                </next>
+            </block>
+        </next>
+    </block>
+    <block id="t.KZiVh]u/.Iy/xcLkOL" type="math_number" y="191" x="149">
+        <field name="NUM">90</field>
+    </block>
+</xml>`
+
     }
 ]

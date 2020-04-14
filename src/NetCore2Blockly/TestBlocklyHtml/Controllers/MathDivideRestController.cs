@@ -35,10 +35,10 @@ namespace TestBlocklyHtml
         }
 
         [HttpPost]
-        public async Task<int> Post([FromBody] Math2Values values)
+        public async Task<double> Post([FromBody] Math2Values values)
         {
             await Task.Delay(1000);
-            return values.x / values.y;
+            return (double)values.x / (double)values.y;
         }
         [HttpPut("{id}")]
         public async Task<Math2Values> Put(int id,[FromBody] Math2Values values)
