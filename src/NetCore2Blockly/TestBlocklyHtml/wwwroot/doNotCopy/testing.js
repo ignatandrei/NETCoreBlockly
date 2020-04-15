@@ -1,4 +1,5 @@
-﻿var testBlocks = [
+﻿//if you want to copy those blocks, make sure you replace \` with `
+var testBlocks = [
 
     {
         name: 'Just weather',
@@ -307,6 +308,73 @@
                                         </next>
                                     </block>
                                 </next>
+                            </block>
+                        </next>
+                    </block>
+                </next>
+            </block>
+        </next>
+    </block>
+</xml>`
+    },
+    {
+        name: 'Dynamic delete',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+    <variables>
+        <variable id="P{SqEl7dFn[MB{MvR:H:">n</variable>
+    </variables>
+    <block type="variables_set" y="-452" x="-732" inline="true">
+        <field id="P{SqEl7dFn[MB{MvR:H:" name="VAR">n</field>
+        <value name="VALUE">
+            <block type="text_prompt_ext">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">Please give id to delete</field>
+                    </shadow>
+                </value>
+            </block>
+        </value>
+        <next>
+            <block type="text_print">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">Done</field>
+                    </shadow>
+                    <block type="variables_get">
+                        <field id="P{SqEl7dFn[MB{MvR:H:" name="VAR">n</field>
+                    </block>
+                </value>
+                <next>
+                    <block type="text_print">
+                        <value name="TEXT">
+                            <shadow type="text">
+                                <field name="TEXT">abc</field>
+                            </shadow>
+                            <block type="api_MathDivideRest__id__DELETE">
+                                <value name="val_id">
+                                    <shadow type="math_number"><field name="NUM">10</field>
+                                    </shadow>
+                                    <block type="variables_get"><field id="P{SqEl7dFn[MB{MvR:H:" name="VAR">n</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </value>
+                        <next>
+                            <block type="text_print">
+                                <value name="TEXT">
+                                    <shadow type="text"><field name="TEXT">Done</field>
+                                    </shadow>
+                                    <block type="text_join"><mutation items="2"></mutation><value name="ADD0"><block type="text"><field name="TEXT">Done the delete with</field>
+                                            </block>
+                                        </value>
+                                        <value name="ADD1">
+                                            <block type="variables_get"><field id="P{SqEl7dFn[MB{MvR:H:" name="VAR">n</field>
+                                            </block>
+                                        </value>
+                                    </block>
+                                </value>
                             </block>
                         </next>
                     </block>
