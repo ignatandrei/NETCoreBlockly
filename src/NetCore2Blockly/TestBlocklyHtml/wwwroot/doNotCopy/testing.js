@@ -383,5 +383,176 @@ var testBlocks = [
         </next>
     </block>
 </xml>`
+    },
+    {
+        name: ' multiply 2 values ',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+    <variables>
+        <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
+    </variables>
+    <block type="variables_set" y="20" x="20" inline="true">
+        <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+        <value name="VALUE">
+            <block type="math_number">
+                <field name="NUM">10</field>
+            </block>
+        </value>
+        <next>
+            <block type="text_print">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                    <block type="api_MathOperations_Multiply__x___y__GET">
+                        <value name="val_x">
+                            <shadow type="math_number">
+                                <field name="NUM">2</field>
+                            </shadow>
+                        </value>
+                        <value name="val_y">
+                            <shadow type="math_number">
+                                <field name="NUM">10</field>
+                            </shadow>
+                            <block type="variables_get">
+                                <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                            </block>
+                        </value>
+                    </block>
+                </value>
+            </block>
+        </next>
+    </block>
+</xml>`
+
+    },
+    {
+        name: 'Divide by 0',
+        data: `<xml xmlns="https://developers.google.com/blockly/xml">
+    <variables>
+        <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
+    </variables>
+    <block type="variables_set" y="35" x="47" inline="true">
+        <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+        <value name="VALUE">
+            <block type="math_number">
+                <field name="NUM">10</field>
+            </block>
+        </value>
+        <next>
+            <block type="variables_set" inline="true">
+                <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                <value name="VALUE">
+                    <block type="api_MathOperations_Divide_POST">
+                        <value name="val_data">
+                            <shadow type="TestBlocklyHtml_Math2Values"></shadow>
+                            <block type="TestBlocklyHtml_Math2Values">
+                                <value name="val_x">
+                                    <shadow type="math_number"><field name="NUM">10</field>
+                                    </shadow>
+                                </value>
+                                <value name="val_y">
+                                    <shadow type="math_number"><field name="NUM">10</field>
+                                    </shadow>
+                                    <block type="variables_get"><field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </value>
+                    </block>
+                </value>
+                <next>
+                    <block type="text_print">
+                        <value name="TEXT">
+                            <shadow type="text">
+                                <field name="TEXT">abc</field>
+                            </shadow>
+                            <block type="text_join">
+                                <mutation items="3"></mutation>
+                                <value name="ADD0">
+                                    <block type="text"><field name="TEXT">The result is</field>
+                                    </block>
+                                </value>
+                                <value name="ADD1">
+                                    <block type="variables_get"><field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                                    </block>
+                                </value>
+                                <value name="ADD2">
+                                    <block type="text"><field name="TEXT">Now, what happens if we divide by 0?</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </value>
+                        <next>
+                            <block type="variables_set" inline="true">
+                                <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                                <value name="VALUE">
+                                    <block type="math_number"><field name="NUM">0</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </next>
+                    </block>
+                </next>
+            </block>
+        </next>
+    </block>
+    <block type="math_number" y="97" x="146">
+        <field name="NUM">0</field>
+    </block>
+</xml>`
+    }
+    ,
+    {
+        name: 'https://github.com/ignatandrei/NETCoreBlockly/issues/12',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+    <variables>
+        <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
+    </variables>
+    <block type="variables_set" y="20" x="20" inline="true">
+        <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+        <value name="VALUE">
+            <block type="math_number">
+                <field name="NUM">10</field>
+            </block>
+        </value>
+        <next>
+            <block type="text_print">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                    <block type="api_MathOperations_Add_POST">
+                        <value name="val_data">
+                            <shadow type="TestBlocklyHtml_Math2Values"></shadow>
+                            <block type="TestBlocklyHtml_Math2Values">
+                                <value name="val_x">
+                                    <shadow type="math_number"><field name="NUM">10</field>
+                                    </shadow>
+                                </value>
+                                <value name="val_y">
+                                    <shadow type="math_number"><field name="NUM">10</field>
+                                    </shadow>
+                                </value>
+                            </block>
+                        </value>
+                    </block>
+                </value>
+            </block>
+        </next>
+    </block>
+    <block type="api_MathDivideRest_GET" y="182" x="189"></block>
+    <block type="TestBlocklyHtml_Math2Values" y="215" x="68">
+        <value name="val_x">
+            <shadow type="math_number">
+                <field name="NUM">2</field>
+            </shadow>
+        </value>
+        <value name="val_y">
+            <shadow type="math_number">
+                <field name="NUM">4</field>
+            </shadow>
+        </value>
+    </block>
+</xml>`
     }
 ]
