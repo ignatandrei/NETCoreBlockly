@@ -1,7 +1,86 @@
 ﻿//if you want to copy those blocks, make sure you replace \` with `
 var testBlocks = [
-
     {
+        name: 'modify prop',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+    <variables>
+        <variable id="}N:3#8}TL(iEuP8oCY6A">n</variable>
+        <variable id="Ro;$Xw+OPUiM_p0j!8oQ">var_Math2Values</variable>
+    </variables>
+    <block type="variables_set" y="68" x="55" inline="true">
+        <field id="}N:3#8}TL(iEuP8oCY6A" name="VAR">n</field>
+        <value name="VALUE">
+            <block type="math_number">
+                <field name="NUM">1</field>
+            </block>
+        </value>
+        <next>
+            <block type="variables_set">
+                <field id="Ro;$Xw+OPUiM_p0j!8oQ" name="VAR">var_Math2Values</field>
+                <value name="VALUE">
+                    <block type="TestBlocklyHtml_Math2Values">
+                        <value name="val_x">
+                            <shadow type="math_number">
+                                <field name="NUM">10</field>
+                            </shadow>
+                        </value>
+                        <value name="val_y">
+                            <shadow type="math_number">
+                                <field name="NUM">10</field>
+                            </shadow>
+                        </value>
+                    </block>
+                </value>
+                <next>
+                    <block type="text_print">
+                        <value name="TEXT">
+                            <shadow type="text">
+                                <field name="TEXT">abc</field>
+                            </shadow>
+                            <block type="converttostring">
+                                <value name="ValueToConvert">
+                                    <block type="variables_get"><field id="Ro;$Xw+OPUiM_p0j!8oQ" name="VAR">var_Math2Values</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </value>
+                        <next>
+                            <block type="modifyproperty">
+                                <field name="objectName">object</field>
+                                <field name="prop">,property</field>
+                                <field name="newValue">toValue</field>
+                                <value name="ObjectToChange">
+                                    <block type="variables_get"><field id="Ro;$Xw+OPUiM_p0j!8oQ" name="VAR">var_Math2Values</field>
+                                    </block>
+                                </value>
+                                <value name="PropertyName">
+                                    <block type="text"><field name="TEXT">x</field>
+                                    </block>
+                                </value>
+                                <value name="NewValue">
+                                    <block type="variables_get"><field id="}N:3#8}TL(iEuP8oCY6A" name="VAR">n</field>
+                                    </block>
+                                </value>
+                                <next>
+                                    <block type="text_print"><value name="TEXT"><shadow type="text"><field name="TEXT">abc</field>
+                                            </shadow>
+                                            <block type="converttostring"><value name="ValueToConvert"><block type="variables_get"><field id="Ro;$Xw+OPUiM_p0j!8oQ" name="VAR">var_Math2Values</field>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </value>
+                                    </block>
+                                </next>
+                            </block>
+                        </next>
+                    </block>
+                </next>
+            </block>
+        </next>
+    </block>
+</xml>`},
+    {
+
         name: 'Just weather',
         data: `<xml xmlns="https://developers.google.com/blockly/xml">
   <variables>

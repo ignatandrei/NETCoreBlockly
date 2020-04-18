@@ -410,10 +410,14 @@
             <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
             <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
             <category id="catJSON" colour="160" name="JSON">
-                <button text="A button" callbackKey="crae"></button>
+<!--                <button text="A button" callbackKey="crae"></button>-->
                 <block type="converttojson"></block>
                 <block type="converttostring"></block>
 
+            </category>
+            <category id="JavaScriptRelated" name="JSBlocks">
+                <!--<block type="wait_seconds"></block>-->
+                <block type="modifyproperty"></block>
             </category>
             <category id="catHelpers" colour="160" name="Helpers">
                 <block type="wait_seconds"></block>
@@ -647,6 +651,8 @@
 
         var test = document.getElementById("LocalSiteFunctions");
         test.innerHTML = blockTextLocalSiteFunctions;
+
+
         Blockly.Blocks['converttojson'] = {
             init: function () {
                 this.appendDummyInput()
@@ -695,6 +701,38 @@
             var value_ValueToConvert = Blockly.JavaScript.valueToCode(block, 'ValueToConvert', Blockly.JavaScript.ORDER_ATOMIC);
             var code = 'JSON.stringify(' + value_ValueToConvert + ')';
             return [code, Blockly.JavaScript.ORDER_NONE];
+        };
+
+        //https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#7jmg3m
+        Blockly.Blocks['modifyproperty'] = {
+            init: function () {
+                this.appendDummyInput()
+                    .appendField("Modify ");
+                this.appendValueInput("ObjectToChange")
+                    .setCheck(null)
+                    .setAlign(Blockly.ALIGN_CENTRE)
+                    .appendField(new Blockly.FieldLabelSerializable("object"), "objectName");
+                this.appendValueInput("PropertyName")
+                    .setCheck(null)
+                    .setAlign(Blockly.ALIGN_RIGHT)
+                    .appendField(new Blockly.FieldLabelSerializable(",property"), "prop");
+                this.appendValueInput("NewValue")
+                    .setCheck(null)
+                    .setAlign(Blockly.ALIGN_RIGHT)
+                    .appendField(new Blockly.FieldLabelSerializable("toValue"), "newValue");
+                this.setInputsInline(true);
+                this.setPreviousStatement(true, null);
+                this.setNextStatement(true, null);
+                this.setTooltip("");
+                this.setHelpUrl("");
+            }
+        };
+        Blockly.JavaScript['modifyproperty'] = function (block) {
+            var value_objecttochange = Blockly.JavaScript.valueToCode(block, 'ObjectToChange', Blockly.JavaScript.ORDER_ATOMIC);
+            var value_propertyname = Blockly.JavaScript.valueToCode(block, 'PropertyName', Blockly.JavaScript.ORDER_ATOMIC);
+            var value_newvalue = Blockly.JavaScript.valueToCode(block, 'NewValue', Blockly.JavaScript.ORDER_ATOMIC);
+            var code = value_objecttochange +"[" + value_propertyname + ']=' + value_newvalue+";";
+            return code;
         };
 
         demoWorkspace = Blockly.inject('blocklyDiv',
