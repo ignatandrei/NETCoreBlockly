@@ -632,4 +632,55 @@ var testBlocks = [
     </block>
 </xml>`
     }
+    ,
+    {
+        name: 'DB get department',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+    <variables>
+        <variable id="$l{IZ#6T!0KWuO$YamR8">var_Int64</variable>
+        <variable id="5$qv[vi$Yz%$3,\`/CML7">var_Department</variable>
+    </variables>
+    <block type="variables_set" y="20" x="20" inline="true">
+        <field id="$l{IZ#6T!0KWuO$YamR8" name="VAR">var_Int64</field>
+        <value name="VALUE">
+            <block type="math_number">
+                <field name="NUM">1</field>
+            </block>
+        </value>
+        <next>
+            <block type="variables_set">
+                <field id="5$qv[vi$Yz%$3,\`/CML7" name="VAR">var_Department</field>
+                <value name="VALUE">
+                    <block type="converttojson">
+                        <value name="ValueToConvert">
+                            <block type="api_DB_Departments__id__GET">
+                                <value name="val_id">
+                                    <shadow type="System_Int64"></shadow>
+                                    <block type="variables_get"><field id="$l{IZ#6T!0KWuO$YamR8" name="VAR">var_Int64</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </value>
+                    </block>
+                </value>
+                <next>
+                    <block type="text_print">
+                        <value name="TEXT">
+                            <shadow type="text">
+                                <field name="TEXT">abc</field>
+                            </shadow>
+                            <block type="converttostring">
+                                <value name="ValueToConvert">
+                                    <block type="variables_get"><field id="5$qv[vi$Yz%$3,\`/CML7" name="VAR">var_Department</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </value>
+                    </block>
+                </next>
+            </block>
+        </next>
+    </block>
+</xml>`
+    }
 ]
