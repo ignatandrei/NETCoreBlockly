@@ -21,6 +21,8 @@ steps:
     cd NetCore2Blockly
     dotnet tool restore 
     pwsh ./setVersion.ps1
+    pwsh ./createHTML.ps1
+    copy ./TestBlocklyHtml/wwwroot/blocklyNetCore.zip $(Build.ArtifactStagingDirectory)\blockly.zip
     dotnet build --configuration $(buildConfiguration) NetCore2Blockly.sln /m:1    
   displayName: build sln
 
