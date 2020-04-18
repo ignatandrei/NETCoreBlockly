@@ -184,7 +184,7 @@ return xmlList;
 
             strDef += $@"Blockly.Blocks['var_{nameType(t)}'] = {{
   init: function() {{
-    this.setTooltip(' please open advanced / variables to add the variable');
+    this.setTooltip('{t.FullName}');
     this.appendDummyInput()
       .appendField('variable:')
       .appendField(new Blockly.FieldVariable(
