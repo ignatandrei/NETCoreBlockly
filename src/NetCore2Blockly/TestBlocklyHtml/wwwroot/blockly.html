@@ -418,6 +418,7 @@
             <category id="JavaScriptRelated" name="JSBlocks">
                 <!--<block type="wait_seconds"></block>-->
                 <block type="modifyproperty"></block>
+                <block type="getproperty"></block>
             </category>
             <category id="catHelpers" colour="160" name="Helpers">
                 <block type="wait_seconds"></block>
@@ -734,6 +735,35 @@
             var code = value_objecttochange +"[" + value_propertyname + ']=' + value_newvalue+";";
             return code;
         };
+
+        Blockly.Blocks['getproperty'] = {
+            init: function () {
+                this.appendDummyInput()
+                    .appendField("Get from");
+                this.appendValueInput("ObjectToChange")
+                    .setCheck(null)
+                    .setAlign(Blockly.ALIGN_CENTRE)
+                    .appendField(new Blockly.FieldLabelSerializable("object"), "objectName");
+                this.appendValueInput("PropertyName")
+                    .setCheck(null)
+                    .setAlign(Blockly.ALIGN_RIGHT)
+                    .appendField(new Blockly.FieldLabelSerializable("property"), "prop");
+                this.setInputsInline(true);
+                this.setOutput(true, null)
+                //this.setTooltip("");
+                //this.setHelpUrl("");
+            }
+
+        };
+        Blockly.JavaScript['getproperty'] = function (block) {
+            var value_objecttochange = Blockly.JavaScript.valueToCode(block, 'ObjectToChange', Blockly.JavaScript.ORDER_ATOMIC);
+            var value_propertyname = Blockly.JavaScript.valueToCode(block, 'PropertyName', Blockly.JavaScript.ORDER_ATOMIC);
+            
+            var code = value_objecttochange + "[" + value_propertyname + ']';
+            // TODO: Change ORDER_NONE to the correct strength.
+            return [code, Blockly.JavaScript.ORDER_NONE];
+        };
+
 
         demoWorkspace = Blockly.inject('blocklyDiv',
             {

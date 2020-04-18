@@ -27,7 +27,7 @@ namespace TestBlocklyHtml.Controllers
         {
             //var deps = await _context.Department.ToListAsync();
 
-            var deps = await _context.Department.Include(it => it.Employee).ToListAsync();
+            var deps = await _context.Department.AsNoTracking().Include(it => it.Employee).ToListAsync();
             deps.ForEach(dep =>
             {
                 foreach (var emp in dep.Employee)
@@ -42,7 +42,7 @@ namespace TestBlocklyHtml.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Department>> GetDepartment(long id)
         {
-            var department = await _context.Department
+            var department = await _context.Department.AsNoTracking()
                 .Include(it => it.Employee).FirstOrDefaultAsync(it => it.Iddepartment == id);
             //var department = await _context.Department.FirstOrDefaultAsync(it => it.Iddepartment == id);
             if (department == null)
@@ -104,7 +104,10 @@ namespace TestBlocklyHtml.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Department>> DeleteDepartment(long id)
         {
-            var department = await _context.Department.FindAsync(id);
+            var department = await _context
+                .Department
+                .AsNoTracking()
+                .FirstOrDefaultAsync(it=>it.Iddepartment==id);
             if (department == null)
             {
                 return NotFound();
