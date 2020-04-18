@@ -6,6 +6,8 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ignatandrei/NetCore2Blockly/blob/master/LICENSE)
 [![NuGet](https://img.shields.io/nuget/v/NetCore2Blockly.svg)](https://www.nuget.org/packages/NetCore2Blockly)
 
+# What it does
+It generate Blockly blocks for each of your controller actions. 
 
 # How to install in a .NET Core 3.1  WebAPI / MVC
 
