@@ -18,7 +18,7 @@ var testBlocks = [
             <block type="variables_set">
                 <field id="Ro;$Xw+OPUiM_p0j!8oQ" name="VAR">var_Math2Values</field>
                 <value name="VALUE">
-                    <block type="TestBlocklyHtml_Math2Values">
+                    <block type="TestNetCorePackage_Math2Values">
                         <value name="val_x">
                             <shadow type="math_number">
                                 <field name="NUM">10</field>
@@ -235,7 +235,7 @@ var testBlocks = [
                             <block id="S*YAhIdY3UIf!lxOIl#|" type="variables_set" inline="true">
                                 <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
                                 <value name="VALUE">
-                                    <block id="#LQ):*eTN,9ZeyppGw\`$" type="api_MathDivideRest_POST"><value name="val_values"><shadow id="uu8h,,H=];uz$mUZ-:)h" type="TestBlocklyHtml_Math2Values"></shadow><block id="$d;8$Ry*D-=CPj@S-I0?" type="variables_get"><field id="43omA)lH5]@xKx#LjSes" name="VAR">var_Math2Values</field>
+                                    <block id="#LQ):*eTN,9ZeyppGw\`$" type="api_MathDivideRest_POST"><value name="val_values"><shadow id="uu8h,,H=];uz$mUZ-:)h" type="TestNetCorePackage_Math2Values"></shadow><block id="$d;8$Ry*D-=CPj@S-I0?" type="variables_get"><field id="43omA)lH5]@xKx#LjSes" name="VAR">var_Math2Values</field>
                                             </block>
                                         </value>
                                     </block>
@@ -269,7 +269,7 @@ var testBlocks = [
     <variables>
         <variable >n</variable>
         <variable >var_Math2Values</variable>
-        <variable  type="TestBlocklyHtml_Math2Values">var_Math2Values</variable>
+        <variable  type="TestNetCorePackage_Math2Values">var_Math2Values</variable>
     </variables>
     <block id="set_n_initial" type="variables_set" y="-425" x="-598" inline="true">
         <field  name="VAR">n</field>
@@ -282,7 +282,7 @@ var testBlocks = [
             <block type="variables_set">
                 <field name="VAR">var_Math2Values</field>
                 <value name="VALUE">
-                    <block type="TestBlocklyHtml_Math2Values">
+                    <block type="TestNetCorePackage_Math2Values">
                         <value name="val_x">
                             <shadow type="math_number">
                                 <field name="NUM">10</field>
@@ -315,7 +315,7 @@ var testBlocks = [
                             <block type="variables_set" inline="true">
                                 <field name="VAR">n</field>
                                 <value name="VALUE">
-                                    <block  type="api_MathDivideRest_POST"><value name="val_values"><shadow type="TestBlocklyHtml_Math2Values"></shadow><block type="variables_get"><field name="VAR">var_Math2Values</field>
+                                    <block  type="api_MathDivideRest_POST"><value name="val_values"><shadow type="TestNetCorePackage_Math2Values"></shadow><block type="variables_get"><field name="VAR">var_Math2Values</field>
                                             </block>
                                         </value>
                                     </block>
@@ -329,11 +329,11 @@ var testBlocks = [
                                             </block>
                                         </value>
                                         <next>
-                                            <block type="variables_set" inline="true"><field name="VAR" variabletype="TestBlocklyHtml_Math2Values">var_Math2Values</field><value name="VALUE"><block type="api_MathDivideRest__id__PUT"><value name="val_id"><shadow type="math_number"><field name="NUM">10</field>
+                                            <block type="variables_set" inline="true"><field name="VAR" variabletype="TestNetCorePackage_Math2Values">var_Math2Values</field><value name="VALUE"><block type="api_MathDivideRest__id__PUT"><value name="val_id"><shadow type="math_number"><field name="NUM">10</field>
                                                             </shadow>
                                                         </value>
                                                         <value name="val_values">
-                                                            <shadow type="TestBlocklyHtml_Math2Values"></shadow>
+                                                            <shadow type="TestNetCorePackage_Math2Values"></shadow>
                                                             <block type="variables_get"><field name="VAR">var_Math2Values</field>
                                                             </block>
                                                         </value>
@@ -344,24 +344,24 @@ var testBlocks = [
                                                         <value name="TEXT">
                                                             <shadow type="text"><field name="TEXT">abc</field>
                                                             </shadow>
-                                                            <block type="variables_get"><field name="VAR" variabletype="TestBlocklyHtml_Math2Values">var_Math2Values</field>
+                                                            <block type="variables_get"><field name="VAR" variabletype="TestNetCorePackage_Math2Values">var_Math2Values</field>
                                                             </block>
                                                         </value>
                                                         <next>
-                                                            <block type="variables_set" inline="true"><field name="VAR" variabletype="TestBlocklyHtml_Math2Values">var_Math2Values</field><value name="VALUE"><block type="converttojson"><value name="ValueToConvert"><block type="variables_get"><field name="VAR">var_Math2Values</field>
+                                                            <block type="variables_set" inline="true"><field name="VAR" variabletype="TestNetCorePackage_Math2Values">var_Math2Values</field><value name="VALUE"><block type="converttojson"><value name="ValueToConvert"><block type="variables_get"><field name="VAR">var_Math2Values</field>
                                                                             </block>
                                                                         </value>
                                                                     </block>
                                                                 </value>
                                                                 <next>
                                                                     <block type="variables_set" inline="true">
-                                                                        <field name="VAR" variabletype="TestBlocklyHtml_Math2Values">var_Math2Values</field>
+                                                                        <field name="VAR" variabletype="TestNetCorePackage_Math2Values">var_Math2Values</field>
                                                                         <value name="VALUE">
                                                                             <block type="api_MathDivideRest__id__PUT"><value name="val_id"><shadow type="math_number"><field name="NUM">10</field>
                                                                                     </shadow>
                                                                                 </value>
                                                                                 <value name="val_values">
-                                                                                    <shadow type="TestBlocklyHtml_Math2Values"></shadow>
+                                                                                    <shadow type="TestNetCorePackage_Math2Values"></shadow>
                                                                                     <block type="variables_get"><field name="VAR">var_Math2Values</field>
                                                                                     </block>
                                                                                 </value>
@@ -372,7 +372,7 @@ var testBlocks = [
                                                                                 <value name="TEXT">
                                                                                     <shadow type="text"><field name="TEXT">abc</field>
                                                                                     </shadow>
-                                                                                    <block type="variables_get"><field name="VAR" variabletype="TestBlocklyHtml_Math2Values">var_Math2Values</field>
+                                                                                    <block type="variables_get"><field name="VAR" variabletype="TestNetCorePackage_Math2Values">var_Math2Values</field>
                                                                                     </block>
                                                                                 </value>
                                                                             </block>
@@ -523,8 +523,8 @@ var testBlocks = [
                 <value name="VALUE">
                     <block type="api_MathOperations_Divide_POST">
                         <value name="val_data">
-                            <shadow type="TestBlocklyHtml_Math2Values"></shadow>
-                            <block type="TestBlocklyHtml_Math2Values">
+                            <shadow type="TestNetCorePackage_Math2Values"></shadow>
+                            <block type="TestNetCorePackage_Math2Values">
                                 <value name="val_x">
                                     <shadow type="math_number"><field name="NUM">10</field>
                                     </shadow>
@@ -602,8 +602,8 @@ var testBlocks = [
                     </shadow>
                     <block type="api_MathOperations_Add_POST">
                         <value name="val_data">
-                            <shadow type="TestBlocklyHtml_Math2Values"></shadow>
-                            <block type="TestBlocklyHtml_Math2Values">
+                            <shadow type="TestNetCorePackage_Math2Values"></shadow>
+                            <block type="TestNetCorePackage_Math2Values">
                                 <value name="val_x">
                                     <shadow type="math_number"><field name="NUM">10</field>
                                     </shadow>
@@ -620,7 +620,7 @@ var testBlocks = [
         </next>
     </block>
     <block type="api_MathDivideRest_GET" y="182" x="189"></block>
-    <block type="TestBlocklyHtml_Math2Values" y="215" x="68">
+    <block type="TestNetCorePackage_Math2Values" y="215" x="68">
         <value name="val_x">
             <shadow type="math_number">
                 <field name="NUM">2</field>
@@ -667,7 +667,7 @@ var testBlocks = [
                     <block type="variables_set">
                         <field id="nIdI=p;YaqO~NJ428@8h" name="VAR">var_Department</field>
                         <value name="VALUE">
-                            <block type="TestBlocklyHtml_DB_Department">
+                            <block type="TestNetCorePackage_DB_Department">
                                 <value name="val_Iddepartment">
                                     <block type="variables_get"><field id="5;47gpsWUe91G}.~H]Om" name="VAR">var_Int64</field>
                                     </block>
@@ -688,7 +688,7 @@ var testBlocks = [
                             <block type="variables_set" inline="true">
                                 <field id="P|b0sa?k$1vcEdVj!+fn" name="VAR">n</field>
                                 <value name="VALUE">
-                                    <block type="api_DB_Departments_POST"><value name="val_department"><shadow type="TestBlocklyHtml_DB_Department"></shadow><block type="variables_get"><field id="nIdI=p;YaqO~NJ428@8h" name="VAR">var_Department</field>
+                                    <block type="api_DB_Departments_POST"><value name="val_department"><shadow type="TestNetCorePackage_DB_Department"></shadow><block type="variables_get"><field id="nIdI=p;YaqO~NJ428@8h" name="VAR">var_Department</field>
                                             </block>
                                         </value>
                                     </block>
@@ -875,7 +875,7 @@ var testBlocks = [
                                                                                             </block>
                                                                                         </value>
                                                                                         <value name="val_department">
-                                                                                            <shadow type="TestBlocklyHtml_DB_Department"></shadow>
+                                                                                            <shadow type="TestNetCorePackage_DB_Department"></shadow>
                                                                                             <block type="variables_get"><field id="5$qv[vi$Yz%$3,\`/CML7" name="VAR">var_Department</field>
                                                                                             </block>
                                                                                         </value>
@@ -988,7 +988,7 @@ var testBlocks = [
                             <block type="variables_set">
                                 <field id="nIdI=p;YaqO~NJ428@8h" name="VAR">var_Department</field>
                                 <value name="VALUE">
-                                    <block type="TestBlocklyHtml_DB_Department"><value name="val_Iddepartment"><block type="variables_get"><field id="5;47gpsWUe91G}.~H]Om" name="VAR">var_Int64</field>
+                                    <block type="TestNetCorePackage_DB_Department"><value name="val_Iddepartment"><block type="variables_get"><field id="5;47gpsWUe91G}.~H]Om" name="VAR">var_Int64</field>
                                             </block>
                                         </value>
                                         <value name="val_Name">
@@ -1007,7 +1007,7 @@ var testBlocks = [
                                     <block type="variables_set" inline="true">
                                         <field id="P|b0sa?k$1vcEdVj!+fn" name="VAR">n</field>
                                         <value name="VALUE">
-                                            <block type="api_DB_Departments_POST"><value name="val_department"><shadow type="TestBlocklyHtml_DB_Department"></shadow><block type="variables_get"><field id="nIdI=p;YaqO~NJ428@8h" name="VAR">var_Department</field>
+                                            <block type="api_DB_Departments_POST"><value name="val_department"><shadow type="TestNetCorePackage_DB_Department"></shadow><block type="variables_get"><field id="nIdI=p;YaqO~NJ428@8h" name="VAR">var_Department</field>
                                                     </block>
                                                 </value>
                                             </block>
