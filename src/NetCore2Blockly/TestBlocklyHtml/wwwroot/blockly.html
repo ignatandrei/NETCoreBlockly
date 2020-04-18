@@ -674,37 +674,10 @@
         };
         Blockly.JavaScript['converttojson'] = function (block) {
             var value_ValueToConvert = Blockly.JavaScript.valueToCode(block, 'ValueToConvert', Blockly.JavaScript.ORDER_ATOMIC);
-            value_ValueToConvert = value_ValueToConvert.replace(/(\r\n|\n|\r)/gm, "")
-            var code = `(function(){
-                        var val=eval("${value_ValueToConvert}");
-                        var json = JSON.parse(val);
-                        if(Array.isArray(json))
-                        {
-                            var objArr=[];
-                            for(var i=0;i<json.length;i++){
-                                objArr.push(json[i]);
-                            }
-                            return objArr;
-                        }
-
-                        var objNew = {};
-
-                        for (var key in json) {
-
-                            objNew[key] = eval(json[key]);
-
-                        };
-
-                          return  (objNew);
-                        })()
-                        `;
-            //console.log(code);
-            //return ["'andrei'+" + value_valuetoimport, Blockly.JavaScript.ORDER_NONE];
+            //value_ValueToConvert = value_ValueToConvert.replace(/(\r\n|\n|\r)/gm, "")
+            const code = 'JSON.parse(' + value_ValueToConvert + ')';
             return [code, Blockly.JavaScript.ORDER_NONE];
-            //
-            //
-            //var code = JSON.parse(value_valuetoimport);
-            //return [code, Blockly.JavaScript.ORDER_NONE];
+            
         };
         Blockly.Blocks['converttostring'] = {
             init: function () {
@@ -720,20 +693,8 @@
         };
         Blockly.JavaScript['converttostring'] = function (block) {
             var value_ValueToConvert = Blockly.JavaScript.valueToCode(block, 'ValueToConvert', Blockly.JavaScript.ORDER_ATOMIC);
-            value_ValueToConvert = value_ValueToConvert.replace(/(\r\n|\n|\r)/gm, "")
-            var code = `(function(){
-                        var val=eval("${value_ValueToConvert}");
-                        var json = JSON.stringify(val);
-                        return  (json);
-                        })()
-                        `;
-            //console.log(code);
-            //return ["'andrei'+" + value_valuetoimport, Blockly.JavaScript.ORDER_NONE];
+            var code = 'JSON.stringify(' + value_ValueToConvert + ')';
             return [code, Blockly.JavaScript.ORDER_NONE];
-            //
-            //
-            //var code = JSON.parse(value_valuetoimport);
-            //return [code, Blockly.JavaScript.ORDER_NONE];
         };
 
         demoWorkspace = Blockly.inject('blocklyDiv',
@@ -789,8 +750,10 @@
         function initApi(interpreter, globalObject) {
             // Add an API function for the alert() block, generated for "text_print" blocks.
             var wrapper = function (text) {
+                console.log(text);
                 text = text ? text.toString() : '';
                 step++;
+                
                 console.log(`step ${step}`);
                 zip.file(`result ${step}) ${text}`);
                 outputArea.value = outputArea.value + '\n step' + step + ':' + text;

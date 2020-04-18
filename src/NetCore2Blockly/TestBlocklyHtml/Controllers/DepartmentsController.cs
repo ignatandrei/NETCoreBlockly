@@ -25,7 +25,9 @@ namespace TestBlocklyHtml.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Department>>> GetDepartment()
         {
-            var deps= await _context.Department.Include(it=>it.Employee).ToListAsync();
+            //var deps = await _context.Department.ToListAsync();
+
+            var deps = await _context.Department.Include(it => it.Employee).ToListAsync();
             deps.ForEach(dep =>
             {
                 foreach (var emp in dep.Employee)
@@ -41,8 +43,8 @@ namespace TestBlocklyHtml.Controllers
         public async Task<ActionResult<Department>> GetDepartment(long id)
         {
             var department = await _context.Department
-                .Include(it => it.Employee).FirstOrDefaultAsync(it=>it.Iddepartment==id);
-
+                .Include(it => it.Employee).FirstOrDefaultAsync(it => it.Iddepartment == id);
+            //var department = await _context.Department.FirstOrDefaultAsync(it => it.Iddepartment == id);
             if (department == null)
             {
                 return NotFound();

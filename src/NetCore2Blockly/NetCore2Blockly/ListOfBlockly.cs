@@ -147,6 +147,7 @@ return xmlList;
             string tooltip = $"{t.Name} with props:";
             string propsDef = "";
             string prodCode = "";
+            
             foreach (var prop in t.GetProperties())
             {
                 if (prop.GetSetMethod() == null)
@@ -161,8 +162,15 @@ return xmlList;
                 prodCode += $@"{Environment.NewLine}
                 obj['{prop.Name}'] = Blockly.JavaScript.valueToCode(block, 'val_{prop.Name}', Blockly.JavaScript.ORDER_ATOMIC);
                 ";
+
+
             }
 
+            var prodCodeSimple =
+                string.Join("\r\n", t.GetProperties().Select(prop =>
+
+                 $"objPropString.push('\"{prop.Name}\":'+Blockly.JavaScript.valueToCode(block, \"val_{prop.Name}\", Blockly.JavaScript.ORDER_ATOMIC));"));
+           
             var strDef = $@"
                     Blockly.Blocks['{nameType(t)}'] = {{
                     init: function() {{
@@ -204,7 +212,18 @@ return xmlList;
                   return  (objNew);}})()`;     
                    
                
-                //console.log(code);
+                console.log(code);
+                return [code, Blockly.JavaScript.ORDER_NONE];
+                }};";
+
+            strJS = $@"
+                Blockly.JavaScript['{nameType(t)}'] = function(block) {{
+                console.log(block);
+                var objPropString=[];
+                {prodCodeSimple}
+                console.log(objPropString);
+                var code ='{{ '+ objPropString.join(',') +' }}';
+                console.log(code);
                 return [code, Blockly.JavaScript.ORDER_NONE];
                 }};";
             return (t.FullName, strDef + strJS);
