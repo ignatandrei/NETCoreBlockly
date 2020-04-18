@@ -15,7 +15,6 @@
     <!--do not copy-->
     <script src="doNotCopy/testing.js"></script>
     <script src="doNotCopy/JRTemplating.js"></script>
-
     <!--end do not copy-->
     <style>
         body {
@@ -60,8 +59,9 @@
     </textarea>
 
     </div>
+    <!--do not copy-->
     <div id="doNotCopy">
-        <!--do not copy-->
+
         <ul id="results">
         </ul>
 
@@ -75,7 +75,7 @@
             function Loadtesting(name) {
                 demoWorkspace.clear();
                 var content = '';
-                
+
                 for (var i = 0; i < testBlocks.length; i++) {
                     if (testBlocks[i].name == name) {
                         //console.log(testBlocks[i]);
@@ -91,7 +91,8 @@
             var results = document.getElementById("results");
             results.innerHTML = tmpl("data_tmpl", { data: testBlocks });
         </script>
-    </div><!--do not copy-->
+    </div>
+    <!--do not copy-->
 
     <xml id="toolbox" style="display: none">
         <category name="LocalSite">
@@ -410,7 +411,7 @@
             <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
             <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
             <category id="catJSON" colour="160" name="JSON">
-<!--                <button text="A button" callbackKey="crae"></button>-->
+                <!--                <button text="A button" callbackKey="crae"></button>-->
                 <block type="converttojson"></block>
                 <block type="converttostring"></block>
 
@@ -490,6 +491,7 @@
         </block>
 
     </xml>
+    <!--do not copy-->
     <xml id="testSite" style="display: none">
         <block type="variables_set" id="set_n_initial" inline="true" x="20" y="20">
             <field name="VAR">n</field>
@@ -641,6 +643,7 @@
             </next>
         </block>
     </xml>
+    <!--end do not copy-->
 
     <script>
 
@@ -684,7 +687,7 @@
             //value_ValueToConvert = value_ValueToConvert.replace(/(\r\n|\n|\r)/gm, "")
             const code = 'JSON.parse(' + value_ValueToConvert + ')';
             return [code, Blockly.JavaScript.ORDER_NONE];
-            
+
         };
         Blockly.Blocks['converttostring'] = {
             init: function () {
@@ -732,7 +735,7 @@
             var value_objecttochange = Blockly.JavaScript.valueToCode(block, 'ObjectToChange', Blockly.JavaScript.ORDER_ATOMIC);
             var value_propertyname = Blockly.JavaScript.valueToCode(block, 'PropertyName', Blockly.JavaScript.ORDER_ATOMIC);
             var value_newvalue = Blockly.JavaScript.valueToCode(block, 'NewValue', Blockly.JavaScript.ORDER_ATOMIC);
-            var code = value_objecttochange +"[" + value_propertyname + ']=' + value_newvalue+";";
+            var code = value_objecttochange + "[" + value_propertyname + ']=' + value_newvalue + ";";
             return code;
         };
 
@@ -758,7 +761,7 @@
         Blockly.JavaScript['getproperty'] = function (block) {
             var value_objecttochange = Blockly.JavaScript.valueToCode(block, 'ObjectToChange', Blockly.JavaScript.ORDER_ATOMIC);
             var value_propertyname = Blockly.JavaScript.valueToCode(block, 'PropertyName', Blockly.JavaScript.ORDER_ATOMIC);
-            
+
             var code = value_objecttochange + "[" + value_propertyname + ']';
             // TODO: Change ORDER_NONE to the correct strength.
             return [code, Blockly.JavaScript.ORDER_NONE];
@@ -821,7 +824,7 @@
                 console.log(text);
                 text = text ? text.toString() : '';
                 step++;
-                
+
                 console.log(`step ${step}`);
                 zip.file(`result ${step}) ${text}`);
                 outputArea.value = outputArea.value + '\n step' + step + ':' + text;
@@ -1116,7 +1119,7 @@
             });
         }
         function SaveBlocks() {
-            var xml = Blockly.Xml.workspaceToDom(demoWorkspace,true);
+            var xml = Blockly.Xml.workspaceToDom(demoWorkspace, true);
             var xml_text = Blockly.Xml.domToPrettyText(xml);
             var n = formatDate(new Date());
             window.history.pushState({ dom: n }, xml_text, "?dom=" + n);

@@ -10,22 +10,28 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  deployNuget: '0'
 
 steps:
 - task: NuGetToolInstaller@1
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+- script: |
+    cd src
+    cd NetCore2Blockly
+    dotnet tool restore 
+    pwsh ./setVersion.ps1
+    dotnet build --configuration $(buildConfiguration) NetCore2Blockly.sln /m:1    
+  displayName: build sln
 
-- task: VSTest@2
+- script: |
+    echo "pack "
+    dotnet pack src/NetCore2Blockly/NetCore2Blockly/NetCore2Blockly.csproj --include-source  --no-build -o $(Build.ArtifactStagingDirectory) /p:Configuration=$(buildConfiguration) 
+  displayName: 'dotnet pack '
+
+- task: PublishBuildArtifacts@1
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: drop1
+
+ 

@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "dotnet-property": {
+      "version": "1.0.0.11",
+      "commands": [
+        "dotnet-property"
+      ]
+    },
+    "powershell": {
+      "version": "7.0.0",
+      "commands": [
+        "pwsh"
+      ]
+    },
+    "xunit-cli": {
+      "version": "0.1.3",
+      "commands": [
+        "xunit"
+      ]
+    },
+    "coverlet.console": {
+      "version": "1.7.0",
+      "commands": [
+        "coverlet"
+      ]
+    },
+    "dotnet-reportgenerator-globaltool": {
+      "version": "4.5.0",
+      "commands": [
+        "reportgenerator"
+      ]
+    },
+    "dotnet-aop": {
+      "version": "2020.2.17.1904",
+      "commands": [
+        "dotnet-aop"
+      ]
+    },
+    "loxsmoke.mddox": {
+      "version": "0.5.1",
+      "commands": [
+        "mddox"
+      ]
+    },
+    "dotnet-project-licenses": {
+      "version": "1.1.1",
+      "commands": [
+        "dotnet-project-licenses"
+      ]
+    },
+    "dotnetthx": {
+      "version": "0.2.0",
+      "commands": [
+        "dotnet-thx"
+      ]
+    },
+    "dotnet-depends": {
+      "version": "0.4.0",
+      "commands": [
+        "dotnet-depends"
+      ]
+    },
+    "dotnet-outdated": {
+      "version": "2.10.0",
+      "commands": [
+        "dotnet-outdated"
+      ]
+    }
+  }
+}
