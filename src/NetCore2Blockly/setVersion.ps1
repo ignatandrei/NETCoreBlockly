@@ -14,7 +14,7 @@ $version=$d.ToString("1.0.yyyy.") + ($diff.TotalSeconds -as  [int]).ToString()
 dotnet-property "**/*.csproj" Version:"$version"
 dotnet dotnet-property "**/*.csproj" Version:"$version"
 
-$releaseNotes = "To  use it: please read http://github.com/ignatandrei/netCoreBlockly/"
+$releaseNotes = "To  use it please read http://github.com/ignatandrei/netCoreBlockly/"
 $releaseNotes +="\r\n"
 $releaseNotes += "BuildNumber $env:BUILD_BUILDNUMBER"
 $releaseNotes +="\r\n"
