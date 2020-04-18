@@ -10,7 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NetCore2Blockly;
-
+using TestBlocklyHtml.DB;
+using Microsoft.EntityFrameworkCore;
 namespace TestBlocklyHtml
 {
     public class Startup
@@ -27,6 +28,9 @@ namespace TestBlocklyHtml
         {
             services.AddControllers();
             services.AddBlockly();
+            services.AddDbContext<testsContext>(options => options
+              
+              .UseInMemoryDatabase(databaseName: "MyDB"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +51,8 @@ namespace TestBlocklyHtml
             {
                 endpoints.MapControllers();
             });
-            app.UseBlockly(); ;
+            
+            app.UseBlockly(); 
         }
     }
 }
