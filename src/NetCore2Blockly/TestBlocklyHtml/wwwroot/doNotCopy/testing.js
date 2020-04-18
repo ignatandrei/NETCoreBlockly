@@ -935,5 +935,137 @@ var testBlocks = [
         </next>
     </block>
 </xml>`
+    },
+    {
+        name: 'DB Delete Department',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+    <variables>
+        <variable id="P|b0sa?k$1vcEdVj!+fn">n</variable>
+        <variable id="5;47gpsWUe91G}.~H]Om">var_Int64</variable>
+        <variable id="nIdI=p;YaqO~NJ428@8h">var_Department</variable>
+    </variables>
+    <block type="text_print" y="-389" x="-394">
+        <value name="TEXT">
+            <shadow type="text">
+                <field name="TEXT">abc</field>
+            </shadow>
+            <block type="text_length">
+                <value name="VALUE">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                    <block type="converttojson">
+                        <value name="ValueToConvert">
+                            <block type="api_DB_Departments_GET"></block>
+                        </value>
+                    </block>
+                </value>
+            </block>
+        </value>
+        <next>
+            <block type="variables_set" inline="true">
+                <field id="P|b0sa?k$1vcEdVj!+fn" name="VAR">n</field>
+                <value name="VALUE">
+                    <block type="text_prompt_ext">
+                        <mutation type="TEXT"></mutation>
+                        <field name="TYPE">TEXT</field>
+                        <value name="TEXT">
+                            <shadow type="text">
+                                <field name="TEXT">Please give name of the new Department</field>
+                            </shadow>
+                        </value>
+                    </block>
+                </value>
+                <next>
+                    <block type="variables_set">
+                        <field id="5;47gpsWUe91G}.~H]Om" name="VAR">var_Int64</field>
+                        <value name="VALUE">
+                            <block type="math_number">
+                                <field name="NUM">342</field>
+                            </block>
+                        </value>
+                        <next>
+                            <block type="variables_set">
+                                <field id="nIdI=p;YaqO~NJ428@8h" name="VAR">var_Department</field>
+                                <value name="VALUE">
+                                    <block type="TestBlocklyHtml_DB_Department"><value name="val_Iddepartment"><block type="variables_get"><field id="5;47gpsWUe91G}.~H]Om" name="VAR">var_Int64</field>
+                                            </block>
+                                        </value>
+                                        <value name="val_Name">
+                                            <shadow type="text"><field name="TEXT">abc</field>
+                                            </shadow>
+                                            <block type="variables_get"><field id="P|b0sa?k$1vcEdVj!+fn" name="VAR">n</field>
+                                            </block>
+                                        </value>
+                                        <value name="val_Employee">
+                                            <block type="lists_create_with"><mutation items="0"></mutation>
+                                            </block>
+                                        </value>
+                                    </block>
+                                </value>
+                                <next>
+                                    <block type="variables_set" inline="true">
+                                        <field id="P|b0sa?k$1vcEdVj!+fn" name="VAR">n</field>
+                                        <value name="VALUE">
+                                            <block type="api_DB_Departments_POST"><value name="val_department"><shadow type="TestBlocklyHtml_DB_Department"></shadow><block type="variables_get"><field id="nIdI=p;YaqO~NJ428@8h" name="VAR">var_Department</field>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="text_print">
+                                                <value name="TEXT">
+                                                    <shadow type="text"><field name="TEXT">abc</field>
+                                                    </shadow>
+                                                    <block type="text_length"><value name="VALUE"><shadow type="text"><field name="TEXT">abc</field>
+                                                            </shadow>
+                                                            <block type="converttojson"><value name="ValueToConvert"><block type="api_DB_Departments_GET"></block>
+                                                                </value>
+                                                            </block>
+                                                        </value>
+                                                    </block>
+                                                </value>
+                                                <next>
+                                                    <block type="text_print">
+                                                        <value name="TEXT">
+                                                            <shadow type="text">
+                                                                <field name="TEXT">abc</field>
+                                                            </shadow>
+                                                            <block type="api_DB_Departments__id__DELETE">
+                                                                <value name="val_id"><shadow type="System_Int64"></shadow><block type="variables_get"><field id="5;47gpsWUe91G}.~H]Om" name="VAR">var_Int64</field>
+                                                                    </block>
+                                                                </value>
+                                                            </block>
+                                                        </value>
+                                                        <next>
+                                                            <block type="text_print">
+                                                                <value name="TEXT">
+                                                                    <shadow type="text"><field name="TEXT">abc</field>
+                                                                    </shadow>
+                                                                    <block type="text_length"><value name="VALUE"><shadow type="text"><field name="TEXT">abc</field>
+                                                                            </shadow>
+                                                                            <block type="converttojson"><value name="ValueToConvert"><block type="api_DB_Departments_GET"></block>
+                                                                                </value>
+                                                                            </block>
+                                                                        </value>
+                                                                    </block>
+                                                                </value>
+                                                            </block>
+                                                        </next>
+                                                    </block>
+                                                </next>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </next>
+                            </block>
+                        </next>
+                    </block>
+                </next>
+            </block>
+        </next>
+    </block>
+</xml>
+`
     }
 ]
