@@ -554,5 +554,73 @@ var testBlocks = [
         </value>
     </block>
 </xml>`
+    },
+    {
+        name: 'DB create new Department',
+        data: `<xml xmlns="https://developers.google.com/blockly/xml">
+    <variables>
+        <variable id="P|b0sa?k$1vcEdVj!+fn">n</variable>
+        <variable id="nIdI=p;YaqO~NJ428@8h">var_Department</variable>
+    </variables>
+    <block type="variables_set" y="32" x="-276" inline="true">
+        <field id="P|b0sa?k$1vcEdVj!+fn" name="VAR">n</field>
+        <value name="VALUE">
+            <block type="text_prompt_ext">
+                <mutation type="TEXT"></mutation>
+                <field name="TYPE">TEXT</field>
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">Please give name of the new Department</field>
+                    </shadow>
+                </value>
+            </block>
+        </value>
+        <next>
+            <block type="variables_set">
+                <field id="nIdI=p;YaqO~NJ428@8h" name="VAR">var_Department</field>
+                <value name="VALUE">
+                    <block type="TestBlocklyHtml_DB_Department">
+                        <value name="val_Name">
+                            <shadow type="text">
+                                <field name="TEXT">abc</field>
+                            </shadow>
+                            <block type="variables_get">
+                                <field id="P|b0sa?k$1vcEdVj!+fn" name="VAR">n</field>
+                            </block>
+                        </value>
+                        <value name="val_Employee">
+                            <shadow type="lists_create_with">
+                                <mutation items="0"></mutation>
+                            </shadow>
+                        </value>
+                    </block>
+                </value>
+                <next>
+                    <block type="variables_set" inline="true">
+                        <field id="P|b0sa?k$1vcEdVj!+fn" name="VAR">n</field>
+                        <value name="VALUE">
+                            <block type="api_DB_Departments_POST">
+                                <value name="val_department">
+                                    <shadow type="TestBlocklyHtml_DB_Department"></shadow>
+                                    <block type="variables_get"><field id="nIdI=p;YaqO~NJ428@8h" name="VAR">var_Department</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </value>
+                        <next>
+                            <block type="text_print">
+                                <value name="TEXT">
+                                    <shadow type="text"><field name="TEXT">abc</field>
+                                    </shadow>
+                                    <block type="api_DB_Departments_GET"></block>
+                                </value>
+                            </block>
+                        </next>
+                    </block>
+                </next>
+            </block>
+        </next>
+    </block>
+</xml>`
     }
 ]

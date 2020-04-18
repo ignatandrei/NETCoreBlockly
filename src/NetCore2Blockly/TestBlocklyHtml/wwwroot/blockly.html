@@ -824,7 +824,7 @@
                 req.open('GET', href, true);
                 req.onreadystatechange = function () {
                     if (req.readyState == 4) {
-                        if (req.status == 200) {
+                        if (req.status >= 200 && req.status < 300) {
                             callback(req.responseText);
                         } else {
                             throw `${href} status :${req.status}`;
@@ -855,7 +855,7 @@
 
                 req.onreadystatechange = function () {
                     if (req.readyState == 4) {
-                        if (req.status == 200) {
+                        if (req.status >= 200 && req.status < 300) {
                             var answer = req.responseText;
                             if (answer) {
                                 callback(answer);
@@ -890,7 +890,7 @@
 
                 req.onreadystatechange = function () {
                     if (req.readyState == 4) {
-                        if (req.status == 200) {
+                        if (req.status >= 200 && req.status < 300) {
                             var answer = req.responseText;
                             if (answer) {
                                 callback(answer);
@@ -925,7 +925,7 @@
 
                 req.onreadystatechange = function () {
                     if (req.readyState == 4) {
-                        if (req.status == 200) {
+                        if (req.status >= 200 && req.status < 300) {
                             var answer = req.responseText;
                             if (answer) {
                                 callback(answer);
