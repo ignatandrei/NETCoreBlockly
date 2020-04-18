@@ -7,7 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A190D5B6
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestBlocklyHtml", "TestBlocklyHtml\TestBlocklyHtml.csproj", "{8B074077-4862-41FD-8A4D-BF20FD9D91BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore2Blockly", "NetCore2Blockly\NetCore2Blockly.csproj", "{51001E7F-541D-4FE6-8EE7-E33022DD7341}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore2Blockly", "NetCore2Blockly\NetCore2Blockly.csproj", "{51001E7F-541D-4FE6-8EE7-E33022DD7341}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNetCorePackage", "TestNetCorePackage\TestNetCorePackage.csproj", "{1F62D3C1-5BFA-4D47-96E9-C26980302AC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +25,17 @@ Global
 		{51001E7F-541D-4FE6-8EE7-E33022DD7341}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51001E7F-541D-4FE6-8EE7-E33022DD7341}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51001E7F-541D-4FE6-8EE7-E33022DD7341}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F62D3C1-5BFA-4D47-96E9-C26980302AC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F62D3C1-5BFA-4D47-96E9-C26980302AC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F62D3C1-5BFA-4D47-96E9-C26980302AC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F62D3C1-5BFA-4D47-96E9-C26980302AC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8B074077-4862-41FD-8A4D-BF20FD9D91BC} = {A190D5B6-C2BF-4EAF-8ACC-FC8CAF7710CA}
+		{1F62D3C1-5BFA-4D47-96E9-C26980302AC4} = {A190D5B6-C2BF-4EAF-8ACC-FC8CAF7710CA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3055D8D1-F3ED-4E38-83D9-6AB821AAE1FD}
