@@ -10,7 +10,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  deployNuget: '0'
+  deployNuget: '1'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -35,5 +35,15 @@ steps:
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: drop1
+
+
+- task: NuGetCommand@2
+  condition: and(succeeded(), eq(variables['deployNuget'], '1'))
+  inputs:
+    command: push
+    nuGetFeedType: external
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    publishFeedCredentials: 'nugetService'
+  displayName: 'dotnet nuget push'
 
  
