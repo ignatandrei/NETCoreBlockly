@@ -19,10 +19,10 @@ steps:
 - script: |
     cd src
     cd NetCore2Blockly
-    dotnet tool restore 
+    dotnet tool restore --add-source https://myget.org/F/natemcmaster/api/v3/index.json 
     pwsh ./setVersion.ps1
     pwsh ./createHTML.ps1
-    copy ./TestBlocklyHtml/wwwroot/blocklyNetCore.zip $(Build.ArtifactStagingDirectory)\blockly.zip
+    copy TestBlocklyHtml\wwwroot\blocklyNetCore.zip $(Build.ArtifactStagingDirectory)\blockly.zip
     dotnet build --configuration $(buildConfiguration) NetCore2Blockly.sln /m:1    
   displayName: build sln
 
