@@ -7,18 +7,19 @@
 [![NuGet](https://img.shields.io/nuget/v/NetCore2Blockly.svg)](https://www.nuget.org/packages/NetCore2Blockly)
 
 # What it does
-It generate Blockly blocks for each of your controller actions. 
+NETCoreBlockly generates [Blockly](https://developers.google.com/blockly) blocks for each of your controller actions. 
 
 
 Demo at https://netcoreblockly.herokuapp.com/blockly.html
 
-# How to install in a .NET Core 3.1  WebAPI / MVC
+# How to install NETCoreBlockly in a .NET Core 3.1  WebAPI / MVC application
 
 ## Step 1:
-Install https://www.nuget.org/packages/NetCore2Blockly/ , Install-Package NetCore2Blockly 
+Install https://www.nuget.org/packages/NetCore2Blockly/ by running the following command in the Package Manager Console:
+> Install-Package NetCore2Blockly
 
 ## Step 2:
-Modify Startup.cs , add
+Modify Startup.cs by adding
 ```csharp
 public void ConfigureServices(IServiceCollection services)
         {
