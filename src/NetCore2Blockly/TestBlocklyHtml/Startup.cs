@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,8 @@ using NetCore2Blockly;
 using TestBlocklyHtml.DB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace TestBlocklyHtml
 {
@@ -42,6 +45,19 @@ namespace TestBlocklyHtml
                     Description= " Please see https://github.com/ignatandrei/netcoreblockly"
                 });
             });
+
+            var key = Encoding.ASCII.GetBytes(Configuration["ApplicationSecret"]);
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +69,9 @@ namespace TestBlocklyHtml
             }
             //just developer testing! do not use in production
             app.UseFileServer(enableDirectoryBrowsing: true);
+
+            app.UseStatusCodePages();
+
             //this is not necessary to be added
             app.UseSwagger();
 
