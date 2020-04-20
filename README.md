@@ -9,8 +9,9 @@
 # What it does
 NETCoreBlockly generates [Blockly](https://developers.google.com/blockly) blocks for each of your controller actions. 
 
-
 Demo at https://netcoreblockly.herokuapp.com/blockly.html
+
+Demo Video at https://www.youtube.com/watch?v=GptkNWjmCzk
 
 # How to install NETCoreBlockly in a .NET Core 3.1  WebAPI / MVC application
 
@@ -43,3 +44,11 @@ and put all contents in a wwwroot in the root of your site
 Run the application and browse to  /blockly.html
 
 That's all!
+
+
+
+
+
+
+
+
