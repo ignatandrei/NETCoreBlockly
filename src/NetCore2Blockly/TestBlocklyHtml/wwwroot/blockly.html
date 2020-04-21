@@ -11,6 +11,7 @@
     <script src="/blockly/wait_block.js"></script>
     <script src="others/jszip.min.js"></script>
     <script src="others/FileSaver.min.js"></script>
+    <script src="blockly/BlocklyXHRWrapper.js"></script>
 
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js"></script>
@@ -860,7 +861,7 @@
             //interpreter.setProperty(globalObject, 'resolveObject',
             //    interpreter.createNativeFunction(wrapper));
 
-            var wrapper = function (href, callback) {
+            var wrapper = doGet(href, callback);/*function (href, callback) {
                 var req = new XMLHttpRequest();
                 req.open('GET', href, true);
                 req.onreadystatechange = function () {
@@ -877,7 +878,7 @@
                     }
                 };
                 req.send(null);
-            };
+            };*/
             interpreter.setProperty(globalObject, 'getXhr',
                 interpreter.createAsyncFunction(wrapper));
 
