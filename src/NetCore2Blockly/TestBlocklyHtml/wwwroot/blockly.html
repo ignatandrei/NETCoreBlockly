@@ -865,38 +865,7 @@
             interpreter.setProperty(globalObject, 'getXhr',
                 interpreter.createAsyncFunction(wrapper));
 
-            var wrapper = function (href, objectToPost, callback) {
-                var data = `postXhr: href: ${href} obj: ${objectToPost}`;
-                //console.log(data);
-                //data = JSON.stringify(objectToPost);
-                data = objectToPost;
-                console.log(`sending ${data}`);
-                var req = new XMLHttpRequest();
-
-                req.open('POST', href, true);
-                req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-                req.onreadystatechange = function () {
-                    if (req.readyState == 4) {
-                        if (req.status >= 200 && req.status < 300) {
-                            var answer = req.responseText;
-                            if (answer) {
-                                callback(answer);
-                            }
-                            else {
-                                callback(true);
-                            }
-                        } else {
-                            throw `${href} status :${req.status}`;
-                        }
-
-                    }
-                    else {
-                        //window.alert(`error ${href} ${req.status}`);
-                    }
-                };
-                req.send(data);
-            };
+            var wrapper = (href, objectToPost, callback) => doPost(href, objectToPost, callback);
             interpreter.setProperty(globalObject, 'postXhr',
                 interpreter.createAsyncFunction(wrapper));
 
