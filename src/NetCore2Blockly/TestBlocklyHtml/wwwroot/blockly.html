@@ -11,6 +11,7 @@
     <script src="/blockly/wait_block.js"></script>
     <script src="others/jszip.min.js"></script>
     <script src="others/FileSaver.min.js"></script>
+    <script src="blockly/BlocklyXHRWrapper.js"></script>
 
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js"></script>
@@ -860,28 +861,9 @@
             //interpreter.setProperty(globalObject, 'resolveObject',
             //    interpreter.createNativeFunction(wrapper));
 
-            var wrapper = function (href, callback) {
-                var req = new XMLHttpRequest();
-                req.open('GET', href, true);
-                req.onreadystatechange = function () {
-                    if (req.readyState == 4) {
-                        if (req.status >= 200 && req.status < 300) {
-                            callback(req.responseText);
-                        } else {
-                            throw `${href} status :${req.status}`;
-                        }
-
-                    }
-                    else {
-                        //window.alert(`error ${href} ${req.status}`);
-                    }
-                };
-                req.send(null);
-            };
+            var wrapper = (href, callback) => doGet(href, callback)
             interpreter.setProperty(globalObject, 'getXhr',
                 interpreter.createAsyncFunction(wrapper));
-
-
 
             var wrapper = function (href, objectToPost, callback) {
                 var data = `postXhr: href: ${href} obj: ${objectToPost}`;
