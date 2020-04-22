@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "cosminpopescu14",
+      "name": "Cosmin Popescu",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/4983185?v=4",
+      "profile": "http://www.chestiiautomate.ro/",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "NETCoreBlockly",
+  "projectOwner": "ignatandrei",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
