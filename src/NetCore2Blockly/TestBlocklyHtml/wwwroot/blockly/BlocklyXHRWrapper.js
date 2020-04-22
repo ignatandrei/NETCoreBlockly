@@ -1,6 +1,6 @@
 ﻿// XHR wrapper functions
 
-let doGet = (href, callback) => {
+const doGet = (href, callback) => {
 
     console.log(href, callback);
     let req = new XMLHttpRequest();
@@ -8,7 +8,7 @@ let doGet = (href, callback) => {
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
             if (req.status >= 200 && req.status < 300) {
-                callback(req.responseText);
+                return callback(req.responseText);
             } else {
                 throw `${href} status :${req.status}`;
             }
