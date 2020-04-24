@@ -4,74 +4,45 @@
         <name>NetCore2Blockly</name>
     </assembly>
     <members>
-        <member name="T:NetCore2Blockly.BlocklyGenerator">
+        <member name="T:NetCore2Blockly.ActionInfo">
             <summary>
             generator
             </summary>
         </member>
-        <member name="P:NetCore2Blockly.BlocklyGenerator.ControllerName">
+        <member name="T:NetCore2Blockly.BlocklyFileGenerator">
             <summary>
-            Gets or sets the name of the controller.
+            all blockly that should be generated
             </summary>
-            <value>
-            The name of the controller.
-            </value>
+            
         </member>
-        <member name="P:NetCore2Blockly.BlocklyGenerator.ReturnType">
+        <member name="M:NetCore2Blockly.BlocklyFileGenerator.GenerateNewBlocklyTypesDefinition">
             <summary>
-            Gets or sets the type of the return.
+            Generates types of Blockly
             </summary>
-            <value>
-            The type of the return.
-            </value>
+            <returns></returns>
         </member>
-        <member name="P:NetCore2Blockly.BlocklyGenerator.NameCommand">
+        <member name="M:NetCore2Blockly.BlocklyFileGenerator.GenerateBlocklyToolBoxValueDefinitionFile">
             <summary>
-            Gets or sets the name command.
+            Generates the blocks definition.
             </summary>
-            <value>
-            The name command.
-            </value>
+            <returns></returns>
         </member>
-        <member name="P:NetCore2Blockly.BlocklyGenerator.Host">
+        <member name="M:NetCore2Blockly.BlocklyFileGenerator.GenerateBlocklyAPIFunctions">
             <summary>
-            Gets or sets the host.
+            Functions blocklyAPIFunctions to be generated.
             </summary>
-            <value>
-            The host.
-            </value>
+            <returns></returns>
         </member>
-        <member name="P:NetCore2Blockly.BlocklyGenerator.RelativeRequestUrl">
+        <member name="T:NetCore2Blockly.EnumerateWebAPI">
             <summary>
-            Gets or sets the relative request URL.
+            enumerate and generate
             </summary>
-            <value>
-            The relative request URL.
-            </value>
         </member>
-        <member name="P:NetCore2Blockly.BlocklyGenerator.Verb">
+        <member name="M:NetCore2Blockly.EnumerateWebAPI.#ctor(Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionGroupCollectionProvider)">
             <summary>
-            Gets or sets the verb.
+            Initializes a new instance of the <see cref="T:NetCore2Blockly.EnumerateWebAPI"/> class.
             </summary>
-            <value>
-            The verb.
-            </value>
-        </member>
-        <member name="P:NetCore2Blockly.BlocklyGenerator.ContentType">
-            <summary>
-            Gets or sets the type of the content.
-            </summary>
-            <value>
-            The type of the content.
-            </value>
-        </member>
-        <member name="P:NetCore2Blockly.BlocklyGenerator.Params">
-            <summary>
-            Gets the parameters.
-            </summary>
-            <value>
-            The parameters.
-            </value>
+            <param name="api">The API.</param>
         </member>
         <member name="T:NetCore2Blockly.CLIExtension">
             <summary>
@@ -92,102 +63,35 @@
             <param name="app"></param>
             <returns></returns>
         </member>
-        <member name="T:NetCore2Blockly.EnumerateWebAPIHostedService">
+        <member name="T:NetCore2Blockly.GenerateBlocklyFilesHostedService">
             <summary>
             host to enumerate
             </summary>
             <seealso cref="T:Microsoft.Extensions.Hosting.IHostedService" />
         </member>
-        <member name="F:NetCore2Blockly.EnumerateWebAPIHostedService.app">
+        <member name="F:NetCore2Blockly.GenerateBlocklyFilesHostedService.app">
             <summary>
             The application
             </summary>
         </member>
-        <member name="M:NetCore2Blockly.EnumerateWebAPIHostedService.#ctor(Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionGroupCollectionProvider)">
+        <member name="M:NetCore2Blockly.GenerateBlocklyFilesHostedService.#ctor(Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionGroupCollectionProvider)">
             <summary>
-            Initializes a new instance of the <see cref="T:NetCore2Blockly.EnumerateWebAPIHostedService"/> class.
+            Initializes a new instance of the <see cref="T:NetCore2Blockly.GenerateBlocklyFilesHostedService"/> class.
             </summary>
             <param name="api">The API.</param>
         </member>
-        <member name="M:NetCore2Blockly.EnumerateWebAPIHostedService.StartAsync(System.Threading.CancellationToken)">
+        <member name="M:NetCore2Blockly.GenerateBlocklyFilesHostedService.StartAsync(System.Threading.CancellationToken)">
             <summary>
             starts
             </summary>
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
-        <member name="F:NetCore2Blockly.EnumerateWebAPIHostedService.BlocklyToolBoxFunctionDefinition">
-            <summary>
-            The blockly tool box function definition
-            </summary>
-        </member>
-        <member name="F:NetCore2Blockly.EnumerateWebAPIHostedService.BlocklyAPIFunctions">
-            <summary>
-            The blockly API functions
-            </summary>
-        </member>
-        <member name="F:NetCore2Blockly.EnumerateWebAPIHostedService.BlocklyToolBoxValueDefinition">
-            <summary>
-            The blockly tool box definition
-            </summary>
-        </member>
-        <member name="F:NetCore2Blockly.EnumerateWebAPIHostedService.BlocklyTypesDefinition">
-            <summary>
-            Blockly variables
-            </summary>
-        </member>
-        <member name="M:NetCore2Blockly.EnumerateWebAPIHostedService.StopAsync(System.Threading.CancellationToken)">
+        <member name="M:NetCore2Blockly.GenerateBlocklyFilesHostedService.StopAsync(System.Threading.CancellationToken)">
             <summary>
             Triggered when the application host is performing a graceful shutdown.
             </summary>
             <param name="cancellationToken">Indicates that the shutdown process should no longer be graceful.</param>
-        </member>
-        <member name="T:NetCore2Blockly.EnumerateWebAPI">
-            <summary>
-            enumerate and generate
-            </summary>
-        </member>
-        <member name="M:NetCore2Blockly.EnumerateWebAPI.#ctor(Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionGroupCollectionProvider)">
-            <summary>
-            Initializes a new instance of the <see cref="T:NetCore2Blockly.EnumerateWebAPI"/> class.
-            </summary>
-            <param name="api">The API.</param>
-        </member>
-        <member name="M:NetCore2Blockly.EnumerateWebAPI.FindWebAPI">
-            <summary>
-            Finds the web API.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:NetCore2Blockly.ListOfBlockly">
-            <summary>
-            all blockly that should be generated
-            </summary>
-            
-        </member>
-        <member name="M:NetCore2Blockly.ListOfBlockly.Types">
-            <summary>
-            all types
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NetCore2Blockly.ListOfBlockly.TypesToBeGenerated">
-            <summary>
-            Generates types of Blockly
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NetCore2Blockly.ListOfBlockly.GenerateBlocksValueDefinition">
-            <summary>
-            Generates the blocks definition.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NetCore2Blockly.ListOfBlockly.FunctionsToBeGenerated">
-            <summary>
-            Functions blocklyAPIFunctions to be generated.
-            </summary>
-            <returns></returns>
         </member>
     </members>
 </doc>

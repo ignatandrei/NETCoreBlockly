@@ -11,7 +11,6 @@
     <script src="/blockly/wait_block.js"></script>
     <script src="others/jszip.min.js"></script>
     <script src="others/FileSaver.min.js"></script>
-    <script src="blockly/BlocklyXHRWrapper.js"></script>
 
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js"></script>
@@ -38,13 +37,6 @@
     <h1>
         Blockly Swagger
     </h1>
-        <!--doNotCopyToFinal-->
-        <p>
-        <a href='https://github.com/ignatandrei/NETCoreBlockly' target='_blank'>Source code</a>
-        <a href='https://www.youtube.com/watch?v=GptkNWjmCzk' target='_blank'>Demo Video</a>
-    </p>
-    <!--enddoNotCopyToFinal-->
-
     <script src="/blocklyDefinitions"></script>
     <script src="/BlocklyToolBoxValueDefinitions"></script>
     <script src="/blocklyAPIFunctions"></script>
@@ -103,8 +95,8 @@
     <!--enddoNotCopyToFinal-->
 
     <xml id="toolbox" style="display: none">
-        <category name="LocalSite" expanded="true">
-            <category id="LocalSiteFunctions" name="LocalSiteFunctions" expanded="true">
+        <category name="LocalSite">
+            <category id="LocalSiteFunctions" name="LocalSiteFunctions">
             </category>
             <category custom="LocalSiteValues" colour="160" name="LocalSiteValues">
             </category>
@@ -692,7 +684,7 @@
         };
         Blockly.JavaScript['converttojson'] = function (block) {
             var value_ValueToConvert = Blockly.JavaScript.valueToCode(block, 'ValueToConvert', Blockly.JavaScript.ORDER_ATOMIC);
-            //value_ValueToConvert = value_ValueToConvert.replace(/(\r\n|\n|\r)/gm, "")
+            
             const code = 'JSON.parse(' + value_ValueToConvert + ')';
             return [code, Blockly.JavaScript.ORDER_NONE];
 
@@ -861,20 +853,131 @@
             //interpreter.setProperty(globalObject, 'resolveObject',
             //    interpreter.createNativeFunction(wrapper));
 
-            var wrapper = (href, callback) => doGet(href, callback)
+            var wrapper = function (href, callback) {
+                var req = new XMLHttpRequest();
+                req.open('GET', href, true);
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        if (req.status >= 200 && req.status < 300) {
+                            callback(req.responseText);
+                        } else {
+                            throw `${href} status :${req.status}`;
+                        }
+
+                    }
+                    else {
+                        //window.alert(`error ${href} ${req.status}`);
+                    }
+                };
+                req.send(null);
+            };
             interpreter.setProperty(globalObject, 'getXhr',
                 interpreter.createAsyncFunction(wrapper));
 
-            var wrapper = (href, objectToPost, callback) => doPost(href, objectToPost, callback);
+
+
+            var wrapper = function (href, objectToPost, callback) {
+                var data = `postXhr: href: ${href} obj: ${objectToPost}`;
+                //console.log(data);
+                //data = JSON.stringify(objectToPost);
+                data = objectToPost;
+                console.log(`sending ${data}`);
+                var req = new XMLHttpRequest();
+
+                req.open('POST', href, true);
+                req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        if (req.status >= 200 && req.status < 300) {
+                            var answer = req.responseText;
+                            if (answer) {
+                                callback(answer);
+                            }
+                            else {
+                                callback(true);
+                            }
+                        } else {
+                            throw `${href} status :${req.status}`;
+                        }
+
+                    }
+                    else {
+                        //window.alert(`error ${href} ${req.status}`);
+                    }
+                };
+                req.send(data);
+            };
             interpreter.setProperty(globalObject, 'postXhr',
                 interpreter.createAsyncFunction(wrapper));
 
-            var wrapper = (href, objectToPost, callback) => doPut(href, objectToPost, callback);              
+            var wrapper = function (href, objectToPost, callback) {
+                var data = `putXhr: href: ${href} obj: ${objectToPost}`;
+                //console.log(data);
+                //data = JSON.stringify(objectToPost);
+                data = objectToPost;
+                //console.log(`sending ${data}`);
+                var req = new XMLHttpRequest();
+
+                req.open('PUT', href, true);
+                req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        if (req.status >= 200 && req.status < 300) {
+                            var answer = req.responseText;
+                            if (answer) {
+                                callback(answer);
+                            }
+                            else {
+                                callback(true);
+                            }
+                        } else {
+                            throw `${href} status :${req.status}`;
+                        }
+
+                    }
+                    else {
+                        //window.alert(`error ${href} ${req.status}`);
+                    }
+                };
+                req.send(data);
+            };
             interpreter.setProperty(globalObject, 'putXhr',
                 interpreter.createAsyncFunction(wrapper));
 
 
-            var wrapper = (href, callback) => doDelete(href, callback);
+            var wrapper = function (href, callback) {
+                var data = `deleteXhr: href: ${href} `;
+                //console.log(data);
+
+
+                var req = new XMLHttpRequest();
+
+                req.open('DELETE', href, true);
+                req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        if (req.status >= 200 && req.status < 300) {
+                            var answer = req.responseText;
+                            if (answer) {
+                                callback(answer);
+                            }
+                            else {
+                                callback(true);
+                            }
+                        } else {
+                            throw `${href} status :${req.status}`;
+                        }
+
+                    }
+                    else {
+                        //window.alert(`error ${href} ${req.status}`);
+                    }
+                };
+                req.send(null);
+            };
             interpreter.setProperty(globalObject, 'deleteXhr',
                 interpreter.createAsyncFunction(wrapper));
 
