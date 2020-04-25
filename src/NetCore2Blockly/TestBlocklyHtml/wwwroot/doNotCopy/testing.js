@@ -2,7 +2,7 @@
 var testBlocks = [
     {
         name: 'save image',
-        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+        data: `<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
         <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
         <variable id="f~YJqnSTlX^GoI/nN*h~">nameFile</variable>
@@ -100,7 +100,7 @@ var testBlocks = [
     },
     {
         name: 'save csv as file',
-        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+        data: `<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
         <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
     </variables>
@@ -162,7 +162,7 @@ var testBlocks = [
     },
     {
         name: 'convert csv',
-        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+        data: `<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
         <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
     </variables>
@@ -210,7 +210,7 @@ var testBlocks = [
     },
     {
         name: 'modify prop',
-        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+        data: `<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
         <variable id="}N:3#8}TL(iEuP8oCY6A">n</variable>
         <variable id="Ro;$Xw+OPUiM_p0j!8oQ">var_Math2Values</variable>
@@ -397,7 +397,7 @@ var testBlocks = [
     },
     {
         name: 'Get and Post',
-        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+        data: `<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
         <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
         <variable id="43omA)lH5]@xKx#LjSes">var_Math2Values</variable>
@@ -473,7 +473,7 @@ var testBlocks = [
     },
     {
         name: "Put & POST",
-        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+        data: `<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
         <variable >n</variable>
         <variable >var_Math2Values</variable>
@@ -606,7 +606,7 @@ var testBlocks = [
     },
     {
         name: 'Dynamic delete',
-        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+        data: `<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
         <variable id="P{SqEl7dFn[MB{MvR:H:">n</variable>
     </variables>
@@ -673,7 +673,7 @@ var testBlocks = [
     },
     {
         name: ' multiply 2 values ',
-        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+        data: `<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
         <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
     </variables>
@@ -791,7 +791,7 @@ var testBlocks = [
     ,
     {
         name: 'https://github.com/ignatandrei/NETCoreBlockly/issues/12',
-        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+        data: `<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
         <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
     </variables>
@@ -922,7 +922,7 @@ var testBlocks = [
     ,
     {
         name: 'DB get department',
-        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+        data: `<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
         <variable id="$l{IZ#6T!0KWuO$YamR8">var_Int64</variable>
         <variable id="5$qv[vi$Yz%$3,\`/CML7">var_Department</variable>
@@ -972,7 +972,7 @@ var testBlocks = [
     },
     {
         name: 'DB modify name department',
-        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+        data: `<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
         <variable id="$l{IZ#6T!0KWuO$YamR8">var_Int64</variable>
         <variable id="5$qv[vi$Yz%$3,\`/CML7">var_Department</variable>
@@ -1146,7 +1146,7 @@ var testBlocks = [
     },
     {
         name: 'DB Delete Department',
-        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+        data: `<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
         <variable id="P|b0sa?k$1vcEdVj!+fn">n</variable>
         <variable id="5;47gpsWUe91G}.~H]Om">var_Int64</variable>
@@ -1278,7 +1278,7 @@ var testBlocks = [
     },
     {
         name: 'save new department',
-        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+        data: `<xml xmlns="https://developers.google.com/blockly/xml">
     <block type="text_print" y="-389" x="-404">
         <value name="TEXT">
             <shadow type="text">
@@ -1325,7 +1325,7 @@ var testBlocks = [
     },
     {
         'name': 'play with enum',
-        'data':`<xml xmlns="https://developers.google.com/blockly/xml">
+        'data': `<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
         <variable id="O\`.BZZ!oEpMmp,awb%m7">n</variable>
     </variables>
@@ -1371,6 +1371,38 @@ var testBlocks = [
                         </value>
                     </block>
                 </value>
+            </block>
+        </next>
+    </block>
+</xml>`
+    },
+    {
+        'name': 'https://github.com/ignatandrei/NETCoreBlockly/issues/7',
+        'data': `<xml xmlns="https://developers.google.com/blockly/xml">
+    <variables>
+        <variable id="tN1o#/fr2(SEQn^Q#~j-">n</variable>
+    </variables>
+    <block type="variables_set" y="20" x="20" inline="true">
+        <field id="tN1o#/fr2(SEQn^Q#~j-" name="VAR">n</field>
+        <value name="VALUE">
+            <block type="math_number">
+                <field name="NUM">1</field>
+            </block>
+        </value>
+        <next>
+            <block type="text_print">
+                <value name="TEXT">
+                    <block type="api_MathOperations_ThrowError_POST"></block>
+                </value>
+                <next>
+                    <block type="text_print">
+                        <value name="TEXT">
+                            <block type="variables_get">
+                                <field id="tN1o#/fr2(SEQn^Q#~j-" name="VAR">n</field>
+                            </block>
+                        </value>
+                    </block>
+                </next>
             </block>
         </next>
     </block>

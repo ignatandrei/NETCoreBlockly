@@ -67,6 +67,11 @@ namespace TestBlocklyHtml
         {
             return data.x / data.y;
         }
+        [HttpPost()]
+        public int ThrowError()
+        {
+            throw new ArgumentException("this is a known error");
+        }
 
     }
-    }
+}
