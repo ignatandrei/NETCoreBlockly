@@ -7,10 +7,18 @@ using System.Text;
 
 namespace NetCore2Blockly.JavascriptGeneration
 {
+    /// <summary>
+    /// generates function to translate blockly to JS
+    /// </summary>
     public class BlocklyFunctionJSGenerator
     {
 
-        // blockly javascript code for action
+        
+        /// <summary>
+        /// blockly javascript code for action.
+        /// </summary>
+        /// <param name="actionInfo">The action information.</param>
+        /// <returns></returns>
         public string GenerateFunctionJS(ActionInfo actionInfo)
         {
             var paramsStr = "";
@@ -61,7 +69,7 @@ namespace NetCore2Blockly.JavascriptGeneration
                     ";
         }
 
-        public string GenerateGet(ActionInfo actionInfo)
+        internal string GenerateGet(ActionInfo actionInfo)
         {
             var paramsXHR = "strUrl";
             bool existBody = false;

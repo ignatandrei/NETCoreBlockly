@@ -29,7 +29,11 @@ namespace NetCore2Blockly
             this.api = api;
 
         }
-       
+
+        /// <summary>
+        /// Creates the action list to generate blocks
+        /// </summary>
+        /// <returns></returns>
         public List<ActionInfo> CreateActionList()
         {
             var allActions = new List<ActionInfo>();

@@ -4,10 +4,18 @@ using System.Linq;
 
 namespace NetCore2Blockly
 {
+    /// <summary>
+    /// extension to generate blockly from type
+    /// </summary>
     public static class TypeExtensions
     {
 
-    
+
+        /// <summary>
+        /// Translates the type to blockly blocks.
+        /// </summary>
+        /// <param name="t">The t.</param>
+        /// <returns></returns>
         internal static string TranslateToBlocklyBlocksType(this Type t)
         {
             if (t == typeof(int))
@@ -27,6 +35,11 @@ namespace NetCore2Blockly
 
         }
 
+        /// <summary>
+        /// Translates the type to blockly.
+        /// </summary>
+        /// <param name="t">The t.</param>
+        /// <returns></returns>
         public static string TranslateToBlocklyType(this Type t)
         {
             if (t == typeof(int))
@@ -49,11 +62,21 @@ namespace NetCore2Blockly
            
         }
 
+        /// <summary>
+        /// Translates type to new type, if necessary.
+        /// </summary>
+        /// <param name="t">The t.</param>
+        /// <returns></returns>
         public static string TranslateToNewTypeName(this Type t)
         {
             return t.TranslateToBlocklyType() ?? t.FullName.Replace(".", "_");
         }
 
+        /// <summary>
+        /// see if the type is blockly default type.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns></returns>
         public static bool ConvertibleToBlocklyType(this Type type)
         {
             return type.TranslateToBlocklyType() != null; 

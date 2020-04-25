@@ -5,10 +5,18 @@ using System.Text;
 
 namespace NetCore2Blockly
 {
+    /// <summary>
+    /// extension to generate types
+    /// </summary>
     public static class ActionListExtensions
     {
-        
 
+
+        /// <summary>
+        /// Gets the type with null blockly default types.
+        /// </summary>
+        /// <param name="list">The list.</param>
+        /// <returns></returns>
         public static Type[] GetAllTypesWithNullBlocklyType(this List<ActionInfo> list)
         {
             return  list

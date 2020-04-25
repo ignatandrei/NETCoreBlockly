@@ -5,9 +5,17 @@ using System.Text;
 
 namespace NetCore2Blockly.JavascriptGeneration
 {
-    public  class BlocklyToolBoxJSGenerator
+    /// <summary>
+    /// generates js for seeing blocks in toolbox
+    /// </summary>
+    public class BlocklyToolBoxJSGenerator
     {
-        public  string GenerateBlocklyToolBoxValue(Type[] types)
+        /// <summary>
+        /// Generates the blockly tool box value.
+        /// </summary>
+        /// <param name="types">The types.</param>
+        /// <returns></returns>
+        public string GenerateBlocklyToolBoxValue(Type[] types)
         {
             string blockText = "";
             var globalVars = "var glbVar=function(workspace){";
@@ -48,6 +56,12 @@ namespace NetCore2Blockly.JavascriptGeneration
 
         }
 
+        /// <summary>
+        /// Generates tool box code for all properties of a type.
+        /// </summary>
+        /// <param name="blockText">The block text.</param>
+        /// <param name="type">The type.</param>
+        /// <returns></returns>
         public string GenerateToolBoxCodeForAllPropertiesOfAType(string blockText, Type type)
         {
             var validProperties = type.GetProperties().Where(prop => prop.GetSetMethod() != null);

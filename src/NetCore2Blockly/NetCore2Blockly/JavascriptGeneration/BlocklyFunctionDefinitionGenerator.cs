@@ -5,9 +5,17 @@ using System.Text;
 
 namespace NetCore2Blockly.JavascriptGeneration
 {
+    /// <summary>
+    /// generates blockly functions
+    /// </summary>
     public class BlocklyFunctionDefinitionGenerator
     {
 
+        /// <summary>
+        /// Generates the property definitions.
+        /// </summary>
+        /// <param name="actionInfo">The action information.</param>
+        /// <returns></returns>
         public string GeneratePropertyDefinitions(ActionInfo actionInfo)
         {
             string tooltip = $"{actionInfo.GenerateCommandName()} :";
@@ -31,7 +39,13 @@ namespace NetCore2Blockly.JavascriptGeneration
             return strPropsDefinition + ";" + $" this.setTooltip('{tooltip}');";
         }
 
-        // blockly block definition for action
+        
+        /// <summary>
+        /// Generates the function definition.
+        /// blockly block definition for action
+        /// </summary>
+        /// <param name="actionInfo">The action information.</param>
+        /// <returns></returns>
         public string GenerateFunctionDefinition(ActionInfo actionInfo)
         {
             var strPropsDefinition = GeneratePropertyDefinitions(actionInfo);

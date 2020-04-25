@@ -9,11 +9,76 @@
             generator
             </summary>
         </member>
+        <member name="P:NetCore2Blockly.ActionInfo.ControllerName">
+            <summary>
+            Gets or sets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:NetCore2Blockly.ActionInfo.ReturnType">
+            <summary>
+            Gets or sets the type of the return.
+            </summary>
+            <value>
+            The type of the return.
+            </value>
+        </member>
+        <member name="P:NetCore2Blockly.ActionInfo.ActionName">
+            <summary>
+            Gets or sets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:NetCore2Blockly.ActionInfo.Host">
+            <summary>
+            Gets or sets the host.
+            </summary>
+            <value>
+            The host.
+            </value>
+        </member>
+        <member name="P:NetCore2Blockly.ActionInfo.RelativeRequestUrl">
+            <summary>
+            Gets or sets the relative request URL.
+            </summary>
+            <value>
+            The relative request URL.
+            </value>
+        </member>
+        <member name="P:NetCore2Blockly.ActionInfo.Verb">
+            <summary>
+            Gets or sets the verb.
+            </summary>
+            <value>
+            The verb.
+            </value>
+        </member>
+        <member name="M:NetCore2Blockly.ActionInfo.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NetCore2Blockly.ActionInfo"/> class.
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.ActionInfo.#ctor(Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NetCore2Blockly.ActionInfo"/> class.
+            </summary>
+            <param name="apiDescription">The API description.</param>
+        </member>
         <member name="T:NetCore2Blockly.BlocklyFileGenerator">
             <summary>
             all blockly that should be generated
             </summary>
             
+        </member>
+        <member name="M:NetCore2Blockly.BlocklyFileGenerator.#ctor(System.Collections.Generic.List{NetCore2Blockly.ActionInfo})">
+            <summary>
+            Initializes a new instance of the <see cref="T:NetCore2Blockly.BlocklyFileGenerator"/> class.
+            </summary>
+            <param name="actionList">The action list.</param>
         </member>
         <member name="M:NetCore2Blockly.BlocklyFileGenerator.GenerateNewBlocklyTypesDefinition">
             <summary>
@@ -113,6 +178,43 @@
             </summary>
             <param name="api">The API.</param>
         </member>
+        <member name="M:NetCore2Blockly.EnumerateWebAPI.CreateActionList">
+            <summary>
+            Creates the action list to generate blocks
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NetCore2Blockly.ExtensionMethods.ActionInfoExtensions">
+            <summary>
+            extnesion to generate names from ActionInfo
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.ExtensionMethods.ActionInfoExtensions.GenerateCommandName(NetCore2Blockly.ActionInfo)">
+            <summary>
+            Generates the name of the command.
+            </summary>
+            <param name="actionInfo">The action information.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.ExtensionMethods.ActionInfoExtensions.CommandDisplayName(NetCore2Blockly.ActionInfo)">
+            <summary>
+            Commands the display name.
+            </summary>
+            <param name="actionInfo">The action information.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NetCore2Blockly.ActionListExtensions">
+            <summary>
+            extension to generate types
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.ActionListExtensions.GetAllTypesWithNullBlocklyType(System.Collections.Generic.List{NetCore2Blockly.ActionInfo})">
+            <summary>
+            Gets the type with null blockly default types.
+            </summary>
+            <param name="list">The list.</param>
+            <returns></returns>
+        </member>
         <member name="T:NetCore2Blockly.CLIExtension">
             <summary>
             extension to register to the startup
@@ -132,11 +234,64 @@
             <param name="app"></param>
             <returns></returns>
         </member>
+        <member name="T:NetCore2Blockly.TypeExtensions">
+            <summary>
+            extension to generate blockly from type
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.TypeExtensions.TranslateToBlocklyBlocksType(System.Type)">
+            <summary>
+            Translates the type to blockly blocks.
+            </summary>
+            <param name="t">The t.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.TypeExtensions.TranslateToBlocklyType(System.Type)">
+            <summary>
+            Translates the type to blockly.
+            </summary>
+            <param name="t">The t.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.TypeExtensions.TranslateToNewTypeName(System.Type)">
+            <summary>
+            Translates type to new type, if necessary.
+            </summary>
+            <param name="t">The t.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.TypeExtensions.ConvertibleToBlocklyType(System.Type)">
+            <summary>
+            see if the type is blockly default type.
+            </summary>
+            <param name="type">The type.</param>
+            <returns></returns>
+        </member>
         <member name="T:NetCore2Blockly.GenerateBlocklyFilesHostedService">
             <summary>
             host to enumerate
             </summary>
             <seealso cref="T:Microsoft.Extensions.Hosting.IHostedService" />
+        </member>
+        <member name="F:NetCore2Blockly.GenerateBlocklyFilesHostedService.BlocklyToolBoxFunctionDefinition">
+            <summary>
+            The blockly tool box function definition
+            </summary>
+        </member>
+        <member name="F:NetCore2Blockly.GenerateBlocklyFilesHostedService.BlocklyAPIFunctions">
+            <summary>
+            The blockly API functions
+            </summary>
+        </member>
+        <member name="F:NetCore2Blockly.GenerateBlocklyFilesHostedService.BlocklyToolBoxValueDefinition">
+            <summary>
+            The blockly tool box value definition
+            </summary>
+        </member>
+        <member name="F:NetCore2Blockly.GenerateBlocklyFilesHostedService.BlocklyTypesDefinition">
+            <summary>
+            The blockly types definition
+            </summary>
         </member>
         <member name="F:NetCore2Blockly.GenerateBlocklyFilesHostedService.app">
             <summary>
@@ -161,6 +316,143 @@
             Triggered when the application host is performing a graceful shutdown.
             </summary>
             <param name="cancellationToken">Indicates that the shutdown process should no longer be graceful.</param>
+        </member>
+        <member name="T:NetCore2Blockly.JavascriptGeneration.BlocklyDefinitionGenerator">
+            <summary>
+            generates blockly definition for a type
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyDefinitionGenerator.GenerateBlocklyDefinition(System.Type)">
+            <summary>
+            Generates the blockly definition.
+            </summary>
+            <param name="type">The type.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyDefinitionGenerator.GenerateDefinitionString(System.Type)">
+            <summary>
+            Generates the definition string.
+            </summary>
+            <param name="type">The type.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyDefinitionGenerator.GenerateJSstring(System.Type)">
+            <summary>
+            Generates the javascript string.
+            </summary>
+            <param name="type">The type.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NetCore2Blockly.JavascriptGeneration.BlocklyFunctionDefinitionGenerator">
+            <summary>
+            generates blockly functions
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyFunctionDefinitionGenerator.GeneratePropertyDefinitions(NetCore2Blockly.ActionInfo)">
+            <summary>
+            Generates the property definitions.
+            </summary>
+            <param name="actionInfo">The action information.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyFunctionDefinitionGenerator.GenerateFunctionDefinition(NetCore2Blockly.ActionInfo)">
+            <summary>
+            Generates the function definition.
+            blockly block definition for action
+            </summary>
+            <param name="actionInfo">The action information.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NetCore2Blockly.JavascriptGeneration.BlocklyFunctionJSGenerator">
+            <summary>
+            generates function to translate blockly to JS
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyFunctionJSGenerator.GenerateFunctionJS(NetCore2Blockly.ActionInfo)">
+            <summary>
+            blockly javascript code for action.
+            </summary>
+            <param name="actionInfo">The action information.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxFunctionDefinitionsGenerator">
+            <summary>
+            generates items to toolbox
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxFunctionDefinitionsGenerator.GenerateBlocklyToolBoxFunctionDefinitions(System.Collections.Generic.List{NetCore2Blockly.ActionInfo})">
+            <summary>
+            Generates the blockly tool box function definitions.
+            </summary>
+            <param name="actionList">The action list.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxFunctionDefinitionsGenerator.GenerateBlockShadowField(System.String)">
+            <summary>
+            Generates the block shadow field.
+            </summary>
+            <param name="blockShadowType">Type of the block shadow.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxJSGenerator">
+            <summary>
+            generates js for seeing blocks in toolbox
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxJSGenerator.GenerateBlocklyToolBoxValue(System.Type[])">
+            <summary>
+            Generates the blockly tool box value.
+            </summary>
+            <param name="types">The types.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxJSGenerator.GenerateToolBoxCodeForAllPropertiesOfAType(System.String,System.Type)">
+            <summary>
+            Generates tool box code for all properties of a type.
+            </summary>
+            <param name="blockText">The block text.</param>
+            <param name="type">The type.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator">
+            <summary>
+            javascript generator for blockly
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator.GenerateBlocklyDefinition(System.Type)">
+            <summary>
+            Generates the blockly definition.
+            </summary>
+            <param name="type">The type.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator.GenerateBlocklyToolBoxValue(System.Type[])">
+            <summary>
+            Generates the blockly tool box value.
+            </summary>
+            <param name="types">The types.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator.GenerateBlocklyToolBoxFunctionDefinitions(System.Collections.Generic.List{NetCore2Blockly.ActionInfo})">
+            <summary>
+            Generates the blockly tool box function definitions.
+            </summary>
+            <param name="actionList">The action list.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator.GenerateFunctionJS(NetCore2Blockly.ActionInfo)">
+            <summary>
+            Generates the function js.
+            </summary>
+            <param name="action">The action.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator.GenerateFunctionDefinition(NetCore2Blockly.ActionInfo)">
+            <summary>
+            Generates the function definition.
+            </summary>
+            <param name="action">The action.</param>
+            <returns></returns>
         </member>
         <member name="T:NetCore2Blockly.ListOfBlockly">
             <summary>

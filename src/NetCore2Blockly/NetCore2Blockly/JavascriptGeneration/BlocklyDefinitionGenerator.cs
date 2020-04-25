@@ -5,9 +5,17 @@ using System.Text;
 
 namespace NetCore2Blockly.JavascriptGeneration
 {
+    /// <summary>
+    /// generates blockly definition for a type
+    /// </summary>
     public class BlocklyDefinitionGenerator
     {
-        public  string  GenerateBlocklyDefinition(Type type)
+        /// <summary>
+        /// Generates the blockly definition.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns></returns>
+        public string  GenerateBlocklyDefinition(Type type)
         {
 
             if (type.ConvertibleToBlocklyType())
@@ -19,6 +27,11 @@ namespace NetCore2Blockly.JavascriptGeneration
             return  strDef + strJS;
         }
 
+        /// <summary>
+        /// Generates the definition string.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns></returns>
         public string GenerateDefinitionString(Type type)
         {
             var tooltipAndpropsDef = GenerateTooltipAndPropDef(type);
@@ -52,7 +65,7 @@ namespace NetCore2Blockly.JavascriptGeneration
             return definitionString;
         }
 
-        public (string tooltip, string propsDef) GenerateTooltipAndPropDef(Type type)
+        internal (string tooltip, string propsDef) GenerateTooltipAndPropDef(Type type)
         {
             var validProperties = type.GetProperties().Where(prop => prop.GetSetMethod() != null);
             
@@ -75,6 +88,11 @@ namespace NetCore2Blockly.JavascriptGeneration
             return (tooltip, propsDef);
         }
 
+        /// <summary>
+        /// Generates the javascript string.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns></returns>
         public string GenerateJSstring(Type type)
         {
             var objectProperties =

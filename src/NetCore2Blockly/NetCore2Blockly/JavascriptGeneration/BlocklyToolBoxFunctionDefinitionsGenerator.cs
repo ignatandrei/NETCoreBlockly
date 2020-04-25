@@ -6,8 +6,16 @@ using System.Text;
 
 namespace NetCore2Blockly.JavascriptGeneration
 {
+    /// <summary>
+    /// generates items to toolbox
+    /// </summary>
     public class BlocklyToolBoxFunctionDefinitionsGenerator
     {
+        /// <summary>
+        /// Generates the blockly tool box function definitions.
+        /// </summary>
+        /// <param name="actionList">The action list.</param>
+        /// <returns></returns>
         public string GenerateBlocklyToolBoxFunctionDefinitions(List<ActionInfo> actionList)
         {
             string blockText = "var blockTextLocalSiteFunctions='';";
@@ -62,6 +70,11 @@ namespace NetCore2Blockly.JavascriptGeneration
             return blockText;
         }
 
+        /// <summary>
+        /// Generates the block shadow field.
+        /// </summary>
+        /// <param name="blockShadowType">Type of the block shadow.</param>
+        /// <returns></returns>
         public string GenerateBlockShadowField(string blockShadowType)
         {
             switch (blockShadowType)

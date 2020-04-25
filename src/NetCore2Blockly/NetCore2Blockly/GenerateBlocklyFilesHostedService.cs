@@ -14,12 +14,24 @@ namespace NetCore2Blockly
     public class GenerateBlocklyFilesHostedService : IHostedService
     {
 
+        /// <summary>
+        /// The blockly tool box function definition
+        /// </summary>
         public string BlocklyToolBoxFunctionDefinition;
 
+        /// <summary>
+        /// The blockly API functions
+        /// </summary>
         public string BlocklyAPIFunctions;
-       
+
+        /// <summary>
+        /// The blockly tool box value definition
+        /// </summary>
         public string BlocklyToolBoxValueDefinition;
-       
+
+        /// <summary>
+        /// The blockly types definition
+        /// </summary>
         public string BlocklyTypesDefinition;
 
         private Timer _timer;

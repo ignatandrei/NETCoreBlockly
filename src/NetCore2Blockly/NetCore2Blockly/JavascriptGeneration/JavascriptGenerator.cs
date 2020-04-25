@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace NetCore2Blockly.JavascriptGeneration
 {
+    /// <summary>
+    /// javascript generator for blockly
+    /// </summary>
     public class JavascriptGenerator
     {
 
@@ -19,33 +22,55 @@ namespace NetCore2Blockly.JavascriptGeneration
 
         BlocklyToolBoxJSGenerator _toolBoxJSGenerator = new BlocklyToolBoxJSGenerator();
 
-        
-        public JavascriptGenerator()
-        {
-           
-        }
 
-        public  string  GenerateBlocklyDefinition(Type type)
+
+
+        /// <summary>
+        /// Generates the blockly definition.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns></returns>
+        public string  GenerateBlocklyDefinition(Type type)
         {
             return _definitionGenerator.GenerateBlocklyDefinition(type);
         }
 
+        /// <summary>
+        /// Generates the blockly tool box value.
+        /// </summary>
+        /// <param name="types">The types.</param>
+        /// <returns></returns>
         public string GenerateBlocklyToolBoxValue(Type[] types)
         {
             return _toolBoxJSGenerator.GenerateBlocklyToolBoxValue(types);
         }
 
+        /// <summary>
+        /// Generates the blockly tool box function definitions.
+        /// </summary>
+        /// <param name="actionList">The action list.</param>
+        /// <returns></returns>
         public string GenerateBlocklyToolBoxFunctionDefinitions(List<ActionInfo> actionList)
         {
             return _toolBoxFunctionDefinitionGenerator.GenerateBlocklyToolBoxFunctionDefinitions(actionList);
         }
- 
 
+
+        /// <summary>
+        /// Generates the function js.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        /// <returns></returns>
         public string GenerateFunctionJS(ActionInfo action)
         {
             return _functionJSGenerator.GenerateFunctionJS(action);
         }
 
+        /// <summary>
+        /// Generates the function definition.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        /// <returns></returns>
         public string GenerateFunctionDefinition(ActionInfo action)
         {
             return _functionDefinitionGenerator.GenerateFunctionDefinition(action);

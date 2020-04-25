@@ -15,6 +15,10 @@ namespace NetCore2Blockly
         List<ActionInfo> _actionList;
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BlocklyFileGenerator"/> class.
+        /// </summary>
+        /// <param name="actionList">The action list.</param>
         public BlocklyFileGenerator(List<ActionInfo> actionList)
         {
             _jsGenerator = new JavascriptGenerator();
