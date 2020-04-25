@@ -1,6 +1,166 @@
 ﻿//if you want to copy those blocks, make sure you replace \` with `
 var testBlocks = [
     {
+        name: 'save image',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+    <variables>
+        <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
+        <variable id="f~YJqnSTlX^GoI/nN*h~">nameFile</variable>
+        <variable id=",QS2XTKZ]7gJZ_KB#gQ_">imgContent</variable>
+    </variables>
+    <block type="variables_set" y="46" x="-535" inline="true">
+        <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+        <value name="VALUE">
+            <block type="api_TestImage_GetImageSprite_GET"></block>
+        </value>
+        <next>
+            <block type="variables_set">
+                <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                <value name="VALUE">
+                    <block type="converttojson">
+                        <value name="ValueToConvert">
+                            <block type="variables_get">
+                                <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                            </block>
+                        </value>
+                    </block>
+                </value>
+                <next>
+                    <block type="variables_set">
+                        <field id="f~YJqnSTlX^GoI/nN*h~" name="VAR">nameFile</field>
+                        <value name="VALUE">
+                            <block type="getproperty">
+                                <field name="objectName">object</field>
+                                <field name="prop">property</field>
+                                <value name="ObjectToChange">
+                                    <block type="variables_get"><field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                                    </block>
+                                </value>
+                                <value name="PropertyName">
+                                    <block type="text"><field name="TEXT">name</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </value>
+                        <next>
+                            <block type="variables_set">
+                                <field id=",QS2XTKZ]7gJZ_KB#gQ_" name="VAR">imgContent</field>
+                                <value name="VALUE">
+                                    <block type="getproperty"><field name="objectName">object</field><field name="prop">property</field><value name="ObjectToChange"><block type="variables_get"><field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                                            </block>
+                                        </value>
+                                        <value name="PropertyName">
+                                            <block type="text"><field name="TEXT">image</field>
+                                            </block>
+                                        </value>
+                                    </block>
+                                </value>
+                                <next>
+                                    <block type="text_print">
+                                        <value name="TEXT">
+                                            <shadow type="text"><field name="TEXT">abc</field>
+                                            </shadow>
+                                            <block type="variables_get"><field id="f~YJqnSTlX^GoI/nN*h~" name="VAR">nameFile</field>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="text_print"><value name="TEXT"><shadow type="text"><field name="TEXT">abc</field>
+                                                    </shadow>
+                                                    <block type="variables_get"><field id=",QS2XTKZ]7gJZ_KB#gQ_" name="VAR">imgContent</field>
+                                                    </block>
+                                                </value>
+                                                <next>
+                                                    <block type="exportfile"><value name="fileName"><shadow type="text"><field name="TEXT">abc</field>
+                                                            </shadow>
+                                                            <block type="variables_get"><field id="f~YJqnSTlX^GoI/nN*h~" name="VAR">nameFile</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="contentFile">
+                                                            <block type="variables_get"><field id=",QS2XTKZ]7gJZ_KB#gQ_" name="VAR">imgContent</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="convertToByte">
+                                                            <shadow type="logic_boolean"><field name="BOOL">TRUE</field>
+                                                            </shadow>
+                                                        </value>
+                                                    </block>
+                                                </next>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </next>
+                            </block>
+                        </next>
+                    </block>
+                </next>
+            </block>
+        </next>
+    </block>
+</xml>`
+    },
+    {
+        name: 'save csv as file',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+    <variables>
+        <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
+    </variables>
+    <block type="variables_set" y="52" x="-71" inline="true">
+        <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+        <value name="VALUE">
+            <block type="WeatherForecast_GET"></block>
+        </value>
+        <next>
+            <block type="text_print">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                    <block type="variables_get">
+                        <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                    </block>
+                </value>
+                <next>
+                    <block type="variables_set" inline="true">
+                        <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                        <value name="VALUE">
+                            <block type="convertcsv">
+                                <value name="ArrayToConvert">
+                                    <block type="WeatherForecast_GET"></block>
+                                </value>
+                            </block>
+                        </value>
+                        <next>
+                            <block type="text_print">
+                                <value name="TEXT">
+                                    <shadow type="text"><field name="TEXT">abc</field>
+                                    </shadow>
+                                    <block type="variables_get"><field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                                    </block>
+                                </value>
+                                <next>
+                                    <block type="exportfile"><value name="fileName"><shadow type="text"><field name="TEXT">khgjg.csv</field>
+                                            </shadow>
+                                        </value>
+                                        <value name="contentFile">
+                                            <block type="variables_get"><field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                                            </block>
+                                        </value>
+                                        <value name="convertToByte">
+                                            <shadow type="logic_boolean"><field name="BOOL">FALSE</field>
+                                            </shadow>
+                                        </value>
+                                    </block>
+                                </next>
+                            </block>
+                        </next>
+                    </block>
+                </next>
+            </block>
+        </next>
+    </block>
+</xml>`
+    },
+    {
         name: 'convert csv',
         data:`<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>

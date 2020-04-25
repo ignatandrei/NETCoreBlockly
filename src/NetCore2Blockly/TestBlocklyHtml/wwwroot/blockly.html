@@ -13,6 +13,8 @@
     <script src="others/FileSaver.min.js"></script>
     <script src="blockly/BlocklyXHRWrapper.js"></script>
     <script src="blockly/convertCSV.js"></script>
+    <script src="blockly/exportFile.js"></script>
+
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js"></script>
     <script src="doNotCopy/JRTemplating.js"></script>
@@ -422,11 +424,27 @@
                 <!--                <button text="A button" callbackKey="crae"></button>-->
                 <block type="converttojson"></block>
                 <block type="converttostring"></block>
-                <block type="convertcsv"></block>
+                <block type="convertcsv">
+
+                </block>
             </category>
             <category id="catExporter" colour="160" name="Exporter">
                 <!--                <button text="A button" callbackKey="crae"></button>-->
-                <block type="converttojson"></block>
+                <block type="exportfile">
+                    <value name="fileName">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                    <value name="convertToByte">
+                        <shadow type="logic_boolean">
+                            <field name="BOOL">FALSE</field>
+                        </shadow>
+                    </value>
+
+                    
+
+                </block>
 
             </category>
             <category id="JavaScriptRelated" name="JSBlocks">
@@ -869,6 +887,9 @@
             interpreter.setProperty(globalObject, 'convertToCSV',
                 interpreter.createNativeFunction(wrapper));
 
+            var wrapper = (it, content, toByte) => exportToFile(it, content, toByte);
+            interpreter.setProperty(globalObject, 'exportToFile',
+                interpreter.createNativeFunction(wrapper));
 
             var wrapper = (href, callback) => doGet(href, callback);
             interpreter.setProperty(globalObject, 'getXhr',
