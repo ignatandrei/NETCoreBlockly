@@ -22,6 +22,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "tudorgbiliescu",
+      "name": "Tudor Iliescu",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/8693567?v=4",
+      "profile": "https://github.com/tudorgbiliescu",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
