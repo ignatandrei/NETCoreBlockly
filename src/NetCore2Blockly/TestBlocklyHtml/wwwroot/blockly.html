@@ -12,7 +12,7 @@
     <script src="others/jszip.min.js"></script>
     <script src="others/FileSaver.min.js"></script>
     <script src="blockly/BlocklyXHRWrapper.js"></script>
-
+    <script src="blockly/convertCSV.js"></script>
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js"></script>
     <script src="doNotCopy/JRTemplating.js"></script>
@@ -418,10 +418,15 @@
 
             <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
             <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
-            <category id="catJSON" colour="160" name="JSON">
+            <category id="catJSON" colour="160" name="Converters">
                 <!--                <button text="A button" callbackKey="crae"></button>-->
                 <block type="converttojson"></block>
                 <block type="converttostring"></block>
+                <block type="convertcsv"></block>
+            </category>
+            <category id="catExporter" colour="160" name="Exporter">
+                <!--                <button text="A button" callbackKey="crae"></button>-->
+                <block type="converttojson"></block>
 
             </category>
             <category id="JavaScriptRelated" name="JSBlocks">
@@ -860,8 +865,12 @@
             //}
             //interpreter.setProperty(globalObject, 'resolveObject',
             //    interpreter.createNativeFunction(wrapper));
+            var wrapper = (item) => convertCSV(item);
+            interpreter.setProperty(globalObject, 'convertToCSV',
+                interpreter.createNativeFunction(wrapper));
 
-            var wrapper = (href, callback) => doGet(href, callback)
+
+            var wrapper = (href, callback) => doGet(href, callback);
             interpreter.setProperty(globalObject, 'getXhr',
                 interpreter.createAsyncFunction(wrapper));
 
