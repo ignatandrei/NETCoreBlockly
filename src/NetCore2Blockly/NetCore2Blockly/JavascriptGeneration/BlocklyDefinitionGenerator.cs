@@ -38,7 +38,7 @@ namespace NetCore2Blockly.JavascriptGeneration
             var tooltipAndpropsDef = GenerateTooltipAndPropDef(type);
             var blocklyTypeName = type.TranslateToNewTypeName();
             var typeName = type.Name;
-
+            
             var definitionString = $@"
                                 Blockly.Blocks['{blocklyTypeName}'] = {{
                                 init: function() {{

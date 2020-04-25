@@ -29,6 +29,12 @@ namespace NetCore2Blockly
         {
             if (t == typeof(int))
                 return "math_number";
+            if (t == typeof(long))
+                return "math_number";
+            if (t == typeof(double))
+                return "math_number";
+            if (t == typeof(float))
+                return "math_number";
 
             if (t == typeof(string))
                 return "text";
