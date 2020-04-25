@@ -38,8 +38,8 @@
     <h1>
         Blockly Swagger
     </h1>
-        <!--doNotCopyToFinal-->
-        <p>
+    <!--doNotCopyToFinal-->
+    <p>
         <a href='https://github.com/ignatandrei/NETCoreBlockly' target='_blank'>Source code</a>
         <a href='https://www.youtube.com/watch?v=GptkNWjmCzk' target='_blank'>Demo Video</a>
     </p>
@@ -869,7 +869,7 @@
             interpreter.setProperty(globalObject, 'postXhr',
                 interpreter.createAsyncFunction(wrapper));
 
-            var wrapper = (href, objectToPost, callback) => doPut(href, objectToPost, callback);              
+            var wrapper = (href, objectToPost, callback) => doPut(href, objectToPost, callback);
             interpreter.setProperty(globalObject, 'putXhr',
                 interpreter.createAsyncFunction(wrapper));
 
