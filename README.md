@@ -12,7 +12,7 @@
 # What it does
 NETCoreBlockly generates [Blockly](https://developers.google.com/blockly) blocks for each of your controller actions. 
 
-Demo at https://netcoreblockly.herokuapp.com/blockly.html
+Demo at https://netcoreblockly.herokuapp.com/blockly.html ( play with the links from the bottom)
 
 Demo Video at https://www.youtube.com/watch?v=GptkNWjmCzk
 
