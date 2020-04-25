@@ -96,15 +96,30 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// <returns></returns>
         public string GenerateJSstring(Type type)
         {
-            bool isArray = type.IsSubclassOf(typeof(IEnumerable));
-            string filterNull = (isArray) ? ".filter(it=>it !=null)" : "";
+            var str = typeof(string).FullName;
+            var arr = typeof(IEnumerable);
+            var props = type.GetProperties()
+                           .Select(prop => (prop, isArray:
+                           (!prop.PropertyType.IsValueType)
+                           &&
+                           (prop.PropertyType.FullName != str)
+                           &&
+                           arr.IsAssignableFrom(prop.PropertyType)))
+                        //.Select(it => (prop: it.prop, filter: (!it.isArray) ? "" : "+'.filter(it=>it !=null)'" ))
+                        //TODO: previous line can filter empty arrays, e.g. post with empty elements
+                        // however , raises an error in acorn. For the moment, not implemented
+                        .Select(it => (prop: it.prop, filter: (!it.isArray) ? "" : ""))
+                        .ToArray();
+
+            
             var objectProperties =
                string.Join( Environment.NewLine, 
-                           type.GetProperties().Select(prop =>
-                           $"let val{prop.Name} = Blockly.JavaScript.valueToCode(block, \"val_{prop.Name}\", Blockly.JavaScript.ORDER_ATOMIC);"+
-                           $"if(val{prop.Name} != ''){{" +
-                           $"val{prop.Name} = val{prop.Name}.filter(it=>it != null);"+
-                           $"objPropString.push('\"{prop.Name}\":'+val{prop.Name});"+
+                           props
+                           .Select(it =>
+                           $"let val{it.prop.Name} = Blockly.JavaScript.valueToCode(block, \"val_{it.prop.Name}\", Blockly.JavaScript.ORDER_ATOMIC);"+
+                           $"if(val{it.prop.Name} != ''){{" +
+                           $"val{it.prop.Name} = val{it.prop.Name};"+
+                           $"objPropString.push('\"{it.prop.Name}\":'+val{it.prop.Name}{it.filter});"+
                            $"}}")
                );
 

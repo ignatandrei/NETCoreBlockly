@@ -1275,5 +1275,52 @@ var testBlocks = [
     </block>
 </xml>
 `
+    },
+    {
+        name: 'save new department',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+    <block type="text_print" y="-389" x="-404">
+        <value name="TEXT">
+            <shadow type="text">
+                <field name="TEXT">abc</field>
+            </shadow>
+            <block type="api_DB_Departments_GET"></block>
+        </value>
+        <next>
+            <block type="text_print">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                    <block type="api_DB_Departments_POST">
+                        <value name="val_department">
+                            <shadow type="TestBlocklyHtml_DB_Department"></shadow>
+                            <block type="TestBlocklyHtml_DB_Department">
+                                <value name="val_Name">
+                                    <shadow type="text"><field name="TEXT">asdasda</field>
+                                    </shadow>
+                                </value>
+                                <value name="val_Employee">
+                                    <shadow type="lists_create_with"><mutation items="0"></mutation>
+                                    </shadow>
+                                </value>
+                            </block>
+                        </value>
+                    </block>
+                </value>
+                <next>
+                    <block type="text_print">
+                        <value name="TEXT">
+                            <shadow type="text">
+                                <field name="TEXT">abc</field>
+                            </shadow>
+                            <block type="api_DB_Departments_GET"></block>
+                        </value>
+                    </block>
+                </next>
+            </block>
+        </next>
+    </block>
+</xml>`
     }
 ]
