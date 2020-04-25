@@ -1,6 +1,54 @@
 ﻿//if you want to copy those blocks, make sure you replace \` with `
 var testBlocks = [
     {
+        name: 'convert csv',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+    <variables>
+        <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
+    </variables>
+    <block type="variables_set" y="20" x="20" inline="true">
+        <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+        <value name="VALUE">
+            <block type="WeatherForecast_GET"></block>
+        </value>
+        <next>
+            <block type="text_print">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                    <block type="variables_get">
+                        <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                    </block>
+                </value>
+                <next>
+                    <block type="variables_set" inline="true">
+                        <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                        <value name="VALUE">
+                            <block type="convertcsv">
+                                <value name="ArrayToConvert">
+                                    <block type="WeatherForecast_GET"></block>
+                                </value>
+                            </block>
+                        </value>
+                        <next>
+                            <block type="text_print">
+                                <value name="TEXT">
+                                    <shadow type="text"><field name="TEXT">abc</field>
+                                    </shadow>
+                                    <block type="variables_get"><field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </next>
+                    </block>
+                </next>
+            </block>
+        </next>
+    </block>
+</xml>`
+    },
+    {
         name: 'modify prop',
         data:`<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
