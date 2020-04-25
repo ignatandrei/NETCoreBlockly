@@ -167,6 +167,25 @@
             The parameters.
             </value>
         </member>
+        <member name="T:NetCore2Blockly.BlocklyStringToColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.BlocklyStringToColor.ConvertToHue(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="controllerName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.BlocklyStringToColor.ToHexColor(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
         <member name="T:NetCore2Blockly.EnumerateWebAPI">
             <summary>
             enumerate and generate
@@ -201,6 +220,18 @@
             Commands the display name.
             </summary>
             <param name="actionInfo">The action information.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NetCore2Blockly.ExtensionMethods.IntegerExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.ExtensionMethods.IntegerExtensions.ToHex(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="T:NetCore2Blockly.ActionListExtensions">
