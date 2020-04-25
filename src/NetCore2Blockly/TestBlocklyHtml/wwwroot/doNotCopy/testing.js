@@ -1322,5 +1322,58 @@ var testBlocks = [
         </next>
     </block>
 </xml>`
+    },
+    {
+        'name': 'play with enum',
+        'data':`<xml xmlns="https://developers.google.com/blockly/xml">
+    <variables>
+        <variable id="O\`.BZZ!oEpMmp,awb%m7">n</variable>
+    </variables>
+    <block type="variables_set" y="20" x="20" inline="true">
+        <field id="O\`.BZZ!oEpMmp,awb%m7" name="VAR">n</field>
+        <value name="VALUE">
+            <block type="TestBlocklyHtml_Operation">
+                <field name="val_Operation">3</field>
+            </block>
+        </value>
+        <next>
+            <block type="text_print">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                    <block type="api_MathOperations_Operation__id___x__POST">
+                        <value name="val_id">
+                            <shadow type="TestBlocklyHtml_Operation">
+                                <field name="val_Operation">0</field>
+                            </shadow>
+                            <block type="variables_get">
+                                <field id="O\`.BZZ!oEpMmp,awb%m7" name="VAR">n</field>
+                            </block>
+                        </value>
+                        <value name="val_x">
+                            <shadow type="math_number">
+                                <field name="NUM">10</field>
+                            </shadow>
+                        </value>
+                        <value name="val_data">
+                            <shadow type="TestBlocklyHtml_Math2Values"></shadow>
+                            <block type="TestBlocklyHtml_Math2Values">
+                                <value name="val_x">
+                                    <shadow type="math_number"><field name="NUM">2</field>
+                                    </shadow>
+                                </value>
+                                <value name="val_y">
+                                    <shadow type="math_number"><field name="NUM">3</field>
+                                    </shadow>
+                                </value>
+                            </block>
+                        </value>
+                    </block>
+                </value>
+            </block>
+        </next>
+    </block>
+</xml>`
     }
 ]

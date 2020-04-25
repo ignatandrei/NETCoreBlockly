@@ -16,16 +16,15 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        public string  GenerateBlocklyDefinition(Type type)
+        public string GenerateBlocklyDefinition(Type type)
         {
 
             if (type.ConvertibleToBlocklyType())
-                return  null;
+                return null;
 
             var strDef = GenerateDefinitionString(type);
             var strJS = GenerateJSstring(type);
-
-            return  strDef + strJS;
+            return strDef + strJS;
         }
 
         /// <summary>
@@ -35,10 +34,19 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// <returns></returns>
         public string GenerateDefinitionString(Type type)
         {
+            if (type.IsEnum)
+            {
+                return GenerateDefinitionStringForEnum(type);
+            }
+
+
             var tooltipAndpropsDef = GenerateTooltipAndPropDef(type);
             var blocklyTypeName = type.TranslateToNewTypeName();
             var typeName = type.Name;
-            
+
+
+
+
             var definitionString = $@"
                                 Blockly.Blocks['{blocklyTypeName}'] = {{
                                 init: function() {{
@@ -66,12 +74,55 @@ namespace NetCore2Blockly.JavascriptGeneration
             return definitionString;
         }
 
+        private string GenerateDefinitionStringForEnum(Type type)
+        {
+            if (!type.IsEnum)
+                throw new ArgumentException($"type {type.Name} is not enum!");
+
+
+            var names = Enum.GetNames(type);
+            var opt = string.Join(",",
+                names.Select(it => $"['{it}', '{ValueEnum(Enum.Parse(type, it))}']")
+                );
+
+            var def = $@"{Environment.NewLine}
+ Blockly.Blocks['{type.TranslateToNewTypeName()}'] = {{
+            init: function () {{
+                this.appendDummyInput()
+                    .appendField('{type.Name}')
+                    .appendField(new Blockly.FieldDropdown([{opt}]), 'val_{type.Name}');
+            this.setOutput(true, 'Number');
+
+            this.setTooltip('Enumeration {type.Name}');
+            //this.setHelpUrl('');
+        }}
+    }};                               
+";
+            return def;
+            
+        }
+
+        private long ValueEnum(object o)
+        {
+            try
+            {
+                return (long)o;
+            }
+            catch 
+            {
+
+                return (int)o;
+            }
+            throw new ArgumentException("there is an enum that is not valid");
+        }
         internal (string tooltip, string propsDef) GenerateTooltipAndPropDef(Type type)
         {
-            var validProperties = type.GetProperties().Where(prop => prop.GetSetMethod() != null);
-            
             string tooltip = $"{type.Name} with props:";
             string propsDef = "";
+            
+            var validProperties = type.GetProperties().Where(prop => prop.GetSetMethod() != null);
+            
+            
 
             foreach (var property in validProperties)
             {
@@ -97,6 +148,19 @@ namespace NetCore2Blockly.JavascriptGeneration
         public string GenerateJSstring(Type type)
         {
             var str = typeof(string).FullName;
+            if (type.IsEnum)
+            {
+                return $@"
+                Blockly.JavaScript['{type.TranslateToNewTypeName()}'] = function(block) {{
+
+                    var dropdown_name = block.getFieldValue('val_{type.Name}');                    
+                    code = dropdown_name;
+                    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+
+
+                }}";
+            };
+
             var arr = typeof(IEnumerable);
             var props = type.GetProperties()
                            .Select(prop => (prop, isArray:
