@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -95,11 +96,16 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// <returns></returns>
         public string GenerateJSstring(Type type)
         {
+            bool isArray = type.IsSubclassOf(typeof(IEnumerable));
+            string filterNull = (isArray) ? ".filter(it=>it !=null)" : "";
             var objectProperties =
                string.Join( Environment.NewLine, 
                            type.GetProperties().Select(prop =>
-
-                           $"objPropString.push('\"{prop.Name}\":'+Blockly.JavaScript.valueToCode(block, \"val_{prop.Name}\", Blockly.JavaScript.ORDER_ATOMIC));")
+                           $"let val{prop.Name} = Blockly.JavaScript.valueToCode(block, \"val_{prop.Name}\", Blockly.JavaScript.ORDER_ATOMIC);"+
+                           $"if(val{prop.Name} != ''){{" +
+                           $"val{prop.Name} = val{prop.Name}.filter(it=>it != null);"+
+                           $"objPropString.push('\"{prop.Name}\":'+val{prop.Name});"+
+                           $"}}")
                );
 
             var strJS = $@" Blockly.JavaScript['{type.TranslateToNewTypeName()}'] = function(block) {{
