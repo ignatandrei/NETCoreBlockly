@@ -1,6 +1,5 @@
 ﻿using NetCore2Blockly.ExtensionMethods;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,10 +23,11 @@ namespace NetCore2Blockly
             var asciiArraySum = controllerName.ToCharArray()
                 .Select(it => (int)it)
                 .Sum();
-            var rgbColor = (Color)new ColorConverter().ConvertFromString($"#{ToHexColor(controllerName.GetHashCode())}");
-            //var x = ConvertFromHexToRgb(ToHexColor(asciiArraySum));
-            //Console.WriteLine(x.b);
-            return (int)rgbColor.GetHue(); //cast to int because we want the integer part
+
+            var hexColor = ToHexColor(asciiArraySum);
+            var rgbColor = ConvertFromHexToRgb(Convert.ToInt32("0x" + hexColor, 16));
+            var (h, s, v) = ConvertFromRgbToHue(rgbColor);
+            return (int)h; //cast to int because we want the integer part
         }
 
         /// <summary>
@@ -43,22 +43,48 @@ namespace NetCore2Blockly
                + (i & 0xFF).ToHex();
         }
 
-        private static (int r , int g, int b) ConvertFromHexToRgb(string hexColor)
+        private static (int r, int g, int b) ConvertFromHexToRgb(int hexColor)
         {
-            int[] ret = new int[3];
-            for(int i = 0; i < 3; i++)
-            {
-                ret[i] = HexToInt(hexColor.ElementAt(i * 2), hexColor.ElementAt(i * 2 + 1));
-            }
+            int r = (hexColor & 0xFF0000) >> 16;
+            int g = (hexColor & 0xFF00) >> 8;
+            int b = hexColor & 0xFF;
 
-            return (ret[0], ret[1], ret[2]);
+            return (r, g, b);
         }
 
-        private static int HexToInt(char a, char b)
+        //http://www.kourbatov.com/faq/rgb2hsv.htm
+        /// <summary>
+        /// Generate hsv color sapce from rgb colors
+        /// </summary>
+        /// <param name="rgbColor"></param>
+        /// <returns></returns>
+        private static (double h, double s, double v) ConvertFromRgbToHue((int R, int G, int B) rgbColor)
         {
-            int x = a < 65 ? a - 48 : a - 55;
-            int y = b < 65 ? b - 48 : b - 55;
-            return x * 16 + y;
+            var r = rgbColor.R / 255.00;
+            var g = rgbColor.G / 255.00;
+            var b = rgbColor.B / 255.00;
+
+            var maxRGB = Math.Max(r, Math.Max(g, b));
+            var minRGB = Math.Min(r, Math.Min(g, b));
+
+
+            double computedV;
+            if (minRGB == maxRGB)
+            {
+                computedV = minRGB;
+                return (0, 0, computedV);
+            }
+
+            // Colors other than black-gray-white:
+            var d = (r == minRGB) ? g - b : ((b == minRGB) ? r - g : b - r);
+            var h = (r == minRGB) ? 3 : ((b == minRGB) ? 1 : 5);
+
+            double computedH = 60 * (h - d / (maxRGB - minRGB));
+            double computedS = (maxRGB - minRGB) / maxRGB;
+            computedV = maxRGB;
+
+            return (computedH, computedS, computedV);
+
         }
     }
 }

@@ -186,6 +186,13 @@
             <param name="i"></param>
             <returns></returns>
         </member>
+        <member name="M:NetCore2Blockly.BlocklyStringToColor.ConvertFromRgbToHue(System.ValueTuple{System.Int32,System.Int32,System.Int32})">
+            <summary>
+            Generate hsv color sapce from rgb colors
+            </summary>
+            <param name="rgbColor"></param>
+            <returns></returns>
+        </member>
         <member name="T:NetCore2Blockly.EnumerateWebAPI">
             <summary>
             enumerate and generate
