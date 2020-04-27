@@ -22,7 +22,11 @@ namespace NetCore2Blockly.JavascriptGeneration
             foreach (var actionsGroupedByController in actionList.GroupBy(it => it.ControllerName))
             {
                 var controllerName = actionsGroupedByController.Key;
-                blockText += $"blockTextLocalSiteFunctions += '<category name=\"{controllerName}\">';";
+                var actionHash = actionList.First(it=>it.ControllerName==controllerName).CustomGetHashCode();
+
+                var blockColor = BlocklyStringToColor.ConvertToHue(actionHash);
+
+                blockText += $"blockTextLocalSiteFunctions += '<category name=\"{controllerName}\" colour=\"{blockColor}\">' ; ";
                 foreach (var action in actionsGroupedByController)
                 {
                     blockText += $@"{Environment.NewLine}
