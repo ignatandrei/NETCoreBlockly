@@ -57,10 +57,11 @@
             The verb.
             </value>
         </member>
-        <member name="M:NetCore2Blockly.ActionInfo.#ctor">
+        <member name="M:NetCore2Blockly.ActionInfo.CustomGetHashCode">
             <summary>
-            Initializes a new instance of the <see cref="T:NetCore2Blockly.ActionInfo"/> class.
+            
             </summary>
+            <returns></returns>
         </member>
         <member name="M:NetCore2Blockly.ActionInfo.#ctor(Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription)">
             <summary>
@@ -172,11 +173,11 @@
             
             </summary>
         </member>
-        <member name="M:NetCore2Blockly.BlocklyStringToColor.ConvertToHue(System.String)">
+        <member name="M:NetCore2Blockly.BlocklyStringToColor.ConvertToHue(System.Int32)">
             <summary>
-            
+            Convert to hue given the controller name
             </summary>
-            <param name="controllerName"></param>
+            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="M:NetCore2Blockly.BlocklyStringToColor.ToHexColor(System.Int32)">
@@ -188,7 +189,7 @@
         </member>
         <member name="M:NetCore2Blockly.BlocklyStringToColor.ConvertFromRgbToHue(System.ValueTuple{System.Int32,System.Int32,System.Int32})">
             <summary>
-            Generate hsv color sapce from rgb colors
+            Generate hsv color space from rgb colors
             </summary>
             <param name="rgbColor"></param>
             <returns></returns>

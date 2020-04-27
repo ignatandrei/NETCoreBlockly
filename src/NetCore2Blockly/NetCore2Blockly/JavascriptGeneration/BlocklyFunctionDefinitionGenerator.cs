@@ -51,7 +51,9 @@ namespace NetCore2Blockly.JavascriptGeneration
             var strPropsDefinition = GeneratePropertyDefinitions(actionInfo);
 
             var returnType = $@"this.setOutput(true,'{actionInfo.ReturnType.TranslateToBlocklyType()}');";
-            var blockColor = BlocklyStringToColor.ConvertToHue(actionInfo.ControllerName);
+            var actionHash  = actionInfo.CustomGetHashCode();
+
+            var blockColor = BlocklyStringToColor.ConvertToHue(actionHash);
             return $@"
                 Blockly.Blocks['{actionInfo.GenerateCommandName()}'] = {{
                           init: function() {{

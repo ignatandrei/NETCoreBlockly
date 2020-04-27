@@ -1,8 +1,5 @@
 ﻿using NetCore2Blockly.ExtensionMethods;
 using System;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace NetCore2Blockly
 {
@@ -13,19 +10,14 @@ namespace NetCore2Blockly
     {
 
         /// <summary>
-        /// 
+        /// Convert to hue given the controller name
         /// </summary>
-        /// <param name="controllerName"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static int ConvertToHue(string controllerName)
+        public static int ConvertToHue(int value)
         {
-            //Sum of characters beacuse the hashcode is changing
-            var asciiArraySum = controllerName.ToCharArray()
-                .Select(it => (int)it)
-                .Sum();
-
-            var hexColor = ToHexColor(asciiArraySum);
-            var rgbColor = ConvertFromHexToRgb(Convert.ToInt32("0x" + hexColor, 16));
+            var hexColor = ToHexColor(value);
+            var rgbColor = ConvertFromHexToRgb(Convert.ToInt32(hexColor, 16));
             var (h, s, v) = ConvertFromRgbToHue(rgbColor);
             return (int)h; //cast to int because we want the integer part
         }
@@ -54,7 +46,7 @@ namespace NetCore2Blockly
 
         //http://www.kourbatov.com/faq/rgb2hsv.htm
         /// <summary>
-        /// Generate hsv color sapce from rgb colors
+        /// Generate hsv color space from rgb colors
         /// </summary>
         /// <param name="rgbColor"></param>
         /// <returns></returns>
