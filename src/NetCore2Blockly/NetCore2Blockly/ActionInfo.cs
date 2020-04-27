@@ -62,17 +62,22 @@ namespace NetCore2Blockly
         /// The verb.
         /// </value>
         public string Verb { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public int CustomGetHashCode()
+        {
+            int hash = 13;
+            hash = (hash * 7) + Host?.GetHashCode() ?? 0;
+            hash = (hash * 7) + ControllerName.GetHashCode();
+
+            return hash;
+        }
         
         internal virtual Dictionary<string, (Type type, BindingSource bs)> Params {  get; set; }
         internal bool HasParams => (Params?.Count ?? 0) > 0;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ActionInfo"/> class.
-        /// </summary>
-        public ActionInfo()
-        {
-
-        }
 
         Dictionary<string, (Type type, BindingSource bs)> GetParameters(ApiParameterDescription[] parameterDescriptions)
         {

@@ -51,10 +51,13 @@ namespace NetCore2Blockly.JavascriptGeneration
             var strPropsDefinition = GeneratePropertyDefinitions(actionInfo);
 
             var returnType = $@"this.setOutput(true,'{actionInfo.ReturnType.TranslateToBlocklyType()}');";
+            var actionHash  = actionInfo.CustomGetHashCode();
 
+            var blockColor = BlocklyStringToColor.ConvertToHue(actionHash);
             return $@"
                 Blockly.Blocks['{actionInfo.GenerateCommandName()}'] = {{
                           init: function() {{
+                            this.setColour({blockColor});
                             this.appendDummyInput()
                                 .appendField('{actionInfo.CommandDisplayName()}');
                                 {strPropsDefinition}
