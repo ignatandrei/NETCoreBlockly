@@ -39,6 +39,7 @@ namespace NetCore2Blockly
 
             var service = app.ApplicationServices.GetService<GenerateBlocklyFilesHostedService>();
             service.app = app;
+            //TODO: put correct  JAVASCRIPT mime type
             app.Map("/blocklyDefinitions", app =>
             {
                 var h = app.ApplicationServices.GetService<GenerateBlocklyFilesHostedService>();
@@ -52,6 +53,7 @@ namespace NetCore2Blockly
                     }
                 });
             });
+            //TODO: duplicate function please refactor.
             app.Map("/BlocklyToolBoxValueDefinitions", app =>
             {
                 var h = app.ApplicationServices.GetService<GenerateBlocklyFilesHostedService>();
