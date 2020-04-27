@@ -39,7 +39,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
 
 ## Step 3:
 Download from 
-https://github.com/ignatandrei/NetCore2Blockly/docs/blockly.zip 
+https://ignatandrei.github.io/NETCoreBlockly/blockly.zip 
 
 and put all contents in a wwwroot in the root of your site
 
