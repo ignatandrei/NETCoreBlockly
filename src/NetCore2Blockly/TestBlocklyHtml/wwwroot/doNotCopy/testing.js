@@ -1407,5 +1407,21 @@ var testBlocks = [
         </next>
     </block>
 </xml>`
+    },
+    {
+        'name': 'simple query string',
+        'data':`<xml xmlns="https://developers.google.com/blockly/xml">
+    <block type="text_print" y="22" x="39">
+        <value name="TEXT">
+            <block type="api_RestWithArgs_PostWithArgs_POST">
+                <value name="val_value">
+                    <shadow type="text">
+                        <field name="TEXT">Bring me back</field>
+                    </shadow>
+                </value>
+            </block>
+        </value>
+    </block>
+</xml>`
     }
 ]

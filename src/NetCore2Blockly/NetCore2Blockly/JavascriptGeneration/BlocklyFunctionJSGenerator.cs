@@ -73,7 +73,16 @@ namespace NetCore2Blockly.JavascriptGeneration
         {
             var paramsXHR = "strUrl";
             bool existBody = false;
-
+            var strQueryString = "";
+            var paramsQuery = actionInfo.Params.Where(it => it.Value.bs == BindingSource.Query)?.ToArray();
+            if (paramsQuery?.Count()>0)
+            {
+                strQueryString = string.Join("&",
+                    paramsQuery.Select(it => it.Key)
+                    .Select(it => $"&{it}={{{it}}}"));
+            }
+            if (strQueryString.Length > 0)
+                strQueryString = $"?{strQueryString}";
             string paramsFunction = "";
             if (actionInfo.HasParams)
             {
@@ -96,7 +105,7 @@ namespace NetCore2Blockly.JavascriptGeneration
             }
 
             var str = $@"function({paramsFunction}){{
-                var strUrl =  '{actionInfo.RelativeRequestUrl}';      
+                var strUrl =  '{actionInfo.RelativeRequestUrl}{strQueryString}';      
                 ";
             if (actionInfo.HasParams)
                 foreach (var param in actionInfo.Params)

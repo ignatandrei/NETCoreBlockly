@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -85,7 +86,8 @@ namespace NetCore2Blockly
                 BindingSource.Body,
                 BindingSource.Form,
                 BindingSource.Path,
-                BindingSource.Query
+                BindingSource.Query,
+                null // for the items that have not binding source, assume are query string
             };
 
                 parameterDescriptions
@@ -94,9 +96,13 @@ namespace NetCore2Blockly
                 .Where(parameterDescriptor => parameterDescriptor != null && okBindingSource.Contains(parameterDescriptor.BindingInfo?.BindingSource))
                 .Distinct()
                 .ToList()
-                .ForEach(x => desc.Add(x.Name, (x.ParameterType, x.BindingInfo.BindingSource)));
-         
-           
+                .ForEach(x => desc.Add(x.Name, (x.ParameterType, x.BindingInfo?.BindingSource??BindingSource.Query)));
+
+            if (parameterDescriptions.Length > desc.Count)
+            {
+                Debug.Assert(false, " should not have more parameters");
+                
+            }
 
             return desc;
         }
