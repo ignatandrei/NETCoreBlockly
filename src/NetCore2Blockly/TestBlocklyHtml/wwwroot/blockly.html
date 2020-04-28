@@ -4,11 +4,16 @@
     <meta charset="utf-8">
     <title>Blockly swagger demo</title>
     <script src="/blockly/acorn_interpreter.js"></script>
+
+    <!--<script src="/blockly/acorn.js"></script>
+    <script src="/blockly/interpreter.js"></script>-->
+
     <script src="/blockly/blockly_compressed.js"></script>
     <script src="/blockly/blocks_compressed.js"></script>
     <script src="/blockly/javascript_compressed.js"></script>
     <script src="/blockly/en.js"></script>
     <script src="/blockly/wait_block.js"></script>
+    <script src="blockly/blocklyControls.js"></script>
     <script src="others/jszip.min.js"></script>
     <script src="others/FileSaver.min.js"></script>
     <script src="blockly/BlocklyXHRWrapper.js"></script>
@@ -442,7 +447,7 @@
                         </shadow>
                     </value>
 
-                    
+
 
                 </block>
 
@@ -452,26 +457,40 @@
                 <block type="modifyproperty"></block>
                 <block type="getproperty"></block>
             </category>
-            <category id="catHelpers" colour="160" name="Helpers">
-                <block type="wait_seconds"></block>
-                <block type="text_print">
-                    <value name="TEXT">
+            <category id="Controls" name="GUI">
+                <block type="valuefromtext">
+                    <value name="IdOfText">
                         <shadow type="text">
-                            <field name="TEXT">abc</field>
+                            <field name="TEXT">output</field>
                         </shadow>
                     </value>
-                </block>
-                <block type="text_prompt_ext">
-                    <value name="TEXT">
+                    <value name="ValueToObtain">
                         <shadow type="text">
-                            <field name="TEXT">abc</field>
+                            <field name="TEXT">value</field>
                         </shadow>
                     </value>
                 </block>
             </category>
-        </category>
+                <category id="catHelpers" colour="160" name="Helpers">
+                    <block type="wait_seconds"></block>
+                    <block type="text_print">
+                        <value name="TEXT">
+                            <shadow type="text">
+                                <field name="TEXT">abc</field>
+                            </shadow>
+                        </value>
+                    </block>
+                    <block type="text_prompt_ext">
+                        <value name="TEXT">
+                            <shadow type="text">
+                                <field name="TEXT">abc</field>
+                            </shadow>
+                        </value>
+                    </block>
+                </category>
+            </category>
 
-    </xml>
+</xml>
 
     <xml xmlns="https://developers.google.com/blockly/xml" id="startBlocks" style="display: none">
         <block type="variables_set" id="set_n_initial" inline="true" x="20" y="20">
@@ -870,6 +889,18 @@
             };
             interpreter.setProperty(globalObject, 'prompt',
                 interpreter.createNativeFunction(wrapper));
+
+            var wrapper = function (id,property) {
+                
+                return document.getElementById(id)[property];
+            };
+            interpreter.setProperty(globalObject, 'getIDProp',
+                interpreter.createNativeFunction(wrapper));
+
+
+            interpreter.setProperty(globalObject, 'prompt',
+                interpreter.createNativeFunction(wrapper));
+
             //var wrapper = function (obj) {
             //    var json = JSON.parse(obj);
             //    var objNew = {};

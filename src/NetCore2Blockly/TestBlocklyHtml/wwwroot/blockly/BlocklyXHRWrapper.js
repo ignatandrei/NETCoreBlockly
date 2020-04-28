@@ -38,6 +38,7 @@ const doPost = (href, objectToPost, callback) => {
                 }
             } else {
                 //throw `${href} status :${req.status}`;
+                alert('before trying put an error');
                 var error = myInterpreter.createObject(myInterpreter.ERROR);
                 myInterpreter.setProperty(error, 'message',
                     'aaaaaaaaaaaaaa',// just for test
