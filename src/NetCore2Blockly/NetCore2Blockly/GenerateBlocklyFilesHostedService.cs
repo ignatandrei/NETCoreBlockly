@@ -36,10 +36,6 @@ namespace NetCore2Blockly
 
         private Timer _timer;
         
-        /// <summary>
-        /// The application
-        /// </summary>
-        public IApplicationBuilder app=null;
 
 
         private readonly IApiDescriptionGroupCollectionProvider api;
@@ -62,18 +58,8 @@ namespace NetCore2Blockly
             _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
             return Task.CompletedTask;
         }
-        private bool ExistsApp()
-        {
-            return (app != null);
-
-        }
         private void DoWork(object state)
         {
-            if (!ExistsApp())
-            {
-                Console.WriteLine("WebAPI2CLI: waiting to have app");
-                return;
-            }
            
             _timer.Dispose();
             var e = new EnumerateWebAPI(api);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO.Pipelines;
@@ -39,51 +40,25 @@ namespace NetCore2Blockly
         public static IApplicationBuilder UseBlockly(this IApplicationBuilder app)
         {
 
-            var service = app.ApplicationServices.GetService<GenerateBlocklyFilesHostedService>();
-            service.app = app;
-            //TODO: put correct  JAVASCRIPT mime type
-            app.Map("/blocklyDefinitions", app =>
-            {
-                var h = app.ApplicationServices.GetService<GenerateBlocklyFilesHostedService>();
-                app.Run(async context =>
-                {
-                    await GetBlocklyFilesHostedServices(context, h.BlocklyTypesDefinition);
-                });
-            });
-
-            app.Map("/BlocklyToolBoxValueDefinitions", app =>
-            {
-                var blocklyFilesHostedService = app.ApplicationServices
-                .GetService<GenerateBlocklyFilesHostedService>();
-                app.Run(async context =>
-                {
-                    await GetBlocklyFilesHostedServices(context, blocklyFilesHostedService.BlocklyToolBoxValueDefinition);
-                });
-            });
-
-            app.Map("/blocklyAPIFunctions", app =>
-            {
-                var blocklyFilesHostedService = app.ApplicationServices
-                .GetService<GenerateBlocklyFilesHostedService>();
-                app.Run(async context =>
-                {
-                    await GetBlocklyFilesHostedServices(context, blocklyFilesHostedService.BlocklyAPIFunctions);
-                });
-            });
-            
-            app.Map("/BlocklyToolBoxFunctionDefinitions", app =>
-            {
-                var blocklyFilesHostedService = app.ApplicationServices
-                .GetService<GenerateBlocklyFilesHostedService>();
-                app.Run(async context =>
-                {
-                    await GetBlocklyFilesHostedServices(context, blocklyFilesHostedService.BlocklyToolBoxFunctionDefinition);
-                });
-            });
+            MapJS(app, "/blocklyDefinitions", b => b.BlocklyTypesDefinition);
+            MapJS(app, "/BlocklyToolBoxValueDefinitions", b => b.BlocklyToolBoxValueDefinition);            
+            MapJS(app, "/blocklyAPIFunctions", b => b.BlocklyAPIFunctions);
+            MapJS(app, "/BlocklyToolBoxFunctionDefinitions", b => b.BlocklyToolBoxFunctionDefinition);            
             return app;
         }
-
-        private static async Task GetBlocklyFilesHostedServices(Microsoft.AspNetCore.Http.HttpContext context, string blocklyDefinitions)
+        private static void MapJS(IApplicationBuilder app, string url,Func<GenerateBlocklyFilesHostedService,string> content)
+        {
+            app.Map(url, app =>
+            {
+                var blocklyFilesHostedService = app.ApplicationServices
+                .GetService<GenerateBlocklyFilesHostedService>();
+                app.Run(async context =>
+                {
+                    await GetBlocklyFilesHostedServices(context, content(blocklyFilesHostedService));
+                });
+            });
+        }
+        private static async Task GetBlocklyFilesHostedServices(HttpContext context, string blocklyDefinitions)
         {
             if (blocklyDefinitions == null)
             {

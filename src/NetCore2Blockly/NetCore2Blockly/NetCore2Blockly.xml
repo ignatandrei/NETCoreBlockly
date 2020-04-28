@@ -332,11 +332,6 @@
             The blockly types definition
             </summary>
         </member>
-        <member name="F:NetCore2Blockly.GenerateBlocklyFilesHostedService.app">
-            <summary>
-            The application
-            </summary>
-        </member>
         <member name="M:NetCore2Blockly.GenerateBlocklyFilesHostedService.#ctor(Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionGroupCollectionProvider)">
             <summary>
             Initializes a new instance of the <see cref="T:NetCore2Blockly.GenerateBlocklyFilesHostedService"/> class.
