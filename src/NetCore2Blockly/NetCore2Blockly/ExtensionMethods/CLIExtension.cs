@@ -24,8 +24,8 @@ namespace NetCore2Blockly
         /// <returns></returns>
         public static IServiceCollection AddBlockly(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddSingleton<EnumerateWebAPIHostedService>();
-            serviceCollection.AddHostedService(p => p.GetService<EnumerateWebAPIHostedService>());
+            serviceCollection.AddSingleton<GenerateBlocklyFilesHostedService>();
+            serviceCollection.AddHostedService(p => p.GetService<GenerateBlocklyFilesHostedService>());
 
             return serviceCollection;
         }
@@ -37,11 +37,12 @@ namespace NetCore2Blockly
         public static IApplicationBuilder UseBlockly(this IApplicationBuilder app)
         {
 
-            var service = app.ApplicationServices.GetService<EnumerateWebAPIHostedService>();
+            var service = app.ApplicationServices.GetService<GenerateBlocklyFilesHostedService>();
             service.app = app;
+            //TODO: put correct  JAVASCRIPT mime type
             app.Map("/blocklyDefinitions", app =>
             {
-                var h = app.ApplicationServices.GetService<EnumerateWebAPIHostedService>();
+                var h = app.ApplicationServices.GetService<GenerateBlocklyFilesHostedService>();
                 app.Run(async context =>
                 {
                     var b = h.BlocklyTypesDefinition;
@@ -52,9 +53,10 @@ namespace NetCore2Blockly
                     }
                 });
             });
+            //TODO: duplicate function please refactor.
             app.Map("/BlocklyToolBoxValueDefinitions", app =>
             {
-                var h = app.ApplicationServices.GetService<EnumerateWebAPIHostedService>();
+                var h = app.ApplicationServices.GetService<GenerateBlocklyFilesHostedService>();
                 app.Run(async context =>
                 {
                     var b = h.BlocklyToolBoxValueDefinition;
@@ -67,7 +69,7 @@ namespace NetCore2Blockly
             });
             app.Map("/blocklyAPIFunctions", app =>
             {
-                var h = app.ApplicationServices.GetService<EnumerateWebAPIHostedService>();
+                var h = app.ApplicationServices.GetService<GenerateBlocklyFilesHostedService>();
                 app.Run(async context =>
                 {
                     var b = h.BlocklyAPIFunctions;
@@ -78,9 +80,10 @@ namespace NetCore2Blockly
                     }
                 });
             });
+            
             app.Map("/BlocklyToolBoxFunctionDefinitions", app =>
             {
-                var h = app.ApplicationServices.GetService<EnumerateWebAPIHostedService>();
+                var h = app.ApplicationServices.GetService<GenerateBlocklyFilesHostedService>();
                 app.Run(async context =>
                 {
                     var b = h.BlocklyToolBoxFunctionDefinition;

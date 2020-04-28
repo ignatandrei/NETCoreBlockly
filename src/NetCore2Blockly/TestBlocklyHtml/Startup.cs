@@ -34,15 +34,16 @@ namespace TestBlocklyHtml
             services.AddControllers();
             services.AddBlockly();
             services.AddDbContext<testsContext>(options => options
-              
+
               .UseInMemoryDatabase(databaseName: "MyDB"));
             //this is not necessary to be added
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { 
-                    Title = "Please see blockly.html", 
-                    Version = "v1" ,
-                    Description= " Please see https://github.com/ignatandrei/netcoreblockly"
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Please see blockly.html",
+                    Version = "v1",
+                    Description = " Please see https://github.com/ignatandrei/netcoreblockly"
                 });
             });
 
@@ -89,8 +90,8 @@ namespace TestBlocklyHtml
             {
                 endpoints.MapControllers();
             });
-            
-            app.UseBlockly(); 
+
+            app.UseBlockly();
         }
     }
 }

@@ -11,6 +11,9 @@
     <script src="/blockly/wait_block.js"></script>
     <script src="others/jszip.min.js"></script>
     <script src="others/FileSaver.min.js"></script>
+    <script src="blockly/BlocklyXHRWrapper.js"></script>
+    <script src="blockly/convertCSV.js"></script>
+    <script src="blockly/exportFile.js"></script>
 
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js"></script>
@@ -37,6 +40,13 @@
     <h1>
         Blockly Swagger
     </h1>
+    <!--doNotCopyToFinal-->
+    <p>
+        <a href='https://github.com/ignatandrei/NETCoreBlockly' target='_blank'>Source code</a>
+        <a href='https://www.youtube.com/watch?v=GptkNWjmCzk' target='_blank'>Demo Video</a>
+    </p>
+    <!--enddoNotCopyToFinal-->
+
     <script src="/blocklyDefinitions"></script>
     <script src="/BlocklyToolBoxValueDefinitions"></script>
     <script src="/blocklyAPIFunctions"></script>
@@ -95,8 +105,8 @@
     <!--enddoNotCopyToFinal-->
 
     <xml id="toolbox" style="display: none">
-        <category name="LocalSite">
-            <category id="LocalSiteFunctions" name="LocalSiteFunctions">
+        <category name="LocalSite" expanded="true">
+            <category id="LocalSiteFunctions" name="LocalSiteFunctions" expanded="true">
             </category>
             <category custom="LocalSiteValues" colour="160" name="LocalSiteValues">
             </category>
@@ -410,10 +420,31 @@
 
             <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
             <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
-            <category id="catJSON" colour="160" name="JSON">
+            <category id="catJSON" colour="160" name="Converters">
                 <!--                <button text="A button" callbackKey="crae"></button>-->
                 <block type="converttojson"></block>
                 <block type="converttostring"></block>
+                <block type="convertcsv">
+
+                </block>
+            </category>
+            <category id="catExporter" colour="160" name="Exporter">
+                <!--                <button text="A button" callbackKey="crae"></button>-->
+                <block type="exportfile">
+                    <value name="fileName">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                    <value name="convertToByte">
+                        <shadow type="logic_boolean">
+                            <field name="BOOL">FALSE</field>
+                        </shadow>
+                    </value>
+
+                    
+
+                </block>
 
             </category>
             <category id="JavaScriptRelated" name="JSBlocks">
@@ -852,132 +883,35 @@
             //}
             //interpreter.setProperty(globalObject, 'resolveObject',
             //    interpreter.createNativeFunction(wrapper));
+            var wrapper = (item) => convertCSV(item);
+            interpreter.setProperty(globalObject, 'convertToCSV',
+                interpreter.createNativeFunction(wrapper));
 
-            var wrapper = function (href, callback) {
-                var req = new XMLHttpRequest();
-                req.open('GET', href, true);
-                req.onreadystatechange = function () {
-                    if (req.readyState == 4) {
-                        if (req.status >= 200 && req.status < 300) {
-                            callback(req.responseText);
-                        } else {
-                            throw `${href} status :${req.status}`;
-                        }
+            var wrapper = (it, content, toByte) => exportToFile(it, content, toByte);
+            interpreter.setProperty(globalObject, 'exportToFile',
+                interpreter.createNativeFunction(wrapper));
 
-                    }
-                    else {
-                        //window.alert(`error ${href} ${req.status}`);
-                    }
-                };
-                req.send(null);
-            };
+            var wrapper = (href, callback) => doGet(href, callback);
             interpreter.setProperty(globalObject, 'getXhr',
                 interpreter.createAsyncFunction(wrapper));
 
-
-
-            var wrapper = function (href, objectToPost, callback) {
-                var data = `postXhr: href: ${href} obj: ${objectToPost}`;
-                //console.log(data);
-                //data = JSON.stringify(objectToPost);
-                data = objectToPost;
-                console.log(`sending ${data}`);
-                var req = new XMLHttpRequest();
-
-                req.open('POST', href, true);
-                req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-                req.onreadystatechange = function () {
-                    if (req.readyState == 4) {
-                        if (req.status >= 200 && req.status < 300) {
-                            var answer = req.responseText;
-                            if (answer) {
-                                callback(answer);
-                            }
-                            else {
-                                callback(true);
-                            }
-                        } else {
-                            throw `${href} status :${req.status}`;
-                        }
-
-                    }
-                    else {
-                        //window.alert(`error ${href} ${req.status}`);
-                    }
-                };
-                req.send(data);
+            var wrapper = (href, objectToPost, callback) => {
+                try {
+                    doPost(href, objectToPost, callback);
+                }
+                catch (e) {
+                    alert("is an error" + e);
+                }
             };
             interpreter.setProperty(globalObject, 'postXhr',
                 interpreter.createAsyncFunction(wrapper));
 
-            var wrapper = function (href, objectToPost, callback) {
-                var data = `putXhr: href: ${href} obj: ${objectToPost}`;
-                //console.log(data);
-                //data = JSON.stringify(objectToPost);
-                data = objectToPost;
-                //console.log(`sending ${data}`);
-                var req = new XMLHttpRequest();
-
-                req.open('PUT', href, true);
-                req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-                req.onreadystatechange = function () {
-                    if (req.readyState == 4) {
-                        if (req.status >= 200 && req.status < 300) {
-                            var answer = req.responseText;
-                            if (answer) {
-                                callback(answer);
-                            }
-                            else {
-                                callback(true);
-                            }
-                        } else {
-                            throw `${href} status :${req.status}`;
-                        }
-
-                    }
-                    else {
-                        //window.alert(`error ${href} ${req.status}`);
-                    }
-                };
-                req.send(data);
-            };
+            var wrapper = (href, objectToPost, callback) => doPut(href, objectToPost, callback);
             interpreter.setProperty(globalObject, 'putXhr',
                 interpreter.createAsyncFunction(wrapper));
 
 
-            var wrapper = function (href, callback) {
-                var data = `deleteXhr: href: ${href} `;
-                //console.log(data);
-
-
-                var req = new XMLHttpRequest();
-
-                req.open('DELETE', href, true);
-                req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-                req.onreadystatechange = function () {
-                    if (req.readyState == 4) {
-                        if (req.status >= 200 && req.status < 300) {
-                            var answer = req.responseText;
-                            if (answer) {
-                                callback(answer);
-                            }
-                            else {
-                                callback(true);
-                            }
-                        } else {
-                            throw `${href} status :${req.status}`;
-                        }
-
-                    }
-                    else {
-                        //window.alert(`error ${href} ${req.status}`);
-                    }
-                };
-                req.send(null);
-            };
+            var wrapper = (href, callback) => doDelete(href, callback);
             interpreter.setProperty(globalObject, 'deleteXhr',
                 interpreter.createAsyncFunction(wrapper));
 

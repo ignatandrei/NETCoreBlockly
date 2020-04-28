@@ -14,9 +14,22 @@ namespace TestBlocklyHtml
         
         private Math2Values ExecuteOperation(Operation op, int x, Math2Values data)
         {
+            switch (op)
+            {
+                case TestBlocklyHtml.Operation.Add:
+                    return data + x;
+                case TestBlocklyHtml.Operation.Substraction:
+                    return data - x;
+                case TestBlocklyHtml.Operation.Divide:
+                    return data / x;
+                case TestBlocklyHtml.Operation.Multiply:
+                    return data * x;
+                default:
+                    throw new ArgumentException($"unknown operation {op}");
 
+            }
 
-            return null;
+            
         }
         [HttpGet("{x}/{y}")]
         public int Multiply(int x, int y)
@@ -54,6 +67,11 @@ namespace TestBlocklyHtml
         {
             return data.x / data.y;
         }
+        [HttpPost()]
+        public int ThrowError()
+        {
+            throw new ArgumentException("this is a known error");
+        }
 
     }
-    }
+}
