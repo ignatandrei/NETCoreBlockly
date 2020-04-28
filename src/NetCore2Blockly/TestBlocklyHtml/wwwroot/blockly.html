@@ -895,7 +895,14 @@
             interpreter.setProperty(globalObject, 'getXhr',
                 interpreter.createAsyncFunction(wrapper));
 
-            var wrapper = (href, objectToPost, callback) => doPost(href, objectToPost, callback);
+            var wrapper = (href, objectToPost, callback) => {
+                try {
+                    doPost(href, objectToPost, callback);
+                }
+                catch (e) {
+                    alert("is an error" + e);
+                }
+            };
             interpreter.setProperty(globalObject, 'postXhr',
                 interpreter.createAsyncFunction(wrapper));
 

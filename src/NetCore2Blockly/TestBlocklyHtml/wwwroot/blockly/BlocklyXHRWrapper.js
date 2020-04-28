@@ -37,7 +37,12 @@ const doPost = (href, objectToPost, callback) => {
                     return callback(true);
                 }
             } else {
-                throw `${href} status :${req.status}`;
+                //throw `${href} status :${req.status}`;
+                var error = myInterpreter.createObject(myInterpreter.ERROR);
+                myInterpreter.setProperty(error, 'message',
+                    'aaaaaaaaaaaaaa',// just for test
+                    myInterpreter.NONENUMERABLE_DESCRIPTOR);
+                callback(undefined, error);
             }
         }
         else {
