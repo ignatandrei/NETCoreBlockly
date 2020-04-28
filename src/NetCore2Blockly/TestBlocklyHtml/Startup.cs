@@ -67,11 +67,12 @@ namespace TestBlocklyHtml
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseStatusCodePages();
             }
             //just developer testing! do not use in production
             app.UseFileServer(enableDirectoryBrowsing: true);
 
-            app.UseStatusCodePages();
+           
 
             //this is not necessary to be added
             app.UseSwagger();
