@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.IO.Pipelines;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace NetCore2Blockly
 {
@@ -45,56 +47,50 @@ namespace NetCore2Blockly
                 var h = app.ApplicationServices.GetService<GenerateBlocklyFilesHostedService>();
                 app.Run(async context =>
                 {
-                    var b = h.BlocklyTypesDefinition;
-                    if (b != null)
-                    {
-                        var mem = new Memory<byte>(Encoding.UTF8.GetBytes(b));
-                        await context.Response.BodyWriter.WriteAsync(mem);
-                    }
+                    await GetBlocklyFilesHostedServices(context, h.BlocklyTypesDefinition);
                 });
             });
-            //TODO: duplicate function please refactor.
+
             app.Map("/BlocklyToolBoxValueDefinitions", app =>
             {
-                var h = app.ApplicationServices.GetService<GenerateBlocklyFilesHostedService>();
+                var blocklyFilesHostedService = app.ApplicationServices
+                .GetService<GenerateBlocklyFilesHostedService>();
                 app.Run(async context =>
                 {
-                    var b = h.BlocklyToolBoxValueDefinition;
-                    if (b != null)
-                    {
-                        var mem = new Memory<byte>(Encoding.UTF8.GetBytes(b));
-                        await context.Response.BodyWriter.WriteAsync(mem);
-                    }
+                    await GetBlocklyFilesHostedServices(context, blocklyFilesHostedService.BlocklyToolBoxValueDefinition);
                 });
             });
+
             app.Map("/blocklyAPIFunctions", app =>
             {
-                var h = app.ApplicationServices.GetService<GenerateBlocklyFilesHostedService>();
+                var blocklyFilesHostedService = app.ApplicationServices
+                .GetService<GenerateBlocklyFilesHostedService>();
                 app.Run(async context =>
                 {
-                    var b = h.BlocklyAPIFunctions;
-                    if (b != null)
-                    {
-                        var mem = new Memory<byte>(Encoding.UTF8.GetBytes(b));
-                        await context.Response.BodyWriter.WriteAsync(mem);
-                    }
+                    await GetBlocklyFilesHostedServices(context, blocklyFilesHostedService.BlocklyAPIFunctions);
                 });
             });
             
             app.Map("/BlocklyToolBoxFunctionDefinitions", app =>
             {
-                var h = app.ApplicationServices.GetService<GenerateBlocklyFilesHostedService>();
+                var blocklyFilesHostedService = app.ApplicationServices
+                .GetService<GenerateBlocklyFilesHostedService>();
                 app.Run(async context =>
                 {
-                    var b = h.BlocklyToolBoxFunctionDefinition;
-                    if (b != null)
-                    {
-                        var mem = new Memory<byte>(Encoding.UTF8.GetBytes(b));
-                        await context.Response.BodyWriter.WriteAsync(mem);
-                    }
+                    await GetBlocklyFilesHostedServices(context, blocklyFilesHostedService.BlocklyToolBoxFunctionDefinition);
                 });
             });
             return app;
+        }
+
+        private static async Task GetBlocklyFilesHostedServices(Microsoft.AspNetCore.Http.HttpContext context, string blocklyDefinitions)
+        {
+            if (blocklyDefinitions == null)
+            {
+                throw new Exception("blocklyDefinitions is null");
+            }
+            var mem = new Memory<byte>(Encoding.UTF8.GetBytes(blocklyDefinitions));
+            await context.Response.BodyWriter.WriteAsync(mem);
         }
     }
 }
