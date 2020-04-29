@@ -117,8 +117,14 @@ namespace NetCore2Blockly.JavascriptGeneration
 
             var functionXHR = actionInfo.Verb.ToLower();
 
-            str += $"return {functionXHR}Xhr({paramsXHR});}}";
-            return str;
+            str += $"{{" +
+                $"var res= {functionXHR}Xhr({paramsXHR});" +
+                $"var resJS=JSON.parse(res);" +
+                $"if(resJS.statusOK) return resJS.text;" +
+                $"errHandler(res);" +
+                $"}};" +
+                $"}}";
+            return str;//To stop execution call throw {'STEP_ERROR': true};
         }
     }
 }

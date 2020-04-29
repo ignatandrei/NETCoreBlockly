@@ -13,6 +13,7 @@
     <script src="/blockly/javascript_compressed.js"></script>
     <script src="/blockly/en.js"></script>
     <script src="/blockly/wait_block.js"></script>
+    <script src="blockly/ifxhr.js"></script>
     <script src="blockly/blocklyControls.js"></script>
     <script src="others/jszip.min.js"></script>
     <script src="others/FileSaver.min.js"></script>
@@ -454,6 +455,7 @@
             </category>
             <category id="JavaScriptRelated" name="JSBlocks">
                 <!--<block type="wait_seconds"></block>-->
+                <block type="blockxhrresult"></block>
                 <block type="modifyproperty"></block>
                 <block type="getproperty"></block>
             </category>
@@ -897,9 +899,13 @@
             interpreter.setProperty(globalObject, 'getIDProp',
                 interpreter.createNativeFunction(wrapper));
 
+            var wrapper = (item) => {
+                outputArea.value += '\n error --' + '\n' + item + '\n error --';
+            };
 
-            interpreter.setProperty(globalObject, 'prompt',
+            interpreter.setProperty(globalObject, 'errHandler',
                 interpreter.createNativeFunction(wrapper));
+           
 
             //var wrapper = function (obj) {
             //    var json = JSON.parse(obj);

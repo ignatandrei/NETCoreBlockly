@@ -7,9 +7,28 @@ const doGet = (href, callback) => {
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
             if (req.status >= 200 && req.status < 300) {
-                return callback(req.responseText);
+                var answer = JSON.stringify({
+                    'origHref': href,
+                    'objectToSend': '',
+                    'status': req.status,
+                    'statusOK': true,
+                    'text': req.responseText
+
+                });
+                return callback(answer);
+
+
             } else {
-                throw `${href} status :${req.status}`;
+                var answer = JSON.stringify({
+                    'origHref': href,
+                    'objectToSend': '',
+                    'status': req.status,
+                    'statusOK': false,
+                    'text': req.responseText
+
+                });
+                return callback(answer);
+
             }
         }
         else {
@@ -29,21 +48,28 @@ const doPost = (href, objectToPost, callback) => {
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
             if (req.status >= 200 && req.status < 300) {
-                var answer = req.responseText;
-                if (answer) {
-                    return callback(answer);
-                }
-                else {
-                    return callback(true);
-                }
+                var answer = JSON.stringify({
+                    'origHref': href,
+                    'objectToSend': objectToPost,
+                    'status': req.status,
+                    'statusOK': true,
+                    'text': req.responseText
+
+                });
+                return callback(answer);
+
+
             } else {
-                //throw `${href} status :${req.status}`;
-                alert('before trying put an error');
-                var error = myInterpreter.createObject(myInterpreter.ERROR);
-                myInterpreter.setProperty(error, 'message',
-                    'aaaaaaaaaaaaaa',// just for test
-                    myInterpreter.NONENUMERABLE_DESCRIPTOR);
-                callback(undefined, error);
+                var answer = JSON.stringify({
+                    'origHref': href,
+                    'objectToSend': objectToPost,
+                    'status': req.status,
+                    'statusOK': false,
+                    'text': req.responseText
+
+                });
+                return callback(answer);
+
             }
         }
         else {
@@ -64,17 +90,29 @@ const doPut = (href, objectToPost, callback) => {
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
             if (req.status >= 200 && req.status < 300) {
-                var answer = req.responseText;
-                if (answer) {
-                    return callback(answer);
-                }
-                else {
-                   return callback(true);
-                }
-            } else {
-                throw `${href} status :${req.status}`;
-            }
+                var answer = JSON.stringify({
+                    'origHref': href,
+                    'objectToSend': objectToPost,
+                    'status': req.status,
+                    'statusOK': true,
+                    'text': req.responseText
 
+                });
+                return callback(answer);
+
+
+            } else {
+                var answer = JSON.stringify({
+                    'origHref': href,
+                    'objectToSend': objectToPost,
+                    'status': req.status,
+                    'statusOK': false,
+                    'text': req.responseText
+
+                });
+                return callback(answer);
+
+            }
         }
         else {
             //window.alert(`error ${href} ${req.status}`);
@@ -92,15 +130,28 @@ const doDelete = (href, callback) => {
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
             if (req.status >= 200 && req.status < 300) {
-                var answer = req.responseText;
-                if (answer) {
-                    callback(answer);
-                }
-                else {
-                    callback(true);
-                }
+                var answer = JSON.stringify({
+                    'origHref': href,
+                    'objectToSend': '',
+                    'status': req.status,
+                    'statusOK': true,
+                    'text': req.responseText
+
+                });
+                return callback(answer);
+
+
             } else {
-                throw `${href} status :${req.status}`;
+                var answer = JSON.stringify({
+                    'origHref': href,
+                    'objectToSend': '',
+                    'status': req.status,
+                    'statusOK': false,
+                    'text': req.responseText
+
+                });
+                return callback(answer);
+
             }
         }
         else {
