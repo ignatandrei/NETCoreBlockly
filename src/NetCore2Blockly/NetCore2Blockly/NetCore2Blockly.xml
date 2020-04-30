@@ -99,75 +99,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:NetCore2Blockly.BlocklyGenerator">
-            <summary>
-            generator
-            </summary>
-        </member>
-        <member name="P:NetCore2Blockly.BlocklyGenerator.ControllerName">
-            <summary>
-            Gets or sets the name of the controller.
-            </summary>
-            <value>
-            The name of the controller.
-            </value>
-        </member>
-        <member name="P:NetCore2Blockly.BlocklyGenerator.ReturnType">
-            <summary>
-            Gets or sets the type of the return.
-            </summary>
-            <value>
-            The type of the return.
-            </value>
-        </member>
-        <member name="P:NetCore2Blockly.BlocklyGenerator.NameCommand">
-            <summary>
-            Gets or sets the name command.
-            </summary>
-            <value>
-            The name command.
-            </value>
-        </member>
-        <member name="P:NetCore2Blockly.BlocklyGenerator.Host">
-            <summary>
-            Gets or sets the host.
-            </summary>
-            <value>
-            The host.
-            </value>
-        </member>
-        <member name="P:NetCore2Blockly.BlocklyGenerator.RelativeRequestUrl">
-            <summary>
-            Gets or sets the relative request URL.
-            </summary>
-            <value>
-            The relative request URL.
-            </value>
-        </member>
-        <member name="P:NetCore2Blockly.BlocklyGenerator.Verb">
-            <summary>
-            Gets or sets the verb.
-            </summary>
-            <value>
-            The verb.
-            </value>
-        </member>
-        <member name="P:NetCore2Blockly.BlocklyGenerator.ContentType">
-            <summary>
-            Gets or sets the type of the content.
-            </summary>
-            <value>
-            The type of the content.
-            </value>
-        </member>
-        <member name="P:NetCore2Blockly.BlocklyGenerator.Params">
-            <summary>
-            Gets the parameters.
-            </summary>
-            <value>
-            The parameters.
-            </value>
-        </member>
         <member name="T:NetCore2Blockly.BlocklyStringToColor">
             <summary>
             
@@ -486,36 +417,6 @@
             Generates the function definition.
             </summary>
             <param name="action">The action.</param>
-            <returns></returns>
-        </member>
-        <member name="T:NetCore2Blockly.ListOfBlockly">
-            <summary>
-            all blockly that should be generated
-            </summary>
-            
-        </member>
-        <member name="M:NetCore2Blockly.ListOfBlockly.Types">
-            <summary>
-            all types
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NetCore2Blockly.ListOfBlockly.TypesToBeGenerated">
-            <summary>
-            Generates types of Blockly
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NetCore2Blockly.ListOfBlockly.GenerateBlocksValueDefinition">
-            <summary>
-            Generates the blocks definition.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NetCore2Blockly.ListOfBlockly.FunctionsToBeGenerated">
-            <summary>
-            Functions blocklyAPIFunctions to be generated.
-            </summary>
             <returns></returns>
         </member>
     </members>

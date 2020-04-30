@@ -1052,9 +1052,7 @@
 
                     //console.log();
                     var obj = event.getEventWorkspace_().getBlockById(event.blockId);
-                    //console.log(obj);
-                    var s = Blockly.Xml.domToText(obj);
-                    //console.log(s);
+                    
                     if (obj.type == "text_print")
                         return;
                     //var print = event.getEventWorkspace_().getAllBlocks().find(it => it.type = 'text_print');
