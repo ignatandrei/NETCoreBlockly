@@ -16,7 +16,7 @@ $compress = @{
 }
 Compress-Archive @compress
 
-$dest ="NetCore2Blockly\NetCore2Blockly\blocklyFiles\"
+$dest ="NetCore2Blockly\blocklyFiles\"
 Write-Host ( Get-ChildItem $dest -Recurse | Measure-Object ).Count;
 Copy-Item -Path $folder -Destination $dest  -Recurse
 Write-Host ( Get-ChildItem $dest -Recurse | Measure-Object ).Count;
