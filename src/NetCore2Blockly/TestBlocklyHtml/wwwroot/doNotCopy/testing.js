@@ -1377,7 +1377,7 @@ var testBlocks = [
 </xml>`
     },
     {
-        'name': 'https://github.com/ignatandrei/NETCoreBlockly/issues/7',
+        'name': 'error',
         'data': `<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
         <variable id="tN1o#/fr2(SEQn^Q#~j-">n</variable>
