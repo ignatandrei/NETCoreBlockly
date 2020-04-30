@@ -18,8 +18,15 @@ Compress-Archive @compress
 
 $dest ="NetCore2Blockly\blocklyFiles\"
 Write-Host ( Get-ChildItem $dest -Recurse | Measure-Object ).Count;
+
 $folder =$folder + "*"
 Copy-Item -Path $folder -Destination $dest  -Recurse
+
+Write-Host ( Get-ChildItem $dest -Recurse | Measure-Object ).Count;
+
+$indexFile = Join-Path -Path $dest -ChildPath "index.html"
+Remove-Item -Path $indexFile
+
 Write-Host ( Get-ChildItem $dest -Recurse | Measure-Object ).Count;
 
 Write-Host "done====="

@@ -38,10 +38,20 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
 ```
 
 ## Step 3:
-Download from 
-https://ignatandrei.github.io/NETCoreBlockly/blockly.zip 
 
-and put all contents in a wwwroot in the root of your site
+### Recommended:
+
+To see the UI , please add
+```csharp
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
+       
+       app.UseBlocklyCli();
+}
+```
+ 
+### Feel free to modify:
+
+Download from [![Build Status](https://dev.azure.com/ignatandrei0674/NETCoreBlockly/_apis/build/status/ignatandrei.NETCoreBlockly?branchName=master)](https://dev.azure.com/ignatandrei0674/NETCoreBlockly/_build/latest?definitionId=9&branchName=master) the blockly.zip  and put all contents in a wwwroot in the root of your site
 
 ## Step 4:
 Run the application and browse to  /blockly.html
