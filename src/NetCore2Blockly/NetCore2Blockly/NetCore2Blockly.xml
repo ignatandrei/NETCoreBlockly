@@ -204,6 +204,12 @@
             <param name="app"></param>
             <returns></returns>
         </member>
+        <member name="M:NetCore2Blockly.CLIExtension.UseBlocklyCli(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Uses the cli.
+            </summary>
+            <param name="appBuilder">The application builder.</param>
+        </member>
         <member name="T:NetCore2Blockly.TypeExtensions">
             <summary>
             extension to generate blockly from type

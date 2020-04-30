@@ -70,10 +70,12 @@ namespace TestBlocklyHtml
                 app.UseDeveloperExceptionPage();
                 app.UseStatusCodePages();
             }
+            
             //just developer testing! do not use in production
             app.UseFileServer(enableDirectoryBrowsing: true);
-
-           
+            //TODO: put this in the real application
+            // or copy the blockly.html files and others from wwwroot
+            //app.UseBlocklyCli();
 
             //this is not necessary to be added
             app.UseSwagger();
