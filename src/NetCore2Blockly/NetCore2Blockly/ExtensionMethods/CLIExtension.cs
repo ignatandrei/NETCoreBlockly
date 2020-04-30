@@ -110,7 +110,7 @@ namespace NetCore2Blockly
         /// Uses the cli.
         /// </summary>
         /// <param name="appBuilder">The application builder.</param>
-        public static void UseBlocklyCli(this IApplicationBuilder appBuilder)
+        public static void UseBlocklyUI(this IApplicationBuilder appBuilder)
         {
             var manifestEmbeddedProvider =
 new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());

@@ -75,7 +75,7 @@ namespace TestBlocklyHtml
             app.UseFileServer(enableDirectoryBrowsing: true);
             //TODO: put this in the real application
             // or copy the blockly.html files and others from wwwroot
-            //app.UseBlocklyCli();
+            //app.UseBlocklyUI();
 
             //this is not necessary to be added
             app.UseSwagger();

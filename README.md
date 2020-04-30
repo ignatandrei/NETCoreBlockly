@@ -45,7 +45,7 @@ To see the UI , please add
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
        
-       app.UseBlocklyCli();
+       app.UseBlocklyUI();
 }
 ```
  
