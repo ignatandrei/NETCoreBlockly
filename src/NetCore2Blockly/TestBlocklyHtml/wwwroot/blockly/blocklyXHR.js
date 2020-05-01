@@ -26,7 +26,7 @@ Blockly.JavaScript['httprequest'] = function (block) {
     var operation = '';
     switch (dropdown_typerequest.toString()) {
         case "GET":
-            operation = "JSON.parse(getXhr(" + value_theurl+')).text';
+            operation = "(function(url){ var res=JSON.parse(getXhr(url));alert('andrei'+res.statusOK); if(res.statusOK) return res.text;errHandler(JSON.stringify(res)); throw res;}("+ value_theurl +") )";
             break;
         case "POST":
             throw 'not implemented';

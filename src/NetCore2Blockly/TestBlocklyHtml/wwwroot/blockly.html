@@ -59,11 +59,11 @@
     <script src="/BlocklyToolBoxFunctionDefinitions"></script>
 
     <p>
-        <button onclick="runCode()" id="runButton">Run!</button>
+        <button onclick="runCode()" id="runButton" style="width:300px">E X E C U T E !</button>
 
-        <a href="javascript:downloadZip()">Download Results</a>
+        <!--<a href="javascript:downloadZip()">Download Results</a>-->
         <a href="javascript:SaveBlocks()">SaveBlocks</a>
-
+        <a href="javascript:ShowInnerWorkings()">Show blocks</a>
     </p>
 
     <div style="width: 100%">
@@ -75,7 +75,7 @@
     </textarea>
 
     </div>
-    Saved blocks
+    Saved 
     <ul id="localStorageSaved">
     </ul>
 
@@ -1023,7 +1023,14 @@
                 outputArea.value = 'Program output:\n=================';
             }
         }
+        function ShowInnerWorkings() {
 
+            var xml = Blockly.Xml.workspaceToDom(demoWorkspace, true);
+            var xml_text = Blockly.Xml.domToPrettyText(xml);
+            outputArea.value = xml_text;
+            outputArea.value = latestCode;
+
+        }
         function generateCodeAndLoadIntoInterpreter() {
             // Generate JavaScript code and parse it.
             Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
@@ -1031,6 +1038,8 @@
             latestCode = Blockly.JavaScript.workspaceToCode(demoWorkspace);
 
             resetStepUi(true);
+            
+
         }
 
         function resetInterpreter() {
