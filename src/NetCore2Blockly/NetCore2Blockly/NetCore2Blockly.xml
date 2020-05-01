@@ -204,7 +204,7 @@
             <param name="app"></param>
             <returns></returns>
         </member>
-        <member name="M:NetCore2Blockly.CLIExtension.UseBlocklyCli(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="M:NetCore2Blockly.CLIExtension.UseBlocklyUI(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             Uses the cli.
             </summary>
