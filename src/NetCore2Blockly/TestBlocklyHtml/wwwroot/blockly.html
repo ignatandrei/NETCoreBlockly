@@ -75,19 +75,42 @@
     </textarea>
 
     </div>
+    Saved blocks
+    <ul id="localStorageSaved">
+    </ul>
+
+    <script type="text/html" id="storage_tmpl">
+        <% for ( var i = 0; i < data.length; i++ ) { %>
+        <li><%=(i+1)%>) <a href="javascript:LoadFromStorage('<%=i%>')"> <%=data[i].name%> </a></li>
+        <% } %>
+
+    </script>
+
+
     <!--doNotCopyToFinal-->
     <div id="doNotCopy">
-
+        Testing blocks:
         <ul id="results">
         </ul>
 
         <script type="text/html" id="data_tmpl">
             <% for ( var i = 0; i < data.length; i++ ) { %>
-            <li><a href="javascript:Loadtesting('<%=data[i].name%>')"><%= data[i].name %></a></li>
+            <li><%=(i+1)%>) <a href="javascript:Loadtesting('<%=data[i].name%>')"><%= data[i].name %></a></li>
             <% } %>
 
         </script>
         <script>
+            function LoadFromStorage(i) {
+                //window.alert(arrSavedLocalStorage[i]);
+                demoWorkspace.clear();
+                var content = arrSavedLocalStorage[i].val;
+                //window.alert(content);
+                var dom = Blockly.Xml.textToDom(content);
+                Blockly.Xml.domToWorkspace(dom, demoWorkspace);
+                resetStepUi();
+
+            }
+
             function Loadtesting(name) {
                 demoWorkspace.clear();
                 var content = '';
@@ -482,26 +505,26 @@
                     </value>
                 </block>
             </category>
-                <category id="catHelpers" colour="160" name="Helpers">
-                    <block type="wait_seconds"></block>
-                    <block type="text_print">
-                        <value name="TEXT">
-                            <shadow type="text">
-                                <field name="TEXT">abc</field>
-                            </shadow>
-                        </value>
-                    </block>
-                    <block type="text_prompt_ext">
-                        <value name="TEXT">
-                            <shadow type="text">
-                                <field name="TEXT">abc</field>
-                            </shadow>
-                        </value>
-                    </block>
-                </category>
+            <category id="catHelpers" colour="160" name="Helpers">
+                <block type="wait_seconds"></block>
+                <block type="text_print">
+                    <value name="TEXT">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="text_prompt_ext">
+                    <value name="TEXT">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                </block>
             </category>
+        </category>
 
-</xml>
+    </xml>
 
     <xml xmlns="https://developers.google.com/blockly/xml" id="startBlocks" style="display: none">
         <block type="variables_set" id="set_n_initial" inline="true" x="20" y="20">
@@ -856,7 +879,7 @@
         if (urlParams.length == 2) {
             var str = urlParams[1];
             var name = "savedBlockly_" + str;
-           var xmlContent = window.localStorage.getItem(name);
+            var xmlContent = window.localStorage.getItem(name);
 
             xmlContent = JSON.parse(xmlContent);
             xmlContent = xmlContent.val;
@@ -905,8 +928,8 @@
             interpreter.setProperty(globalObject, 'prompt',
                 interpreter.createNativeFunction(wrapper));
 
-            var wrapper = function (id,property) {
-                
+            var wrapper = function (id, property) {
+
                 return document.getElementById(id)[property];
             };
             interpreter.setProperty(globalObject, 'getIDProp',
@@ -918,7 +941,7 @@
 
             interpreter.setProperty(globalObject, 'errHandler',
                 interpreter.createNativeFunction(wrapper));
-           
+
 
             //var wrapper = function (obj) {
             //    var json = JSON.parse(obj);
@@ -1071,7 +1094,7 @@
 
                     //console.log();
                     var obj = event.getEventWorkspace_().getBlockById(event.blockId);
-                    
+
                     if (obj.type == "text_print")
                         return;
                     //var print = event.getEventWorkspace_().getAllBlocks().find(it => it.type = 'text_print');
@@ -1113,15 +1136,18 @@
         function retrieveBlocksStorage() {
             var storage = window.localStorage;
             var nrItems = storage.length;
-            
-            for (var iStor = 0; iStor < nrItems;iStor++ ) {
+
+            for (var iStor = 0; iStor < nrItems; iStor++) {
                 var key = storage.key(iStor);
                 //window.alert(key);
                 if (key.indexOf("savedBlockly_") != 0)
                     continue;
-                arrSavedLocalStorage.push(JSON.stringify(storage.getItem(key)));
-                
+                arrSavedLocalStorage.push(JSON.parse(storage.getItem(key)));
+
             }
+            var ls = document.getElementById("localStorageSaved");
+            ls.innerHTML = tmpl("storage_tmpl", { data: arrSavedLocalStorage });
+
             //window.alert(arrSavedLocalStorage.length);
         }
         function formatInt(number) {
@@ -1133,7 +1159,7 @@
                 `${formatInt(date.getHours())}${formatInt(date.getMinutes())}${formatInt(date.getSeconds())}`;
 
         }
-        
+
         retrieveBlocksStorage();
     </script>
 
