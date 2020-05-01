@@ -855,11 +855,15 @@
 
         if (urlParams.length == 2) {
             var str = urlParams[1];
+            var name = "savedBlockly_" + str;
+           var xmlContent = window.localStorage.getItem(name);
 
-            var xmlContent = window.localStorage.getItem(str);
-
-            var dom = Blockly.Xml.textToDom(xmlContent);
-            Blockly.Xml.domToWorkspace(dom, demoWorkspace);
+            xmlContent = JSON.parse(xmlContent);
+            xmlContent = xmlContent.val;
+            if ((xmlContent || '').length > 0) {
+                var dom = Blockly.Xml.textToDom(xmlContent);
+                Blockly.Xml.domToWorkspace(dom, demoWorkspace);
+            }
         }
         else {
             Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
@@ -1101,8 +1105,24 @@
             var xml_text = Blockly.Xml.domToPrettyText(xml);
             var n = formatDate(new Date());
             window.history.pushState({ dom: n }, xml_text, "?dom=" + n);
-            window.localStorage.setItem(n, xml_text);
+
+            window.localStorage.setItem("savedBlockly_" + n, JSON.stringify({ name: "blockly_" + n, val: xml_text }));
             window.alert("copy the url from the browser");
+        }
+        var arrSavedLocalStorage = [];
+        function retrieveBlocksStorage() {
+            var storage = window.localStorage;
+            var nrItems = storage.length;
+            
+            for (var iStor = 0; iStor < nrItems;iStor++ ) {
+                var key = storage.key(iStor);
+                //window.alert(key);
+                if (key.indexOf("savedBlockly_") != 0)
+                    continue;
+                arrSavedLocalStorage.push(JSON.stringify(storage.getItem(key)));
+                
+            }
+            //window.alert(arrSavedLocalStorage.length);
         }
         function formatInt(number) {
             return number < 10 ? '0' + number : number;
@@ -1113,7 +1133,8 @@
                 `${formatInt(date.getHours())}${formatInt(date.getMinutes())}${formatInt(date.getSeconds())}`;
 
         }
-
+        
+        retrieveBlocksStorage();
     </script>
 
 </body>
