@@ -20,7 +20,7 @@
     <script src="blockly/BlocklyXHRWrapper.js"></script>
     <script src="blockly/convertCSV.js"></script>
     <script src="blockly/exportFile.js"></script>
-
+    <script src="blockly/blocklyXHR.js"></script>
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js"></script>
     <script src="doNotCopy/JRTemplating.js"></script>
@@ -120,7 +120,7 @@
 
         </category>
         <sep></sep>
-        <category name="Core">
+        <category name="BlocklyCore">
 
             <category id="catLogic" colour="210" name="Logic">
                 <block type="controls_if"></block>
@@ -420,12 +420,12 @@
                     </value>
                 </block>
             </category>
+            <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
+            <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
         </category>
         <sep></sep>
         <category name="advanced">
 
-            <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
-            <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
             <category id="catJSON" colour="160" name="Converters">
                 <!--                <button text="A button" callbackKey="crae"></button>-->
                 <block type="converttojson"></block>
@@ -455,9 +455,18 @@
             </category>
             <category id="JavaScriptRelated" name="JSBlocks">
                 <!--<block type="wait_seconds"></block>-->
-                <block type="blockxhrresult"></block>
                 <block type="modifyproperty"></block>
                 <block type="getproperty"></block>
+            </category>
+            <category id="XHR" name="Request">
+                <block type="blockxhrresult"></block>
+                <block type="httprequest">
+                    <value name="TheUrl">
+                        <shadow type="text">
+                            <field name="TEXT">https://api.chucknorris.io/jokes/random</field>
+                        </shadow>
+                    </value>
+                </block>
             </category>
             <category id="Controls" name="GUI">
                 <block type="valuefromtext">
