@@ -1,4 +1,4 @@
-# NETCoreBlockly
+# NETCore2Blockly
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -10,13 +10,13 @@
 [![NuGet](https://img.shields.io/nuget/v/NetCore2Blockly.svg)](https://www.nuget.org/packages/NetCore2Blockly)
 
 # What it does
-NETCoreBlockly generates [Blockly](https://developers.google.com/blockly) blocks for each of your controller actions. 
+NETCore2Blockly generates [Blockly](https://developers.google.com/blockly) blocks for each of your controller actions. 
 
 Demo at https://netcoreblockly.herokuapp.com/blockly.html ( play with the links from the bottom)
 
 Demo Video at https://www.youtube.com/watch?v=GptkNWjmCzk
 
-# How to install NETCoreBlockly in a .NET Core 3.1  WebAPI / MVC application
+# How to install NETCore2Blockly in a .NET Core 3.1  WebAPI / MVC application
 
 ## Step 1:
 Install https://www.nuget.org/packages/NetCore2Blockly/ by running the following command in the Package Manager Console:

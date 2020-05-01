@@ -50,7 +50,7 @@ namespace TestNetCorePackage
 
             app.UseStaticFiles();
             app.UseSwagger();
-            //app.UseBlocklyUI();
+            app.UseBlocklyUI();
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>

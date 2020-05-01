@@ -1,14 +1,14 @@
-﻿What it does
+﻿What it does NETCore2Blockly
 
 Read this better at https://github.com/ignatandrei/netcoreblockly
 
-NETCoreBlockly generates Blockly blocks for each of your controller actions.
+NETCore2Blockly generates Blockly blocks for each of your controller actions.
 
 Demo at https://netcoreblockly.herokuapp.com/blockly.html ( play with the links from the bottom)
 
 Demo Video at https://www.youtube.com/watch?v=GptkNWjmCzk
 
-How to install NETCoreBlockly in a .NET Core 3.1 WebAPI / MVC application
+How to install NETCore2Blockly in a .NET Core 3.1 WebAPI / MVC application
 Step 1:
 Install https://www.nuget.org/packages/NetCore2Blockly/ by running the following command in the Package Manager Console:
 
