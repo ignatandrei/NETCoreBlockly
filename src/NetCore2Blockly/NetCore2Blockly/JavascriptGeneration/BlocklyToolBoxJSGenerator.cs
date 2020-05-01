@@ -10,6 +10,11 @@ namespace NetCore2Blockly.JavascriptGeneration
     /// </summary>
     public class BlocklyToolBoxJSGenerator
     {
+        private string typeNameNoGeneric(Type type)
+        {
+            var t = Nullable.GetUnderlyingType(type) ?? type;
+            return t.Name;
+        }
         /// <summary>
         /// Generates the blockly tool box value.
         /// </summary>
@@ -22,7 +27,7 @@ namespace NetCore2Blockly.JavascriptGeneration
             foreach (var type in types)
             {
 
-                var typeName = type.Name;
+                var typeName = typeNameNoGeneric(type);
                 var newTypeName = type.TranslateToNewTypeName(); 
 
                 globalVars += $"workspace.createVariable('var_{typeName}', '{newTypeName}');";

@@ -6,6 +6,7 @@
     <UserSecretsId>007a2c57-025c-457d-a28c-b78300869b18</UserSecretsId>
   </PropertyGroup>
 
+  
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>

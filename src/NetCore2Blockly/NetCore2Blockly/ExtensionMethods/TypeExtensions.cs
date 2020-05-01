@@ -14,10 +14,11 @@ namespace NetCore2Blockly
         /// <summary>
         /// Translates the type to blockly blocks.
         /// </summary>
-        /// <param name="t">The t.</param>
+        /// <param name="type">The t.</param>
         /// <returns></returns>
-        internal static string TranslateToBlocklyBlocksType(this Type t)
+        internal static string TranslateToBlocklyBlocksType(this Type type)
         {
+            var t = Nullable.GetUnderlyingType(type) ?? type;
             if (t == typeof(int))
                 return "math_number";
 
@@ -47,10 +48,11 @@ namespace NetCore2Blockly
         /// <summary>
         /// Translates the type to blockly.
         /// </summary>
-        /// <param name="t">The t.</param>
+        /// <param name="type">The t.</param>
         /// <returns></returns>
-        public static string TranslateToBlocklyType(this Type t)
+        public static string TranslateToBlocklyType(this Type type)
         {
+            var t = Nullable.GetUnderlyingType(type) ?? type;
             if (t == typeof(int))
                 return "Number";
             if (t == typeof(long))

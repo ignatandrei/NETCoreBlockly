@@ -219,14 +219,14 @@
             <summary>
             Translates the type to blockly blocks.
             </summary>
-            <param name="t">The t.</param>
+            <param name="type">The t.</param>
             <returns></returns>
         </member>
         <member name="M:NetCore2Blockly.TypeExtensions.TranslateToBlocklyType(System.Type)">
             <summary>
             Translates the type to blockly.
             </summary>
-            <param name="t">The t.</param>
+            <param name="type">The t.</param>
             <returns></returns>
         </member>
         <member name="M:NetCore2Blockly.TypeExtensions.TranslateToNewTypeName(System.Type)">
