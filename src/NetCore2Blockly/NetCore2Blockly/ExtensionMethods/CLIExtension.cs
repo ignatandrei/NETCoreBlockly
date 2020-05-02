@@ -130,11 +130,7 @@ new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
         }
         private static void mapStorage(IApplicationBuilder appBuilder)
         {
-            var localStorage = "";
-            localStorage += "function BlocklySetItem(key,value)=>window.localStorage.setItem(key,value);";
-            localStorage += "function GetData_key_getItem()=>window.localStorage;";
-            localStorage += "function GetAllData()=>window.localStorage;";
-
+            
             var manifestEmbeddedProvider =
                 new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
 

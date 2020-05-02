@@ -1,6 +1,6 @@
 ﻿//https://github.com/joaocunha/javascript-localstorage-handler/blob/master/LocalStorageHandler.js
 
-var LocalStorageHandler = function () {
+var StorageHandler = function () {
 
 
 
