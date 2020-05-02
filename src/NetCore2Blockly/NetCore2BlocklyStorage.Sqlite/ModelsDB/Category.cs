@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace NetCore2BlocklyStorage.Sqlite.ModelsSqlServer
+namespace NetCore2BlocklyStorage.Sqlite.ModelsDB
 {
     internal partial class Category
     {

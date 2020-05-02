@@ -77,7 +77,7 @@ namespace TestBlocklyHtml
             // or copy the blockly.html files and others from wwwroot
             //app.UseBlocklyUI();
             //app.UseLocalStorage();//this is not necessary , if you use app.UseBlocklyUI();
-            app.UseSqliteStorage();
+            app.UseBlocklySqliteStorage();
             //this is not necessary to be added
             app.UseSwagger();
 

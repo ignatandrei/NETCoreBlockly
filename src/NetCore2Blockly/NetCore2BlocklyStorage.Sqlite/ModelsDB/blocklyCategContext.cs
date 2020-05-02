@@ -2,11 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace NetCore2BlocklyStorage.Sqlite.ModelsSqlServer
+namespace NetCore2BlocklyStorage.Sqlite.ModelsDB
 {
     internal partial class blocklyCategContext : DbContext
     {
-        
+        public blocklyCategContext()
+        {
+        }
 
         public blocklyCategContext(DbContextOptions<blocklyCategContext> options)
             : base(options)
@@ -23,8 +25,6 @@ namespace NetCore2BlocklyStorage.Sqlite.ModelsSqlServer
         {
             modelBuilder.Entity<Blocks>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.HasOne(d => d.IdcategoryNavigation)
                     .WithMany(p => p.Blocks)
                     .HasForeignKey(d => d.Idcategory)

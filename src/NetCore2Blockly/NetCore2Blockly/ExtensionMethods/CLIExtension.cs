@@ -124,7 +124,7 @@ new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
         /// Uses the storage
         /// </summary>
         /// <param name="appBuilder">The application builder.</param>
-        public static void UseLocalStorage(this IApplicationBuilder appBuilder)
+        public static void UseBlocklyLocalStorage(this IApplicationBuilder appBuilder)
         {
             mapStorage(appBuilder);
         }

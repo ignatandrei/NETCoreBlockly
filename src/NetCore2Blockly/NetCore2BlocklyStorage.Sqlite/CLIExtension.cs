@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.FileProviders.Physical;
+using NetCore2BlocklyStorage.Sqlite.ModelsDB;
 using System;
 using System.IO;
 using System.Reflection;
@@ -17,8 +18,10 @@ namespace NetCore2Blockly
         /// </summary>
         /// <param name="appBuilder">The application builder.</param>
         /// <param name="sqliteConnection">Sqlitedb connection</param>
-        public static void UseSqliteStorage(this IApplicationBuilder appBuilder, string sqliteConnection = "blocklySqlite.db")
+        public async static void UseBlocklySqliteStorage(this IApplicationBuilder appBuilder, string sqliteConnection = "Data Source=blocklySqlite.db")
         {
+            using var cn = new blocklyCategContext(sqliteConnection);
+            await cn.CreateDb();
             mapStorage(appBuilder);
         }
         private static void mapStorage(IApplicationBuilder appBuilder)
