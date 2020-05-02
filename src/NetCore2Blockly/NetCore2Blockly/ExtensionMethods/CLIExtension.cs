@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.FileProviders.Physical;
 using System;
 using System.IO;
 using System.IO.Pipelines;
@@ -116,9 +117,17 @@ namespace NetCore2Blockly
 new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
             
             mapFile("blocklyFiles", manifestEmbeddedProvider, appBuilder);
-            mapStorage(appBuilder)
+            //use local storage default
+            mapStorage(appBuilder);
         }
-
+        /// <summary>
+        /// Uses the storage
+        /// </summary>
+        /// <param name="appBuilder">The application builder.</param>
+        public static void UseStorage(this IApplicationBuilder appBuilder)
+        {
+            mapStorage(appBuilder);
+        }
         private static void mapStorage(IApplicationBuilder appBuilder)
         {
             var localStorage = "";
@@ -126,12 +135,34 @@ new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
             localStorage += "function GetData_key_getItem()=>window.localStorage;";
             localStorage += "function GetAllData()=>window.localStorage;";
 
+            var manifestEmbeddedProvider =
+                new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
 
             appBuilder.Map("/blocklyStorage", app =>
-             {
-                 app.Run(async context =>
+            {
+                 app.Run(async cnt=>
                  {
-                     await Task.Delay(100);
+                     string nameFile = "extensions/SaveToLocalStorage.js";
+                     IFileInfo f = new PhysicalFileInfo(new FileInfo("wwwroot/"+nameFile));
+          
+                     if (!f.Exists)
+                     {
+
+                         f = manifestEmbeddedProvider.GetFileInfo("blocklyFiles/"+nameFile);
+                     }
+                     //TODO: add corect mime type for js files
+                     using var stream = new MemoryStream();
+                     using var cs = f.CreateReadStream();
+                     byte[] buffer = new byte[2048]; // read in chunks of 2KB
+                     int bytesRead;
+                     while ((bytesRead = cs.Read(buffer, 0, buffer.Length)) > 0)
+                     {
+                         stream.Write(buffer, 0, bytesRead);
+                     }
+                     byte[] result = stream.ToArray();
+                     // TODO: do something with the result
+                     var m = new Memory<byte>(result);
+                     await cnt.Response.BodyWriter.WriteAsync(m);
                  });
              });
             
