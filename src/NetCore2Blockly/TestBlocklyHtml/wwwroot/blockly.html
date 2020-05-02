@@ -20,6 +20,7 @@
     <script src="blockly/BlocklyXHRWrapper.js"></script>
     <script src="blockly/convertCSV.js"></script>
     <script src="blockly/exportFile.js"></script>
+    <script src="blockly/DateTime.js"></script>
 
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js"></script>
@@ -490,7 +491,16 @@
                         </value>
                     </block>
                 </category>
-            </category>
+                <category id="dateTime" colour="160" name="Date time">
+                    <block type="fromUnixTimeToDate">
+                        <value name="Unix timestamp">
+                            <shadow type="number">
+                                <field name="Number"></field>
+                            </shadow>
+                        </value>
+                    </block>
+                </category>
+        </category>
 
 </xml>
 
@@ -926,6 +936,10 @@
 
             var wrapper = (it, content, toByte) => exportToFile(it, content, toByte);
             interpreter.setProperty(globalObject, 'exportToFile',
+                interpreter.createNativeFunction(wrapper));
+
+            var wrapper = item => convertToDate(item);
+            interpreter.setProperty(globalObject, 'convertToDate',
                 interpreter.createNativeFunction(wrapper));
 
             var wrapper = (href, callback) => doGet(href, callback);
