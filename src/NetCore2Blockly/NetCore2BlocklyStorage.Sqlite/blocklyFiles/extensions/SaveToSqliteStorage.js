@@ -29,7 +29,7 @@ var StorageHandler = function () {
         if (req.status === 200) {
             var res = req.responseText;
             window.alert('get ' + res);
-            return res;
+            return JSON.parse(res);
         }
         window.alert('get no answer');
         return 0;
