@@ -5,6 +5,9 @@ using NetCore2BlocklyStorage.Sqlite.ModelsDB;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace NetCore2Blockly
 {
@@ -23,7 +26,42 @@ namespace NetCore2Blockly
             using var cn = new blocklyCategContext(sqliteConnection);
             await cn.CreateDb();
             mapStorage(appBuilder);
+            mapEndpoints(appBuilder, sqliteConnection);
         }
+
+        private static void mapEndpoints(IApplicationBuilder appBuilder,string sqliteConnection)
+        {
+            appBuilder.Map("/blocklyStorageLength", app =>
+            {
+                app.Run(async cnt =>
+                {
+                    using var cn = new blocklyCategContext(sqliteConnection);
+                    var res =(await cn.Length()).ToString();
+
+                    byte[] result = Encoding.UTF8.GetBytes(res);
+                    
+                    var m = new ReadOnlyMemory<byte>(result);
+                    await cnt.Response.BodyWriter.WriteAsync(m);
+                });
+            });
+            appBuilder.Map("/blocklyStoragedata", app =>
+            {
+                app.Run(async cnt =>
+                {
+                    using var cn = new blocklyCategContext(sqliteConnection);
+                    var res = JsonSerializer.Serialize(await cn.data());
+
+                    byte[] result = Encoding.UTF8.GetBytes(res);
+                    
+                    var m = new ReadOnlyMemory<byte>(result);
+                    await cnt.Response.BodyWriter.WriteAsync(m);
+                });
+            });
+
+
+
+        }
+
         private static void mapStorage(IApplicationBuilder appBuilder)
         {
 
@@ -48,8 +86,7 @@ namespace NetCore2Blockly
                         stream.Write(buffer, 0, bytesRead);
                     }
                     byte[] result = stream.ToArray();
-                    // TODO: do something with the result
-                    var m = new Memory<byte>(result);
+                    var m = new ReadOnlyMemory<byte>(result);
                     await cnt.Response.BodyWriter.WriteAsync(m);
                 });
             });
