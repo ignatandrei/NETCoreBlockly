@@ -29,6 +29,7 @@ steps:
 - script: |
     echo "pack "
     dotnet pack src/NetCore2Blockly/NetCore2Blockly/NetCore2Blockly.csproj --include-source  --no-build -o $(Build.ArtifactStagingDirectory) /p:Configuration=$(buildConfiguration) 
+    dotnet pack src/NetCore2Blockly/NetCore2BlocklyStorage.Sqlite/NetCore2BlocklyStorage.Sqlite.csproj --include-source  --no-build -o $(Build.ArtifactStagingDirectory) /p:Configuration=$(buildConfiguration) 
   displayName: 'dotnet pack '
 
 - task: PublishBuildArtifacts@1

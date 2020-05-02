@@ -19,6 +19,14 @@ namespace NetCore2Blockly
     /// </summary>
     public static class CLIExtension
     {
+        static CLIExtension()
+        {
+            var assName = Assembly.GetExecutingAssembly().GetName();
+            Console.WriteLine($"{assName.Name} version:{assName.Version.ToString()}");
+
+        }
+
+
         /// <summary>
         /// Uses the storage
         /// </summary>
