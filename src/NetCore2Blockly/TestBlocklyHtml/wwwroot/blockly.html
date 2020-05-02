@@ -101,7 +101,18 @@
 
         </script>
         <script>
-            var lsh = new StorageHandler();
+            var _lsh=null;
+            function lsh() {
+                if (_lsh) {
+                    console.log("found");
+                    console.log(_lsh);
+                    return _lsh;
+                }
+                _lsh = new StorageHandler();
+                console.log("first time");
+                console.log(_lsh);
+                return _lsh;
+            }
             function LoadFromStorage(i) {
                 //window.alert(arrSavedLocalStorage[i]);
                 var ls = getBlocksFromLocalStorage();
@@ -929,7 +940,7 @@
         if (urlParams.length == 2) {
             var str = urlParams[1];
             var name = "savedBlockly_" + str;
-            var xmlContent = lsh.get(name);
+            var xmlContent = lsh().get(name);
 
             //xmlContent = JSON.parse(xmlContent);
             xmlContent = xmlContent.val;
@@ -1190,19 +1201,19 @@
             var n = formatDate(new Date());
             window.history.pushState({ dom: n }, xml_text, "?dom=" + n);
 
-            lsh.set("savedBlockly_" + n, ({ name: "savedBlockly_" + n, val: xml_text }));
+            lsh().set("savedBlockly_" + n, ({ name: "savedBlockly_" + n, val: xml_text }));
             window.alert("copy the url from the browser");
         }
         function getBlocksFromLocalStorage() {
             var arrSavedLocalStorage = [];
-            var nrItems = lsh.length;
+            var nrItems = lsh().length;
 
             for (var iStor = 0; iStor < nrItems; iStor++) {
-                var key = lsh.key(iStor);
+                var key = lsh().key(iStor);
                 //window.alert(key);
                 if (key.indexOf("savedBlockly_") != 0)
                     continue;
-                arrSavedLocalStorage.push(lsh.get(key));
+                arrSavedLocalStorage.push(lsh().get(key));
 
             }
             //window.alert(arrSavedLocalStorage.length);
