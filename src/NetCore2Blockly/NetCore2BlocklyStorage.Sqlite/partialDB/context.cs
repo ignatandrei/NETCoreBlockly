@@ -50,19 +50,27 @@ namespace NetCore2BlocklyStorage.Sqlite.ModelsDB
 
             return null;
         }
-
-        public Task<int> Length()
+        private async Task<IQueryable<Blocks>> BlocksCategory()
         {
-            return this.Blocks.CountAsync();
+            var top = await GetTopCategory();
+            var id = top.Id;
+            return this.Blocks.Where(it => it.Idcategory == id);
+        }
+        public async Task<int> Length()
+        {
+            var b = await BlocksCategory();
+            return await b.CountAsync();
         }
 
-        public Task<Blocks> Get(int key)
+        public async Task<Blocks> Get(int key)
         {
-
-            return this.Blocks.FirstOrDefaultAsync(b => b.Id == key);
+            var b = await BlocksCategory();
+            return await b.FirstOrDefaultAsync(b => b.Id == key);
         }
         public async Task<Blocks> Set(int key, Blocks b)
         {
+            var top = await GetTopCategory();
+            b.Idcategory = top.Id;
             var exists = await Get(key);
             if(exists == null)
             {
@@ -73,9 +81,10 @@ namespace NetCore2BlocklyStorage.Sqlite.ModelsDB
             await this.SaveChangesAsync();
             return exists;
         } 
-        public Task<Blocks[]> data()
+        public async Task<Blocks[]> data()
         {
-            return this.Blocks.ToArrayAsync();
+            var b = await BlocksCategory();
+            return await b.ToArrayAsync();
         }
     }
 }
