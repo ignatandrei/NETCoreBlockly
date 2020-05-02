@@ -22,13 +22,13 @@ Blockly.JavaScript['httprequest'] = function (block) {
     var dropdown_typerequest = block.getFieldValue('TypeRequest');
     var value_theurl = Blockly.JavaScript.valueToCode(block, 'TheUrl', Blockly.JavaScript.ORDER_ATOMIC);
     var value_data = Blockly.JavaScript.valueToCode(block, 'Data', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
     var operation = '';
     switch (dropdown_typerequest.toString()) {
         case "GET":
             operation = "(function(url){ var res=JSON.parse(getXhr(url)); if(res.statusOK) return res.text;errHandler(JSON.stringify(res)); throw res;}("+ value_theurl +") )";
             break;
         case "POST":
+            //TODO: implement post for generic HTTP request  - call postXhr
             throw 'not implemented';
             break;
     }
