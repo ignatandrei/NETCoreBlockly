@@ -116,6 +116,25 @@ namespace NetCore2Blockly
 new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
             
             mapFile("blocklyFiles", manifestEmbeddedProvider, appBuilder);
+            mapStorage(appBuilder)
+        }
+
+        private static void mapStorage(IApplicationBuilder appBuilder)
+        {
+            var localStorage = "";
+            localStorage += "function BlocklySetItem(key,value)=>window.localStorage.setItem(key,value);";
+            localStorage += "function GetData_key_getItem()=>window.localStorage;";
+            localStorage += "function GetAllData()=>window.localStorage;";
+
+
+            appBuilder.Map("/blocklyStorage", app =>
+             {
+                 app.Run(async context =>
+                 {
+                     await Task.Delay(100);
+                 });
+             });
+            
         }
     }
 }

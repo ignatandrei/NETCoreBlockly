@@ -21,6 +21,7 @@
     <script src="blockly/convertCSV.js"></script>
     <script src="blockly/exportFile.js"></script>
     <script src="blockly/blocklyXHR.js"></script>
+    <script src="extensions/SaveToLocalStorage.js"></script>
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js"></script>
     <script src="doNotCopy/JRTemplating.js"></script>
@@ -100,6 +101,7 @@
 
         </script>
         <script>
+            var lsh = new LocalStorageHandler();
             function LoadFromStorage(i) {
                 //window.alert(arrSavedLocalStorage[i]);
                 var ls = getBlocksFromLocalStorage();
@@ -147,9 +149,7 @@
         <category custom="savedBlocks" name="Saved Blocks">
 
         </category>
-        <category name="test">
-
-        </category>
+        
         <category name="BlocklyCore">
 
             <category id="catLogic" colour="210" name="Logic">
@@ -929,9 +929,9 @@
         if (urlParams.length == 2) {
             var str = urlParams[1];
             var name = "savedBlockly_" + str;
-            var xmlContent = window.localStorage.getItem(name);
+            var xmlContent = lsh.get(name);
 
-            xmlContent = JSON.parse(xmlContent);
+            //xmlContent = JSON.parse(xmlContent);
             xmlContent = xmlContent.val;
             if ((xmlContent || '').length > 0) {
                 var dom = Blockly.Xml.textToDom(xmlContent);
@@ -1190,20 +1190,19 @@
             var n = formatDate(new Date());
             window.history.pushState({ dom: n }, xml_text, "?dom=" + n);
 
-            window.localStorage.setItem("savedBlockly_" + n, JSON.stringify({ name: "blockly_" + n, val: xml_text }));
+            lsh.set("savedBlockly_" + n, ({ name: "blockly_" + n, val: xml_text }));
             window.alert("copy the url from the browser");
         }
         function getBlocksFromLocalStorage() {
             var arrSavedLocalStorage = [];
-            var storage = window.localStorage;
-            var nrItems = storage.length;
+            var nrItems = lsh.length;
 
             for (var iStor = 0; iStor < nrItems; iStor++) {
-                var key = storage.key(iStor);
+                var key = lsh.key(iStor);
                 //window.alert(key);
                 if (key.indexOf("savedBlockly_") != 0)
                     continue;
-                arrSavedLocalStorage.push(JSON.parse(storage.getItem(key)));
+                arrSavedLocalStorage.push(lsh.get(key));
 
             }
             return arrSavedLocalStorage;
