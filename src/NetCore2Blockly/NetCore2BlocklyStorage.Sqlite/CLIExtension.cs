@@ -57,7 +57,10 @@ namespace NetCore2Blockly
                     {
                         item.CleanSerialize();
                     }
-                    var res = JsonSerializer.Serialize(data);
+                    var res = JsonSerializer.Serialize(data, new JsonSerializerOptions()
+                    {
+                        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    });
 
                     byte[] result = Encoding.UTF8.GetBytes(res);
                     
@@ -76,17 +79,15 @@ namespace NetCore2Blockly
                         await WriteString(cnt.Response.BodyWriter, "please add query string ?key=...");
                         return;
                    }
-                   if(!int.TryParse(data,out int val))
-                    {
-                        await WriteString(cnt.Response.BodyWriter, $"key {data} is not int");
-                        return;
-                    }    
-
+                   
                     using var cn = new blocklyCategContext(sqliteConnection);
-                    var block = await cn.Get(val);
+                    var block = await cn.Get(data);
                     if (block == null)
                         return;
-                    var res = JsonSerializer.Serialize(block.CleanSerialize());
+                    var res = JsonSerializer.Serialize(block.CleanSerialize(), new JsonSerializerOptions()
+                    {
+                        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    });
                     await WriteString(cnt.Response.BodyWriter, res);
                     
                 });
@@ -121,7 +122,10 @@ namespace NetCore2Blockly
                     using var cn = new blocklyCategContext(sqliteConnection);
                     var block = await cn.Set(data,doc);
                     
-                    var res = JsonSerializer.Serialize(block.CleanSerialize());
+                    var res = JsonSerializer.Serialize(block.CleanSerialize(),new JsonSerializerOptions()
+                    {
+                        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    });
                     await WriteString(cnt.Response.BodyWriter, res);
                         
                 });

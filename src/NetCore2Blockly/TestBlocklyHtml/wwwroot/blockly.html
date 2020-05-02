@@ -1190,7 +1190,7 @@
             var n = formatDate(new Date());
             window.history.pushState({ dom: n }, xml_text, "?dom=" + n);
 
-            lsh.set("savedBlockly_" + n, ({ name: "blockly_" + n, val: xml_text }));
+            lsh.set("savedBlockly_" + n, ({ name: "savedBlockly_" + n, val: xml_text }));
             window.alert("copy the url from the browser");
         }
         function getBlocksFromLocalStorage() {
@@ -1205,6 +1205,7 @@
                 arrSavedLocalStorage.push(lsh.get(key));
 
             }
+            //window.alert(arrSavedLocalStorage.length);
             return arrSavedLocalStorage;
         }
         function displayLinksSavedStorage() {

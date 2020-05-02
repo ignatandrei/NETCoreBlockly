@@ -1,7 +1,7 @@
 ﻿
 var StorageHandler = function () {
 
-
+    var arr = [];
 
     this.length = (function () {
         var href = '/blocklyStorageLength';
@@ -10,29 +10,34 @@ var StorageHandler = function () {
         req.send(null);
         if (req.status === 200) {
             var res = req.responseText;
-            window.alert('length' + res);
+            //window.alert('length' + res);
             return res;
         }
-        window.alert('length no answer' );
+        ////window.alert('length no answer' );
         return 0;
     })();
 
 
     this.get = function (key) {
 
-        window.alert('get !!' + key);
-        var href = '/blocklyStorageget?key=' + (key + 1);
-        window.alert(href);
+        var exists = arr.filter(it => it.name == key);
+
+        if (exists.length == 1)
+            return exists[0];
+        
+        var href = '/blocklyStorageget?key=' + key;
+        //window.alert(href);
         let req = new XMLHttpRequest();
         req.open('GET', href, false);
         req.send(null);
         if (req.status === 200) {
             var res = req.responseText;
-            window.alert('get ' + res);
-            return JSON.parse(res);
+            var data = JSON.parse(res);
+            arr.push(data);
+            return data;
         }
-        window.alert('get no answer');
-        return 0;
+        //window.alert('get no answer');
+        
 
         throw req;
 
@@ -42,7 +47,7 @@ var StorageHandler = function () {
 
 
     this.set = function (key, val) {
-        window.alert('set ' + key);
+        //window.alert('set ' + key);
         var href = '/blocklyStorageset?key='+key;
         let req = new XMLHttpRequest();
         req.open('POST', href, false);
@@ -52,14 +57,26 @@ var StorageHandler = function () {
     };
 
     this.key = function (index) {
-        //window.alert('key ' + index);
-        return this.get(index);
+        if (arr.length < index)
+            return arr[index].name;
+        //window.alert('index !!' + index);
+        var href = '/blocklyStorageget?key=' + (index + 1);
+        //window.alert(href);
+        let req = new XMLHttpRequest();
+        req.open('GET', href, false);
+        req.send(null);
+        if (req.status === 200) {
+            var res = req.responseText;
+            var data = JSON.parse(res);
+            arr.push(data);
+            return data.name;
+        }
 
         
     };
 
     this.data = function () {
-        window.alert('data !!' );
+        //window.alert('data !!' );
 
         var i = 0;
 

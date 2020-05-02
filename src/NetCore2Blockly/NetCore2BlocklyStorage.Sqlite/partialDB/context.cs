@@ -62,10 +62,14 @@ namespace NetCore2BlocklyStorage.Sqlite.ModelsDB
             return await b.CountAsync();
         }
 
-        public async Task<Blocks> Get(int key)
+        public async Task<Blocks> Get(string keyOrName)
         {
             var b = await BlocksCategory();
-            return await b.FirstOrDefaultAsync(b => b.Id == key);
+            if (int.TryParse(keyOrName, out var key)){
+                return await b.FirstOrDefaultAsync(b => b.Id == key);
+            }
+
+            return await b.FirstOrDefaultAsync(b => b.Name == keyOrName);
         }
         public async Task<Blocks> Set(string name, Blocks newOrExisting)
         {
@@ -77,6 +81,9 @@ namespace NetCore2BlocklyStorage.Sqlite.ModelsDB
                 this.Add(exists);
             }
             exists.CopyPropsFrom(newOrExisting);
+            var top = await GetTopCategory();
+            exists.Idcategory = top.Id;
+
             await this.SaveChangesAsync();
             return exists;
         } 

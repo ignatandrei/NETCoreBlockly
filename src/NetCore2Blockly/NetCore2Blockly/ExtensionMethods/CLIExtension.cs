@@ -117,8 +117,6 @@ namespace NetCore2Blockly
 new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
             
             mapFile("blocklyFiles", manifestEmbeddedProvider, appBuilder);
-            //use local storage default
-            mapStorage(appBuilder);
         }
         /// <summary>
         /// Uses the storage
