@@ -69,13 +69,14 @@
     <div style="width: 100%">
         <div id="blocklyDiv"
              style="display: inline-block; height: 480px; width: 58%"></div>
-        <textarea id="output" disabled="disabled"
+        <textarea id="output"
                   style="display: inline-block; height: 480px; width: 38%;">
       
     </textarea>
 
     </div>
-    Saved 
+    <!--doNotCopyToFinal-->
+    Saved
     <ul id="localStorageSaved">
     </ul>
 
@@ -87,7 +88,6 @@
     </script>
 
 
-    <!--doNotCopyToFinal-->
     <div id="doNotCopy">
         Testing blocks:
         <ul id="results">
@@ -102,8 +102,9 @@
         <script>
             function LoadFromStorage(i) {
                 //window.alert(arrSavedLocalStorage[i]);
+                var ls = getBlocksFromLocalStorage();
                 demoWorkspace.clear();
-                var content = arrSavedLocalStorage[i].val;
+                var content = ls[i].val;
                 //window.alert(content);
                 var dom = Blockly.Xml.textToDom(content);
                 Blockly.Xml.domToWorkspace(dom, demoWorkspace);
@@ -137,12 +138,18 @@
         <category name="LocalSite" expanded="true">
             <category id="LocalSiteFunctions" name="LocalSiteFunctions" expanded="true">
             </category>
-            <category custom="LocalSiteValues" colour="160" name="LocalSiteValues">
+            <category custom="LocalSiteValues" name="LocalSiteValues">
             </category>
 
 
         </category>
         <sep></sep>
+        <category custom="savedBlocks" name="Saved Blocks">
+
+        </category>
+        <category name="test">
+
+        </category>
         <category name="BlocklyCore">
 
             <category id="catLogic" colour="210" name="Logic">
@@ -735,10 +742,51 @@
             window.alert('  the blockly  functions are not generated yet. Please refresh the page ');
         }
 
+        function registerSavedBlocks() {
+            var xmlList = [];
+            var fromStorage = getBlocksFromLocalStorage();
+            for (var i = 0; i < fromStorage.length; i++) {
+                var storage = fromStorage[i];
+                try {
+                    var data = storage.val;
+                    data = data.replace("</xml>", "");
+                    data = data.replace('<xml xmlns="https://developers.google.com/blockly/xml">', '');
+                    const vars = "</variables>";
+                    var indexVar = data.indexOf(vars);
+                    if (indexVar > 0) {
+                        data = data.substr(indexVar + vars.length);
+                    }
+                    data = Blockly.Xml.textToDom(data);
+                    xmlList.push(data);
+                    console.log(data);
+                }
+                catch (e) {
+                    console.log("start error");
+                    console.log(e);
+                    console.log(storage);
+                    console.log("end error");
+                }
+                //window.alert(xmlList.length);
+            }
+            //var blockText_Math2Values = '<block type="TestBlocklyHtml_Math2Values">';
 
 
-        var test = document.getElementById("LocalSiteFunctions");
-        test.innerHTML = blockTextLocalSiteFunctions;
+            //var blockTextLocalSiteFunctions = '<value name="val_x"><shadow type="math_number"></shadow></value>';
+            //blockText_Math2Values += blockTextLocalSiteFunctions;
+
+            //var blockTextLocalSiteFunctions = '<value name="val_y"><shadow type="math_number"></shadow></value>';
+            //blockText_Math2Values += blockTextLocalSiteFunctions; blockText_Math2Values += '</block>';
+            //block_Math2Values = Blockly.Xml.textToDom(blockText_Math2Values);
+            //xmlList.push(block_Math2Values);
+            //var block_Math2ValuesSet = '<block type="variables_set"><field name="VAR">var_Math2Values</field></block>';
+            //block_Math2ValuesSet = Blockly.Xml.textToDom(block_Math2ValuesSet);
+            //xmlList.push(block_Math2ValuesSet);
+
+            return xmlList;
+        }
+
+        var localSiteDom = document.getElementById("LocalSiteFunctions");
+        localSiteDom.innerHTML = blockTextLocalSiteFunctions;
 
 
         Blockly.Blocks['converttojson'] = {
@@ -861,7 +909,7 @@
             glbVar(demoWorkspace);
         //demoWorkspace.createVariable('var_SumArgs', 'TestWebAPISite_Controllers_SumArgs');
         demoWorkspace.registerToolboxCategoryCallback('LocalSiteValues', registerValues);
-
+        demoWorkspace.registerToolboxCategoryCallback('savedBlocks', registerSavedBlocks);
         demoWorkspace.registerButtonCallback('crae',
             function (button) { Blockly.Variables.createVariable(button.getTargetWorkspace(), null, 'TestWebAPISite_Controllers_SumArgs'); }
         );
@@ -874,6 +922,8 @@
         //    //var tb = demoWorkspace.getToolbox();
         //    //tb.refreshSelection();
         //});
+
+
         var urlParams = window.location.search.split('dom=');
 
         if (urlParams.length == 2) {
@@ -1040,7 +1090,7 @@
             latestCode = Blockly.JavaScript.workspaceToCode(demoWorkspace);
 
             resetStepUi(true);
-            
+
 
         }
 
@@ -1143,8 +1193,8 @@
             window.localStorage.setItem("savedBlockly_" + n, JSON.stringify({ name: "blockly_" + n, val: xml_text }));
             window.alert("copy the url from the browser");
         }
-        var arrSavedLocalStorage = [];
-        function retrieveBlocksStorage() {
+        function getBlocksFromLocalStorage() {
+            var arrSavedLocalStorage = [];
             var storage = window.localStorage;
             var nrItems = storage.length;
 
@@ -1156,8 +1206,12 @@
                 arrSavedLocalStorage.push(JSON.parse(storage.getItem(key)));
 
             }
+            return arrSavedLocalStorage;
+        }
+        function displayLinksSavedStorage() {
+
             var ls = document.getElementById("localStorageSaved");
-            ls.innerHTML = tmpl("storage_tmpl", { data: arrSavedLocalStorage });
+            ls.innerHTML = tmpl("storage_tmpl", { data: getBlocksFromLocalStorage() });
 
             //window.alert(arrSavedLocalStorage.length);
         }
@@ -1170,8 +1224,9 @@
                 `${formatInt(date.getHours())}${formatInt(date.getMinutes())}${formatInt(date.getSeconds())}`;
 
         }
-
-        retrieveBlocksStorage();
+        /*doNotCopyToFinal*/
+        displayLinksSavedStorage();
+        /*enddoNotCopyToFinal*/
     </script>
 
 </body>
