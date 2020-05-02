@@ -4,6 +4,7 @@ using Microsoft.Extensions.FileProviders.Physical;
 using Microsoft.Extensions.Primitives;
 using NetCore2BlocklyStorage.Sqlite.ModelsDB;
 using System;
+using System.Buffers;
 using System.IO;
 using System.IO.Pipelines;
 using System.Reflection;
@@ -81,6 +82,44 @@ namespace NetCore2Blockly
                     var res = JsonSerializer.Serialize(block);
                     await WriteString(cnt.Response.BodyWriter, res);
                     
+                });
+            });
+
+            appBuilder.Map("/blocklyStorageset", app =>
+            {
+                app.Run(async cnt =>
+                {
+
+                    var data = cnt.Request.Query["key"];
+                    if (string.IsNullOrWhiteSpace(data.ToString()))
+                    {
+                        await WriteString(cnt.Response.BodyWriter, "please add query string ?key=...");
+                        return;
+                    }
+                    if (!int.TryParse(data, out int val))
+                    {
+                        await WriteString(cnt.Response.BodyWriter, $"key {data} is not int");
+                        return;
+                    }
+                    ReadOnlySequence<byte> buffer;
+                    while (true)
+                    {
+                        var blockData = await cnt.Request.BodyReader.ReadAsync();
+                        buffer = blockData.Buffer;
+                        cnt.Request.BodyReader.AdvanceTo(buffer.Start, buffer.End);
+                        if (blockData.IsCompleted)
+                            break;
+
+                    }
+                    var doc = JsonSerializer.Deserialize<Blocks>(buffer.FirstSpan, new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+                    using var cn = new blocklyCategContext(sqliteConnection);
+                    var block = await cn.Set(val,doc);
+                    var res = JsonSerializer.Serialize(block);
+                    await WriteString(cnt.Response.BodyWriter, res);
+
                 });
             });
 
