@@ -67,17 +67,16 @@ namespace NetCore2BlocklyStorage.Sqlite.ModelsDB
             var b = await BlocksCategory();
             return await b.FirstOrDefaultAsync(b => b.Id == key);
         }
-        public async Task<Blocks> Set(int key, Blocks b)
+        public async Task<Blocks> Set(string name, Blocks newOrExisting)
         {
-            var top = await GetTopCategory();
-            b.Idcategory = top.Id;
-            var exists = await Get(key);
+            var b = await BlocksCategory();
+            var exists = await b.FirstOrDefaultAsync(it=>it.Name==name);
             if(exists == null)
             {
-                exists = b;
-                this.Add(b);
+                exists = newOrExisting;
+                this.Add(exists);
             }
-            exists.CopyPropsFrom(b);
+            exists.CopyPropsFrom(newOrExisting);
             await this.SaveChangesAsync();
             return exists;
         } 

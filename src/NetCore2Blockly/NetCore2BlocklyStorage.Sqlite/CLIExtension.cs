@@ -52,7 +52,12 @@ namespace NetCore2Blockly
                 app.Run(async cnt =>
                 {
                     using var cn = new blocklyCategContext(sqliteConnection);
-                    var res = JsonSerializer.Serialize(await cn.data());
+                    var data = await cn.data();
+                    foreach (var item in data)
+                    {
+                        item.CleanSerialize();
+                    }
+                    var res = JsonSerializer.Serialize(data);
 
                     byte[] result = Encoding.UTF8.GetBytes(res);
                     
@@ -79,7 +84,9 @@ namespace NetCore2Blockly
 
                     using var cn = new blocklyCategContext(sqliteConnection);
                     var block = await cn.Get(val);
-                    var res = JsonSerializer.Serialize(block);
+                    if (block == null)
+                        return;
+                    var res = JsonSerializer.Serialize(block.CleanSerialize());
                     await WriteString(cnt.Response.BodyWriter, res);
                     
                 });
@@ -96,11 +103,7 @@ namespace NetCore2Blockly
                         await WriteString(cnt.Response.BodyWriter, "please add query string ?key=...");
                         return;
                     }
-                    if (!int.TryParse(data, out int val))
-                    {
-                        await WriteString(cnt.Response.BodyWriter, $"key {data} is not int");
-                        return;
-                    }
+                    
                     ReadOnlySequence<byte> buffer;
                     while (true)
                     {
@@ -116,10 +119,11 @@ namespace NetCore2Blockly
                         PropertyNameCaseInsensitive = true
                     });
                     using var cn = new blocklyCategContext(sqliteConnection);
-                    var block = await cn.Set(val,doc);
-                    var res = JsonSerializer.Serialize(block);
+                    var block = await cn.Set(data,doc);
+                    
+                    var res = JsonSerializer.Serialize(block.CleanSerialize());
                     await WriteString(cnt.Response.BodyWriter, res);
-
+                        
                 });
             });
 

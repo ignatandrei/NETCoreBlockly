@@ -1,187 +1,95 @@
-﻿//https://github.com/joaocunha/javascript-localstorage-handler/blob/master/LocalStorageHandler.js
-
+﻿
 var StorageHandler = function () {
 
 
 
-        /**
+    this.length = (function () {
+        var href = '/blocklyStorageLength';
+        let req = new XMLHttpRequest();
+        req.open('GET', href, false);
+        req.send(null);
+        if (req.status === 200) {
+            var res = req.responseText;
+            window.alert('length' + res);
+            return res;
+        }
+        window.alert('length no answer' );
+        return 0;
+    })();
 
-         * @property _ls
 
-         * @private
+    this.get = function (key) {
 
-         * @type Object
+        window.alert('get !!' + key);
+        var href = '/blocklyStorageget?key=' + (key + 1);
+        window.alert(href);
+        let req = new XMLHttpRequest();
+        req.open('GET', href, false);
+        req.send(null);
+        if (req.status === 200) {
+            var res = req.responseText;
+            window.alert('get ' + res);
+            return res;
+        }
+        window.alert('get no answer');
+        return 0;
 
-         */
+        throw req;
 
-        var _ls = window.localStorage;
 
 
+    };
 
-        /**
 
-         * @property length
+    this.set = function (key, val) {
+        window.alert('set ' + key);
+        var href = '/blocklyStorageset?key='+key;
+        let req = new XMLHttpRequest();
+        req.open('POST', href, false);
+        req.send(JSON.stringify(val));
+        return this.get(key);
 
-         * @type Number
+    };
 
-         */
+    this.key = function (index) {
+        //window.alert('key ' + index);
+        return this.get(index);
 
-        this.length = _ls.length;
+        
+    };
 
+    this.data = function () {
+        window.alert('data !!' );
 
+        var i = 0;
 
-        /**
+        var data = [];
 
-         * @method get
 
-         * @param key {String} Item key
+        //while (_ls.key(i)) {
 
-         * @return {String|Object|Null}
+        //    data[i] = [_ls.key(i), this.get(_ls.key(i))];
 
-         */
+        //    i++;
 
-        this.get = function(key) {
+        //}
 
-            try {
 
-                return JSON.parse(_ls.getItem(key));
 
-            } catch(e) {
+        return data.length ? data : null;
 
-                return _ls.getItem(key);
+    };
 
-            }
+    this.remove = function (keyOrIndex) {
 
-        };
+        throw "not implemented";
+    };
 
 
 
-        /**
+    this.clear = function () {
 
-         * @method set
-
-         * @param key {String} Item key
-
-         * @param val {String|Object} Item value
-
-         * @return {String|Object} The value of the item just set
-
-         */
-
-        this.set = function(key, val) {
-
-            _ls.setItem(key,JSON.stringify(val));
-
-            return this.get(key);
-
-        };
-
-
-
-        /**
-
-         * @method key
-
-         * @param index {Number} Item index
-
-         * @return {String|Null} The item key if found, null if not
-
-         */
-
-        this.key = function(index) {
-
-            if (typeof index === 'number') {
-
-                return _ls.key(index);
-
-            }
-
-        };
-
-
-
-        /**
-
-         * @method data
-
-         * @return {Array|Null} An array containing all items in localStorage through key{string}-value{String|Object} pairs
-
-         */
-
-        this.data = function() {
-
-            var i       = 0;
-
-            var data    = [];
-
-
-
-            while (_ls.key(i)) {
-
-                data[i] = [_ls.key(i), this.get(_ls.key(i))];
-
-                i++;
-
-            }
-
-
-
-            return data.length ? data : null;
-
-        };
-
-
-
-        /**
-
-         * @method remove
-
-         * @param keyOrIndex {String|Number} Item key or index (which will be converted to key anyway)
-
-         * @return {Boolean} True if the key was found before deletion, false if not
-
-         */
-
-        this.remove = function(keyOrIndex) {
-
-            var result = false;
-
-            var key = (typeof keyOrIndex === 'number') ? this.key(keyOrIndex) : keyOrIndex;
-
-
-
-            if (key in _ls) {
-
-                result = true;
-
-                _ls.removeItem(key);
-
-            }
-
-
-
-            return result;
-
-        };
-
-
-
-        /**
-
-         * @method clear
-
-         * @return {Number} The total of items removed
-
-         */
-
-        this.clear = function() {
-
-            var len = _ls.length;
-
-            _ls.clear();
-
-            return len;
-
-        };
+        throw "not implemented";
+    };
 
 }

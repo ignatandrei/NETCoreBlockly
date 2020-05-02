@@ -15,7 +15,7 @@ namespace NetCore2BlocklyStorage.Sqlite.ModelsDB
         public string Name { get; set; }
         [Required]
         [StringLength(4000)]
-        public string Value { get; set; }
+        public string Val { get; set; }
         [Column("IDCategory")]
         public int Idcategory { get; set; }
 
