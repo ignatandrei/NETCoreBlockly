@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,7 +29,26 @@ namespace NetCore2BlocklyStorage.Sqlite.ModelsDB
             m.Date = DateTime.UtcNow;
             m.Message = "starting";
             this.Messages.Add(m);
+            var existCategory =await GetTopCategory();
+            if(existCategory == null)
+            {
+                existCategory = new Category()
+                {
+                    Name = "Top"
+                    
+                };
+
+                this.Category.Add(existCategory);
+            }
             return await this.SaveChangesAsync();
+        }
+        public async Task<Category> GetTopCategory()
+        {
+            var parentCategories= await Category.Where(it => it.Idparent == null).ToArrayAsync();
+            if (parentCategories.Length == 1)
+                return parentCategories[0];
+
+            return null;
         }
     }
 }
