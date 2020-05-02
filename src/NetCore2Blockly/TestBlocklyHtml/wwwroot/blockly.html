@@ -100,53 +100,53 @@
             <% } %>
 
         </script>
-        <script>
-            var _lsh=null;
-            function lsh() {
-                if (_lsh) {
-                    console.log("found");
-                    console.log(_lsh);
-                    return _lsh;
-                }
-                _lsh = new StorageHandler();
-                console.log("first time");
+
+    </div>
+    <!--enddoNotCopyToFinal-->
+    <script>
+        var _lsh = null;
+        function lsh() {
+            if (_lsh) {
+                console.log("found");
                 console.log(_lsh);
                 return _lsh;
             }
-            function LoadFromStorage(i) {
-                //window.alert(arrSavedLocalStorage[i]);
-                var ls = getBlocksFromLocalStorage();
-                demoWorkspace.clear();
-                var content = ls[i].val;
-                //window.alert(content);
-                var dom = Blockly.Xml.textToDom(content);
-                Blockly.Xml.domToWorkspace(dom, demoWorkspace);
-                resetStepUi();
+            _lsh = new StorageHandler();
+            console.log("first time");
+            console.log(_lsh);
+            return _lsh;
+        }
+        function LoadFromStorage(i) {
+            //window.alert(arrSavedLocalStorage[i]);
+            var ls = getBlocksFromLocalStorage();
+            demoWorkspace.clear();
+            var content = ls[i].val;
+            //window.alert(content);
+            var dom = Blockly.Xml.textToDom(content);
+            Blockly.Xml.domToWorkspace(dom, demoWorkspace);
+            resetStepUi();
 
-            }
+        }
 
-            function Loadtesting(name) {
-                demoWorkspace.clear();
-                var content = '';
+        function Loadtesting(name) {
+            demoWorkspace.clear();
+            var content = '';
 
-                for (var i = 0; i < testBlocks.length; i++) {
-                    if (testBlocks[i].name == name) {
-                        //console.log(testBlocks[i]);
-                        content = testBlocks[i].data;
-                        break;
-                    }
+            for (var i = 0; i < testBlocks.length; i++) {
+                if (testBlocks[i].name == name) {
+                    //console.log(testBlocks[i]);
+                    content = testBlocks[i].data;
+                    break;
                 }
-                var dom = Blockly.Xml.textToDom(content);
-                Blockly.Xml.domToWorkspace(dom, demoWorkspace);
-                resetStepUi();
-                runCode();
             }
-            var results = document.getElementById("results");
-            results.innerHTML = tmpl("data_tmpl", { data: testBlocks });
-        </script>
-    </div>
-    <!--enddoNotCopyToFinal-->
-
+            var dom = Blockly.Xml.textToDom(content);
+            Blockly.Xml.domToWorkspace(dom, demoWorkspace);
+            resetStepUi();
+            runCode();
+        }
+        var results = document.getElementById("results");
+        results.innerHTML = tmpl("data_tmpl", { data: testBlocks });
+    </script>
     <xml id="toolbox" style="display: none">
         <category name="LocalSite" expanded="true">
             <category id="LocalSiteFunctions" name="LocalSiteFunctions" expanded="true">
@@ -160,7 +160,7 @@
         <category custom="savedBlocks" name="Saved Blocks">
 
         </category>
-        
+
         <category name="BlocklyCore">
 
             <category id="catLogic" colour="210" name="Logic">
@@ -1237,7 +1237,7 @@
         }
         /*doNotCopyToFinal*/
         displayLinksSavedStorage();
-        /*enddoNotCopyToFinal*/
+            /*enddoNotCopyToFinal*/
     </script>
 
 </body>
