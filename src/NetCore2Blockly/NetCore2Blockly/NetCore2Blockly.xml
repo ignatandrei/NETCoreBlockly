@@ -210,7 +210,7 @@
             </summary>
             <param name="appBuilder">The application builder.</param>
         </member>
-        <member name="M:NetCore2Blockly.CLIExtension.UseStorage(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="M:NetCore2Blockly.CLIExtension.UseLocalStorage(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             Uses the storage
             </summary>

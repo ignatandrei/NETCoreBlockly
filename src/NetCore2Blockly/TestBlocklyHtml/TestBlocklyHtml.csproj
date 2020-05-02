@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NetCore2BlocklyStorage.Sqlite\NetCore2BlocklyStorage.Sqlite.csproj" />
     <ProjectReference Include="..\NetCore2Blockly\NetCore2Blockly.csproj" />
   </ItemGroup>
 
