@@ -1027,8 +1027,10 @@
 
             var xml = Blockly.Xml.workspaceToDom(demoWorkspace, true);
             var xml_text = Blockly.Xml.domToPrettyText(xml);
-            outputArea.value = xml_text;
-            outputArea.value = latestCode;
+            outputArea.value = "========\n";
+            outputArea.value += xml_text;
+            outputArea.value += "\n========\n";
+            outputArea.value += latestCode;
 
         }
         function generateCodeAndLoadIntoInterpreter() {
