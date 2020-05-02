@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.FileProviders.Physical;
+using Microsoft.Extensions.Primitives;
 using NetCore2BlocklyStorage.Sqlite.ModelsDB;
 using System;
 using System.IO;
+using System.IO.Pipelines;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
@@ -57,11 +59,40 @@ namespace NetCore2Blockly
                     await cnt.Response.BodyWriter.WriteAsync(m);
                 });
             });
+            appBuilder.Map("/blocklyStorageget", app =>
+            {
+                app.Run(async cnt =>
+                {
 
+                   var data = cnt.Request.Query["key"];
+                   if (string.IsNullOrWhiteSpace(data.ToString()))
+                   {
+                        await WriteString(cnt.Response.BodyWriter, "please add query string ?key=...");
+                        return;
+                   }
+                   if(!int.TryParse(data,out int val))
+                    {
+                        await WriteString(cnt.Response.BodyWriter, $"key {data} is not int");
+                        return;
+                    }    
+
+                    using var cn = new blocklyCategContext(sqliteConnection);
+                    var block = await cn.Get(val);
+                    var res = JsonSerializer.Serialize(block);
+                    await WriteString(cnt.Response.BodyWriter, res);
+                    
+                });
+            });
 
 
         }
+        private static async Task WriteString(PipeWriter pw, string message)
+        {
+            byte[] result = Encoding.UTF8.GetBytes(message);
 
+            var m = new ReadOnlyMemory<byte>(result);
+            await pw.WriteAsync(result);
+        }
         private static void mapStorage(IApplicationBuilder appBuilder)
         {
 
