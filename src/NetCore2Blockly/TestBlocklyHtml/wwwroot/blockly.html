@@ -21,6 +21,7 @@
     <script src="blockly/convertCSV.js"></script>
     <script src="blockly/exportFile.js"></script>
     <script src="../../blockly/DateTime/DateTime.js"></script>
+    <script src="../../blockly/DateTime/CurrentDateBlock.js"></script>
 
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js"></script>
@@ -499,6 +500,8 @@
                             </shadow>
                         </value>
                     </block>
+                    <block type="displayCurrentDate">
+                    </block>
                 </category>
         </category>
 
@@ -940,6 +943,10 @@
 
             var wrapper = item => convertToDate(item);
             interpreter.setProperty(globalObject, 'convertToDate',
+                interpreter.createNativeFunction(wrapper));
+
+            var wrapper = () => displayCurrentDate();
+            interpreter.setProperty(globalObject, 'displayCurrentDate',
                 interpreter.createNativeFunction(wrapper));
 
             var wrapper = (href, callback) => doGet(href, callback);

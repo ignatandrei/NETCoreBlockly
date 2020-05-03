@@ -20,7 +20,7 @@ Blockly.JavaScript['fromUnixTimeToDate'] = block => {
 
 const convertToDate = data => {
     console.log("in convertToDate ");
-    let dateConverted = new Date(data).toISOString();
+    let dateConverted = new Date(data * 1000).toLocaleDateString();
     console.log(dateConverted);
     return dateConverted;
 }
