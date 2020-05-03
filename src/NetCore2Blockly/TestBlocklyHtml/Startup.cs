@@ -56,7 +56,8 @@ namespace TestBlocklyHtml
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(key),
                         ValidateIssuer = false,
-                        ValidateAudience = false
+                        ValidateAudience = false,
+                        ValidateLifetime = false
                     };
                 });
         }
@@ -84,6 +85,7 @@ namespace TestBlocklyHtml
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
