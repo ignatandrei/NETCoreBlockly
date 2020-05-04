@@ -1,6 +1,8 @@
 ﻿Blockly.Blocks['displayCurrentDate'] = {
     init: function () {
-        //this.appendField('Date representation of');
+        this.appendDummyInput()
+            .appendField("Current Date");
+
         this.setOutput(true, null);
         this.setColour(100);
         this.setTooltip('Show current date.');
@@ -11,13 +13,13 @@
 
 Blockly.JavaScript['displayCurrentDate'] = () => {
    // let data = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ATOMIC);
-    let code = 'displayCurrentDate();'
+    let code = 'displayDateCurrent()';
     //return code;
     return [code, Blockly.JavaScript.ORDER_NONE];
 }
 
 //https://www.toptal.com/software/definitive-guide-to-datetime-manipulation
-let displayCurrentDate = () => {
+let displayDateCurrent = () => {
 
     //undefined - get the date format form user browser.
     let today = new Date().toLocaleDateString(undefined, {
@@ -29,5 +31,5 @@ let displayCurrentDate = () => {
     });
 
     console.log(today);
-    return today
+    return today;
 }
