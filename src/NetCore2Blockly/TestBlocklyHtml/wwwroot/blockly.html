@@ -22,6 +22,8 @@
     <script src="blockly/exportFile.js"></script>
     <script src="../../blockly/DateTime/DateTime.js"></script>
     <script src="../../blockly/DateTime/CurrentDateBlock.js"></script>
+    <script src="/blockly/blocklyXHR.js"></script>
+    <script src="/blocklyStorage"></script>
 
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js"></script>
@@ -61,68 +63,107 @@
     <script src="/BlocklyToolBoxFunctionDefinitions"></script>
 
     <p>
-        <button onclick="runCode()" id="runButton">Run!</button>
+        <button onclick="runCode()" id="runButton" style="width:300px">E X E C U T E !</button>
 
-        <a href="javascript:downloadZip()">Download Results</a>
+        <!--<a href="javascript:downloadZip()">Download Results</a>-->
         <a href="javascript:SaveBlocks()">SaveBlocks</a>
-
+        <a href="javascript:ShowInnerWorkings()">Show blocks</a>
     </p>
 
     <div style="width: 100%">
         <div id="blocklyDiv"
              style="display: inline-block; height: 480px; width: 58%"></div>
-        <textarea id="output" disabled="disabled"
+        <textarea id="output"
                   style="display: inline-block; height: 480px; width: 38%;">
       
     </textarea>
 
     </div>
     <!--doNotCopyToFinal-->
-    <div id="doNotCopy">
+    Saved
+    <ul id="localStorageSaved">
+    </ul>
 
+    <script type="text/html" id="storage_tmpl">
+        <% for ( var i = 0; i < data.length; i++ ) { %>
+        <li><%=(i+1)%>) <a href="javascript:LoadFromStorage('<%=i%>')"> <%=data[i].name%> </a></li>
+        <% } %>
+
+    </script>
+
+
+    <div id="doNotCopy">
+        Testing blocks:
         <ul id="results">
         </ul>
 
         <script type="text/html" id="data_tmpl">
             <% for ( var i = 0; i < data.length; i++ ) { %>
-            <li><a href="javascript:Loadtesting('<%=data[i].name%>')"><%= data[i].name %></a></li>
+            <li><%=(i+1)%>) <a href="javascript:Loadtesting('<%=data[i].name%>')"><%= data[i].name %></a></li>
             <% } %>
 
         </script>
-        <script>
-            function Loadtesting(name) {
-                demoWorkspace.clear();
-                var content = '';
 
-                for (var i = 0; i < testBlocks.length; i++) {
-                    if (testBlocks[i].name == name) {
-                        //console.log(testBlocks[i]);
-                        content = testBlocks[i].data;
-                        break;
-                    }
-                }
-                var dom = Blockly.Xml.textToDom(content);
-                Blockly.Xml.domToWorkspace(dom, demoWorkspace);
-                resetStepUi();
-                runCode();
-            }
-            var results = document.getElementById("results");
-            results.innerHTML = tmpl("data_tmpl", { data: testBlocks });
-        </script>
     </div>
     <!--enddoNotCopyToFinal-->
+    <script>
+        var _lsh = null;
+        function lsh() {
+            if (_lsh) {
+                return _lsh;
+            }
+            _lsh = new StorageHandler();
+            return _lsh;
+        }
+        function LoadFromStorage(i) {
+            //window.alert(arrSavedLocalStorage[i]);
+            var ls = getBlocksFromLocalStorage();
+            demoWorkspace.clear();
+            var content = ls[i].val;
+            //window.alert(content);
+            var dom = Blockly.Xml.textToDom(content);
+            Blockly.Xml.domToWorkspace(dom, demoWorkspace);
+            resetStepUi();
 
+        }
+
+        function Loadtesting(name) {
+            demoWorkspace.clear();
+            var content = '';
+
+            for (var i = 0; i < testBlocks.length; i++) {
+                if (testBlocks[i].name == name) {
+                    //console.log(testBlocks[i]);
+                    content = testBlocks[i].data;
+                    break;
+                }
+            }
+            var dom = Blockly.Xml.textToDom(content);
+            Blockly.Xml.domToWorkspace(dom, demoWorkspace);
+            resetStepUi();
+            runCode();
+        }
+        /*doNotCopyToFinal*/
+        var results = document.getElementById("results");
+        results.innerHTML = tmpl("data_tmpl", { data: testBlocks });
+        /*enddoNotCopyToFinal*/
+
+    </script>
     <xml id="toolbox" style="display: none">
         <category name="LocalSite" expanded="true">
             <category id="LocalSiteFunctions" name="LocalSiteFunctions" expanded="true">
             </category>
-            <category custom="LocalSiteValues" colour="160" name="LocalSiteValues">
+            <category custom="LocalSiteValues" name="LocalSiteValues">
             </category>
 
 
         </category>
         <sep></sep>
-        <category name="Core">
+        <category custom="savedBlocks" name="Saved Blocks">
+
+        </category>
+
+        <category name="BlocklyCore">
 
             <category id="catLogic" colour="210" name="Logic">
                 <block type="controls_if"></block>
@@ -422,12 +463,12 @@
                     </value>
                 </block>
             </category>
+            <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
+            <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
         </category>
         <sep></sep>
         <category name="advanced">
 
-            <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
-            <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
             <category id="catJSON" colour="160" name="Converters">
                 <!--                <button text="A button" callbackKey="crae"></button>-->
                 <block type="converttojson"></block>
@@ -457,9 +498,18 @@
             </category>
             <category id="JavaScriptRelated" name="JSBlocks">
                 <!--<block type="wait_seconds"></block>-->
-                <block type="blockxhrresult"></block>
                 <block type="modifyproperty"></block>
                 <block type="getproperty"></block>
+            </category>
+            <category id="XHR" name="Request">
+                <block type="blockxhrresult"></block>
+                <block type="httprequest">
+                    <value name="TheUrl">
+                        <shadow type="text">
+                            <field name="TEXT">https://api.chucknorris.io/jokes/random</field>
+                        </shadow>
+                    </value>
+                </block>
             </category>
             <category id="Controls" name="GUI">
                 <block type="valuefromtext">
@@ -475,37 +525,27 @@
                     </value>
                 </block>
             </category>
-                <category id="catHelpers" colour="160" name="Helpers">
-                    <block type="wait_seconds"></block>
-                    <block type="text_print">
-                        <value name="TEXT">
-                            <shadow type="text">
-                                <field name="TEXT">abc</field>
-                            </shadow>
-                        </value>
-                    </block>
-                    <block type="text_prompt_ext">
-                        <value name="TEXT">
-                            <shadow type="text">
-                                <field name="TEXT">abc</field>
-                            </shadow>
-                        </value>
-                    </block>
-                </category>
-                <category id="dateTime" colour="160" name="Date time">
-                    <block type="fromUnixTimeToDate">
-                        <value name="Unix timestamp">
-                            <shadow type="number">
-                                <field name="Number"></field>
-                            </shadow>
-                        </value>
-                    </block>
-                    <block type="displayCurrentDate">
-                    </block>
-                </category>
+
+            <category id="catHelpers" colour="160" name="Helpers">
+                <block type="wait_seconds"></block>
+                <block type="text_print">
+                    <value name="TEXT">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="text_prompt_ext">
+                    <value name="TEXT">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                </block>
+            </category>
         </category>
 
-</xml>
+    </xml>
 
     <xml xmlns="https://developers.google.com/blockly/xml" id="startBlocks" style="display: none">
         <block type="variables_set" id="set_n_initial" inline="true" x="20" y="20">
@@ -716,10 +756,51 @@
             window.alert('  the blockly  functions are not generated yet. Please refresh the page ');
         }
 
+        function registerSavedBlocks() {
+            var xmlList = [];
+            var fromStorage = getBlocksFromLocalStorage();
+            for (var i = 0; i < fromStorage.length; i++) {
+                var storage = fromStorage[i];
+                try {
+                    var data = storage.val;
+                    data = data.replace("</xml>", "");
+                    data = data.replace('<xml xmlns="https://developers.google.com/blockly/xml">', '');
+                    const vars = "</variables>";
+                    var indexVar = data.indexOf(vars);
+                    if (indexVar > 0) {
+                        data = data.substr(indexVar + vars.length);
+                    }
+                    data = Blockly.Xml.textToDom(data);
+                    xmlList.push(data);
+                    //console.log(data);
+                }
+                catch (e) {
+                    console.log("start error");
+                    console.log(e);
+                    console.log(storage);
+                    console.log("end error");
+                }
+                //window.alert(xmlList.length);
+            }
+            //var blockText_Math2Values = '<block type="TestBlocklyHtml_Math2Values">';
 
 
-        var test = document.getElementById("LocalSiteFunctions");
-        test.innerHTML = blockTextLocalSiteFunctions;
+            //var blockTextLocalSiteFunctions = '<value name="val_x"><shadow type="math_number"></shadow></value>';
+            //blockText_Math2Values += blockTextLocalSiteFunctions;
+
+            //var blockTextLocalSiteFunctions = '<value name="val_y"><shadow type="math_number"></shadow></value>';
+            //blockText_Math2Values += blockTextLocalSiteFunctions; blockText_Math2Values += '</block>';
+            //block_Math2Values = Blockly.Xml.textToDom(blockText_Math2Values);
+            //xmlList.push(block_Math2Values);
+            //var block_Math2ValuesSet = '<block type="variables_set"><field name="VAR">var_Math2Values</field></block>';
+            //block_Math2ValuesSet = Blockly.Xml.textToDom(block_Math2ValuesSet);
+            //xmlList.push(block_Math2ValuesSet);
+
+            return xmlList;
+        }
+
+        var localSiteDom = document.getElementById("LocalSiteFunctions");
+        localSiteDom.innerHTML = blockTextLocalSiteFunctions;
 
 
         Blockly.Blocks['converttojson'] = {
@@ -842,7 +923,7 @@
             glbVar(demoWorkspace);
         //demoWorkspace.createVariable('var_SumArgs', 'TestWebAPISite_Controllers_SumArgs');
         demoWorkspace.registerToolboxCategoryCallback('LocalSiteValues', registerValues);
-
+        demoWorkspace.registerToolboxCategoryCallback('savedBlocks', registerSavedBlocks);
         demoWorkspace.registerButtonCallback('crae',
             function (button) { Blockly.Variables.createVariable(button.getTargetWorkspace(), null, 'TestWebAPISite_Controllers_SumArgs'); }
         );
@@ -855,15 +936,21 @@
         //    //var tb = demoWorkspace.getToolbox();
         //    //tb.refreshSelection();
         //});
+
+
         var urlParams = window.location.search.split('dom=');
 
         if (urlParams.length == 2) {
             var str = urlParams[1];
+            var name = "savedBlockly_" + str;
+            var xmlContent = lsh().get(name);
 
-            var xmlContent = window.localStorage.getItem(str);
-
-            var dom = Blockly.Xml.textToDom(xmlContent);
-            Blockly.Xml.domToWorkspace(dom, demoWorkspace);
+            //xmlContent = JSON.parse(xmlContent);
+            xmlContent = xmlContent.val;
+            if ((xmlContent || '').length > 0) {
+                var dom = Blockly.Xml.textToDom(xmlContent);
+                Blockly.Xml.domToWorkspace(dom, demoWorkspace);
+            }
         }
         else {
             Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
@@ -905,8 +992,8 @@
             interpreter.setProperty(globalObject, 'prompt',
                 interpreter.createNativeFunction(wrapper));
 
-            var wrapper = function (id,property) {
-                
+            var wrapper = function (id, property) {
+
                 return document.getElementById(id)[property];
             };
             interpreter.setProperty(globalObject, 'getIDProp',
@@ -918,7 +1005,7 @@
 
             interpreter.setProperty(globalObject, 'errHandler',
                 interpreter.createNativeFunction(wrapper));
-           
+
 
             //var wrapper = function (obj) {
             //    var json = JSON.parse(obj);
@@ -1008,7 +1095,16 @@
                 outputArea.value = 'Program output:\n=================';
             }
         }
+        function ShowInnerWorkings() {
 
+            var xml = Blockly.Xml.workspaceToDom(demoWorkspace, true);
+            var xml_text = Blockly.Xml.domToPrettyText(xml);
+            outputArea.value = "========\n";
+            outputArea.value += xml_text;
+            outputArea.value += "\n========\n";
+            outputArea.value += latestCode;
+
+        }
         function generateCodeAndLoadIntoInterpreter() {
             // Generate JavaScript code and parse it.
             Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
@@ -1016,6 +1112,8 @@
             latestCode = Blockly.JavaScript.workspaceToCode(demoWorkspace);
 
             resetStepUi(true);
+
+
         }
 
         function resetInterpreter() {
@@ -1079,9 +1177,7 @@
 
                     //console.log();
                     var obj = event.getEventWorkspace_().getBlockById(event.blockId);
-                    //console.log(obj);
-                    var s = Blockly.Xml.domToText(obj);
-                    //console.log(s);
+
                     if (obj.type == "text_print")
                         return;
                     //var print = event.getEventWorkspace_().getAllBlocks().find(it => it.type = 'text_print');
@@ -1098,7 +1194,7 @@
                         '</xml>');
 
 
-                    Blockly.Xml.appendDomToWorkspace(dom, event.getEventWorkspace_());
+                    //Blockly.Xml.appendDomToWorkspace(dom, event.getEventWorkspace_());
 
                 }
             }
@@ -1115,8 +1211,31 @@
             var xml_text = Blockly.Xml.domToPrettyText(xml);
             var n = formatDate(new Date());
             window.history.pushState({ dom: n }, xml_text, "?dom=" + n);
-            window.localStorage.setItem(n, xml_text);
+
+            lsh().set("savedBlockly_" + n, ({ name: "savedBlockly_" + n, val: xml_text }));
             window.alert("copy the url from the browser");
+        }
+        function getBlocksFromLocalStorage() {
+            var arrSavedLocalStorage = [];
+            var nrItems = lsh().length;
+
+            for (var iStor = 0; iStor < nrItems; iStor++) {
+                var key = lsh().key(iStor);
+                //window.alert(key);
+                if (key.indexOf("savedBlockly_") != 0)
+                    continue;
+                arrSavedLocalStorage.push(lsh().get(key));
+
+            }
+            //window.alert(arrSavedLocalStorage.length);
+            return arrSavedLocalStorage;
+        }
+        function displayLinksSavedStorage() {
+
+            var ls = document.getElementById("localStorageSaved");
+            ls.innerHTML = tmpl("storage_tmpl", { data: getBlocksFromLocalStorage() });
+
+            //window.alert(arrSavedLocalStorage.length);
         }
         function formatInt(number) {
             return number < 10 ? '0' + number : number;
@@ -1127,7 +1246,9 @@
                 `${formatInt(date.getHours())}${formatInt(date.getMinutes())}${formatInt(date.getSeconds())}`;
 
         }
-
+        /*doNotCopyToFinal*/
+        displayLinksSavedStorage();
+                        /*enddoNotCopyToFinal*/
     </script>
 
 </body>

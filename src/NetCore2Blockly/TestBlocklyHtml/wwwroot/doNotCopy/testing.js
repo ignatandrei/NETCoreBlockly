@@ -1377,7 +1377,7 @@ var testBlocks = [
 </xml>`
     },
     {
-        'name': 'https://github.com/ignatandrei/NETCoreBlockly/issues/7',
+        'name': 'error',
         'data': `<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
         <variable id="tN1o#/fr2(SEQn^Q#~j-">n</variable>
@@ -1421,6 +1421,65 @@ var testBlocks = [
                 </value>
             </block>
         </value>
+    </block>
+</xml>`
+    },
+    {
+        name: 'chuck norris random joke',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+    <variables>
+        <variable id="sDL./h^zT]uA,gn%uSp^">urlName</variable>
+        <variable id="d#~hn(B|Lt|O=M~N]n]Y">answer</variable>
+    </variables>
+    <block type="variables_set" y="37" x="-334">
+        <field id="sDL./h^zT]uA,gn%uSp^" name="VAR">urlName</field>
+        <value name="VALUE">
+            <block type="text">
+                <field name="TEXT">https://api.chucknorris.io/jokes/random</field>
+            </block>
+        </value>
+        <next>
+            <block type="variables_set">
+                <field id="d#~hn(B|Lt|O=M~N]n]Y" name="VAR">answer</field>
+                <value name="VALUE">
+                    <block type="httprequest">
+                        <field name="TypeOutput">JSON</field>
+                        <field name="TypeRequest">GET</field>
+                        <value name="TheUrl">
+                            <shadow type="text">
+                                <field name="TEXT">https://api.chucknorris.io/jokes/random</field>
+                            </shadow>
+                            <block type="variables_get">
+                                <field id="sDL./h^zT]uA,gn%uSp^" name="VAR">urlName</field>
+                            </block>
+                        </value>
+                    </block>
+                </value>
+                <next>
+                    <block type="text_print">
+                        <value name="TEXT">
+                            <block type="variables_get">
+                                <field id="d#~hn(B|Lt|O=M~N]n]Y" name="VAR">answer</field>
+                            </block>
+                        </value>
+                        <next>
+                            <block type="text_print">
+                                <value name="TEXT">
+                                    <block type="getproperty"><field name="objectName">object</field><field name="prop">property</field><value name="ObjectToChange"><block type="variables_get"><field id="d#~hn(B|Lt|O=M~N]n]Y" name="VAR">answer</field>
+                                            </block>
+                                        </value>
+                                        <value name="PropertyName">
+                                            <block type="text"><field name="TEXT">value</field>
+                                            </block>
+                                        </value>
+                                    </block>
+                                </value>
+                            </block>
+                        </next>
+                    </block>
+                </next>
+            </block>
+        </next>
     </block>
 </xml>`
     }

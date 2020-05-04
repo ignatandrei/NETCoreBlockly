@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NetCore2BlocklyStorage.Sqlite</name>
+    </assembly>
+    <members>
+        <member name="T:NetCore2Blockly.CLIExtension">
+            <summary>
+            extension for sqlite
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.CLIExtension.UseBlocklySqliteStorage(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)">
+            <summary>
+            Uses the storage
+            </summary>
+            <param name="appBuilder">The application builder.</param>
+            <param name="sqliteConnection">Sqlitedb connection</param>
+        </member>
+        <member name="T:NetCore2BlocklyStorage.Sqlite.ModelsDB.blocklyCategContext">
+            <summary>
+            see below the scaffolded string
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.DbContext" />
+        </member>
+    </members>
+</doc>

@@ -1,4 +1,4 @@
-# NETCoreBlockly
+# NETCore2Blockly
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -10,13 +10,13 @@
 [![NuGet](https://img.shields.io/nuget/v/NetCore2Blockly.svg)](https://www.nuget.org/packages/NetCore2Blockly)
 
 # What it does
-NETCoreBlockly generates [Blockly](https://developers.google.com/blockly) blocks for each of your controller actions. 
+NETCore2Blockly generates [Blockly](https://developers.google.com/blockly) blocks for each of your controller actions. 
 
 Demo at https://netcoreblockly.herokuapp.com/blockly.html ( play with the links from the bottom)
 
 Demo Video at https://www.youtube.com/watch?v=GptkNWjmCzk
 
-# How to install NETCoreBlockly in a .NET Core 3.1  WebAPI / MVC application
+# How to install NETCore2Blockly in a .NET Core 3.1  WebAPI / MVC application
 
 ## Step 1:
 Install https://www.nuget.org/packages/NetCore2Blockly/ by running the following command in the Package Manager Console:
@@ -38,10 +38,20 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
 ```
 
 ## Step 3:
-Download from 
-https://ignatandrei.github.io/NETCoreBlockly/blockly.zip 
 
-and put all contents in a wwwroot in the root of your site
+### Recommended:
+
+To see the UI , please add
+```csharp
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
+       
+       app.UseBlocklyUI();
+}
+```
+ 
+### Feel free to modify:
+
+Download from [![Build Status](https://dev.azure.com/ignatandrei0674/NETCoreBlockly/_apis/build/status/ignatandrei.NETCoreBlockly?branchName=master)](https://dev.azure.com/ignatandrei0674/NETCoreBlockly/_build/latest?definitionId=9&branchName=master) the blockly.zip  and put all contents in a wwwroot in the root of your site
 
 ## Step 4:
 Run the application and browse to  /blockly.html
