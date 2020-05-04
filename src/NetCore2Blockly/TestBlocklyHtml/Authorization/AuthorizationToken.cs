@@ -9,6 +9,7 @@ namespace TestBlocklyHtml.Authorization
 {
     public class AuthorizationToken
     {
+
         private readonly IConfiguration configuration;
 
         public AuthorizationToken(IConfiguration configuration)
@@ -19,7 +20,9 @@ namespace TestBlocklyHtml.Authorization
         public string GenerateFrom(string secretCode)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(configuration["ApplicationSecret"]);
+            //var key = Encoding.ASCII.GetBytes(configuration["ApplicationSecret"]);
+            var key = Encoding.ASCII.GetBytes("mySecretKeyThatShouldBeStoredInConfiguration");
+            
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[]{

@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Logging;
 
 namespace TestBlocklyHtml
 {
@@ -48,7 +49,8 @@ namespace TestBlocklyHtml
             });
 
             //var key = Encoding.ASCII.GetBytes(Configuration["ApplicationSecret"]);
-            var key = Encoding.ASCII.GetBytes("myKey");
+            //please change also in AuthorizationToken . 
+            var key = Encoding.ASCII.GetBytes("mySecretKeyThatShouldBeStoredInConfiguration");
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -70,6 +72,7 @@ namespace TestBlocklyHtml
             {
                 app.UseDeveloperExceptionPage();
                 app.UseStatusCodePages();
+                IdentityModelEventSource.ShowPII = true;
             }
             
             //just developer testing! do not use in production
@@ -77,8 +80,8 @@ namespace TestBlocklyHtml
             //TODO: put this in the real application
             // or copy the blockly.html files and others from wwwroot
             app.UseBlocklyUI();
-            app.UseBlocklyLocalStorage();//this is not necessary , if you use app.UseBlocklyUI();
-            //app.UseBlocklySqliteStorage();
+            //app.UseBlocklyLocalStorage();//this is not necessary , if you use app.UseBlocklyUI();
+            app.UseBlocklySqliteStorage();
             //this is not necessary to be added
             app.UseSwagger();
 
