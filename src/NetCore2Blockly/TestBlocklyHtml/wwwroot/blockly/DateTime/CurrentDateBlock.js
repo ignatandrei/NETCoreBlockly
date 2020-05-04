@@ -1,4 +1,9 @@
-﻿Blockly.Blocks['displayCurrentDate'] = {
+﻿/*
+ * Block that display the current date time
+ * @Author: Popescu Ionut Cosmin (cosmin.popescu93@gmail.com)
+ * https://github.com/cosminpopescu14
+ */
+Blockly.Blocks['displayCurrentDate'] = {
     init: function () {
         this.appendDummyInput()
             .appendField("Current Date");

@@ -1,4 +1,9 @@
-﻿Blockly.Blocks['fromUnixTimeToDate'] = {
+﻿/*
+ * Block that convert a UNIX timestamp into a date format 
+ * @Author: Popescu Ionut Cosmin (cosmin.popescu93@gmail.com)
+ * https://github.com/cosminpopescu14
+ */
+Blockly.Blocks['fromUnixTimeToDate'] = {
     init: function() {
         this.appendValueInput('VALUE')
             .setCheck('Number')
