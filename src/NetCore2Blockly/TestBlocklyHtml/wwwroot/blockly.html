@@ -13,15 +13,18 @@
     <script src="/blockly/javascript_compressed.js"></script>
     <script src="/blockly/en.js"></script>
     <script src="/blockly/wait_block.js"></script>
-    <script src="/blockly/ifxhr.js"></script>
-    <script src="/blockly/blocklyControls.js"></script>
-    <script src="/others/jszip.min.js"></script>
-    <script src="/others/FileSaver.min.js"></script>
-    <script src="/blockly/BlocklyXHRWrapper.js"></script>
-    <script src="/blockly/convertCSV.js"></script>
-    <script src="/blockly/exportFile.js"></script>
+    <script src="blockly/ifxhr.js"></script>
+    <script src="blockly/blocklyControls.js"></script>
+    <script src="others/jszip.min.js"></script>
+    <script src="others/FileSaver.min.js"></script>
+    <script src="blockly/BlocklyXHRWrapper.js"></script>
+    <script src="blockly/convertCSV.js"></script>
+    <script src="blockly/exportFile.js"></script>
+    <script src="../../blockly/DateTime/DateTime.js"></script>
+    <script src="../../blockly/DateTime/CurrentDateBlock.js"></script>
     <script src="/blockly/blocklyXHR.js"></script>
     <script src="/blocklyStorage"></script>
+
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js"></script>
     <script src="doNotCopy/JRTemplating.js"></script>
@@ -522,6 +525,7 @@
                     </value>
                 </block>
             </category>
+
             <category id="catHelpers" colour="160" name="Helpers">
                 <block type="wait_seconds"></block>
                 <block type="text_print">
@@ -1022,6 +1026,14 @@
 
             var wrapper = (it, content, toByte) => exportToFile(it, content, toByte);
             interpreter.setProperty(globalObject, 'exportToFile',
+                interpreter.createNativeFunction(wrapper));
+
+            var wrapper = item => convertToDate(item);
+            interpreter.setProperty(globalObject, 'convertToDate',
+                interpreter.createNativeFunction(wrapper));
+
+            var wrapper = () => displayCurrentDate();
+            interpreter.setProperty(globalObject, 'displayCurrentDate',
                 interpreter.createNativeFunction(wrapper));
 
             var wrapper = (href, callback) => doGet(href, callback);
