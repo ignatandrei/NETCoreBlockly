@@ -19,7 +19,7 @@ Blockly.JavaScript['displayCurrentDate'] = () => {
 //https://www.toptal.com/software/definitive-guide-to-datetime-manipulation
 let displayCurrentDate = () => {
 
-    //undefine - get the date format form user browser.
+    //undefined - get the date format form user browser.
     let today = new Date().toLocaleDateString(undefined, {
         day: 'numeric',
         month: 'numeric',
