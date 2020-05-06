@@ -1083,7 +1083,7 @@
                 var heads= interpreter.pseudoToNative(headersForDomain);
                 var hostname = '(localSite)';
                 if (href.startsWith('http://') || href.startsWith('https://')) {
-                    hostname1 = (new URL(href)).hostname;
+                    hostname = (new URL(href)).hostname;
                 }
                 var arrHeaders = [];
                 if (hostname in heads) {
