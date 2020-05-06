@@ -13,16 +13,18 @@
     <script src="/blockly/javascript_compressed.js"></script>
     <script src="/blockly/en.js"></script>
     <script src="/blockly/wait_block.js"></script>
-    <script src="blockly/ifxhr.js"></script>
+    <script src="blockly/Http/ifxhr.js"></script>
     <script src="blockly/blocklyControls.js"></script>
     <script src="others/jszip.min.js"></script>
     <script src="others/FileSaver.min.js"></script>
-    <script src="blockly/BlocklyXHRWrapper.js"></script>
-    <script src="blockly/convertCSV.js"></script>
-    <script src="blockly/exportFile.js"></script>
+    <script src="blockly/Http/BlocklyXHRWrapper.js"></script>
+    <script src="blockly/converters/convertCSV.js"></script>
+    <script src="blockly/exporters/exportFile.js"></script>
     <script src="blockly/DateTime/DateTime.js"></script>
     <script src="blockly/DateTime/CurrentDateBlock.js"></script>
-    <script src="/blockly/blocklyXHR.js"></script>
+    <script src="/blockly/Http/blocklyXHR.js"></script>
+    <script src="/blockly/Http/blocklyHeader.js"></script>
+    <!--this is generated at runtime by blockly storage nuget : local storage, sqlite...-->
     <script src="/blocklyStorage"></script>
 
     <!--doNotCopyToFinal-->
@@ -516,6 +518,23 @@
                 
             </category>
             <category id="XHR" name="Request">
+                <block type="headersbeforehttp">
+                    <value name="HttpDomain">
+                        <shadow type="text">
+                            <field name="TEXT">(localSite)</field>
+                        </shadow>
+                    </value>
+                    <value name="HeaderName">
+                        <shadow type="text">
+                            <field name="TEXT">Authorization</field>
+                        </shadow>
+                    </value>
+                    <value name="HeaderValue">
+                        <shadow type="text_join">
+                            
+                        </shadow>
+                    </value>
+                </block>
                 <block type="blockxhrresult"></block>
                 <block type="httprequest">
                     <value name="TheUrl">
@@ -995,6 +1014,12 @@
                 zip.file(`result ${step}) ${text}`);
                 outputArea.value = outputArea.value + '\n step' + step + ':' + text;
             };
+
+            var headersForDomain = interpreter.nativeToPseudo({'(localSite)':[]});
+            interpreter.setProperty(globalObject, 'headersForDomain', headersForDomain);
+
+
+
             interpreter.setProperty(globalObject, 'alert',
                 interpreter.createNativeFunction(wrapper));
 
@@ -1116,7 +1141,7 @@
             outputArea.value = "========\n";
             outputArea.value += xml_text;
             outputArea.value += "\n========\n";
-            outputArea.value += latestCode;
+            outputArea.value = latestCode;
 
         }
         function generateCodeAndLoadIntoInterpreter() {
