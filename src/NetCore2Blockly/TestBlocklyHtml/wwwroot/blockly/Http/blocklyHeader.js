@@ -30,9 +30,9 @@ Blockly.JavaScript['headersbeforehttp'] = function(block) {
   code +='headersForDomain[' + value_httpdomain +']=[];\n';
   code +='};\n';
   code +='var arr = headersForDomain[' + value_httpdomain +'];\n';
-  code +='arr.push({' + value_headername +':'+value_headervalue+'});';
-  code +='alert("a" + JSON.stringify(arr)+"a");\n';
-  code +='alert("a" + JSON.stringify(headersForDomain[' + value_httpdomain +'])+"a");\n';
+  code +='arr.push({name:' + value_headername +', value:'+value_headervalue+'});\n';
+  code +='//alert("a" + JSON.stringify(arr)+"a");\n';
+  code +='//alert("a" + JSON.stringify(headersForDomain[' + value_httpdomain +'])+"a");\n';
   code +='};\n';
   return code;
 };

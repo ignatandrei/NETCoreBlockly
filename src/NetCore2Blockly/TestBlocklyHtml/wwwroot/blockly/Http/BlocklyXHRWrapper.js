@@ -3,6 +3,11 @@
 const doGet = (href, callback) => {
     console.log(href, callback);
     let req = new XMLHttpRequest();
+	//alert(headersForDomain);
+	// if('(localSite)' in headersForDomain){
+		// var arr= headersForDomain['localSite)'];
+		// alert(arr);
+	// }
     req.open('GET', href, true);
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
