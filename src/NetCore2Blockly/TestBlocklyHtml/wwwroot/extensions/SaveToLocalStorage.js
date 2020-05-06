@@ -1,9 +1,9 @@
-﻿//https://github.com/joaocunha/javascript-localstorage-handler/blob/master/LocalStorageHandler.js
+﻿//Started from https://github.com/joaocunha/javascript-localstorage-handler/blob/master/LocalStorageHandler.js
 
 var StorageHandler = function () {
 
-
-
+        
+    
         /**
 
          * @property _ls
@@ -28,7 +28,7 @@ var StorageHandler = function () {
 
         this.length = _ls.length;
 
-
+        this.name = "localStorage";
 
         /**
 

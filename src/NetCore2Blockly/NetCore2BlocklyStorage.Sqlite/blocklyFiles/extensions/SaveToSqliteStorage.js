@@ -2,7 +2,7 @@
 var StorageHandler = function () {
 
     var arr = [];
-
+    this.name = "sqlite";
     this.length = (function () {
         var href = '/blocklyStorageLength';
         let req = new XMLHttpRequest();
