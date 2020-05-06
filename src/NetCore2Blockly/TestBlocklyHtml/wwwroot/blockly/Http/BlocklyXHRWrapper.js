@@ -1,14 +1,18 @@
 ﻿// XHR wrapper functions
 
-const doGet = (href, callback) => {
+const doGet = (href, callback, headers) => {
     console.log(href, callback);
     let req = new XMLHttpRequest();
-	//alert(headersForDomain);
-	// if('(localSite)' in headersForDomain){
-		// var arr= headersForDomain['localSite)'];
-		// alert(arr);
-	// }
+	
     req.open('GET', href, true);
+	if(headers.length>0){
+		//alert(JSON.stringify(headers));
+		for(var iHeader=0;iHeader<headers.length;iHeader++){
+			var head=headers[iHeader];
+			req.setRequestHeader(head.name,head.value);
+		}
+	}
+	
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
             if (req.status >= 200 && req.status < 300) {

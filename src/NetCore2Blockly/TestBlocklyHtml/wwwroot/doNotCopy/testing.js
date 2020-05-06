@@ -1482,5 +1482,51 @@ var testBlocks = [
         </next>
     </block>
 </xml>`
+    },
+    {
+        name: 'JWT Bearer',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="headersbeforehttp" y="105" x="60">
+    <value name="HttpDomain">
+      <shadow type="text">
+        <field name="TEXT">(localSite)</field>
+      </shadow>
+    </value>
+    <value name="HeaderName">
+      <shadow type="text">
+        <field name="TEXT">Authorization</field>
+      </shadow>
+    </value>
+    <value name="HeaderValue">
+      <shadow type="text">
+        <field name="TEXT"></field>
+      </shadow>
+      <block type="text_join">
+        <mutation items="2"></mutation>
+        <value name="ADD0">
+          <block type="text">
+            <field name="TEXT">Bearer </field>
+          </block>
+        </value>
+        <value name="ADD1">
+          <block type="api_Registration_POST">
+            <value name="val_secretCode">
+              <shadow type="text">
+                <field name="TEXT">blockly</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="api_RestrictedAccess_GET"></block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>`
     }
 ]

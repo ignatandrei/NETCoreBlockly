@@ -1004,6 +1004,11 @@
         var runner;
 
         function initApi(interpreter, globalObject) {
+
+            var headersForDomain = interpreter.nativeToPseudo({ '(localSite)': [] });
+            interpreter.setProperty(globalObject, 'headersForDomain', headersForDomain);
+
+
             // Add an API function for the alert() block, generated for "text_print" blocks.
             var wrapper = function (text) {
                 console.log(text);
@@ -1015,8 +1020,7 @@
                 outputArea.value = outputArea.value + '\n step' + step + ':' + text;
             };
 
-            var headersForDomain = interpreter.nativeToPseudo({'(localSite)':[]});
-            interpreter.setProperty(globalObject, 'headersForDomain', headersForDomain);
+           
 
 
 
@@ -1075,7 +1079,18 @@
             interpreter.setProperty(globalObject, 'displayDateCurrent',
                 interpreter.createNativeFunction(wrapper));
 
-            var wrapper = (href, callback) => doGet(href, callback);
+            var wrapper = (href, callback) => {
+                var heads= interpreter.pseudoToNative(headersForDomain);
+                var hostname = '(localSite)';
+                if (href.startsWith('http://') || href.startsWith('https://')) {
+                    hostname1 = (new URL(href)).hostname;
+                }
+                var arrHeaders = [];
+                if (hostname in heads) {
+                    arrHeaders = heads[hostname];                    
+                }
+                return doGet(href, callback, arrHeaders);
+            }
             interpreter.setProperty(globalObject, 'getXhr',
                 interpreter.createAsyncFunction(wrapper));
 
@@ -1141,7 +1156,7 @@
             outputArea.value = "========\n";
             outputArea.value += xml_text;
             outputArea.value += "\n========\n";
-            outputArea.value = latestCode;
+            outputArea.value += latestCode;
 
         }
         function generateCodeAndLoadIntoInterpreter() {

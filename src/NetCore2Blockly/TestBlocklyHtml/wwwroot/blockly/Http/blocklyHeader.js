@@ -23,7 +23,7 @@ Blockly.JavaScript['headersbeforehttp'] = function(block) {
   var value_headername = Blockly.JavaScript.valueToCode(block, 'HeaderName', Blockly.JavaScript.ORDER_ATOMIC);
   var value_headervalue = Blockly.JavaScript.valueToCode(block, 'HeaderValue', Blockly.JavaScript.ORDER_ATOMIC);
   
-  var code = 'alert("a" + JSON.stringify(headersForDomain)+"a");\n';
+  var code = '\n';//'alert("a" + JSON.stringify(headersForDomain)+"a");\n';
   code +='{\n';
   code +='if(!(' + value_httpdomain + ' in headersForDomain))\n';
   code +='{\n';

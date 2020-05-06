@@ -10,7 +10,7 @@ namespace TestBlocklyHtml.Controllers
         [HttpGet]
         public IActionResult Ping()
         {
-            return Ok("pong");
+            return Ok("you can see a secret message that requires JWT authorization");
         }
     }
 }
