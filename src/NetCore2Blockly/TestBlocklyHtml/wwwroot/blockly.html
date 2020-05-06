@@ -1096,6 +1096,15 @@
 
             var wrapper = (href, objectToPost, callback) => {
                 try {
+                    var heads = interpreter.pseudoToNative(headersForDomain);
+                    var hostname = '(localSite)';
+                    if (href.startsWith('http://') || href.startsWith('https://')) {
+                        hostname = (new URL(href)).hostname;
+                    }
+                    var arrHeaders = [];
+                    if (hostname in heads) {
+                        arrHeaders = heads[hostname];
+                    }
                     doPost(href, objectToPost, callback);
                 }
                 catch (e) {
@@ -1105,12 +1114,49 @@
             interpreter.setProperty(globalObject, 'postXhr',
                 interpreter.createAsyncFunction(wrapper));
 
-            var wrapper = (href, objectToPost, callback) => doPut(href, objectToPost, callback);
+            var wrapper = (href, objectToPost, callback) =>
+
+                {
+                    try {
+                        var heads = interpreter.pseudoToNative(headersForDomain);
+                        var hostname = '(localSite)';
+                        if (href.startsWith('http://') || href.startsWith('https://')) {
+                            hostname = (new URL(href)).hostname;
+                        }
+                        var arrHeaders = [];
+                        if (hostname in heads) {
+                            arrHeaders = heads[hostname];
+                        }
+                        doPut(href, objectToPost, callback);
+                    }
+                    catch (e) {
+                        alert("is an error" + e);
+                    }
+                };
             interpreter.setProperty(globalObject, 'putXhr',
                 interpreter.createAsyncFunction(wrapper));
 
 
-            var wrapper = (href, callback) => doDelete(href, callback);
+            var wrapper = (href, callback) => {
+                try {
+                    var heads = interpreter.pseudoToNative(headersForDomain);
+                    var hostname = '(localSite)';
+                    if (href.startsWith('http://') || href.startsWith('https://')) {
+                        hostname = (new URL(href)).hostname;
+                    }
+                    var arrHeaders = [];
+                    if (hostname in heads) {
+                        arrHeaders = heads[hostname];
+                    }
+                    doDelete(href, callback);
+                }
+                catch (e) {
+                    alert("is an error" + e);
+                }
+            };
+
+
+                
             interpreter.setProperty(globalObject, 'deleteXhr',
                 interpreter.createAsyncFunction(wrapper));
 
