@@ -69,7 +69,7 @@
         <button onclick="runCode()" id="runButton" style="width:300px">E X E C U T E !</button>
 
         <!--<a href="javascript:downloadZip()">Download Results</a>-->
-        <a href="javascript:SaveBlocks()">SaveBlocks</a>
+        <a href="javascript:SaveBlocks()" id="saveBlocks" >Save Blocks</a>
         <a href="javascript:ShowInnerWorkings()">Show blocks</a>
     </p>
 
@@ -116,6 +116,8 @@
                 return _lsh;
             }
             _lsh = new StorageHandler();
+            console.log(_lsh.name);
+            document.getElementById("saveBlocks").title = `storage : ${_lsh.name}`;
             return _lsh;
         }
         function LoadFromStorage(i) {
