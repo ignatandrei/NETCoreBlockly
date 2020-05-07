@@ -13,6 +13,7 @@
     <script src="/blockly/javascript_compressed.js"></script>
     <script src="/blockly/en.js"></script>
     <script src="/blockly/wait_block.js"></script>
+    <script src="/blockly/window/open.js"></script>
     <script src="blockly/Http/ifxhr.js"></script>
     <script src="blockly/blocklyControls.js"></script>
     <script src="others/jszip.min.js"></script>
@@ -545,6 +546,7 @@
                 </block>
             </category>
             <category id="Controls" name="GUI">
+                <block type="window_open"></block>
                 <block type="valuefromtext">
                     <value name="IdOfText">
                         <shadow type="text">
@@ -1025,6 +1027,12 @@
 
 
             interpreter.setProperty(globalObject, 'alert',
+                interpreter.createNativeFunction(wrapper));
+
+            var wrapper = function (text) {
+                window.open(text);
+            };
+            interpreter.setProperty(globalObject, 'open',
                 interpreter.createNativeFunction(wrapper));
 
             // Add an API function for the prompt() block.

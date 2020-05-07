@@ -1528,5 +1528,111 @@ var testBlocks = [
     </next>
   </block>
 </xml>`
+    },
+    {
+        name: 'NASA image',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="sDL./h^zT]uA,gn%uSp^">urlName</variable>
+    <variable id="d#~hn(B|Lt|O=M~N]n]Y">answer</variable>
+  </variables>
+  <block type="variables_set" y="37" x="-334">
+    <field id="sDL./h^zT]uA,gn%uSp^" name="VAR">urlName</field>
+    <value name="VALUE">
+      <block type="text">
+        <field name="TEXT">https://api.nasa.gov/planetary/apod?api_key=VHWR2tDJz47FuQZQccUS4MpyQyplcG9C0VpfpNQo</field>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field id="d#~hn(B|Lt|O=M~N]n]Y" name="VAR">answer</field>
+        <value name="VALUE">
+          <block type="httprequest">
+            <field name="TypeOutput">JSON</field>
+            <field name="TypeRequest">GET</field>
+            <value name="TheUrl">
+              <shadow type="text">
+                <field name="TEXT">https://api.chucknorris.io/jokes/random</field>
+              </shadow>
+              <block type="variables_get">
+                <field id="sDL./h^zT]uA,gn%uSp^" name="VAR">urlName</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="variables_get">
+                <field id="d#~hn(B|Lt|O=M~N]n]Y" name="VAR">answer</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print">
+                <value name="TEXT">
+                  <block type="getproperty">
+                    <field name="objectName">object</field>
+                    <field name="prop">property</field>
+                    <value name="ObjectToChange">
+                      <block type="variables_get">
+                        <field id="d#~hn(B|Lt|O=M~N]n]Y" name="VAR">answer</field>
+                      </block>
+                    </value>
+                    <value name="PropertyName">
+                      <block type="text">
+                        <field name="TEXT">title</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print">
+                    <value name="TEXT">
+                      <block type="getproperty">
+                        <field name="objectName">object</field>
+                        <field name="prop">property</field>
+                        <value name="ObjectToChange">
+                          <block type="variables_get">
+                            <field id="d#~hn(B|Lt|O=M~N]n]Y" name="VAR">answer</field>
+                          </block>
+                        </value>
+                        <value name="PropertyName">
+                          <block type="text">
+                            <field name="TEXT">explanation</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="window_open">
+                        <value name="TEXT">
+                          <block type="getproperty">
+                            <field name="objectName">object</field>
+                            <field name="prop">property</field>
+                            <value name="ObjectToChange">
+                              <block type="variables_get">
+                                <field id="d#~hn(B|Lt|O=M~N]n]Y" name="VAR">answer</field>
+                              </block>
+                            </value>
+                            <value name="PropertyName">
+                              <block type="text">
+                                <field name="TEXT">url</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>`
+
     }
 ]
