@@ -1,0 +1,11 @@
+openapi: 3.0.0
+info:
+  title: Blockly API
+  version: '1.0'
+  description: API For BLockly
+servers:
+  - url: 'https://netcoreblockly.herokuapp.com/'
+    description: Heroku
+paths: {}
+components:
+  schemas: {}
