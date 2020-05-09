@@ -7,6 +7,12 @@ Blockly.Blocks['displayCurrentDate'] = {
     init: function () {
         this.appendDummyInput()
             .appendField("Current Date");
+        this.appendDummyInput()
+            .appendField('Pick date format:')
+            .appendField(new Blockly.FieldDropdown([
+                ['Unix format', 'unix'],
+                ['ISO format', 'iso']
+            ]), 'FIELDNAME');
 
         this.setOutput(true, null);
         this.setColour(100);
