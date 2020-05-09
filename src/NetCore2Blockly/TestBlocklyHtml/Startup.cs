@@ -32,6 +32,18 @@ namespace TestBlocklyHtml
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "AllowAll",
+                                  builder =>
+                                  {
+                                      builder
+                                      .AllowAnyOrigin()
+                                      .AllowAnyMethod()
+                                      .AllowAnyHeader()
+                                      ;
+                                  });
+            });
             services.AddControllers();
             services.AddBlockly();
             services.AddDbContext<testsContext>(options => options
@@ -74,7 +86,8 @@ namespace TestBlocklyHtml
                 app.UseStatusCodePages();
                 IdentityModelEventSource.ShowPII = true;
             }
-            
+            app.UseCors("AllowAll");
+
             //just developer testing! do not use in production
             app.UseFileServer(enableDirectoryBrowsing: true);
             //TODO: put this in the real application

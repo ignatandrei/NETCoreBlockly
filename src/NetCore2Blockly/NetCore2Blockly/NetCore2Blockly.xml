@@ -535,6 +535,11 @@
             <param name="action">The action.</param>
             <returns></returns>
         </member>
+        <member name="M:NetCore2Blockly.Swagger.ActionInfoSwagger.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NetCore2Blockly.Swagger.ActionInfoSwagger"/> class.
+            </summary>
+        </member>
         <member name="T:NetCore2Blockly.TypeArgumentBase">
             <summary>
             emultates a type
