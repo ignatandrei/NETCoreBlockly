@@ -18,7 +18,14 @@ namespace NetCore2Blockly
 
         #region swaggers
         private Dictionary<string, string> swaggers;
-
+        public string[] KeySwaggers()
+        {
+            return swaggers.Select(it => it.Key).ToArray();
+        }
+        public string SwaggerBlocklyTypesDefinition(string key)
+        {
+            return "";
+        }
         public string SwaggersDictionaryJS
         {
             get

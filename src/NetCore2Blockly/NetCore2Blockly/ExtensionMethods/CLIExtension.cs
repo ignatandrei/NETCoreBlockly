@@ -59,6 +59,16 @@ namespace NetCore2Blockly
             MapJS(app, "/blocklyAPIFunctions", b => b.BlocklyAPIFunctions);
             MapJS(app, "/BlocklyToolBoxFunctionDefinitions", b => b.BlocklyToolBoxFunctionDefinition);
             MapJS(app, "/BlocklySwaggers", b => b.SwaggersDictionaryJS);
+            var blocklyFilesHostedService =
+                app.
+                    ApplicationServices
+                    .GetService<GenerateBlocklyFilesHostedService>();
+
+            foreach (var item in blocklyFilesHostedService.KeySwaggers())
+            {
+                MapJS(app, "/BlocklyDefinitions" + item, b => b.SwaggerBlocklyTypesDefinition(item));
+            }
+
             return app;
         }
 
