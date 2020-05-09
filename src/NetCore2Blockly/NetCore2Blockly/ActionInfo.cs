@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace NetCore2Blockly
 {
+
     /// <summary>
     /// generator
     /// </summary>
-    
+
     public class ActionInfo
     {
 
@@ -76,12 +77,36 @@ namespace NetCore2Blockly
             return hash;
         }
         
-        internal virtual Dictionary<string, (Type type, BindingSource bs)> Params {  get; set; }
+        internal virtual Dictionary<string, (Type type, BindingSourceDefinition bs)> Params {  get; set; }
         internal bool HasParams => (Params?.Count ?? 0) > 0;
-
-        Dictionary<string, (Type type, BindingSource bs)> GetParameters(ApiParameterDescription[] parameterDescriptions)
+        private BindingSourceDefinition ConvertFromBindingSource(BindingSource bs)
         {
-            var desc = new Dictionary<string, (Type type, BindingSource bs)>();
+            return bs switch
+            {
+                var x when x == BindingSource.Body => BindingSourceDefinition.Body,
+                var x when x == BindingSource.Custom => BindingSourceDefinition.Custom,
+                var x when x == BindingSource.Form=> BindingSourceDefinition.Form,
+                var x when x == BindingSource.FormFile => BindingSourceDefinition.FormFile,
+                var x when x == BindingSource.Header=> BindingSourceDefinition.Header,
+
+                var x when x == BindingSource.ModelBinding => BindingSourceDefinition.ModelBinding,
+
+                var x when x == BindingSource.Path => BindingSourceDefinition.Path,
+
+                var x when x == BindingSource.Query => BindingSourceDefinition.Query,
+
+                var x when x == BindingSource.Services => BindingSourceDefinition.Services,
+
+                var x when x == BindingSource.Special => BindingSourceDefinition.Special,
+
+
+                _ => throw new ArgumentException($"not know {bs.DisplayName}")
+
+            };
+        }
+        Dictionary<string, (Type type, BindingSourceDefinition bs)> GetParameters(ApiParameterDescription[] parameterDescriptions)
+        {
+            var desc = new Dictionary<string, (Type type, BindingSourceDefinition bs)>();
 
             if (parameterDescriptions?.Length == 0)
                 return desc;
@@ -101,7 +126,7 @@ namespace NetCore2Blockly
                 .Where(parameterDescriptor => parameterDescriptor != null && okBindingSource.Contains(parameterDescriptor.BindingInfo?.BindingSource))
                 .Distinct()
                 .ToList()
-                .ForEach(x => desc.Add(x.Name, (x.ParameterType, x.BindingInfo?.BindingSource??BindingSource.Query)));
+                .ForEach(x => desc.Add(x.Name, (x.ParameterType,ConvertFromBindingSource( x.BindingInfo?.BindingSource??BindingSource.Query))));
 
             if (parameterDescriptions.Length > desc.Count)
             {

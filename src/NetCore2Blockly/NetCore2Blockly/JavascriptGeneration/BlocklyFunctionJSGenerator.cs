@@ -28,7 +28,7 @@ namespace NetCore2Blockly.JavascriptGeneration
 
             if (actionInfo.HasParams)
             {
-                argsBody = actionInfo.Params.Where(it => it.Value.bs == BindingSource.Body)
+                argsBody = actionInfo.Params.Where(it => it.Value.bs == BindingSourceDefinition.Body)
                     .Select(it => it.Key)
                     .ToArray();
 
@@ -74,7 +74,7 @@ namespace NetCore2Blockly.JavascriptGeneration
             var paramsXHR = "strUrl";
             bool existBody = false;
             var strQueryString = "";
-            var paramsQuery = actionInfo.Params.Where(it => it.Value.bs == BindingSource.Query)?.ToArray();
+            var paramsQuery = actionInfo.Params.Where(it => it.Value.bs == BindingSourceDefinition.Query)?.ToArray();
             if (paramsQuery?.Count()>0)
             {
                 strQueryString = string.Join("&",
@@ -93,7 +93,7 @@ namespace NetCore2Blockly.JavascriptGeneration
             {
                 foreach (var item in actionInfo.Params)
                 {
-                    if (item.Value.bs != BindingSource.Body)
+                    if (item.Value.bs != BindingSourceDefinition.Body)
                         continue;
                     existBody = true;
                     paramsXHR += $",JSON.stringify({item.Key})";
@@ -110,7 +110,7 @@ namespace NetCore2Blockly.JavascriptGeneration
             if (actionInfo.HasParams)
                 foreach (var param in actionInfo.Params)
                 {
-                    if (param.Value.bs == BindingSource.Path || param.Value.bs == BindingSource.Query)
+                    if (param.Value.bs == BindingSourceDefinition.Path || param.Value.bs == BindingSourceDefinition.Query)
                         str += $@"strUrl = strUrl.replace('{{{param.Key}}}',{param.Key});";
 
                 }

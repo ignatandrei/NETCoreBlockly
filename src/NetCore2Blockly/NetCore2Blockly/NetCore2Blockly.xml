@@ -69,6 +69,12 @@
             </summary>
             <param name="apiDescription">The API description.</param>
         </member>
+        <member name="T:NetCore2Blockly.BindingSourceDefinition">
+            <summary>
+            defintion of binding
+            See BindingSource
+            </summary>
+        </member>
         <member name="T:NetCore2Blockly.BlocklyFileGenerator">
             <summary>
             all blockly that should be generated
