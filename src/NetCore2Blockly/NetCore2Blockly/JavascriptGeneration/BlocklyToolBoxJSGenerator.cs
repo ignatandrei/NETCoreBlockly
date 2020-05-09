@@ -16,11 +16,12 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// </summary>
         /// <param name="types">The types.</param>
         /// <returns></returns>
-        public string GenerateBlocklyToolBoxValue(TypeArgument[] types)
+        public string GenerateBlocklyToolBoxValue(TypeArgumentBase[] types)
         {
             string blockText = "";
             var globalVars = "var glbVar=function(workspace){";
-            foreach (var type in types)
+            var sort = types.OrderBy(it => it.Name).ToArray();
+            foreach (var type in sort)
             {
 
                 var typeName = type.TypeNameForBlockly;
@@ -63,7 +64,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// <param name="blockText">The block text.</param>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        public string GenerateToolBoxCodeForAllPropertiesOfAType(string blockText, TypeArgument type)
+        public string GenerateToolBoxCodeForAllPropertiesOfAType(string blockText, TypeArgumentBase type)
         {
             var validProperties = type.GetProperties();
 

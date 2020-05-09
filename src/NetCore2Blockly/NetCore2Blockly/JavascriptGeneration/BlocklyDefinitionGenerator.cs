@@ -16,7 +16,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        public string GenerateBlocklyDefinition(TypeArgument type)
+        public string GenerateBlocklyDefinition(TypeArgumentBase type)
         {
 
             if (type.ConvertibleToBlocklyType())
@@ -32,7 +32,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        public string GenerateDefinitionString(TypeArgument type)
+        public string GenerateDefinitionString(TypeArgumentBase type)
         {
             if (type.IsEnum)
             {
@@ -74,7 +74,7 @@ namespace NetCore2Blockly.JavascriptGeneration
             return definitionString;
         }
 
-        private string GenerateDefinitionStringForEnum(TypeArgument type)
+        private string GenerateDefinitionStringForEnum(TypeArgumentBase type)
         {
             string typeName = type.TypeNameForBlockly;
             if (!type.IsEnum)
@@ -117,7 +117,7 @@ namespace NetCore2Blockly.JavascriptGeneration
             }
             throw new ArgumentException("there is an enum that is not valid");
         }
-        internal (string tooltip, string propsDef) GenerateTooltipAndPropDef(TypeArgument type)
+        internal (string tooltip, string propsDef) GenerateTooltipAndPropDef(TypeArgumentBase type)
         {
             string tooltip = $"{type.Name} with props:";
             string propsDef = "";
@@ -147,7 +147,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        public string GenerateJSstring(TypeArgument type)
+        public string GenerateJSstring(TypeArgumentBase type)
         {
             var str = typeof(string).FullName;
             if (type.IsEnum)

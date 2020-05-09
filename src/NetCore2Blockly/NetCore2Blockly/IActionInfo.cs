@@ -13,7 +13,7 @@ namespace NetCore2Blockly
         /// </summary>
         public ActionInfo()
         {
-            Params = new Dictionary<string, (TypeArgument type, BindingSourceDefinition bs)>();
+            Params = new Dictionary<string, (TypeArgumentBase type, BindingSourceDefinition bs)>();
         }
         /// <summary>
         /// Gets or sets the name of the action.
@@ -77,7 +77,7 @@ namespace NetCore2Blockly
         /// <value>
         /// The parameters.
         /// </value>
-        public Dictionary<string, (TypeArgument type, BindingSourceDefinition bs)> Params { get; set; }
+        public Dictionary<string, (TypeArgumentBase type, BindingSourceDefinition bs)> Params { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether this instance has parameters.

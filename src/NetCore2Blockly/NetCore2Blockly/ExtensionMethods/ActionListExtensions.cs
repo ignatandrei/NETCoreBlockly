@@ -17,7 +17,7 @@ namespace NetCore2Blockly
         /// </summary>
         /// <param name="list">The list.</param>
         /// <returns></returns>
-        public static TypeArgument[] GetAllTypesWithNullBlocklyType(this List<ActionInfo> list)
+        public static TypeArgumentBase[] GetAllTypesWithNullBlocklyType(this List<ActionInfo> list)
         {
             return  list
 

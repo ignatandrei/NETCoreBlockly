@@ -54,8 +54,10 @@ namespace NetCore2Blockly
         {
             app.Map(url, app =>
             {
-                var blocklyFilesHostedService = app.ApplicationServices
-                .GetService<GenerateBlocklyFilesHostedService>();
+                var blocklyFilesHostedService = 
+                app.
+                    ApplicationServices
+                    .GetService<GenerateBlocklyFilesHostedService>();
                 app.Run(async context =>
                 {
                     await GetBlocklyFilesHostedServices(context, content(blocklyFilesHostedService));

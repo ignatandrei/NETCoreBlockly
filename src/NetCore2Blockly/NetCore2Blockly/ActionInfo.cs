@@ -42,9 +42,9 @@ namespace NetCore2Blockly
 
             };
         }
-        Dictionary<string, (TypeArgument type, BindingSourceDefinition bs)> GetParameters(ApiParameterDescription[] parameterDescriptions)
+        Dictionary<string, (TypeArgumentBase type, BindingSourceDefinition bs)> GetParameters(ApiParameterDescription[] parameterDescriptions)
         {
-            var desc = new Dictionary<string, (TypeArgument type, BindingSourceDefinition bs)>();
+            var desc = new Dictionary<string, (TypeArgumentBase type, BindingSourceDefinition bs)>();
 
             if (parameterDescriptions?.Length == 0)
                 return desc;

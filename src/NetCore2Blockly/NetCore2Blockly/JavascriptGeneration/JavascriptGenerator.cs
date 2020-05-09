@@ -30,7 +30,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        public string  GenerateBlocklyDefinition(TypeArgument type)
+        public string  GenerateBlocklyDefinition(TypeArgumentBase type)
         {
             return _definitionGenerator.GenerateBlocklyDefinition(type);
         }
@@ -40,7 +40,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// </summary>
         /// <param name="types">The types.</param>
         /// <returns></returns>
-        public string GenerateBlocklyToolBoxValue(TypeArgument[] types)
+        public string GenerateBlocklyToolBoxValue(TypeArgumentBase[] types)
         {
             return _toolBoxJSGenerator.GenerateBlocklyToolBoxValue(types);
         }
