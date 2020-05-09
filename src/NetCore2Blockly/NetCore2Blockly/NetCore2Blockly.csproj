@@ -13,14 +13,14 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>WebAPI;ASP.NET Core;.NET Core;Blockly</PackageTags>
     <Description>
-      This program will generate ASP.NET Core WebAPI blockly blocks.
+      This program will generate ASP.NET Core WebAPI blockly blocks. And from other swagger files.
       Can be usefull for just making a demo, interacting or others.
       Please see https://github.com/ignatandrei/NETCoreBlockly for details
     </Description>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile></DocumentationFile>
+    <DocumentationFile>NetCore2Blockly.xml</DocumentationFile>
     <WarningsAsErrors></WarningsAsErrors>
   </PropertyGroup>
 

@@ -34,9 +34,9 @@ namespace NetCore2Blockly
         /// Creates the action list to generate blocks
         /// </summary>
         /// <returns></returns>
-        public List<IActionInfo> CreateActionList()
+        public List<ActionInfo> CreateActionList()
         {
-            var allActions = new List<IActionInfo>();
+            var allActions = new List<ActionInfo>();
             var groups = api.ApiDescriptionGroups;
 
             foreach (var g in groups.Items)
@@ -44,7 +44,7 @@ namespace NetCore2Blockly
 
                 foreach (var api in g.Items)
                 {
-                    var controllerInformation = new ActionInfo(api);
+                    var controllerInformation = new ActionInfoFromNetAPI(api);
 
                     allActions.Add(controllerInformation);
 

@@ -4,74 +4,75 @@
         <name>NetCore2Blockly</name>
     </assembly>
     <members>
-        <member name="T:NetCore2Blockly.ActionInfo">
+        <member name="T:NetCore2Blockly.ActionInfoFromNetAPI">
             <summary>
             generator
             </summary>
         </member>
-        <member name="P:NetCore2Blockly.ActionInfo.ControllerName">
+        <member name="M:NetCore2Blockly.ActionInfoFromNetAPI.#ctor(Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription)">
             <summary>
-            Gets or sets the name of the controller.
-            </summary>
-            <value>
-            The name of the controller.
-            </value>
-        </member>
-        <member name="P:NetCore2Blockly.ActionInfo.ReturnType">
-            <summary>
-            Gets or sets the type of the return.
-            </summary>
-            <value>
-            The type of the return.
-            </value>
-        </member>
-        <member name="P:NetCore2Blockly.ActionInfo.ActionName">
-            <summary>
-            Gets or sets the name of the action.
-            </summary>
-            <value>
-            The name of the action.
-            </value>
-        </member>
-        <member name="P:NetCore2Blockly.ActionInfo.Host">
-            <summary>
-            Gets or sets the host.
-            </summary>
-            <value>
-            The host.
-            </value>
-        </member>
-        <member name="P:NetCore2Blockly.ActionInfo.RelativeRequestUrl">
-            <summary>
-            Gets or sets the relative request URL.
-            </summary>
-            <value>
-            The relative request URL.
-            </value>
-        </member>
-        <member name="P:NetCore2Blockly.ActionInfo.Verb">
-            <summary>
-            Gets or sets the verb.
-            </summary>
-            <value>
-            The verb.
-            </value>
-        </member>
-        <member name="M:NetCore2Blockly.ActionInfo.CustomGetHashCode">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NetCore2Blockly.ActionInfo.#ctor(Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription)">
-            <summary>
-            Initializes a new instance of the <see cref="T:NetCore2Blockly.ActionInfo"/> class.
+            Initializes a new instance of the <see cref="T:NetCore2Blockly.ActionInfoFromNetAPI"/> class.
             </summary>
             <param name="apiDescription">The API description.</param>
         </member>
         <member name="T:NetCore2Blockly.BindingSourceDefinition">
             <summary>
-            defintion of binding
+            definition of binding
+            See BindingSource
+            </summary>
+        </member>
+        <member name="F:NetCore2Blockly.BindingSourceDefinition.None">
+            <summary>
+            See BindingSource
+            </summary>
+        </member>
+        <member name="F:NetCore2Blockly.BindingSourceDefinition.Body">
+            <summary>
+            See BindingSource
+            </summary>
+        </member>
+        <member name="F:NetCore2Blockly.BindingSourceDefinition.Custom">
+            <summary>
+            See BindingSource
+            </summary>
+        </member>
+        <member name="F:NetCore2Blockly.BindingSourceDefinition.Form">
+            <summary>
+            See BindingSource
+            </summary>
+        </member>
+        <member name="F:NetCore2Blockly.BindingSourceDefinition.Header">
+            <summary>
+            See BindingSource
+            </summary>
+        </member>
+        <member name="F:NetCore2Blockly.BindingSourceDefinition.ModelBinding">
+            <summary>
+            See BindingSource
+            </summary>
+        </member>
+        <member name="F:NetCore2Blockly.BindingSourceDefinition.Path">
+            <summary>
+            See BindingSource
+            </summary>
+        </member>
+        <member name="F:NetCore2Blockly.BindingSourceDefinition.Query">
+            <summary>
+            See BindingSource
+            </summary>
+        </member>
+        <member name="F:NetCore2Blockly.BindingSourceDefinition.Services">
+            <summary>
+            See BindingSource
+            </summary>
+        </member>
+        <member name="F:NetCore2Blockly.BindingSourceDefinition.Special">
+            <summary>
+            See BindingSource
+            </summary>
+        </member>
+        <member name="F:NetCore2Blockly.BindingSourceDefinition.FormFile">
+            <summary>
             See BindingSource
             </summary>
         </member>
@@ -299,6 +300,86 @@
             Triggered when the application host is performing a graceful shutdown.
             </summary>
             <param name="cancellationToken">Indicates that the shutdown process should no longer be graceful.</param>
+        </member>
+        <member name="T:NetCore2Blockly.ActionInfo">
+            <summary>
+            generic action info
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.ActionInfo.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NetCore2Blockly.ActionInfo"/> class.
+            </summary>
+        </member>
+        <member name="P:NetCore2Blockly.ActionInfo.ActionName">
+            <summary>
+            Gets or sets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:NetCore2Blockly.ActionInfo.ControllerName">
+            <summary>
+            Gets or sets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:NetCore2Blockly.ActionInfo.Host">
+            <summary>
+            Gets or sets the host.
+            </summary>
+            <value>
+            The host.
+            </value>
+        </member>
+        <member name="P:NetCore2Blockly.ActionInfo.RelativeRequestUrl">
+            <summary>
+            Gets or sets the relative request URL.
+            </summary>
+            <value>
+            The relative request URL.
+            </value>
+        </member>
+        <member name="P:NetCore2Blockly.ActionInfo.ReturnType">
+            <summary>
+            Gets or sets the type of the return.
+            </summary>
+            <value>
+            The type of the return.
+            </value>
+        </member>
+        <member name="P:NetCore2Blockly.ActionInfo.Verb">
+            <summary>
+            Gets or sets the verb.
+            </summary>
+            <value>
+            The verb.
+            </value>
+        </member>
+        <member name="M:NetCore2Blockly.ActionInfo.CustomGetHashCode">
+            <summary>
+             hash code do display.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NetCore2Blockly.ActionInfo.Params">
+            <summary>
+            Gets or sets the parameters.
+            </summary>
+            <value>
+            The parameters.
+            </value>
+        </member>
+        <member name="P:NetCore2Blockly.ActionInfo.HasParams">
+            <summary>
+            Gets a value indicating whether this instance has parameters.
+            </summary>
+            <value>
+             <c>true</c> if this instance has parameters; otherwise, <c>false</c>.
+            </value>
         </member>
         <member name="T:NetCore2Blockly.JavascriptGeneration.BlocklyDefinitionGenerator">
             <summary>

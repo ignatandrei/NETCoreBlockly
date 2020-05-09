@@ -19,7 +19,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// </summary>
         /// <param name="actionInfo">The action information.</param>
         /// <returns></returns>
-        public string GenerateFunctionJS(IActionInfo actionInfo)
+        public string GenerateFunctionJS(ActionInfo actionInfo)
         {
             var paramsStr = "";
             var paramsBodyStr = "";
@@ -69,7 +69,7 @@ namespace NetCore2Blockly.JavascriptGeneration
                     ";
         }
 
-        internal string GenerateGet(IActionInfo actionInfo)
+        internal string GenerateGet(ActionInfo actionInfo)
         {
             var paramsXHR = "strUrl";
             bool existBody = false;
