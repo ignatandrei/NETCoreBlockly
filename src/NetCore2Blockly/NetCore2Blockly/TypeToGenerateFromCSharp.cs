@@ -7,7 +7,7 @@ namespace NetCore2Blockly
 {
     [DebuggerDisplay("Create {id}")]
 
-    public class TypeToGenerateFromCSharp: TypeArgumentBase
+    class TypeToGenerateFromCSharp: TypeArgumentBase
     {
         internal readonly Type t;
         private PropertyBase[] props;

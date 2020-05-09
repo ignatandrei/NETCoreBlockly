@@ -20,7 +20,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile></DocumentationFile>
+    <DocumentationFile>NetCore2Blockly.xml</DocumentationFile>
     <WarningsAsErrors></WarningsAsErrors>
   </PropertyGroup>
 

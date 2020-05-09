@@ -57,7 +57,13 @@ namespace NetCore2Blockly
         /// The verb.
         /// </value>
         public string Verb { get; set; }
-
+        /// <summary>
+        /// Gets or sets the site.
+        /// </summary>
+        /// <value>
+        /// The site.
+        /// </value>
+        public string Site { get; set; }
         /// <summary>
         ///  hash code do display.
         /// </summary>

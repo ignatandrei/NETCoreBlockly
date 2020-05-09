@@ -204,6 +204,15 @@
             <param name="serviceCollection">The service collection.</param>
             <returns></returns>
         </member>
+        <member name="M:NetCore2Blockly.CLIExtension.UseBlocklySwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String,System.String)">
+            <summary>
+            Uses the blockly swagger.
+            </summary>
+            <param name="app">The application.</param>
+            <param name="name">The name.</param>
+            <param name="endPoint">The end point.</param>
+            <returns></returns>
+        </member>
         <member name="M:NetCore2Blockly.CLIExtension.UseBlockly(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
              use blockly
@@ -359,6 +368,14 @@
             The verb.
             </value>
         </member>
+        <member name="P:NetCore2Blockly.ActionInfo.Site">
+            <summary>
+            Gets or sets the site.
+            </summary>
+            <value>
+            The site.
+            </value>
+        </member>
         <member name="M:NetCore2Blockly.ActionInfo.CustomGetHashCode">
             <summary>
              hash code do display.
@@ -386,21 +403,21 @@
             generates blockly definition for a type
             </summary>
         </member>
-        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyDefinitionGenerator.GenerateBlocklyDefinition(System.Type)">
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyDefinitionGenerator.GenerateBlocklyDefinition(NetCore2Blockly.TypeArgumentBase)">
             <summary>
             Generates the blockly definition.
             </summary>
             <param name="type">The type.</param>
             <returns></returns>
         </member>
-        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyDefinitionGenerator.GenerateDefinitionString(System.Type)">
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyDefinitionGenerator.GenerateDefinitionString(NetCore2Blockly.TypeArgumentBase)">
             <summary>
             Generates the definition string.
             </summary>
             <param name="type">The type.</param>
             <returns></returns>
         </member>
-        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyDefinitionGenerator.GenerateJSstring(System.Type)">
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyDefinitionGenerator.GenerateJSstring(NetCore2Blockly.TypeArgumentBase)">
             <summary>
             Generates the javascript string.
             </summary>
@@ -463,14 +480,14 @@
             generates js for seeing blocks in toolbox
             </summary>
         </member>
-        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxJSGenerator.GenerateBlocklyToolBoxValue(System.Type[])">
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxJSGenerator.GenerateBlocklyToolBoxValue(NetCore2Blockly.TypeArgumentBase[])">
             <summary>
             Generates the blockly tool box value.
             </summary>
             <param name="types">The types.</param>
             <returns></returns>
         </member>
-        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxJSGenerator.GenerateToolBoxCodeForAllPropertiesOfAType(System.String,System.Type)">
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxJSGenerator.GenerateToolBoxCodeForAllPropertiesOfAType(System.String,NetCore2Blockly.TypeArgumentBase)">
             <summary>
             Generates tool box code for all properties of a type.
             </summary>
@@ -483,14 +500,14 @@
             javascript generator for blockly
             </summary>
         </member>
-        <member name="M:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator.GenerateBlocklyDefinition(System.Type)">
+        <member name="M:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator.GenerateBlocklyDefinition(NetCore2Blockly.TypeArgumentBase)">
             <summary>
             Generates the blockly definition.
             </summary>
             <param name="type">The type.</param>
             <returns></returns>
         </member>
-        <member name="M:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator.GenerateBlocklyToolBoxValue(System.Type[])">
+        <member name="M:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator.GenerateBlocklyToolBoxValue(NetCore2Blockly.TypeArgumentBase[])">
             <summary>
             Generates the blockly tool box value.
             </summary>
@@ -517,6 +534,124 @@
             </summary>
             <param name="action">The action.</param>
             <returns></returns>
+        </member>
+        <member name="T:NetCore2Blockly.TypeArgumentBase">
+            <summary>
+            emultates a type
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.TypeArgumentBase.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NetCore2Blockly.TypeArgumentBase"/> class.
+            </summary>
+            <param name="id">The identifier.</param>
+        </member>
+        <member name="F:NetCore2Blockly.TypeArgumentBase.Name">
+            <summary>
+            The name
+            </summary>
+        </member>
+        <member name="F:NetCore2Blockly.TypeArgumentBase.id">
+            <summary>
+            The identifier
+            </summary>
+        </member>
+        <member name="P:NetCore2Blockly.TypeArgumentBase.FullName">
+            <summary>
+            Gets the full name.
+            </summary>
+            <value>
+            The full name.
+            </value>
+        </member>
+        <member name="M:NetCore2Blockly.TypeArgumentBase.TranslateToBlocklyType">
+            <summary>
+            Translates the type of to blockly.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.TypeArgumentBase.ConvertibleToBlocklyType">
+            <summary>
+            Convertibles the type of to blockly.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.TypeArgumentBase.TranslateToBlocklyBlocksType">
+            <summary>
+            Translates the type of to blockly blocks.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.TypeArgumentBase.TranslateToNewTypeName">
+            <summary>
+            Translates the name of to new type.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NetCore2Blockly.TypeArgumentBase.IsEnum">
+            <summary>
+            Gets a value indicating whether this instance is enum.
+            </summary>
+            <value>
+              <c>true</c> if this instance is enum; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NetCore2Blockly.TypeArgumentBase.TypeNameForBlockly">
+            <summary>
+            Gets the type name for blockly.
+            </summary>
+            <value>
+            The type name for blockly.
+            </value>
+        </member>
+        <member name="M:NetCore2Blockly.TypeArgumentBase.GetProperties">
+            <summary>
+            Gets the properties.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.TypeArgumentBase.GetValuesForEnum">
+            <summary>
+            Gets the values for enum.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NetCore2Blockly.TypeArgumentBase.IsValueType">
+            <summary>
+            Gets a value indicating whether this instance is value type.
+            </summary>
+            <value>
+              <c>true</c> if this instance is value type; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:NetCore2Blockly.PropertyBase">
+            <summary>
+            emulates a property
+            </summary>
+        </member>
+        <member name="P:NetCore2Blockly.PropertyBase.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:NetCore2Blockly.PropertyBase.PropertyType">
+            <summary>
+            Gets or sets the type of the property.
+            </summary>
+            <value>
+            The type of the property.
+            </value>
+        </member>
+        <member name="P:NetCore2Blockly.PropertyBase.IsArray">
+            <summary>
+            Gets a value indicating whether this instance is array.
+            </summary>
+            <value>
+              <c>true</c> if this instance is array; otherwise, <c>false</c>.
+            </value>
         </member>
     </members>
 </doc>

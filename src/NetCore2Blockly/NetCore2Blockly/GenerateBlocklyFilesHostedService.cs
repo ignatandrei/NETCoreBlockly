@@ -18,15 +18,15 @@ namespace NetCore2Blockly
 
         #region swaggers
         private Dictionary<string, string> swaggers;
-        public string[] KeySwaggers()
+        internal string[] KeySwaggers()
         {
             return swaggers.Select(it => it.Key).ToArray();
         }
-        public string SwaggerBlocklyTypesDefinition(string key)
+        internal string SwaggerBlocklyTypesDefinition(string key)
         {
             return "";
         }
-        public string SwaggersDictionaryJS
+        internal string SwaggersDictionaryJS
         {
             get
             {
@@ -36,7 +36,7 @@ namespace NetCore2Blockly
                 return $@"var dictSwagger=[]; {s}";
             }
         }
-        public void AddSwagger(string name, string endpoint)
+        internal void AddSwagger(string name, string endpoint)
         {
             swaggers.Add(name, endpoint);
         }

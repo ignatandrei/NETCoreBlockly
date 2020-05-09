@@ -2,7 +2,7 @@
 
 namespace NetCore2Blockly
 {
-    public class PropertyCSharp : PropertyBase
+    class PropertyCSharp : PropertyBase
     {
         public override bool IsArray
         {
