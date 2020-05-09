@@ -69,7 +69,7 @@
         <button onclick="runCode()" id="runButton" style="width:300px">E X E C U T E !</button>
 
         <!--<a href="javascript:downloadZip()">Download Results</a>-->
-        <a href="javascript:SaveBlocks()" id="saveBlocks" >Save Blocks</a>
+        <a href="javascript:SaveBlocks()" id="saveBlocks">Save Blocks</a>
         <a href="javascript:ShowInnerWorkings()">Show blocks</a>
     </p>
 
@@ -102,10 +102,11 @@
 
         <script type="text/html" id="data_tmpl">
             <% for ( var i = 0; i < data.length; i++ ) { %>
-            <li><%=(i+1)%>) <a href="javascript:Loadtesting('<%=data[i].name%>')"><%= data[i].name %></a></li>
+            <li><%=(i+1)%>) <a href="javascript:Loadtesting('<%=i%>')"><%= data[i].name %></a></li>
             <% } %>
 
         </script>
+        <button onclick="javascript:executeAll()" id="executeAll">Execute all testing</button>
 
     </div>
     <!--enddoNotCopyToFinal-->
@@ -132,17 +133,9 @@
 
         }
 
-        function Loadtesting(name) {
+        function Loadtesting(id) {
             demoWorkspace.clear();
-            var content = '';
-
-            for (var i = 0; i < testBlocks.length; i++) {
-                if (testBlocks[i].name == name) {
-                    //console.log(testBlocks[i]);
-                    content = testBlocks[i].data;
-                    break;
-                }
-            }
+            var content =testBlocks[id].data;
             var dom = Blockly.Xml.textToDom(content);
             Blockly.Xml.domToWorkspace(dom, demoWorkspace);
             resetStepUi();
@@ -151,6 +144,32 @@
         /*doNotCopyToFinal*/
         var results = document.getElementById("results");
         results.innerHTML = tmpl("data_tmpl", { data: testBlocks });
+        var nrToExecute;
+        var runnerAll = function () {
+
+            nrToExecute = nrToExecute + 1;
+            console.log(nrToExecute);
+            var waitSecs = 1;
+            if (window.confirm(`execute ${testBlocks[nrToExecute].name}  step ${nrToExecute + 1}  from ${testBlocks.length}?`)) {
+                waitSecs = waitSecs * 5;
+                Loadtesting(nrToExecute);
+            }
+
+            waitSecs = waitSecs * 1000;
+            if (nrToExecute < testBlocks.length)
+                setTimeout(runnerAll, waitSecs);
+            else
+                document.getElementById('executeAll').disabled = '';
+        }
+
+        function executeAll() {
+            nrToExecute = -1;
+            document.getElementById('executeAll').disabled = 'disabled';
+            console.log('before');
+            runnerAll();
+
+
+        }
         /*enddoNotCopyToFinal*/
 
     </script>
@@ -517,8 +536,8 @@
                     </block>
                     <block type="displayCurrentDate">
                     </block>
-                </category>                
-                
+                </category>
+
             </category>
             <category id="XHR" name="Request">
                 <block type="headersbeforehttp">
@@ -534,7 +553,7 @@
                     </value>
                     <value name="HeaderValue">
                         <shadow type="text_join">
-                            
+
                         </shadow>
                     </value>
                 </block>
@@ -1024,7 +1043,7 @@
                 outputArea.value = outputArea.value + '\n step' + step + ':' + text;
             };
 
-           
+
 
 
 
@@ -1090,14 +1109,14 @@
                 interpreter.createNativeFunction(wrapper));
 
             var wrapper = (href, callback) => {
-                var heads= interpreter.pseudoToNative(headersForDomain);
+                var heads = interpreter.pseudoToNative(headersForDomain);
                 var hostname = '(localSite)';
                 if (href.startsWith('http://') || href.startsWith('https://')) {
                     hostname = (new URL(href)).hostname;
                 }
                 var arrHeaders = [];
                 if (hostname in heads) {
-                    arrHeaders = heads[hostname];                    
+                    arrHeaders = heads[hostname];
                 }
                 return doGet(href, callback, arrHeaders);
             }
@@ -1124,25 +1143,23 @@
             interpreter.setProperty(globalObject, 'postXhr',
                 interpreter.createAsyncFunction(wrapper));
 
-            var wrapper = (href, objectToPost, callback) =>
-
-                {
-                    try {
-                        var heads = interpreter.pseudoToNative(headersForDomain);
-                        var hostname = '(localSite)';
-                        if (href.startsWith('http://') || href.startsWith('https://')) {
-                            hostname = (new URL(href)).hostname;
-                        }
-                        var arrHeaders = [];
-                        if (hostname in heads) {
-                            arrHeaders = heads[hostname];
-                        }
-                        doPut(href, objectToPost, callback);
+            var wrapper = (href, objectToPost, callback) => {
+                try {
+                    var heads = interpreter.pseudoToNative(headersForDomain);
+                    var hostname = '(localSite)';
+                    if (href.startsWith('http://') || href.startsWith('https://')) {
+                        hostname = (new URL(href)).hostname;
                     }
-                    catch (e) {
-                        alert("is an error" + e);
+                    var arrHeaders = [];
+                    if (hostname in heads) {
+                        arrHeaders = heads[hostname];
                     }
-                };
+                    doPut(href, objectToPost, callback);
+                }
+                catch (e) {
+                    alert("is an error" + e);
+                }
+            };
             interpreter.setProperty(globalObject, 'putXhr',
                 interpreter.createAsyncFunction(wrapper));
 
@@ -1166,7 +1183,7 @@
             };
 
 
-                
+
             interpreter.setProperty(globalObject, 'deleteXhr',
                 interpreter.createAsyncFunction(wrapper));
 
@@ -1358,7 +1375,7 @@
         }
         /*doNotCopyToFinal*/
         displayLinksSavedStorage();
-                        /*enddoNotCopyToFinal*/
+                            /*enddoNotCopyToFinal*/
     </script>
 
 </body>
