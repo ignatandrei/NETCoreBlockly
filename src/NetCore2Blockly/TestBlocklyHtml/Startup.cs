@@ -94,7 +94,7 @@ namespace TestBlocklyHtml
             // or copy the blockly.html files and others from wwwroot
             app.UseBlocklyUI();
             app.UseBlocklyLocalStorage();//this is not necessary , if you use app.UseBlocklyUI();
-            app.UseBlocklySwagger("heroku", "https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json");
+            //app.UseBlocklySwagger("heroku", "https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json");
             //app.UseBlocklySqliteStorage();
             //this is not necessary to be added
             app.UseSwagger();

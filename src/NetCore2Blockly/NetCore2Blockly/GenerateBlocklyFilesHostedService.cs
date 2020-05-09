@@ -150,7 +150,7 @@ namespace NetCore2Blockly
         }
         internal async Task AddSwagger(string key, string endpoint)
         {
-                        swaggers.Add(key, await GenerateFromSwaggerEndPoint(endpoint));
+            swaggers.Add(key, await GenerateFromSwaggerEndPoint(endpoint));
         }
 
         #endregion
