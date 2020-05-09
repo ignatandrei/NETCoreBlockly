@@ -16,7 +16,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// </summary>
         /// <param name="actionInfo">The action information.</param>
         /// <returns></returns>
-        public string GeneratePropertyDefinitions(ActionInfo actionInfo)
+        public string GeneratePropertyDefinitions(IActionInfo actionInfo)
         {
             string tooltip = $"{actionInfo.GenerateCommandName()} :";
             var strPropsDefinition = "";
@@ -46,7 +46,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// </summary>
         /// <param name="actionInfo">The action information.</param>
         /// <returns></returns>
-        public string GenerateFunctionDefinition(ActionInfo actionInfo)
+        public string GenerateFunctionDefinition(IActionInfo actionInfo)
         {
             var strPropsDefinition = GeneratePropertyDefinitions(actionInfo);
 

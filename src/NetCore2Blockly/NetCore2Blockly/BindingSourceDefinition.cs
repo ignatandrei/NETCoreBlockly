@@ -4,7 +4,7 @@
     /// defintion of binding
     /// See BindingSource
     /// </summary>
-    internal enum BindingSourceDefinition
+    public enum BindingSourceDefinition
     {
         None = 0,
         Body,

@@ -14,7 +14,7 @@ namespace NetCore2Blockly.ExtensionMethods
         /// </summary>
         /// <param name="actionInfo">The action information.</param>
         /// <returns></returns>
-        public static string GenerateCommandName(this ActionInfo actionInfo)
+        public static string GenerateCommandName(this IActionInfo actionInfo)
         {
             var nameCommand = actionInfo.ActionName.Replace("/", "_");
             nameCommand = nameCommand.Replace("{", "_").Replace("}", "_");
@@ -27,7 +27,7 @@ namespace NetCore2Blockly.ExtensionMethods
         /// </summary>
         /// <param name="actionInfo">The action information.</param>
         /// <returns></returns>
-        public static string CommandDisplayName(this ActionInfo actionInfo)
+        public static string CommandDisplayName(this IActionInfo actionInfo)
         {
 
             return actionInfo.Verb + " " + actionInfo.ActionName;

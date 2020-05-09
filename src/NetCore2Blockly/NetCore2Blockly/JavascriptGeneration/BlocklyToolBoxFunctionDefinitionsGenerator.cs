@@ -16,7 +16,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// </summary>
         /// <param name="actionList">The action list.</param>
         /// <returns></returns>
-        public string GenerateBlocklyToolBoxFunctionDefinitions(List<ActionInfo> actionList)
+        public string GenerateBlocklyToolBoxFunctionDefinitions(List<IActionInfo> actionList)
         {
             string blockText = "var blockTextLocalSiteFunctions='';";
             foreach (var actionsGroupedByController in actionList.GroupBy(it => it.ControllerName))

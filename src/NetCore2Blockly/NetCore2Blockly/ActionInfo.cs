@@ -14,7 +14,7 @@ namespace NetCore2Blockly
     /// generator
     /// </summary>
 
-    public class ActionInfo
+    class ActionInfo : IActionInfo
     {
 
         /// <summary>
@@ -76,8 +76,8 @@ namespace NetCore2Blockly
 
             return hash;
         }
-        
-        internal virtual Dictionary<string, (Type type, BindingSourceDefinition bs)> Params {  get; set; }
+
+        public Dictionary<string, (Type type, BindingSourceDefinition bs)> Params { get; set; }
         internal bool HasParams => (Params?.Count ?? 0) > 0;
         private BindingSourceDefinition ConvertFromBindingSource(BindingSource bs)
         {
@@ -85,9 +85,9 @@ namespace NetCore2Blockly
             {
                 var x when x == BindingSource.Body => BindingSourceDefinition.Body,
                 var x when x == BindingSource.Custom => BindingSourceDefinition.Custom,
-                var x when x == BindingSource.Form=> BindingSourceDefinition.Form,
+                var x when x == BindingSource.Form => BindingSourceDefinition.Form,
                 var x when x == BindingSource.FormFile => BindingSourceDefinition.FormFile,
-                var x when x == BindingSource.Header=> BindingSourceDefinition.Header,
+                var x when x == BindingSource.Header => BindingSourceDefinition.Header,
 
                 var x when x == BindingSource.ModelBinding => BindingSourceDefinition.ModelBinding,
 
@@ -120,18 +120,18 @@ namespace NetCore2Blockly
                 null // for the items that have not binding source, assume are query string
             };
 
-                parameterDescriptions
-                .Where(parameterDescription => parameterDescription != null)
-                .Select(parameterDescription => parameterDescription.ParameterDescriptor)
-                .Where(parameterDescriptor => parameterDescriptor != null && okBindingSource.Contains(parameterDescriptor.BindingInfo?.BindingSource))
-                .Distinct()
-                .ToList()
-                .ForEach(x => desc.Add(x.Name, (x.ParameterType,ConvertFromBindingSource( x.BindingInfo?.BindingSource??BindingSource.Query))));
+            parameterDescriptions
+            .Where(parameterDescription => parameterDescription != null)
+            .Select(parameterDescription => parameterDescription.ParameterDescriptor)
+            .Where(parameterDescriptor => parameterDescriptor != null && okBindingSource.Contains(parameterDescriptor.BindingInfo?.BindingSource))
+            .Distinct()
+            .ToList()
+            .ForEach(x => desc.Add(x.Name, (x.ParameterType, ConvertFromBindingSource(x.BindingInfo?.BindingSource ?? BindingSource.Query))));
 
             if (parameterDescriptions.Length > desc.Count)
             {
                 Debug.Assert(false, " should not have more parameters");
-                
+
             }
 
             return desc;
@@ -150,20 +150,20 @@ namespace NetCore2Blockly
             Params = GetParameters(apiDescription.ParameterDescriptions.ToArray());
             var actionDescriptor = apiDescription.ActionDescriptor as ControllerActionDescriptor;
             ReturnType = actionDescriptor?.MethodInfo?.ReturnType;
-           
-            
+
+
             if (ReturnType != null && ReturnType.IsGenericType)
             {
                 if (ReturnType.IsSubclassOf(typeof(Task)))
                 {
                     ReturnType = ReturnType.GetGenericArguments()[0];//TODO: get all
-                    
+
                 }
             }
             ControllerName = actionDescriptor?.ControllerName;
 
         }
 
-      
+
     }
 }

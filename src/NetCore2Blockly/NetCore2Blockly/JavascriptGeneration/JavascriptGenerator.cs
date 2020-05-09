@@ -50,7 +50,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// </summary>
         /// <param name="actionList">The action list.</param>
         /// <returns></returns>
-        public string GenerateBlocklyToolBoxFunctionDefinitions(List<ActionInfo> actionList)
+        public string GenerateBlocklyToolBoxFunctionDefinitions(List<IActionInfo> actionList)
         {
             return _toolBoxFunctionDefinitionGenerator.GenerateBlocklyToolBoxFunctionDefinitions(actionList);
         }
@@ -61,7 +61,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// </summary>
         /// <param name="action">The action.</param>
         /// <returns></returns>
-        public string GenerateFunctionJS(ActionInfo action)
+        public string GenerateFunctionJS(IActionInfo action)
         {
             return _functionJSGenerator.GenerateFunctionJS(action);
         }
@@ -71,7 +71,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// </summary>
         /// <param name="action">The action.</param>
         /// <returns></returns>
-        public string GenerateFunctionDefinition(ActionInfo action)
+        public string GenerateFunctionDefinition(IActionInfo action)
         {
             return _functionDefinitionGenerator.GenerateFunctionDefinition(action);
         }
