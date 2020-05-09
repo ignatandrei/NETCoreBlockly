@@ -7,7 +7,7 @@ namespace NetCore2Blockly.Swagger
     class TypeToGenerateSwagger : TypeArgumentBase
     {
 
-
+        private bool _isEnum;
         PropertyBaseSwagger[] properties;
         public TypeToGenerateSwagger(KeyValuePair<string, OpenApiSchema> schema) : base(schema.Value.Reference.ReferenceV2 + "_" + schema.Value.Reference.ReferenceV3)
         {
@@ -20,6 +20,7 @@ namespace NetCore2Blockly.Swagger
                 p.Name = prop.Key;
                 p.PropertyType = null;//TODO: find WHAT!! prop.Value.Type;
                 l.Add(p);
+                _isEnum = (schema.Value.Enum?.Count >0);                    
             }
             l.Sort((x, y) => x.Name.CompareTo(y.Name));
             properties = l.ToArray();
@@ -44,35 +45,6 @@ namespace NetCore2Blockly.Swagger
 
             return null;
         }
-        //        public string GenerateBlocksValueDefinition()
-        //        {
-        //            var type = this;
-        //            var globalVars = $"workspace.createVariable('var_{type.Name}', '{nameType(type.Name)}');";
-        //            var blockText = $@"{Environment.NewLine}
-
-        //                var blockText_{type.Name} = '<block type=""{nameType(type.Name)}"">';";
-        //            blockText += $"blockText_{type.Name} += '</block>';";
-        //            blockText += $@"block_{type.Name} = Blockly.Xml.textToDom(blockText_{type.Name});
-        //                xmlList.push(block_{type.Name});";
-        //            blockText += ";";
-
-        //            blockText += $@"var block_{type.Name}Set='<block type=""variables_set""><field name=""VAR"">var_{type.Name}</field></block>';";
-        //            blockText += $@"block_{type.Name}Set = Blockly.Xml.textToDom(block_{type.Name}Set);
-        //                xmlList.push(block_{type.Name}Set);";
-
-        //            var strDef = $@"
-        // var registerValues = function() {{
-        //        var xmlList = [];
-        //        {blockText}
-
-        //return xmlList;
-        //              }};  ";
-        //            globalVars += "}";
-        //            strDef += globalVars;
-        //            return strDef;
-
-
-        //        }
         string Prefix
         {
             get
@@ -87,112 +59,27 @@ namespace NetCore2Blockly.Swagger
 
         public override string FullName => throw new NotImplementedException();
 
-        public override bool IsEnum => throw new NotImplementedException();
+        public override bool IsEnum
+        {
+            get
+            {
+                return _isEnum;
+            }
+        }
 
         public override string TypeNameForBlockly => throw new NotImplementedException();
 
         public override bool IsValueType => throw new NotImplementedException();
 
-        //        public string GenerateBlocklyFromType()
-        //        {
-        //            var name = BSHelpers.BlocklyTypeTranslator(this.Type);
-        //            if (name != null)
-        //                return null;
-        //            name = Prefix + "_" + name;
-        //            var t = this;
-        //            string tooltip = $"{t.Name} with props:";
-        //            string propsDef = "";
-        //            string prodCode = "";
-
-        //            foreach (var prop in t.Properties)
-        //            {
-        //                tooltip += $"{prop.Name}: {Prefix} {nameType(prop.Type)};";
-        //                propsDef += $@"{Environment.NewLine}
-        //                this.appendValueInput('val_{prop.Name}')
-        //                        .setCheck('{nameType(prop.Type)}')
-        //                        .appendField('{prop.Name}')
-        //                        ;";
-
-        //                prodCode += $@"{Environment.NewLine}
-        //                obj['{prop.Name}'] = Blockly.JavaScript.valueToCode(block, 'val_{prop.Name}', Blockly.JavaScript.ORDER_ATOMIC);
-        //                ";
-
-
-        //            }
-
-        //            var prodCodeSimple =
-        //                string.Join("\r\n", t.Properties.Select(prop =>
-
-        //                 $"objPropString.push('\"{prop.Name}\":'+Blockly.JavaScript.valueToCode(block, \"val_{prop.Name}\", Blockly.JavaScript.ORDER_ATOMIC));"));
-
-        //            var strDef = $@"{Environment.NewLine}
-        //                    Blockly.Blocks['{Prefix}_{nameType(t.Name)}'] = {{
-        //                    init: function() {{
-        //                        this.appendDummyInput()
-        //                            .appendField('{t.Name}');
-        //                        {propsDef}
-        //                        this.setTooltip('{tooltip}');
-        //                        this.setOutput(true, '{nameType(t.Name)}');
-        //                            }}  
-        //                    }};";
-
-        //            strDef += $@"{Environment.NewLine}
-        //    Blockly.Blocks['var_{Prefix}_{nameType(t.Name)}'] = {{
-        //  init: function() {{
-        //    this.setTooltip('{t.Name}');
-        //    this.appendDummyInput()
-        //      .appendField('variable:')
-        //      .appendField(new Blockly.FieldVariable(
-        //          'var_{t.Name}',
-        //          '{nameType(t.Name)}'
-        //      ), 'FIELDNAME');
-        //  }}
-        //}};";
-
-        //            var strJS = $@"
-        //                Blockly.JavaScript['{Prefix}_{nameType(t.Name)}'] = function(block) {{
-        //                var obj={{}};
-        //                {prodCode}
-        //                var code = JSON.stringify(obj);
-        //                code =`(function(){{
-        //                        var json = JSON.parse('${{code}}');
-        //                var objNew = {{}};
-
-        //                for (var key in json) {{
-
-        //                    objNew[key] = eval(json[key]);
-
-        //                }};
-
-        //                  return  (objNew);}})()`;     
-
-
-        //                console.log(code);
-        //                return [code, Blockly.JavaScript.ORDER_NONE];
-        //                }};";
-
-        //            strJS = $@"
-        //                Blockly.JavaScript['{Prefix}_{nameType(t.Name)}'] = function(block) {{
-        //                console.log(block);
-        //                var objPropString=[];
-        //                {prodCodeSimple}
-        //                console.log(objPropString);
-        //                var code ='{{ '+ objPropString.join(',') +' }}';
-        //                console.log(code);
-        //                return [code, Blockly.JavaScript.ORDER_NONE];
-        //                }};";
-        //            return strDef + strJS;
-
-        //        }
-
+   
         public override string TranslateToBlocklyType()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public override bool ConvertibleToBlocklyType()
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public override string TranslateToBlocklyBlocksType()
@@ -207,7 +94,7 @@ namespace NetCore2Blockly.Swagger
 
         public override PropertyBase[] GetProperties()
         {
-            throw new NotImplementedException();
+            return this.properties;
         }
 
         public override Dictionary<string, long> GetValuesForEnum()
