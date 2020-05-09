@@ -10,24 +10,20 @@ namespace NetCore2Blockly.JavascriptGeneration
     /// </summary>
     public class BlocklyToolBoxJSGenerator
     {
-        private string typeNameNoGeneric(Type type)
-        {
-            var t = Nullable.GetUnderlyingType(type) ?? type;
-            return t.Name;
-        }
+       
         /// <summary>
         /// Generates the blockly tool box value.
         /// </summary>
         /// <param name="types">The types.</param>
         /// <returns></returns>
-        public string GenerateBlocklyToolBoxValue(Type[] types)
+        public string GenerateBlocklyToolBoxValue(TypeArgument[] types)
         {
             string blockText = "";
             var globalVars = "var glbVar=function(workspace){";
             foreach (var type in types)
             {
 
-                var typeName = typeNameNoGeneric(type);
+                var typeName = type.TypeNameForBlockly;
                 var newTypeName = type.TranslateToNewTypeName(); 
 
                 globalVars += $"workspace.createVariable('var_{typeName}', '{newTypeName}');";
@@ -67,20 +63,21 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// <param name="blockText">The block text.</param>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        public string GenerateToolBoxCodeForAllPropertiesOfAType(string blockText, Type type)
+        public string GenerateToolBoxCodeForAllPropertiesOfAType(string blockText, TypeArgument type)
         {
-            var validProperties = type.GetProperties().Where(prop => prop.GetSetMethod() != null);
+            var validProperties = type.GetProperties();
 
             foreach (var property in type.GetProperties())
             {
                 var propertyType = property.PropertyType;
                 if (!propertyType.ConvertibleToBlocklyType())
                     continue;
-                
+
+                var typeName = type.TypeNameForBlockly;
 
                 blockText += createBlockShadowDef(property.Name, propertyType.TranslateToBlocklyBlocksType());
 
-                blockText += $"blockText_{type.Name} += blockTextLocalSiteFunctions;";
+                blockText += $"blockText_{typeName} += blockTextLocalSiteFunctions;";
             }
 
             return blockText;

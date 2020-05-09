@@ -16,7 +16,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        public string GenerateBlocklyDefinition(Type type)
+        public string GenerateBlocklyDefinition(TypeArgument type)
         {
 
             if (type.ConvertibleToBlocklyType())
@@ -32,7 +32,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        public string GenerateDefinitionString(Type type)
+        public string GenerateDefinitionString(TypeArgument type)
         {
             if (type.IsEnum)
             {
@@ -42,7 +42,7 @@ namespace NetCore2Blockly.JavascriptGeneration
 
             var tooltipAndpropsDef = GenerateTooltipAndPropDef(type);
             var blocklyTypeName = type.TranslateToNewTypeName();
-            var typeName = type.Name;
+            var typeName = type.TypeNameForBlockly;
 
 
 
@@ -74,23 +74,25 @@ namespace NetCore2Blockly.JavascriptGeneration
             return definitionString;
         }
 
-        private string GenerateDefinitionStringForEnum(Type type)
+        private string GenerateDefinitionStringForEnum(TypeArgument type)
         {
+            string typeName = type.TypeNameForBlockly;
             if (!type.IsEnum)
                 throw new ArgumentException($"type {type.Name} is not enum!");
 
 
-            var names = Enum.GetNames(type);
+
+
             var opt = string.Join(",",
-                names.Select(it => $"['{it}', '{ValueEnum(Enum.Parse(type, it))}']")
-                );
+                type.GetValuesForEnum().Select(it => $"['{it.Key}', '{it.Value}']")
+                ) ;
 
             var def = $@"{Environment.NewLine}
  Blockly.Blocks['{type.TranslateToNewTypeName()}'] = {{
             init: function () {{
                 this.appendDummyInput()
-                    .appendField('{type.Name}')
-                    .appendField(new Blockly.FieldDropdown([{opt}]), 'val_{type.Name}');
+                    .appendField('{typeName}')
+                    .appendField(new Blockly.FieldDropdown([{opt}]), 'val_{typeName}');
             this.setOutput(true, 'Number');
 
             this.setTooltip('Enumeration {type.Name}');
@@ -115,12 +117,12 @@ namespace NetCore2Blockly.JavascriptGeneration
             }
             throw new ArgumentException("there is an enum that is not valid");
         }
-        internal (string tooltip, string propsDef) GenerateTooltipAndPropDef(Type type)
+        internal (string tooltip, string propsDef) GenerateTooltipAndPropDef(TypeArgument type)
         {
             string tooltip = $"{type.Name} with props:";
             string propsDef = "";
             
-            var validProperties = type.GetProperties().Where(prop => prop.GetSetMethod() != null);
+            var validProperties = type.GetProperties();
             
             
 
@@ -145,15 +147,16 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        public string GenerateJSstring(Type type)
+        public string GenerateJSstring(TypeArgument type)
         {
             var str = typeof(string).FullName;
             if (type.IsEnum)
             {
+                string typeName = type.TypeNameForBlockly;
                 return $@"
                 Blockly.JavaScript['{type.TranslateToNewTypeName()}'] = function(block) {{
 
-                    var dropdown_name = block.getFieldValue('val_{type.Name}');                    
+                    var dropdown_name = block.getFieldValue('val_{typeName}');                    
                     code = dropdown_name;
                     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 
@@ -163,12 +166,7 @@ namespace NetCore2Blockly.JavascriptGeneration
 
             var arr = typeof(IEnumerable);
             var props = type.GetProperties()
-                           .Select(prop => (prop, isArray:
-                           (!prop.PropertyType.IsValueType)
-                           &&
-                           (prop.PropertyType.FullName != str)
-                           &&
-                           arr.IsAssignableFrom(prop.PropertyType)))
+                           .Select(prop => (prop, isArray:prop.IsArray))                           
                         //.Select(it => (prop: it.prop, filter: (!it.isArray) ? "" : "+'.filter(it=>it !=null)'" ))
                         //TODO: previous line can filter empty arrays, e.g. post with empty elements
                         // however , raises an error in acorn. For the moment, not implemented

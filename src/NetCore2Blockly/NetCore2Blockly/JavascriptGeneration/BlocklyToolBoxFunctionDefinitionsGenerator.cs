@@ -18,6 +18,18 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// <returns></returns>
         public string GenerateBlocklyToolBoxFunctionDefinitions(List<ActionInfo> actionList)
         {
+            actionList.Sort((a, b) => {
+                var res = a.ControllerName.CompareTo(b.ControllerName);
+                if (res != 0)
+                    return res;
+
+                res = a.Verb.CompareTo(b.Verb);
+                if (res != 0)
+                    return res;
+
+                return a.ActionName.CompareTo(b.ActionName);
+
+                });
             string blockText = "var blockTextLocalSiteFunctions='';";
             foreach (var actionsGroupedByController in actionList.GroupBy(it => it.ControllerName))
             {

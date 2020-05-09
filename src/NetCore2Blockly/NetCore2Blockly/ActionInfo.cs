@@ -42,9 +42,9 @@ namespace NetCore2Blockly
 
             };
         }
-        Dictionary<string, (Type type, BindingSourceDefinition bs)> GetParameters(ApiParameterDescription[] parameterDescriptions)
+        Dictionary<string, (TypeArgument type, BindingSourceDefinition bs)> GetParameters(ApiParameterDescription[] parameterDescriptions)
         {
-            var desc = new Dictionary<string, (Type type, BindingSourceDefinition bs)>();
+            var desc = new Dictionary<string, (TypeArgument type, BindingSourceDefinition bs)>();
 
             if (parameterDescriptions?.Length == 0)
                 return desc;
@@ -64,7 +64,7 @@ namespace NetCore2Blockly
             .Where(parameterDescriptor => parameterDescriptor != null && okBindingSource.Contains(parameterDescriptor.BindingInfo?.BindingSource))
             .Distinct()
             .ToList()
-            .ForEach(x => desc.Add(x.Name, (x.ParameterType, ConvertFromBindingSource(x.BindingInfo?.BindingSource ?? BindingSource.Query))));
+            .ForEach(x => desc.Add(x.Name, (new TypeToGenerateFromCSharp( x.ParameterType), ConvertFromBindingSource(x.BindingInfo?.BindingSource ?? BindingSource.Query))));
 
             if (parameterDescriptions.Length > desc.Count)
             {
