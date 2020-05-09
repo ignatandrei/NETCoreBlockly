@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Extensions;
+using Microsoft.OpenApi.Readers;
+using NetCore2Blockly.Swagger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,14 +21,22 @@ namespace NetCore2Blockly
     {
 
         #region swaggers
-        private Dictionary<string, string> swaggers;
+        private Dictionary<string, List<ActionInfo>> swaggers;
         internal string[] KeySwaggers()
         {
             return swaggers.Select(it => it.Key).ToArray();
         }
         internal string SwaggerBlocklyTypesDefinition(string key)
         {
-            return "";
+
+            var blocklyFileGenerator = new BlocklyFileGenerator(swaggers[key]);
+            return blocklyFileGenerator.GenerateNewBlocklyTypesDefinition();
+            //BlocklyTypesDefinition = blocklyFileGenerator.GenerateNewBlocklyTypesDefinition();
+            //BlocklyAPIFunctions = blocklyFileGenerator.GenerateBlocklyAPIFunctions();
+            //BlocklyToolBoxValueDefinition = blocklyFileGenerator.GenerateBlocklyToolBoxValueDefinitionFile();
+            //BlocklyToolBoxFunctionDefinition = blocklyFileGenerator.GenerateBlocklyToolBoxFunctionDefinitionFile();
+
+            
         }
         internal string SwaggersDictionaryJS
         {
@@ -36,9 +48,109 @@ namespace NetCore2Blockly
                 return $@"var dictSwagger=[]; {s}";
             }
         }
-        internal void AddSwagger(string name, string endpoint)
+        async Task<List<ActionInfo>> GenerateFromSwaggerEndPoint(string endpoint)
         {
-            swaggers.Add(name, endpoint);
+            var uri = new Uri(endpoint);
+            var site = uri.Scheme + "://" + uri.Authority + (uri.IsDefaultPort ? "" : ":" + uri.Port);
+            var httpClient = new HttpClient
+            {
+                BaseAddress = new Uri(site)
+            };
+            using var stream = await httpClient.GetStreamAsync(uri.PathAndQuery);
+            var openApiDocument = new OpenApiStreamReader().Read(stream, out var diagnostic);
+            var comp = openApiDocument.Components;
+
+            var types = new AllTypes();
+            foreach (var schema in comp.Schemas)
+            {
+
+                var t = new TypeToGenerateSwagger(schema);
+                t.Site = site;
+                types.Add(t);
+            }
+            var functions = openApiDocument.Paths;
+            var actions = new List<ActionInfo>();
+            foreach (var f in functions)
+            {
+                var val = f.Value;
+                foreach (var op in val.Operations)
+                {
+                    var val1 = op.Value;
+                    var act = new ActionInfoSwagger();
+                    actions.Add(act);
+                    act.Site = site;
+                    act.RelativeRequestUrl = f.Key;
+                    act.Verb = op.Key.GetDisplayName();
+                    if (val1.Tags?.Count > 0)
+                    {
+                        act.ControllerName = val1.Tags.First().Name;
+                    }
+                    else
+                    {
+                        act.ControllerName = ActionInfoSwagger.GenerateControllerName(act.RelativeRequestUrl);
+                    }
+                    foreach (var par in val1.Parameters)
+                    {
+                        var name = par.Name;
+                        var s = par.In;//path , query
+                        var schema = par.Schema;
+                        TypeArgumentBase myType = null;
+                        if (schema.Type != null)
+                        {
+                            myType = types.FindAfterId(schema.Type);
+                        }
+                        if (schema.Reference != null)
+                        {
+                            var id = schema.Reference.ReferenceV2 + "_" + schema.Reference.ReferenceV3;
+                            myType = types.FindAfterId(id);
+
+                        }
+                        var bs = BindingSourceDefinition.None;
+                        switch (par.In.GetDisplayName().ToLower())
+                        {
+                            case "path":
+                                bs = BindingSourceDefinition.Path;
+                                break;
+                            case "query":
+                                bs = BindingSourceDefinition.Query;
+                                break;
+                            default:
+                                //https://swagger.io/docs/specification/describing-parameters/
+                                break;
+
+                        }
+                        act.Params.Add(name, (myType, bs));
+                    }
+                    var postData = val1.RequestBody?.Content;
+                    if (postData != null)
+                    {
+                        var bs = BindingSourceDefinition.Body;
+                        var data = postData.Values.FirstOrDefault();
+                        var s = data.Schema;
+                        var name = s.Type;
+                        TypeArgumentBase myType = null;
+                        if (s.Reference != null)
+                        {
+                            var id = s.Reference.ReferenceV2 + "_" + s.Reference.ReferenceV3;
+                            myType = types.FindAfterId(id);
+                            name = myType.Name;
+                        }
+                        else
+                        {
+                            myType = types.FindAfterId(s.Type);
+                            name = myType.Name;
+                        }
+                        act.Params.Add(name, (myType, bs));
+                    }
+                    Console.WriteLine(op.Key);
+                }
+            }
+            return actions;
+
+        }
+        internal async Task AddSwagger(string key, string endpoint)
+        {
+                        swaggers.Add(key, await GenerateFromSwaggerEndPoint(endpoint));
         }
 
         #endregion
@@ -75,7 +187,7 @@ namespace NetCore2Blockly
         public GenerateBlocklyFilesHostedService(IApiDescriptionGroupCollectionProvider api)
         {
             this.api = api;
-            this.swaggers = new Dictionary<string, string>();
+            this.swaggers = new Dictionary<string, List<ActionInfo>>();
         }
         /// <summary>
         /// starts

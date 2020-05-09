@@ -972,18 +972,25 @@
         //swagger
 
         //window.alert(JSON.stringify(dictSwagger));
+        function addScript(src) {
+            var s = document.createElement('script');
+            s.setAttribute('src', src);
+            document.body.appendChild(s);
+        }
         var toolbox = document.getElementById('toolbox');
         var xmlString = '';
         for (var i = 0; i < dictSwagger.length; i++) {
             var nameSwagger = dictSwagger[i].key;
-            xmlString += `<category name="${nameSwagger}" expanded="true">`;
+            xmlString += `<category name="TEST${nameSwagger}" expanded="true">`;
             xmlString += `<category name="${nameSwagger} Functions" expanded="true"></category>`;
             xmlString += `<category name="${nameSwagger} Values"></category>`;
             xmlString += "</category>";
+            addScript(`/BlocklyDefinitions${nameSwagger}`);
         }
         
         var html = toolbox.innerHTML.replace('<category name="OtherSwagggers"></category>', xmlString);
         toolbox.innerHTML = html;
+
         //end swagger
 
 

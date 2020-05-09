@@ -49,7 +49,7 @@ namespace NetCore2Blockly
             var blocklyFilesHostedService =app.
     ApplicationServices
     .GetService<GenerateBlocklyFilesHostedService>();
-            blocklyFilesHostedService.AddSwagger(name, endPoint);
+            blocklyFilesHostedService.AddSwagger(name, endPoint).ConfigureAwait(false).GetAwaiter().GetResult();
             return app;
         }
         /// <summary>

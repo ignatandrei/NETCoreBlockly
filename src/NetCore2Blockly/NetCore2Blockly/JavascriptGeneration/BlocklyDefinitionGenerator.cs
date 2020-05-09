@@ -9,14 +9,14 @@ namespace NetCore2Blockly.JavascriptGeneration
     /// <summary>
     /// generates blockly definition for a type
     /// </summary>
-    public class BlocklyDefinitionGenerator
+    class BlocklyDefinitionGenerator
     {
         /// <summary>
         /// Generates the blockly definition.
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        public string GenerateBlocklyDefinition(TypeArgumentBase type)
+        internal string GenerateBlocklyDefinition(TypeArgumentBase type)
         {
 
             if (type.ConvertibleToBlocklyType())

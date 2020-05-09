@@ -8,7 +8,7 @@ namespace NetCore2Blockly
     /// <summary>
     /// extension to generate types
     /// </summary>
-    public static class ActionListExtensions
+    static class ActionListExtensions
     {
 
 
@@ -17,7 +17,7 @@ namespace NetCore2Blockly
         /// </summary>
         /// <param name="list">The list.</param>
         /// <returns></returns>
-        public static TypeArgumentBase[] GetAllTypesWithNullBlocklyType(this List<ActionInfo> list)
+        internal static TypeArgumentBase[] GetAllTypesWithNullBlocklyType(this List<ActionInfo> list)
         {
             return  list
 

@@ -1,8 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using NetCore2Blockly.Swagger;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Mail;
 
 namespace NetCore2Blockly
 {
+   class AllTypes : List<TypeArgumentBase>
+    {
+        public TypeArgumentBase FindAfterId(string id)
+        {
+            var ret = this.FirstOrDefault(it => it.id == id);
+            if (ret == null)
+            {
+                ret = BlocklyType.CreateValue(id);
+                this.Add(ret);
+            }
+            return ret;
+        }
+
+        public TypeToGenerateSwagger[] MustCreateBlocks()
+        {
+            return this
+                .Where(it => it as TypeToGenerateSwagger != null)
+
+                .Cast<TypeToGenerateSwagger>()
+
+                .ToArray();
+        }
+    }
     /// <summary>
     /// emultates a type
     /// </summary>
