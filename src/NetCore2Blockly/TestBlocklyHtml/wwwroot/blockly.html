@@ -64,7 +64,7 @@
     <script src="/BlocklyToolBoxValueDefinitions"></script>
     <script src="/blocklyAPIFunctions"></script>
     <script src="/BlocklyToolBoxFunctionDefinitions"></script>
-
+    <script src="/BlocklySwaggers"></script>
     <p>
         <button onclick="runCode()" id="runButton" style="width:300px">E X E C U T E !</button>
 
@@ -183,7 +183,8 @@
 
         </category>
         <sep></sep>
-        <category custom="savedBlocks" name="Saved Blocks">
+        <category name="OtherSwagggers"></category>
+        <category custom="savedBlocks" name="Saved Blocks" >
 
         </category>
 
@@ -968,6 +969,18 @@
             // TODO: Change ORDER_NONE to the correct strength.
             return [code, Blockly.JavaScript.ORDER_NONE];
         };
+        //swagger
+
+        window.alert(JSON.stringify(dictSwagger));
+        var toolbox = document.getElementById('toolbox');
+        var xmlString = '';
+        for (var i = 0; i < dictSwagger.length; i++) {
+            xmlString = `<category name="${dictSwagger[i].key}"></category>`;
+        }
+        
+        var html = toolbox.innerHTML.replace('<category name="OtherSwagggers"></category>', xmlString);
+        toolbox.innerHTML = html;
+        //end swagger
 
 
         demoWorkspace = Blockly.inject('blocklyDiv',

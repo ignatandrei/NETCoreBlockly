@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.FileProviders.Physical;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Pipelines;
 using System.Linq;
@@ -33,8 +34,17 @@ namespace NetCore2Blockly
         {
             serviceCollection.AddSingleton<GenerateBlocklyFilesHostedService>();
             serviceCollection.AddHostedService(p => p.GetService<GenerateBlocklyFilesHostedService>());
-            
+
             return serviceCollection;
+        }
+
+        public static IApplicationBuilder UseBlocklySwagger(this IApplicationBuilder app, string name, string endPoint)
+        {
+            var blocklyFilesHostedService =app.
+    ApplicationServices
+    .GetService<GenerateBlocklyFilesHostedService>();
+            blocklyFilesHostedService.AddSwagger(name, endPoint);
+            return app;
         }
         /// <summary>
         ///  use blockly
@@ -45,16 +55,18 @@ namespace NetCore2Blockly
         {
 
             MapJS(app, "/blocklyDefinitions", b => b.BlocklyTypesDefinition);
-            MapJS(app, "/BlocklyToolBoxValueDefinitions", b => b.BlocklyToolBoxValueDefinition);            
+            MapJS(app, "/BlocklyToolBoxValueDefinitions", b => b.BlocklyToolBoxValueDefinition);
             MapJS(app, "/blocklyAPIFunctions", b => b.BlocklyAPIFunctions);
-            MapJS(app, "/BlocklyToolBoxFunctionDefinitions", b => b.BlocklyToolBoxFunctionDefinition);            
+            MapJS(app, "/BlocklyToolBoxFunctionDefinitions", b => b.BlocklyToolBoxFunctionDefinition);
+            MapJS(app, "/BlocklySwaggers", b => b.SwaggersDictionaryJS);
             return app;
         }
-        private static void MapJS(IApplicationBuilder app, string url,Func<GenerateBlocklyFilesHostedService,string> content)
+
+        private static void MapJS(IApplicationBuilder app, string url, Func<GenerateBlocklyFilesHostedService, string> content)
         {
             app.Map(url, app =>
             {
-                var blocklyFilesHostedService = 
+                var blocklyFilesHostedService =
                 app.
                     ApplicationServices
                     .GetService<GenerateBlocklyFilesHostedService>();
@@ -80,7 +92,7 @@ namespace NetCore2Blockly
             {
                 if (item.IsDirectory)
                 {
-                    mapFile(dirName +"/" + item.Name,provider, appBuilder);
+                    mapFile(dirName + "/" + item.Name, provider, appBuilder);
                     continue;
                 }
                 string map = (dirName + "/" + item.Name).Substring("blocklyFiles".Length);
@@ -117,7 +129,7 @@ namespace NetCore2Blockly
         {
             var manifestEmbeddedProvider =
 new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
-            
+
             mapFile("blocklyFiles", manifestEmbeddedProvider, appBuilder);
         }
         /// <summary>
@@ -130,38 +142,38 @@ new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
         }
         private static void mapStorage(IApplicationBuilder appBuilder)
         {
-            
+
             var manifestEmbeddedProvider =
                 new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
 
             appBuilder.Map("/blocklyStorage", app =>
             {
-                 app.Run(async cnt=>
-                 {
-                     string nameFile = "extensions/SaveToLocalStorage.js";
-                     IFileInfo f = new PhysicalFileInfo(new FileInfo("wwwroot/"+nameFile));
-          
-                     if (!f.Exists)
-                     {
+                app.Run(async cnt =>
+                {
+                    string nameFile = "extensions/SaveToLocalStorage.js";
+                    IFileInfo f = new PhysicalFileInfo(new FileInfo("wwwroot/" + nameFile));
 
-                         f = manifestEmbeddedProvider.GetFileInfo("blocklyFiles/"+nameFile);
-                     }
+                    if (!f.Exists)
+                    {
+
+                        f = manifestEmbeddedProvider.GetFileInfo("blocklyFiles/" + nameFile);
+                    }
                      //TODO: add corect mime type for js files
                      using var stream = new MemoryStream();
-                     using var cs = f.CreateReadStream();
-                     byte[] buffer = new byte[2048]; // read in chunks of 2KB
+                    using var cs = f.CreateReadStream();
+                    byte[] buffer = new byte[2048]; // read in chunks of 2KB
                      int bytesRead;
-                     while ((bytesRead = cs.Read(buffer, 0, buffer.Length)) > 0)
-                     {
-                         stream.Write(buffer, 0, bytesRead);
-                     }
-                     byte[] result = stream.ToArray();
+                    while ((bytesRead = cs.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        stream.Write(buffer, 0, bytesRead);
+                    }
+                    byte[] result = stream.ToArray();
                      // TODO: do something with the result
                      var m = new Memory<byte>(result);
-                     await cnt.Response.BodyWriter.WriteAsync(m);
-                 });
-             });
-            
+                    await cnt.Response.BodyWriter.WriteAsync(m);
+                });
+            });
+
         }
     }
 }

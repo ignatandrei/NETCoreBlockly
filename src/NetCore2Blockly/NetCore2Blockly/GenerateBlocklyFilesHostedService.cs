@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,6 +16,25 @@ namespace NetCore2Blockly
     public class GenerateBlocklyFilesHostedService : IHostedService
     {
 
+        #region swaggers
+        private Dictionary<string, string> swaggers;
+
+        public string SwaggersDictionaryJS
+        {
+            get
+            {
+                var s = string.Join(Environment.NewLine,
+                    swaggers.Select(it => $@"dictSwagger.push({{key:'{it.Key}',value:'{it.Value}'}});"));
+
+                return $@"var dictSwagger=[]; {s}";
+            }
+        }
+        public void AddSwagger(string name, string endpoint)
+        {
+            swaggers.Add(name, endpoint);
+        }
+
+        #endregion
         /// <summary>
         /// The blockly tool box function definition
         /// </summary>
@@ -47,6 +68,7 @@ namespace NetCore2Blockly
         public GenerateBlocklyFilesHostedService(IApiDescriptionGroupCollectionProvider api)
         {
             this.api = api;
+            this.swaggers = new Dictionary<string, string>();
         }
         /// <summary>
         /// starts
@@ -71,7 +93,7 @@ namespace NetCore2Blockly
             BlocklyToolBoxFunctionDefinition = blocklyFileGenerator.GenerateBlocklyToolBoxFunctionDefinitionFile();
            
         }
-       
+        
         /// <summary>
         /// Triggered when the application host is performing a graceful shutdown.
         /// </summary>
