@@ -993,13 +993,13 @@
         for (var i = 0; i < dictSwagger.length; i++) {
             var nameSwagger = dictSwagger[i].key;
             xmlString += `<category name="${nameSwagger}" expanded="true">`;
-            xmlString += `<category name="${nameSwagger} Functions" expanded="true"></category>`;
+            xmlString += `<category name="${nameSwagger} Functions" id="${nameSwagger}Functions" expanded="true"></category>`;
             xmlString += `<category name="${nameSwagger} Values" custom="SiteValues{key}"></category>`;
             xmlString += "</category>";
             addScript(`/BlocklyDefinitions${nameSwagger}`);
             addScript(`/BlocklyToolBoxValueDefinitions${nameSwagger}`);
             addScript(`/blocklyAPIFunctions${nameSwagger}`);
-
+            addScript(`/BlocklyToolBoxFunctionDefinitions${nameSwagger}`)
             existglbVar(nameSwagger);
         }
         

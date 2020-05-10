@@ -15,8 +15,9 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// Generates the blockly tool box function definitions.
         /// </summary>
         /// <param name="actionList">The action list.</param>
+        /// <param name="key">The action list.</param>
         /// <returns></returns>
-        public string GenerateBlocklyToolBoxFunctionDefinitions(List<ActionInfo> actionList)
+        public string GenerateBlocklyToolBoxFunctionDefinitions(List<ActionInfo> actionList,string key)
         {
             actionList.Sort((a, b) => {
                 var res = a.ControllerName.CompareTo(b.ControllerName);
@@ -30,7 +31,7 @@ namespace NetCore2Blockly.JavascriptGeneration
                 return a.ActionName.CompareTo(b.ActionName);
 
                 });
-            string blockText = "var blockTextLocalSiteFunctions='';";
+            string blockText = $"var blockTextLocalSiteFunctions{key}='';";
             foreach (var actionsGroupedByController in actionList.GroupBy(it => it.ControllerName))
             {
                 var controllerName = actionsGroupedByController.Key;
@@ -38,11 +39,11 @@ namespace NetCore2Blockly.JavascriptGeneration
 
                 var blockColor = BlocklyStringToColor.ConvertToHue(actionHash);
 
-                blockText += $"blockTextLocalSiteFunctions += '<category name=\"{controllerName}\" colour=\"{blockColor}\">' ; ";
+                blockText += $"blockTextLocalSiteFunctions{key} += '<category name=\"{controllerName}\" colour=\"{blockColor}\">' ; ";
                 foreach (var action in actionsGroupedByController)
                 {
                     blockText += $@"{Environment.NewLine}
-                        blockTextLocalSiteFunctions += '<block type=""{action.GenerateCommandName()}"">';";
+                        blockTextLocalSiteFunctions{key} += '<block type=""{action.GenerateCommandName()}"">';";
                     if (action.HasParams)
                     {
                         foreach (var param in action.Params)
@@ -55,7 +56,7 @@ namespace NetCore2Blockly.JavascriptGeneration
 
                                 var blockShadowType = type.TranslateToBlocklyBlocksType();
                                 blockText += $@"{Environment.NewLine}
-                                                 blockTextLocalSiteFunctions += '<value name=""val_{blocklyParameterName}""><shadow type=""{blockShadowType}"">{GenerateBlockShadowField(blockShadowType)}</shadow></value>';  
+                                                 blockTextLocalSiteFunctions{key} += '<value name=""val_{blocklyParameterName}""><shadow type=""{blockShadowType}"">{GenerateBlockShadowField(blockShadowType)}</shadow></value>';  
                                               ";
 
 
@@ -67,7 +68,7 @@ namespace NetCore2Blockly.JavascriptGeneration
                                 {
                                     var blockShadowType = type.TranslateToNewTypeName();
                                     blockText += $@"{Environment.NewLine}
-                                                    blockTextLocalSiteFunctions += '<value name=""val_{blocklyParameterName}""><shadow type=""{blockShadowType}""></shadow></value>';                                                    
+                                                    blockTextLocalSiteFunctions{key} += '<value name=""val_{blocklyParameterName}""><shadow type=""{blockShadowType}""></shadow></value>';                                                    
                                                    ";
 
 
@@ -77,9 +78,9 @@ namespace NetCore2Blockly.JavascriptGeneration
                         }
                     }
 
-                    blockText += "blockTextLocalSiteFunctions += '</block>';";
+                    blockText += $"blockTextLocalSiteFunctions{key} += '</block>';";
                 }
-                blockText += $"blockTextLocalSiteFunctions+='</category>';";
+                blockText += $"blockTextLocalSiteFunctions{key}+='</category>';";
 
             }
 

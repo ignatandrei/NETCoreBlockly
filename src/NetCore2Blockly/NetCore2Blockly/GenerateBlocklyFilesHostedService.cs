@@ -23,9 +23,16 @@ namespace NetCore2Blockly
 
         #region swaggers
         private Dictionary<string, List<ActionInfo>> swaggers;
+
+
         internal string[] KeySwaggers()
         {
             return swaggers.Select(it => it.Key).ToArray();
+        }
+        internal string SwaggerBlocklyToolBoxFunctionDefinition(string key)
+        {
+            var blocklyFileGenerator = new BlocklyFileGenerator(swaggers[key]);
+            return blocklyFileGenerator.GenerateBlocklyToolBoxFunctionDefinitionFile(key);
         }
         internal string SwaggerBlocklyAPIFunctions(string key)
         {

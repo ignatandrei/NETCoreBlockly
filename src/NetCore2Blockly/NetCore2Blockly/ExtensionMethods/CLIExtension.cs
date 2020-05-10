@@ -75,6 +75,7 @@ namespace NetCore2Blockly
                 MapJS(app, "/BlocklyDefinitions" + item, b => b.SwaggerBlocklyTypesDefinition(item));
                 MapJS(app, "/BlocklyToolBoxValueDefinitions" + item, b => b.SwaggerBlocklyToolBoxValueDefinition(item));
                 MapJS(app, "/blocklyAPIFunctions" + item, b => b.SwaggerBlocklyAPIFunctions(item));
+                MapJS(app, "/BlocklyToolBoxFunctionDefinitions" + item, b => b.SwaggerBlocklyToolBoxFunctionDefinition(item));
 
             }
 

@@ -50,10 +50,11 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// Generates the blockly tool box function definitions.
         /// </summary>
         /// <param name="actionList">The action list.</param>
+        /// <param name="key">The action list.</param>
         /// <returns></returns>
-        public string GenerateBlocklyToolBoxFunctionDefinitions(List<ActionInfo> actionList)
+        public string GenerateBlocklyToolBoxFunctionDefinitions(List<ActionInfo> actionList,string key)
         {
-            return _toolBoxFunctionDefinitionGenerator.GenerateBlocklyToolBoxFunctionDefinitions(actionList);
+            return _toolBoxFunctionDefinitionGenerator.GenerateBlocklyToolBoxFunctionDefinitions(actionList,key);
         }
 
 

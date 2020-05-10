@@ -463,11 +463,12 @@
             generates items to toolbox
             </summary>
         </member>
-        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxFunctionDefinitionsGenerator.GenerateBlocklyToolBoxFunctionDefinitions(System.Collections.Generic.List{NetCore2Blockly.ActionInfo})">
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxFunctionDefinitionsGenerator.GenerateBlocklyToolBoxFunctionDefinitions(System.Collections.Generic.List{NetCore2Blockly.ActionInfo},System.String)">
             <summary>
             Generates the blockly tool box function definitions.
             </summary>
             <param name="actionList">The action list.</param>
+            <param name="key">The action list.</param>
             <returns></returns>
         </member>
         <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxFunctionDefinitionsGenerator.GenerateBlockShadowField(System.String)">
@@ -518,11 +519,12 @@
             <param name="key">site key</param>
             <returns></returns>
         </member>
-        <member name="M:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator.GenerateBlocklyToolBoxFunctionDefinitions(System.Collections.Generic.List{NetCore2Blockly.ActionInfo})">
+        <member name="M:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator.GenerateBlocklyToolBoxFunctionDefinitions(System.Collections.Generic.List{NetCore2Blockly.ActionInfo},System.String)">
             <summary>
             Generates the blockly tool box function definitions.
             </summary>
             <param name="actionList">The action list.</param>
+            <param name="key">The action list.</param>
             <returns></returns>
         </member>
         <member name="M:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator.GenerateFunctionJS(NetCore2Blockly.ActionInfo,System.String)">

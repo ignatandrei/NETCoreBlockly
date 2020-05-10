@@ -88,9 +88,9 @@ namespace NetCore2Blockly
             return allDefs;
         }
        
-        internal string GenerateBlocklyToolBoxFunctionDefinitionFile()
+        internal string GenerateBlocklyToolBoxFunctionDefinitionFile(string key="")
         {
-            var blocklyToolBoxFuncDef = _jsGenerator.GenerateBlocklyToolBoxFunctionDefinitions(_actionList);
+            var blocklyToolBoxFuncDef = _jsGenerator.GenerateBlocklyToolBoxFunctionDefinitions(_actionList, key);
        
             return blocklyToolBoxFuncDef;
 
