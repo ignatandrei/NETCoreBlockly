@@ -48,7 +48,7 @@ namespace NetCore2Blockly.JavascriptGeneration
             }
 
             var strDef = $@"
-                         var registerValues = function() {{
+                         var registerValues{key} = function() {{
                                 var xmlList = [];
                                 {blockText}
                 

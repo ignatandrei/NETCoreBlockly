@@ -970,7 +970,18 @@
             return [code, Blockly.JavaScript.ORDER_NONE];
         };
         //swagger
+        function existglbVar(key) {
+            var name = `glbVar${key}`;
+            
+            if (typeof window[name] === 'undefined') {
+                setTimeout(() => existglbVar(key), 1000);
+                return;
+            }
+            console.log('loaded glbvar:' + key);
+            window[name](demoWorkspace);
+            demoWorkspace.registerToolboxCategoryCallback(`SiteValues{key}`,window[`registerValues${key}`]);
 
+        }
         //window.alert(JSON.stringify(dictSwagger));
         function addScript(src) {
             var s = document.createElement('script');
@@ -983,14 +994,11 @@
             var nameSwagger = dictSwagger[i].key;
             xmlString += `<category name="TEST${nameSwagger}" expanded="true">`;
             xmlString += `<category name="${nameSwagger} Functions" expanded="true"></category>`;
-            xmlString += `<category name="${nameSwagger} Values"></category>`;
+            xmlString += `<category name="${nameSwagger} Values" custom="SiteValues{key}"></category>`;
             xmlString += "</category>";
             addScript(`/BlocklyDefinitions${nameSwagger}`);
             addScript(`/BlocklyToolBoxValueDefinitions${nameSwagger}`)
-            //if (glbVarheroku)
-            //    window.alert('aa');
-            //else
-            //    window.alert('b');
+            existglbVar(nameSwagger);
         }
         
         var html = toolbox.innerHTML.replace('<category name="OtherSwagggers"></category>', xmlString);
