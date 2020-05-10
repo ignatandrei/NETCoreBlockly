@@ -49,7 +49,7 @@ namespace NetCore2Blockly
         /// <value>
         /// The type of the return.
         /// </value>
-        public Type ReturnType { get; set; }
+        public TypeArgumentBase ReturnType { get; set; }
         /// <summary>
         /// Gets or sets the verb.
         /// </summary>

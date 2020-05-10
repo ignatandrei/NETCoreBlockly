@@ -87,17 +87,18 @@ namespace NetCore2Blockly
             RelativeRequestUrl = apiDescription.RelativePath;
             Params = GetParameters(apiDescription.ParameterDescriptions.ToArray());
             var actionDescriptor = apiDescription.ActionDescriptor as ControllerActionDescriptor;
-            ReturnType = actionDescriptor?.MethodInfo?.ReturnType;
+            var ret= ( actionDescriptor?.MethodInfo?.ReturnType);
 
 
-            if (ReturnType != null && ReturnType.IsGenericType)
+            if (ret != null && ret.IsGenericType)
             {
-                if (ReturnType.IsSubclassOf(typeof(Task)))
+                if (ret.IsSubclassOf(typeof(Task)))
                 {
-                    ReturnType = ReturnType.GetGenericArguments()[0];//TODO: get all
+                    ret= ret.GetGenericArguments()[0];//TODO: get all
 
                 }
             }
+            ReturnType = new TypeToGenerateFromCSharp(ret);
             ControllerName = actionDescriptor?.ControllerName;
 
         }

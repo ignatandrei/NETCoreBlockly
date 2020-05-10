@@ -66,7 +66,7 @@ namespace NetCore2Blockly.Swagger
 
         public override string TranslateToBlocklyType()
         {
-            return "TranslateToBlocklyType=>" + this.id;
+            return TranslateToNewTypeName();
         }
 
         public override string TranslateToNewTypeName()

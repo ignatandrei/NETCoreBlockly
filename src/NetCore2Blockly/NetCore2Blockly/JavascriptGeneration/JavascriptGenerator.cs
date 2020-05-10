@@ -61,20 +61,22 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// Generates the function js.
         /// </summary>
         /// <param name="action">The action.</param>
+        /// <param name="key">site key</param>
         /// <returns></returns>
-        public string GenerateFunctionJS(ActionInfo action)
+        public string GenerateFunctionJS(ActionInfo action,string key)
         {
-            return _functionJSGenerator.GenerateFunctionJS(action);
+            return _functionJSGenerator.GenerateFunctionJS(action,key);
         }
 
         /// <summary>
         /// Generates the function definition.
         /// </summary>
         /// <param name="action">The action.</param>
+        /// <param name="key">key</param>
         /// <returns></returns>
-        public string GenerateFunctionDefinition(ActionInfo action)
+        public string GenerateFunctionDefinition(ActionInfo action,string key="")
         {
-            return _functionDefinitionGenerator.GenerateFunctionDefinition(action);
+            return _functionDefinitionGenerator.GenerateFunctionDefinition(action,key);
         }
     }
 }

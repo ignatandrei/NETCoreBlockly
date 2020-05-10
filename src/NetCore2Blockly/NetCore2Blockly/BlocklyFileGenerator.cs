@@ -57,20 +57,33 @@ namespace NetCore2Blockly
             return blocklyToolboxValue;
         }
 
-       
+
 
         /// <summary>
         /// Functions blocklyAPIFunctions to be generated.
         /// </summary>
         /// <returns></returns>
-        public string GenerateBlocklyAPIFunctions(string key="")
+        public string GenerateBlocklyAPIFunctions(string key = "")
         {
             var allDefs = "";
+            _actionList.Sort((a, b) =>
+            {
+                var res = a.ControllerName.CompareTo(b.ControllerName);
+                if (res != 0)
+                    return res;
+
+                res = a.Verb.CompareTo(b.Verb);
+                if (res != 0)
+                    return res;
+
+                return a.ActionName.CompareTo(b.ActionName);
+
+            });
             foreach (var action in _actionList)
             {
-                
-                allDefs +=Environment.NewLine+ _jsGenerator.GenerateFunctionDefinition(action);
-                allDefs += Environment.NewLine + _jsGenerator.GenerateFunctionJS(action);
+
+                allDefs += Environment.NewLine + _jsGenerator.GenerateFunctionDefinition(action, key);
+                allDefs += Environment.NewLine + _jsGenerator.GenerateFunctionJS(action, key);
             }
             return allDefs;
         }

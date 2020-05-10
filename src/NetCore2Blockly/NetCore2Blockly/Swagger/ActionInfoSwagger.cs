@@ -13,7 +13,18 @@ namespace NetCore2Blockly.Swagger
         {
             Params = new Dictionary<string, (TypeArgumentBase type, BindingSourceDefinition bs)>();
         }
-        
+        static internal string GenerateActionName(string relativeRequest)
+        {
+            var arr = relativeRequest.Split("/");
+            for(var i = arr.Length; i > 0; i--)
+            {
+                if (arr[i-1].Contains("{"))
+                    continue;
+
+                return arr[i-1];
+            }
+            return "unknown";
+        }
         static internal string GenerateControllerName(string relativeRequest)
         {
             string controllerName = relativeRequest;

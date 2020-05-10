@@ -34,23 +34,28 @@ namespace NetCore2Blockly.JavascriptGeneration
                 tooltip += $"{typeName}: {blocklyType}";
 
             }
+            if(actionInfo.ReturnType.id != null)
             tooltip += $" returns: {actionInfo.ReturnType.TranslateToBlocklyType()}";
             
             return strPropsDefinition + ";" + $" this.setTooltip('{tooltip}');";
         }
 
-        
+
         /// <summary>
         /// Generates the function definition.
         /// blockly block definition for action
         /// </summary>
         /// <param name="actionInfo">The action information.</param>
+        /// <param name="key">key</param>
         /// <returns></returns>
-        public string GenerateFunctionDefinition(ActionInfo actionInfo)
+        public string GenerateFunctionDefinition(ActionInfo actionInfo,string key)
         {
             var strPropsDefinition = GeneratePropertyDefinitions(actionInfo);
-
-            var returnType = $@"this.setOutput(true,'{actionInfo.ReturnType.TranslateToBlocklyType()}');";
+            var returnType = "";
+            if (actionInfo.ReturnType.id != null)
+                returnType = $@"this.setOutput(true,'{actionInfo.ReturnType.TranslateToBlocklyType()}');";
+            else
+                returnType = $@"this.setOutput(true,'');";
             var actionHash  = actionInfo.CustomGetHashCode();
 
             var blockColor = BlocklyStringToColor.ConvertToHue(actionHash);

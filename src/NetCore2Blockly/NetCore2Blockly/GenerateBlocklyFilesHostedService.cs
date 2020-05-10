@@ -120,6 +120,23 @@ namespace NetCore2Blockly
                     actions.Add(act);
                     act.Site = site;
                     act.RelativeRequestUrl = f.Key;
+                    act.ActionName =TypeToGenerateSwagger.Prefix(site) + "_"+ act.RelativeRequestUrl;
+                    var R200 = val1.Responses.FirstOrDefault(it => it.Key == "200");
+                    var type = R200.Value?.Content?.FirstOrDefault().Value?.Schema?.Type;
+                    if (!string.IsNullOrEmpty(type) && type !="object")
+                        act.ReturnType = types.FindAfterId(type);
+
+                    if(act.ReturnType == null)
+                    {
+                        var refer= R200.Value?.Content?.FirstOrDefault().Value?.Schema?.Reference;
+                        if(refer != null)
+                        act.ReturnType = types.FindAfterId(refer.ReferenceV2 + "_" + refer.ReferenceV3);
+
+                    }
+                    if(act.ReturnType == null)
+                    {
+                        act.ReturnType = types.FindAfterId(null);//null type
+                    }
                     act.Verb = op.Key.GetDisplayName();
                     if (val1.Tags?.Count > 0)
                     {

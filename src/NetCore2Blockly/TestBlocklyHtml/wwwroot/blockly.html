@@ -997,7 +997,9 @@
             xmlString += `<category name="${nameSwagger} Values" custom="SiteValues{key}"></category>`;
             xmlString += "</category>";
             addScript(`/BlocklyDefinitions${nameSwagger}`);
-            addScript(`/BlocklyToolBoxValueDefinitions${nameSwagger}`)
+            addScript(`/BlocklyToolBoxValueDefinitions${nameSwagger}`);
+            addScript(`/blocklyAPIFunctions${nameSwagger}`);
+
             existglbVar(nameSwagger);
         }
         

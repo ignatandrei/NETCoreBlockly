@@ -13,13 +13,14 @@ namespace NetCore2Blockly.JavascriptGeneration
     public class BlocklyFunctionJSGenerator
     {
 
-        
+
         /// <summary>
         /// blockly javascript code for action.
         /// </summary>
         /// <param name="actionInfo">The action information.</param>
+        /// <param name="key">key</param>
         /// <returns></returns>
-        public string GenerateFunctionJS(ActionInfo actionInfo)
+        public string GenerateFunctionJS(ActionInfo actionInfo,string key)
         {
             var paramsStr = "";
             var paramsBodyStr = "";
