@@ -100,7 +100,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:NetCore2Blockly.BlocklyFileGenerator.GenerateBlocklyAPIFunctions">
+        <member name="M:NetCore2Blockly.BlocklyFileGenerator.GenerateBlocklyAPIFunctions(System.String)">
             <summary>
             Functions blocklyAPIFunctions to be generated.
             </summary>

@@ -63,7 +63,7 @@ namespace NetCore2Blockly
         /// Functions blocklyAPIFunctions to be generated.
         /// </summary>
         /// <returns></returns>
-        public string GenerateBlocklyAPIFunctions()
+        public string GenerateBlocklyAPIFunctions(string key="")
         {
             var allDefs = "";
             foreach (var action in _actionList)
