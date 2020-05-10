@@ -81,10 +81,15 @@ namespace NetCore2Blockly.JavascriptGeneration
                 throw new ArgumentException($"type {type.Name} is not enum!");
 
 
-
-
+            var addString = "";
+            var t = type.GetValuesForEnum().First().Value;
+            var q = (dynamic)t;
+            if(q.GetType() == typeof(string))
+            {
+                addString = @"\'";
+;           }
             var opt = string.Join(",",
-                type.GetValuesForEnum().Select(it => $"['{it.Key}', '{it.Value}']")
+                type.GetValuesForEnum().Select(it => $"['{it.Key}', '{addString}{it.Value}{addString}']")
                 ) ;
 
             var def = $@"{Environment.NewLine}
