@@ -43,6 +43,10 @@ namespace NetCore2Blockly.Swagger
                         {
                             enumValues.Add($"{Name}_{lng.Value}", lng.Value);
                         }
+                        if(item is OpenApiString str)
+                        {
+                            enumValues.Add($"{Name}_{str.Value}", $"'{str.Value}'");
+                        }
                         //TODO: enumerate other types here...
                     }
                     
