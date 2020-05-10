@@ -82,16 +82,18 @@ namespace NetCore2Blockly
                     if (!(prop is PropertyBaseSwagger pbs))
                         continue;
                     var val = pbs.propertyTypeSchema;
+                    var reference = val.Reference;
+                    if (reference != null)
+                    {
+                        prop.PropertyType = types.FindAfterId(reference.ReferenceV2 + "_" + reference.ReferenceV3);
+                        continue;
+                    }
                     if (!string.IsNullOrWhiteSpace(val.Type))
                     {
                         prop.PropertyType = types.FindAfterId(val.Type);
                         continue;
                     }
-                    var reference = val.Reference;
-                    if (reference != null)
-                    {
-                        prop.PropertyType = types.FindAfterId(reference.ReferenceV2 + "_" + reference.ReferenceV3);
-                    }
+                    
                     Debug.Assert(prop.PropertyType != null);
 
                 }

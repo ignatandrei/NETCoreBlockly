@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace NetCore2Blockly.Swagger
 {
@@ -11,13 +12,13 @@ namespace NetCore2Blockly.Swagger
 
         }
 
-        public override string FullName => throw new System.NotImplementedException();
+        public override string FullName => $"FullName=>{id}";
 
-        public override bool IsEnum => throw new System.NotImplementedException();
+        public override bool IsEnum => false;
 
-        public override string TypeNameForBlockly => throw new System.NotImplementedException();
+        public override string TypeNameForBlockly => $"TypeNameForBlockly=>{id}";
 
-        public override bool IsValueType => throw new System.NotImplementedException();
+        public override bool IsValueType => true;
 
         internal static BlocklyType CreateValue(string format)
         {
@@ -26,7 +27,7 @@ namespace NetCore2Blockly.Swagger
 
         public override bool ConvertibleToBlocklyType()
         {
-            throw new System.NotImplementedException();
+            return true;
         }
 
         public override PropertyBase[] GetProperties()
@@ -36,22 +37,27 @@ namespace NetCore2Blockly.Swagger
 
         public override Dictionary<string, long> GetValuesForEnum()
         {
-            throw new System.NotImplementedException();
+            return new Dictionary<string, long>(){
+                { $"TranslateToBlocklyBlocksType=>{id}",1 }
+            };
         }
 
         public override string TranslateToBlocklyBlocksType()
         {
-            throw new System.NotImplementedException();
+            return $"TranslateToBlocklyBlocksType=>{id}";
         }
 
         public override string TranslateToBlocklyType()
         {
-            return "this is a TranslateToBlocklyType :" + this.id;
+            return "TranslateToBlocklyType=>" + this.id;
         }
 
         public override string TranslateToNewTypeName()
         {
-            return $"TranslateToNewTypeName{id}";
+            var upperCaseFirst = id.First().ToString().ToUpper() + id.Substring(1);
+            if (upperCaseFirst == "Integer")
+                upperCaseFirst = "Number";
+            return upperCaseFirst;
         }
     }
 }

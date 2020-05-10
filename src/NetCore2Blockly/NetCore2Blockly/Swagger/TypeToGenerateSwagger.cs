@@ -58,7 +58,7 @@ namespace NetCore2Blockly.Swagger
             }
         }
 
-        public override string FullName => throw new NotImplementedException();
+        public override string FullName =>  $"{Site} ; {Name} ";
 
         public override bool IsEnum
         {
@@ -68,9 +68,9 @@ namespace NetCore2Blockly.Swagger
             }
         }
 
-        public override string TypeNameForBlockly => throw new NotImplementedException();
+        public override string TypeNameForBlockly => $"{Name}";
 
-        public override bool IsValueType => throw new NotImplementedException();
+        public override bool IsValueType => false;
 
    
         public override string TranslateToBlocklyType()
@@ -85,12 +85,12 @@ namespace NetCore2Blockly.Swagger
 
         public override string TranslateToBlocklyBlocksType()
         {
-            throw new NotImplementedException();
+            return $"TranslateToBlocklyBlocksType ; {id}";
         }
 
         public override string TranslateToNewTypeName()
         {
-            throw new NotImplementedException();
+            return $"{Prefix}_{Name}";
         }
 
         public override PropertyBase[] GetProperties()
@@ -100,7 +100,10 @@ namespace NetCore2Blockly.Swagger
 
         public override Dictionary<string, long> GetValuesForEnum()
         {
-            throw new NotImplementedException();
+            return new Dictionary<string, long>(){
+                { $"TranslateToBlocklyBlocksType=>{id}",1 }
+            };
+
         }
     }
 }

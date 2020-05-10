@@ -5,7 +5,8 @@ namespace NetCore2Blockly.Swagger
 {
     class PropertyBaseSwagger : PropertyBase
     {
-        public override bool IsArray => throw new NotImplementedException();
+        //TODO: verify is array here! 
+        public override bool IsArray =>  false;
 
         internal OpenApiSchema propertyTypeSchema;
     }
