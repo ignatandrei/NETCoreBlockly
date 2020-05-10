@@ -2,11 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using System.Security;
 
 namespace NetCore2Blockly
 {
    class AllTypes : List<TypeArgumentBase>
     {
+        public AllTypes() : base()
+        {
+
+        }
+        public AllTypes(IEnumerable<TypeArgumentBase> b) :base(b)
+        {
+
+        }
         public TypeArgumentBase FindAfterId(string id)
         {
             var ret = this.FirstOrDefault(it => it.id == id);

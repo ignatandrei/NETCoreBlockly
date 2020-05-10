@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Readers;
 using NetCore2Blockly.Swagger;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
@@ -67,6 +68,33 @@ namespace NetCore2Blockly
                 var t = new TypeToGenerateSwagger(schema);
                 t.Site = site;
                 types.Add(t);
+            }
+            //do it again to find property types
+            var existingTypes = new AllTypes(types);
+            
+
+           foreach(var t in existingTypes)
+            {
+                foreach(var prop in t.GetProperties())
+                {
+                    if (prop.PropertyType != null)
+                        continue;
+                    if (!(prop is PropertyBaseSwagger pbs))
+                        continue;
+                    var val = pbs.propertyTypeSchema;
+                    if (!string.IsNullOrWhiteSpace(val.Type))
+                    {
+                        prop.PropertyType = types.FindAfterId(val.Type);
+                        continue;
+                    }
+                    var reference = val.Reference;
+                    if (reference != null)
+                    {
+                        prop.PropertyType = types.FindAfterId(reference.ReferenceV2 + "_" + reference.ReferenceV3);
+                    }
+                    Debug.Assert(prop.PropertyType != null);
+
+                }
             }
             var functions = openApiDocument.Paths;
             var actions = new List<ActionInfo>();

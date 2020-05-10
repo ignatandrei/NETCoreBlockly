@@ -18,7 +18,8 @@ namespace NetCore2Blockly.Swagger
             {
                 var p = new PropertyBaseSwagger();
                 p.Name = prop.Key;
-                p.PropertyType = null;//TODO: find WHAT!! prop.Value.Type;
+                p.propertyTypeSchema = prop.Value;
+                p.PropertyType = null;
                 l.Add(p);
                 _isEnum = (schema.Value.Enum?.Count >0);                    
             }

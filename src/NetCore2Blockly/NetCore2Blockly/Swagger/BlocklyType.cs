@@ -51,7 +51,7 @@ namespace NetCore2Blockly.Swagger
 
         public override string TranslateToNewTypeName()
         {
-            throw new System.NotImplementedException();
+            return $"TranslateToNewTypeName{id}";
         }
     }
 }
