@@ -992,7 +992,7 @@
         var xmlString = '';
         for (var i = 0; i < dictSwagger.length; i++) {
             var nameSwagger = dictSwagger[i].key;
-            xmlString += `<category name="TEST${nameSwagger}" expanded="true">`;
+            xmlString += `<category name="${nameSwagger}" expanded="true">`;
             xmlString += `<category name="${nameSwagger} Functions" expanded="true"></category>`;
             xmlString += `<category name="${nameSwagger} Values" custom="SiteValues{key}"></category>`;
             xmlString += "</category>";

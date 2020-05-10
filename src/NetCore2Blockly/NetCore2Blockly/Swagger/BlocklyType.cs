@@ -38,7 +38,7 @@ namespace NetCore2Blockly.Swagger
         public override Dictionary<string, long> GetValuesForEnum()
         {
             return new Dictionary<string, long>(){
-                { $"TranslateToBlocklyBlocksType=>{id}",1 }
+                { $"BlocklyType TranslateToBlocklyBlocksType=>{id}",1 }
             };
         }
 

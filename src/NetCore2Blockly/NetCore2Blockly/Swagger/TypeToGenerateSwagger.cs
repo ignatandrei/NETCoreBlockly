@@ -1,4 +1,5 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 
@@ -8,6 +9,7 @@ namespace NetCore2Blockly.Swagger
     {
 
         private bool _isEnum;
+        Dictionary<string, long> enumValues;
         PropertyBaseSwagger[] properties;
         public TypeToGenerateSwagger(KeyValuePair<string, OpenApiSchema> schema) : base(schema.Value.Reference.ReferenceV2 + "_" + schema.Value.Reference.ReferenceV3)
         {
@@ -25,6 +27,27 @@ namespace NetCore2Blockly.Swagger
             }
             l.Sort((x, y) => x.Name.CompareTo(y.Name));
             properties = l.ToArray();
+            this._isEnum = schema.Value.Enum?.Count > 0;
+            if (_isEnum)
+            {
+                enumValues = new Dictionary<string, long>();
+                foreach(var item in schema.Value.Enum)
+                {
+                    if(item.AnyType == AnyType.Primitive)
+                    {
+                        if(item is OpenApiInteger intg)
+                        {
+                            enumValues.Add($"{Name}_{intg.Value}", intg.Value);
+                        }
+                        if (item is OpenApiLong lng)
+                        {
+                            enumValues.Add($"{Name}_{lng.Value}", lng.Value);
+                        }
+                        //TODO: enumerate other types here...
+                    }
+                    
+                }
+            }
 
 
         }
@@ -104,9 +127,7 @@ namespace NetCore2Blockly.Swagger
 
         public override Dictionary<string, long> GetValuesForEnum()
         {
-            return new Dictionary<string, long>(){
-                { $"TranslateToBlocklyBlocksType=>{id}",1 }
-            };
+            return enumValues;
 
         }
     }
