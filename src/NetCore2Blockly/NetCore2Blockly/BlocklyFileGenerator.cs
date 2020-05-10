@@ -45,14 +45,14 @@ namespace NetCore2Blockly
         /// Generates the blocks definition.
         /// </summary>
         /// <returns></returns>
-        public string GenerateBlocklyToolBoxValueDefinitionFile()
+        public string GenerateBlocklyToolBoxValueDefinitionFile(string key="")
         {
             
             var types = _actionList.GetAllTypesWithNullBlocklyType()
                                
                 .ToArray();
 
-            var blocklyToolboxValue =  _jsGenerator.GenerateBlocklyToolBoxValue(types);
+            var blocklyToolboxValue =  _jsGenerator.GenerateBlocklyToolBoxValue(types,key);
 
             return blocklyToolboxValue;
         }

@@ -39,10 +39,11 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// Generates the blockly tool box value.
         /// </summary>
         /// <param name="types">The types.</param>
+        /// <param name="key">site key</param>
         /// <returns></returns>
-        public string GenerateBlocklyToolBoxValue(TypeArgumentBase[] types)
+        public string GenerateBlocklyToolBoxValue(TypeArgumentBase[] types, string key="")
         {
-            return _toolBoxJSGenerator.GenerateBlocklyToolBoxValue(types);
+            return _toolBoxJSGenerator.GenerateBlocklyToolBoxValue(types,key);
         }
 
         /// <summary>

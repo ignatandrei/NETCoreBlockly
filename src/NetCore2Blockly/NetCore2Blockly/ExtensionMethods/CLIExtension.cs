@@ -73,6 +73,7 @@ namespace NetCore2Blockly
             foreach (var item in blocklyFilesHostedService.KeySwaggers())
             {
                 MapJS(app, "/BlocklyDefinitions" + item, b => b.SwaggerBlocklyTypesDefinition(item));
+                MapJS(app, "/BlocklyToolBoxValueDefinitions" + item, b => b.SwaggerBlocklyToolBoxValueDefinition(item));
             }
 
             return app;

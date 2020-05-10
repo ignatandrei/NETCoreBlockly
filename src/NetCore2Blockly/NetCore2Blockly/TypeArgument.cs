@@ -51,7 +51,13 @@ namespace NetCore2Blockly
             this.id = id;
             this.Name = id;
         }
-
+        /// <summary>
+        /// Gets or sets the site.
+        /// </summary>
+        /// <value>
+        /// The site.
+        /// </value>
+        protected internal string Site { get; set; }
         /// <summary>
         /// The name
         /// </summary>

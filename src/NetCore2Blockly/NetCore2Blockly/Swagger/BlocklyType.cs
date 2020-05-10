@@ -44,6 +44,23 @@ namespace NetCore2Blockly.Swagger
 
         public override string TranslateToBlocklyBlocksType()
         {
+            switch (id)
+            {
+                case "integer":
+                        return "math_number";
+
+                case "string":
+                        return "text";
+
+                case "bool"://TODO: add controller with boolean
+                        return "logic_boolean";
+
+                case "array": 
+                        return "lists_create_with";
+
+               
+
+            }
             return $"TranslateToBlocklyBlocksType=>{id}";
         }
 

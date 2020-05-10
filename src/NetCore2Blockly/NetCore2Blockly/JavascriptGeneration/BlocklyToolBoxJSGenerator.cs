@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetCore2Blockly.Swagger;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,20 +11,22 @@ namespace NetCore2Blockly.JavascriptGeneration
     /// </summary>
     public class BlocklyToolBoxJSGenerator
     {
-       
+
         /// <summary>
         /// Generates the blockly tool box value.
         /// </summary>
         /// <param name="types">The types.</param>
+        /// <param name="key">site key.</param>
         /// <returns></returns>
-        public string GenerateBlocklyToolBoxValue(TypeArgumentBase[] types)
+        public string GenerateBlocklyToolBoxValue(TypeArgumentBase[] types,string key="")
         {
             string blockText = "";
-            var globalVars = "var glbVar=function(workspace){";
+            var globalVars = $"var glbVar{key}=function(workspace){{";
             var sort = types.OrderBy(it => it.Name).ToArray();
+            
             foreach (var type in sort)
             {
-
+                
                 var typeName = type.TypeNameForBlockly;
                 var newTypeName = type.TranslateToNewTypeName(); 
 

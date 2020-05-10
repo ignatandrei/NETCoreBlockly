@@ -28,7 +28,6 @@ namespace NetCore2Blockly.Swagger
 
 
         }
-        public string Site { get; set; }
         public string Type { get; internal set; }
         internal static string nameType(string t)
         {
@@ -46,11 +45,10 @@ namespace NetCore2Blockly.Swagger
 
             return null;
         }
-        string Prefix
+        internal static string Prefix(string site)
         {
-            get
             {
-                return this.Site
+                return site
                     .Replace("http://", "")
                     .Replace("https://", "")
                     .Replace(".", "_")
@@ -68,7 +66,13 @@ namespace NetCore2Blockly.Swagger
             }
         }
 
-        public override string TypeNameForBlockly => $"{Name}";
+        public override string TypeNameForBlockly
+        {
+            get
+            {
+                return $"{Prefix(Site)}_{Name}";
+            }
+        }
 
         public override bool IsValueType => false;
 
@@ -90,7 +94,7 @@ namespace NetCore2Blockly.Swagger
 
         public override string TranslateToNewTypeName()
         {
-            return $"{Prefix}_{Name}";
+            return $"{Prefix(Site)}_{Name}";
         }
 
         public override PropertyBase[] GetProperties()

@@ -986,6 +986,11 @@
             xmlString += `<category name="${nameSwagger} Values"></category>`;
             xmlString += "</category>";
             addScript(`/BlocklyDefinitions${nameSwagger}`);
+            addScript(`/BlocklyToolBoxValueDefinitions${nameSwagger}`)
+            //if (glbVarheroku)
+            //    window.alert('aa');
+            //else
+            //    window.alert('b');
         }
         
         var html = toolbox.innerHTML.replace('<category name="OtherSwagggers"></category>', xmlString);

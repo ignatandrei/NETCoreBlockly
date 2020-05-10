@@ -94,7 +94,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:NetCore2Blockly.BlocklyFileGenerator.GenerateBlocklyToolBoxValueDefinitionFile">
+        <member name="M:NetCore2Blockly.BlocklyFileGenerator.GenerateBlocklyToolBoxValueDefinitionFile(System.String)">
             <summary>
             Generates the blocks definition.
             </summary>
@@ -480,11 +480,12 @@
             generates js for seeing blocks in toolbox
             </summary>
         </member>
-        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxJSGenerator.GenerateBlocklyToolBoxValue(NetCore2Blockly.TypeArgumentBase[])">
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxJSGenerator.GenerateBlocklyToolBoxValue(NetCore2Blockly.TypeArgumentBase[],System.String)">
             <summary>
             Generates the blockly tool box value.
             </summary>
             <param name="types">The types.</param>
+            <param name="key">site key.</param>
             <returns></returns>
         </member>
         <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxJSGenerator.GenerateToolBoxCodeForAllPropertiesOfAType(System.String,NetCore2Blockly.TypeArgumentBase)">
@@ -507,11 +508,12 @@
             <param name="type">The type.</param>
             <returns></returns>
         </member>
-        <member name="M:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator.GenerateBlocklyToolBoxValue(NetCore2Blockly.TypeArgumentBase[])">
+        <member name="M:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator.GenerateBlocklyToolBoxValue(NetCore2Blockly.TypeArgumentBase[],System.String)">
             <summary>
             Generates the blockly tool box value.
             </summary>
             <param name="types">The types.</param>
+            <param name="key">site key</param>
             <returns></returns>
         </member>
         <member name="M:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator.GenerateBlocklyToolBoxFunctionDefinitions(System.Collections.Generic.List{NetCore2Blockly.ActionInfo})">
@@ -550,6 +552,14 @@
             Initializes a new instance of the <see cref="T:NetCore2Blockly.TypeArgumentBase"/> class.
             </summary>
             <param name="id">The identifier.</param>
+        </member>
+        <member name="P:NetCore2Blockly.TypeArgumentBase.Site">
+            <summary>
+            Gets or sets the site.
+            </summary>
+            <value>
+            The site.
+            </value>
         </member>
         <member name="F:NetCore2Blockly.TypeArgumentBase.Name">
             <summary>

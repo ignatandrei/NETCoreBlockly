@@ -27,6 +27,11 @@ namespace NetCore2Blockly
         {
             return swaggers.Select(it => it.Key).ToArray();
         }
+        internal string SwaggerBlocklyToolBoxValueDefinition(string key)
+        {
+            var blocklyFileGenerator = new BlocklyFileGenerator(swaggers[key]);
+            return blocklyFileGenerator.GenerateBlocklyToolBoxValueDefinitionFile(key);
+        }
         internal string SwaggerBlocklyTypesDefinition(string key)
         {
 
