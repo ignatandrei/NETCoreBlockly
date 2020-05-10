@@ -17,6 +17,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.IdentityModel.Logging;
+using System.Text.Json.Serialization;
 
 namespace TestBlocklyHtml
 {
@@ -44,11 +45,14 @@ namespace TestBlocklyHtml
                                       ;
                                   });
             });
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(options =>
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
             services.AddBlockly();
             services.AddDbContext<testsContext>(options => options
 
               .UseInMemoryDatabase(databaseName: "MyDB"));
+
+        
             //this is not necessary to be added
             services.AddSwaggerGen(c =>
             {
@@ -58,6 +62,7 @@ namespace TestBlocklyHtml
                     Version = "v1",
                     Description = " Please see https://github.com/ignatandrei/netcoreblockly"
                 });
+                
             });
 
             //var key = Encoding.ASCII.GetBytes(Configuration["ApplicationSecret"]);

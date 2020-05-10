@@ -45,14 +45,14 @@ namespace NetCore2Blockly
             return t.TranslateToNewTypeName();
         }
 
-        public override Dictionary<string, long> GetValuesForEnum()
+        public override Dictionary<string, object> GetValuesForEnum()
         {
             if(!IsEnum)
                 throw new NotImplementedException();
 
             var names = Enum.GetNames(t);
-            var opt = names.Select(it => new KeyValuePair<string, long>(it, ValueEnum(Enum.Parse(t, it))));
-            var ret = new Dictionary<string, long>(opt);
+            var opt = names.Select(it => new KeyValuePair<string, object>(it, ValueEnum(Enum.Parse(t, it))));
+            var ret = new Dictionary<string, object>(opt);
             return ret;
 
         }

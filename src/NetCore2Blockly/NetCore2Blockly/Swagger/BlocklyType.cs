@@ -35,9 +35,9 @@ namespace NetCore2Blockly.Swagger
             throw new System.NotImplementedException();
         }
 
-        public override Dictionary<string, long> GetValuesForEnum()
+        public override Dictionary<string, object> GetValuesForEnum()
         {
-            return new Dictionary<string, long>(){
+            return new Dictionary<string, object>(){
                 { $"BlocklyType TranslateToBlocklyBlocksType=>{id}",1 }
             };
         }

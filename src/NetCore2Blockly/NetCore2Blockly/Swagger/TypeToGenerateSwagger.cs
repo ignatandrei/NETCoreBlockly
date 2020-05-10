@@ -9,7 +9,7 @@ namespace NetCore2Blockly.Swagger
     {
 
         private bool _isEnum;
-        Dictionary<string, long> enumValues;
+        Dictionary<string, object> enumValues;
         PropertyBaseSwagger[] properties;
         public TypeToGenerateSwagger(KeyValuePair<string, OpenApiSchema> schema) : base(schema.Value.Reference.ReferenceV2 + "_" + schema.Value.Reference.ReferenceV3)
         {
@@ -30,7 +30,7 @@ namespace NetCore2Blockly.Swagger
             this._isEnum = schema.Value.Enum?.Count > 0;
             if (_isEnum)
             {
-                enumValues = new Dictionary<string, long>();
+                enumValues = new Dictionary<string, object>();
                 foreach(var item in schema.Value.Enum)
                 {
                     if(item.AnyType == AnyType.Primitive)
@@ -125,7 +125,7 @@ namespace NetCore2Blockly.Swagger
             return this.properties;
         }
 
-        public override Dictionary<string, long> GetValuesForEnum()
+        public override Dictionary<string, object> GetValuesForEnum()
         {
             return enumValues;
 

@@ -122,7 +122,7 @@ namespace NetCore2Blockly
         /// Gets the values for enum.
         /// </summary>
         /// <returns></returns>
-        public abstract Dictionary<string, long> GetValuesForEnum();
+        public abstract Dictionary<string, object> GetValuesForEnum();
 
         /// <summary>
         /// Gets a value indicating whether this instance is value type.
