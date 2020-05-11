@@ -224,6 +224,22 @@ namespace NetCore2Blockly
                     Console.WriteLine(op.Key);
                 }
             }
+            var typesFromActionToTransformBlocks= actions
+
+                .SelectMany(it => it.Params)
+                .Select(param => param.Value.type)
+                .Distinct()
+                .Where(type => type.TranslateToBlocklyType() == null)
+
+                .ToArray();
+
+            var typesToTransfromBlocks = types
+                .Where(t=>t != null)
+                .Where(type => type.TranslateToBlocklyType() == null).ToArray();
+
+            //TODO: modify code for transform types , not actions of types, to blocks
+            //pet store is the offending
+            var remaining = typesToTransfromBlocks.Except(typesFromActionToTransformBlocks).ToArray();
             return actions;
 
         }
