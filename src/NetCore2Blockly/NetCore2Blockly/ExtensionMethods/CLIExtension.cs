@@ -65,17 +65,17 @@ namespace NetCore2Blockly
             MapJS(app, "/blocklyAPIFunctions", b => b.BlocklyAPIFunctions);
             MapJS(app, "/BlocklyToolBoxFunctionDefinitions", b => b.BlocklyToolBoxFunctionDefinition);
             MapJS(app, "/BlocklySwaggers", b => b.SwaggersDictionaryJS);
-            var blocklyFilesHostedService =
-                app.
-                    ApplicationServices
-                    .GetService<GenerateBlocklyFilesHostedService>();
+            //var blocklyFilesHostedService =
+            //    app.
+            //        ApplicationServices
+            //        .GetService<GenerateBlocklyFilesHostedService>();
 
-            foreach (var item in blocklyFilesHostedService.KeySwaggers())
+            //foreach (var item in blocklyFilesHostedService.KeySwaggers())
             {
-                MapJS(app, "/BlocklyDefinitions" + item, b => b.SwaggerBlocklyTypesDefinition(item));
-                MapJS(app, "/BlocklyToolBoxValueDefinitions" + item, b => b.SwaggerBlocklyToolBoxValueDefinition(item));
-                MapJS(app, "/blocklyAPIFunctions" + item, b => b.SwaggerBlocklyAPIFunctions(item));
-                MapJS(app, "/BlocklyToolBoxFunctionDefinitions" + item, b => b.SwaggerBlocklyToolBoxFunctionDefinition(item));
+                MapJS(app, "/BlocklyDefinitionsSwagger" , b => b.SwaggerBlocklyTypesDefinition());
+                MapJS(app, "/BlocklyToolBoxValueDefinitionsSwagger" , b => b.SwaggerBlocklyToolBoxValueDefinition());
+                MapJS(app, "/blocklyAPIFunctionsSwagger" , b => b.SwaggerBlocklyAPIFunctions());
+                MapJS(app, "/BlocklyToolBoxFunctionDefinitionsSwagger" , b => b.SwaggerBlocklyToolBoxFunctionDefinition());
 
             }
 

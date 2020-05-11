@@ -65,6 +65,11 @@
     <script src="/blocklyAPIFunctions"></script>
     <script src="/BlocklyToolBoxFunctionDefinitions"></script>
     <script src="/BlocklySwaggers"></script>
+    <script src="/blocklyDefinitionsSwagger"></script>
+    <script src="/BlocklyToolBoxValueDefinitionsSwagger"></script>
+    <script src="/blocklyAPIFunctionsSwagger"></script>
+    <script src="/BlocklyToolBoxFunctionDefinitionsSwagger"></script>
+
     <p>
         <button onclick="runCode()" id="runButton" style="width:300px">E X E C U T E !</button>
 
@@ -135,7 +140,7 @@
 
         function Loadtesting(id) {
             demoWorkspace.clear();
-            var content =testBlocks[id].data;
+            var content = testBlocks[id].data;
             var dom = Blockly.Xml.textToDom(content);
             Blockly.Xml.domToWorkspace(dom, demoWorkspace);
             resetStepUi();
@@ -174,7 +179,7 @@
 
     </script>
     <xml id="toolbox" style="display: none">
-        <category name="LocalSite" expanded="false">
+        <category name="LocalSite" expanded="true">
             <category id="LocalSiteFunctions" name="LocalSiteFunctions" expanded="true">
             </category>
             <category custom="LocalSiteValues" name="LocalSiteValues">
@@ -184,7 +189,7 @@
         </category>
         <sep></sep>
         <category name="OtherSwagggers"></category>
-        <category custom="savedBlocks" name="Saved Blocks" >
+        <category custom="savedBlocks" name="Saved Blocks">
 
         </category>
 
@@ -969,19 +974,8 @@
             // TODO: Change ORDER_NONE to the correct strength.
             return [code, Blockly.JavaScript.ORDER_NONE];
         };
-        //swagger
-        function existglbVar(key) {
-            var name = `glbVar${key}`;
-            
-            if (typeof window[name] === 'undefined') {
-                setTimeout(() => existglbVar(key), 1000);
-                return;
-            }
-            console.log('loaded glbvar:' + key);
-            window[name](demoWorkspace);
-            demoWorkspace.registerToolboxCategoryCallback(`SiteValues{key}`,window[`registerValues${key}`]);
+        //start swagger
 
-        }
         //window.alert(JSON.stringify(dictSwagger));
         function addScript(src) {
             var s = document.createElement('script');
@@ -992,17 +986,21 @@
         var xmlString = '';
         for (var i = 0; i < dictSwagger.length; i++) {
             var nameSwagger = dictSwagger[i].key;
+            var name = `blockTextLocalSiteFunctions${nameSwagger}`;
             xmlString += `<category name="${nameSwagger}" expanded="true">`;
-            xmlString += `<category name="${nameSwagger} Functions" id="${nameSwagger}Functions" expanded="true"></category>`;
+            xmlString += `<category name="${nameSwagger} Functions" id="${nameSwagger}Functions" expanded="true">`;
+            xmlString += window[name];
+            xmlString += `</category>`;
             xmlString += `<category name="${nameSwagger} Values" custom="SiteValues{key}"></category>`;
             xmlString += "</category>";
-            addScript(`/BlocklyDefinitions${nameSwagger}`);
-            addScript(`/BlocklyToolBoxValueDefinitions${nameSwagger}`);
-            addScript(`/blocklyAPIFunctions${nameSwagger}`);
-            addScript(`/BlocklyToolBoxFunctionDefinitions${nameSwagger}`)
-            existglbVar(nameSwagger);
         }
-        
+        function existglbVar(key) {
+            var name = `glbVar${key}`;
+            console.log('loaded glbvar:' + key);
+            window[name](demoWorkspace);
+            demoWorkspace.registerToolboxCategoryCallback(`SiteValues{key}`, window[`registerValues${key}`]);
+        }
+
         var html = toolbox.innerHTML.replace('<category name="OtherSwagggers"></category>', xmlString);
         toolbox.innerHTML = html;
 
@@ -1032,6 +1030,15 @@
         //    //tb.refreshSelection();
         //});
 
+
+        //start swagger
+
+        //window.alert(JSON.stringify(dictSwagger));
+        for (var i = 0; i < dictSwagger.length; i++) {
+            existglbVar(nameSwagger);
+        }
+        
+        //end swagger
 
         var urlParams = window.location.search.split('dom=');
 
@@ -1414,7 +1421,7 @@
         }
         /*doNotCopyToFinal*/
         displayLinksSavedStorage();
-                            /*enddoNotCopyToFinal*/
+                                /*enddoNotCopyToFinal*/
     </script>
 
 </body>

@@ -94,7 +94,7 @@ namespace NetCore2Blockly
             {
                 if (ret.IsSubclassOf(typeof(Task)))
                 {
-                    ret= ret.GetGenericArguments()[0];//TODO: get all
+                    ret= ret.GetGenericArguments()[0];
 
                 }
             }

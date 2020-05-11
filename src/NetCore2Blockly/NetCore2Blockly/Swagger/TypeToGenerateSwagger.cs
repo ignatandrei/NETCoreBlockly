@@ -38,16 +38,19 @@ namespace NetCore2Blockly.Swagger
                         if(item is OpenApiInteger intg)
                         {
                             enumValues.Add($"{Name}_{intg.Value}", intg.Value);
+                            continue;
                         }
                         if (item is OpenApiLong lng)
                         {
                             enumValues.Add($"{Name}_{lng.Value}", lng.Value);
+                            continue;
                         }
                         if(item is OpenApiString str)
                         {
                             enumValues.Add($"{Name}_{str.Value}", str.Value);
+                            continue;
                         }
-                        //TODO: enumerate other types here...
+                        throw new ArgumentException($"enum {Name} not integer, long or string...");
                     }
                     
                 }

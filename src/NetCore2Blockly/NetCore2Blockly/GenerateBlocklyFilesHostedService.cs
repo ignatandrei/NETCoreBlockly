@@ -22,38 +22,34 @@ namespace NetCore2Blockly
     {
 
         #region swaggers
-        private Dictionary<string, List<ActionInfo>> swaggers;
+        private Dictionary<string, BlocklyFileGenerator> swaggers;
 
+        internal async Task AddSwagger(string key, string endpoint)
+        {
+            var data = await GenerateFromSwaggerEndPoint(endpoint);
 
+            swaggers.Add(key, new BlocklyFileGenerator(data));
+        }
         internal string[] KeySwaggers()
         {
             return swaggers.Select(it => it.Key).ToArray();
         }
-        internal string SwaggerBlocklyToolBoxFunctionDefinition(string key)
+        internal string SwaggerBlocklyToolBoxFunctionDefinition()
         {
-            var blocklyFileGenerator = new BlocklyFileGenerator(swaggers[key]);
-            return blocklyFileGenerator.GenerateBlocklyToolBoxFunctionDefinitionFile(key);
+            return string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateBlocklyToolBoxFunctionDefinitionFile(it.Key))); ;
         }
-        internal string SwaggerBlocklyAPIFunctions(string key)
+        internal string SwaggerBlocklyAPIFunctions()
         {
-            var blocklyFileGenerator = new BlocklyFileGenerator(swaggers[key]);
-            return blocklyFileGenerator.GenerateBlocklyAPIFunctions(key);
+            return string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateBlocklyAPIFunctions(it.Key)));
         }
-        internal string SwaggerBlocklyToolBoxValueDefinition(string key)
+        internal string SwaggerBlocklyToolBoxValueDefinition()
         {
-            var blocklyFileGenerator = new BlocklyFileGenerator(swaggers[key]);
-            return blocklyFileGenerator.GenerateBlocklyToolBoxValueDefinitionFile(key);
+            return string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateBlocklyToolBoxValueDefinitionFile(it.Key)));
         }
-        internal string SwaggerBlocklyTypesDefinition(string key)
+        internal string SwaggerBlocklyTypesDefinition()
         {
 
-            var blocklyFileGenerator = new BlocklyFileGenerator(swaggers[key]);
-            return blocklyFileGenerator.GenerateNewBlocklyTypesDefinition();
-            //BlocklyTypesDefinition = blocklyFileGenerator.GenerateNewBlocklyTypesDefinition();
-            //BlocklyAPIFunctions = blocklyFileGenerator.GenerateBlocklyAPIFunctions();
-            //BlocklyToolBoxValueDefinition = blocklyFileGenerator.GenerateBlocklyToolBoxValueDefinitionFile();
-            //BlocklyToolBoxFunctionDefinition = blocklyFileGenerator.GenerateBlocklyToolBoxFunctionDefinitionFile();
-
+            return string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateNewBlocklyTypesDefinition()));
             
         }
         internal string SwaggersDictionaryJS
@@ -212,10 +208,7 @@ namespace NetCore2Blockly
             return actions;
 
         }
-        internal async Task AddSwagger(string key, string endpoint)
-        {
-            swaggers.Add(key, await GenerateFromSwaggerEndPoint(endpoint));
-        }
+       
 
         #endregion
         /// <summary>
@@ -251,7 +244,7 @@ namespace NetCore2Blockly
         public GenerateBlocklyFilesHostedService(IApiDescriptionGroupCollectionProvider api)
         {
             this.api = api;
-            this.swaggers = new Dictionary<string, List<ActionInfo>>();
+            this.swaggers = new  Dictionary<string, BlocklyFileGenerator>();
         }
         /// <summary>
         /// starts
