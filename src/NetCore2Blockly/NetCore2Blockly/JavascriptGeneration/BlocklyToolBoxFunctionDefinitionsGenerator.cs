@@ -19,12 +19,25 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// <returns></returns>
         public string GenerateBlocklyToolBoxFunctionDefinitions(List<ActionInfo> actionList,string key)
         {
+            var dictOrder = new Dictionary<string,int>()
+            {
+                {"get",1 },
+                {"post" ,2},
+                {"put" ,3},
+                {"delete",4 },
+                {"others",5 }
+
+            };
             actionList.Sort((a, b) => {
                 var res = a.ControllerName.CompareTo(b.ControllerName);
                 if (res != 0)
                     return res;
 
-                res = a.Verb.CompareTo(b.Verb);
+                var v1 = dictOrder.ContainsKey(a.Verb.ToLower()) ? dictOrder[a.Verb.ToLower()] : dictOrder["others"];
+                var v2 = dictOrder.ContainsKey(b.Verb.ToLower()) ? dictOrder[b.Verb.ToLower()] : dictOrder["others"];
+
+                
+                res = v1.CompareTo(v2);
                 if (res != 0)
                     return res;
 
