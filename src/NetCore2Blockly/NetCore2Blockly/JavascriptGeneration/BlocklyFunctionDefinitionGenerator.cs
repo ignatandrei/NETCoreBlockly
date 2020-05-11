@@ -1,6 +1,7 @@
 ﻿using NetCore2Blockly.ExtensionMethods;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace NetCore2Blockly.JavascriptGeneration
@@ -57,15 +58,21 @@ namespace NetCore2Blockly.JavascriptGeneration
             else
                 returnType = $@"this.setOutput(true,'');";
             var actionHash  = actionInfo.CustomGetHashCode();
-
+            string[] verbHasImage =new string[] { "get", "post", "put", "delete" };
+            bool hasImage = verbHasImage.Contains(actionInfo.Verb.ToLower());
             var blockColor = BlocklyStringToColor.ConvertToHue(actionHash);
             return $@"
                 Blockly.Blocks['{actionInfo.GenerateCommandName()}'] = {{
                           init: function() {{
                             this.setColour({blockColor});
-                            this.appendDummyInput()
-                                .appendField('{actionInfo.CommandDisplayName()}');
-                                {strPropsDefinition}
+                            this.appendDummyInput()" +
+
+                            (hasImage?
+                                $".appendField(new Blockly.FieldImage('/images/{actionInfo.Verb.ToLower()}.png', 90, 20, {{ alt: '{actionInfo.Verb}', flipRtl: 'FALSE' }}))"
+                                :"")+
+                                $".appendField('{actionInfo.CommandDisplayName(!hasImage)}');"                                
+                                +Environment.NewLine
+                                +$@"{strPropsDefinition}
                                 {returnType}
                                 }}//init
                         }};//{actionInfo.ActionName}

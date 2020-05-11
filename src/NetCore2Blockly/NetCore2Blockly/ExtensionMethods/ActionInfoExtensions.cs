@@ -26,11 +26,12 @@ namespace NetCore2Blockly.ExtensionMethods
         /// Commands the display name.
         /// </summary>
         /// <param name="actionInfo">The action information.</param>
+        /// <param name="withVerb">display with verb</param>
         /// <returns></returns>
-        public static string CommandDisplayName(this ActionInfo actionInfo)
+        public static string CommandDisplayName(this ActionInfo actionInfo, bool withVerb )
         {
 
-            return actionInfo.Verb + " " + actionInfo.ActionName;
+            return (withVerb? actionInfo.Verb + " ":"") + actionInfo.ActionName;
         }
     }
 }
