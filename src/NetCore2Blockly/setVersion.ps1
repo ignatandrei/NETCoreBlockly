@@ -10,7 +10,7 @@ $assemblyVersion=$d.ToString("1.yyyy.1MMdd.1HHmm")
 dotnet-property "**/*.csproj" AssemblyVersion:"$assemblyVersion"
 dotnet dotnet-property "**/*.csproj" AssemblyVersion:"$assemblyVersion"
 
-$version=$d.ToString("1.0.yyyy.") + ($diff.TotalSeconds -as  [int]).ToString()
+$version=$d.ToString("1.1.yyyy.") + ($diff.TotalSeconds -as  [int]).ToString()
 dotnet-property "**/*.csproj" Version:"$version"
 dotnet dotnet-property "**/*.csproj" Version:"$version"
 

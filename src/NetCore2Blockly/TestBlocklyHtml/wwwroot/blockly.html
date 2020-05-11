@@ -987,7 +987,7 @@
         for (var i = 0; i < dictSwagger.length; i++) {
             var nameSwagger = dictSwagger[i].key;
             var name = `blockTextLocalSiteFunctions${nameSwagger}`;
-            xmlString += `<category name="${nameSwagger}" expanded="true">`;
+            xmlString += `<category name="${nameSwagger}" expanded="false">`;
             xmlString += `<category name="${nameSwagger} Functions" id="${nameSwagger}Functions" expanded="true">`;
             xmlString += window[name];
             xmlString += `</category>`;

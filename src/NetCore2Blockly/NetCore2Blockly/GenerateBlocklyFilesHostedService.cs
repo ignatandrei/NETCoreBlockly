@@ -119,8 +119,10 @@ namespace NetCore2Blockly
                         prop.PropertyType = types.FindAfterId(val.Type);
                         continue;
                     }
+                    //should almost never happen , but , if not discovered...
+                    prop.PropertyType = types.FindAfterId(null);
+                    //Debug.Assert(prop.PropertyType != null);
                     
-                    Debug.Assert(prop.PropertyType != null);
 
                 }
             }
@@ -135,6 +137,7 @@ namespace NetCore2Blockly
                     var act = new ActionInfoSwagger();
                     actions.Add(act);
                     act.Site = site;
+                    act.Verb = op.Key.GetDisplayName();
                     act.RelativeRequestUrl = f.Key;
                     act.ActionName =TypeToGenerateSwagger.Prefix(site) + "_"+ act.RelativeRequestUrl;
                     var R200 = val1.Responses.FirstOrDefault(it => it.Key == "200");
@@ -153,7 +156,7 @@ namespace NetCore2Blockly
                     {
                         act.ReturnType = types.FindAfterId(null);//null type
                     }
-                    act.Verb = op.Key.GetDisplayName();
+                    
                     if (val1.Tags?.Count > 0)
                     {
                         act.ControllerName = val1.Tags.First().Name;
