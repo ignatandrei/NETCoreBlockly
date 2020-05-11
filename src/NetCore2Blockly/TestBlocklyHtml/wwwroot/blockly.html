@@ -991,14 +991,14 @@
             xmlString += `<category name="${nameSwagger} Functions" id="${nameSwagger}Functions" expanded="true">`;
             xmlString += window[name];
             xmlString += `</category>`;
-            xmlString += `<category name="${nameSwagger} Values" custom="SiteValues{key}"></category>`;
+            xmlString += `<category name="${nameSwagger} Values" custom="SiteValues${nameSwagger}"></category>`;
             xmlString += "</category>";
         }
         function existglbVar(key) {
             var name = `glbVar${key}`;
             console.log('loaded glbvar:' + key);
             window[name](demoWorkspace);
-            demoWorkspace.registerToolboxCategoryCallback(`SiteValues{key}`, window[`registerValues${key}`]);
+            demoWorkspace.registerToolboxCategoryCallback(`SiteValues${key}`, window[`registerValues${key}`]);
         }
 
         var html = toolbox.innerHTML.replace('<category name="OtherSwagggers"></category>', xmlString);
@@ -1035,6 +1035,7 @@
 
         //window.alert(JSON.stringify(dictSwagger));
         for (var i = 0; i < dictSwagger.length; i++) {
+            var nameSwagger = dictSwagger[i].key;
             existglbVar(nameSwagger);
         }
         
