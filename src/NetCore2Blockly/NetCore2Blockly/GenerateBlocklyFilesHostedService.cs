@@ -66,12 +66,25 @@ namespace NetCore2Blockly
         {
             var uri = new Uri(endpoint);
             var site = uri.Scheme + "://" + uri.Authority + (uri.IsDefaultPort ? "" : ":" + uri.Port);
+            
             var httpClient = new HttpClient
             {
                 BaseAddress = new Uri(site)
             };
             using var stream = await httpClient.GetStreamAsync(uri.PathAndQuery);
             var openApiDocument = new OpenApiStreamReader().Read(stream, out var diagnostic);
+            var servers = openApiDocument.Servers;
+            if (servers?.Count > 0)
+            {
+                foreach (var server in servers)
+                {
+                    if (server.Url.StartsWith(site))
+                    {
+                        site = server.Url;
+                        break;
+                    }
+                }
+            }
             var comp = openApiDocument.Components;
 
             var types = new AllTypes();
@@ -182,25 +195,28 @@ namespace NetCore2Blockly
                         act.Params.Add(name, (myType, bs));
                     }
                     var postData = val1.RequestBody?.Content;
-                    if (postData != null)
+                    if (postData != null )
                     {
                         var bs = BindingSourceDefinition.Body;
                         var data = postData.Values.FirstOrDefault();
                         var s = data.Schema;
                         var name = s.Type;
-                        TypeArgumentBase myType = null;
-                        if (s.Reference != null)
+                        if (name != null)
                         {
-                            var id = s.Reference.ReferenceV2 + "_" + s.Reference.ReferenceV3;
-                            myType = types.FindAfterId(id);
-                            name = myType.Name;
+                            TypeArgumentBase myType = null;
+                            if (s.Reference != null)
+                            {
+                                var id = s.Reference.ReferenceV2 + "_" + s.Reference.ReferenceV3;
+                                myType = types.FindAfterId(id);
+                                name = myType.Name;
+                            }
+                            else
+                            {
+                                myType = types.FindAfterId(s.Type);
+                                name = myType.Name;
+                            }
+                            act.Params.Add(name, (myType, bs));
                         }
-                        else
-                        {
-                            myType = types.FindAfterId(s.Type);
-                            name = myType.Name;
-                        }
-                        act.Params.Add(name, (myType, bs));
                     }
                     Console.WriteLine(op.Key);
                 }

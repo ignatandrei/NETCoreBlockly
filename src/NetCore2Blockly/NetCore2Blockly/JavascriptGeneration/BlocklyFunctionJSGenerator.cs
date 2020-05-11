@@ -106,7 +106,7 @@ namespace NetCore2Blockly.JavascriptGeneration
             }
 
             var str = $@"function({paramsFunction}){{
-                var strUrl =  '{actionInfo.RelativeRequestUrl}{strQueryString}';      
+                var strUrl =  '{actionInfo.Site}{actionInfo.RelativeRequestUrl}{strQueryString}';      
                 ";
             if (actionInfo.HasParams)
                 foreach (var param in actionInfo.Params)

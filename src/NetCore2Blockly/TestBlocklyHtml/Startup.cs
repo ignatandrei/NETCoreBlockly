@@ -100,6 +100,7 @@ namespace TestBlocklyHtml
             app.UseBlocklyUI();
             app.UseBlocklyLocalStorage();//this is not necessary , if you use app.UseBlocklyUI();
             //app.UseBlocklySwagger("heroku", "https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json");
+            app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json");
             //app.UseBlocklySqliteStorage();
             //this is not necessary to be added
             app.UseSwagger();

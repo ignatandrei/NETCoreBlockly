@@ -52,7 +52,7 @@ namespace NetCore2Blockly.Swagger
                 case "string":
                         return "text";
 
-                case "bool"://TODO: add controller with boolean
+                case "boolean"://TODO: add controller with boolean
                         return "logic_boolean";
 
                 case "array": 
