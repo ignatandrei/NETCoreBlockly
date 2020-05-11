@@ -19,7 +19,7 @@ namespace NetCore2Blockly
         /// <returns></returns>
         internal static TypeArgumentBase[] GetAllTypesWithNullBlocklyType(this List<ActionInfo> list)
         {
-            return  list
+            var types= list
 
                 .SelectMany(it => it.Params)
                 .Select(param => param.Value.type)
@@ -27,6 +27,23 @@ namespace NetCore2Blockly
                 .Where(type => type.TranslateToBlocklyType()==null)
                 
                 .ToArray();
+
+
+            var ids = types.Select(it => it.id).ToArray();
+            // see the inner properties if contains another types
+            var propsExtra =
+                 types.SelectMany(it => it.GetProperties())
+                .Where(it => it != null && it.PropertyType != null)
+                .Where(it => it.PropertyType.TranslateToBlocklyType() == null)
+                .Select(it => it.PropertyType)
+                .ToArray();
+
+            var remaining = propsExtra.Where(it => !ids.Contains(it.id)).ToArray();
+            if (remaining.Length > 0)
+                types = types.Union(remaining).ToArray();
+
+            return types;
+
         }
 
     }

@@ -51,7 +51,6 @@ namespace NetCore2Blockly
             var types = _actionList.GetAllTypesWithNullBlocklyType()
                                
                 .ToArray();
-
             var blocklyToolboxValue =  _jsGenerator.GenerateBlocklyToolBoxValue(types,key);
 
             return blocklyToolboxValue;
