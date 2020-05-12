@@ -1634,5 +1634,17 @@ var testBlocks = [
   </block>
 </xml>`
 
+    },
+    {
+        name: 'date',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" y="55" x="56">
+    <value name="TEXT">
+      <block type="displayCurrentDate">
+        <field name="dateFormat">iso</field>
+      </block>
+    </value>
+  </block>
+</xml>`
     }
 ]
