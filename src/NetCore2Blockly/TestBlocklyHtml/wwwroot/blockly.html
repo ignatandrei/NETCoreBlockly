@@ -1160,8 +1160,8 @@
             interpreter.setProperty(globalObject, 'convertToDate',
                 interpreter.createNativeFunction(wrapper));
 
-            var wrapper = () => displayDateCurrent();
-            interpreter.setProperty(globalObject, 'displayDateCurrent',
+            var wrapper = (item) => displayDateFormatted(item);
+            interpreter.setProperty(globalObject, 'displayDateFormatted',
                 interpreter.createNativeFunction(wrapper));
 
             var wrapper = (href, callback) => {
