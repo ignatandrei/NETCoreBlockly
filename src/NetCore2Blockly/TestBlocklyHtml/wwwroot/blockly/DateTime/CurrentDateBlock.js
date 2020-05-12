@@ -29,42 +29,43 @@ const dateFormats = {
 }
 
 Blockly.JavaScript['displayCurrentDate'] = block => {
-    const dropdownOption = block.getFieldValue('dateFormat');
-    console.log(dropdownOption);
+    let dropdownOption = block.getFieldValue('dateFormat');
 
     let operation = ''
-    switch (dropdownOption) {
+    switch (dropdownOption.toString()) {
 
         case dateFormats.HUMAN:
-            operation = `displayDateFormatted(${dateFormats.HUMAN})`;
+            operation = `displayDateFormatted('${dateFormats.HUMAN}')`;
             break;
         case dateFormats.ISO:
-            operation = `displayDateFormatted(${dateFormats.ISO})`;
+            operation = `displayDateFormatted('${dateFormats.ISO}')`;
             break;
         case dateFormats.UNIX:
-            operation = `displayDateFormatted(${dateFormats.UNIX})`;
+            operation = `displayDateFormatted('${dateFormats.UNIX}')`;
             break;
 
         default:
             console.log('Date time format not suported')
     }
-    console.log(operation);
 
     let code = operation;
     return [code, Blockly.JavaScript.ORDER_NONE];
 }
 
-function displayDateFormatted(format = '') {
+function displayDateFormatted(format) {
 
     switch (format) {
         case 'human':
-            displayDateCurrentAsHuman();
+            console.log("calling displayDateCurrentAsHuman")
+            return displayDateCurrentAsHuman();
             break;
         case 'iso':
-            displayDateCurrentAsIso();
+            console.log("calling displayDateCurrentAsIso")
+            return displayDateCurrentAsIso();
             break;
         case 'unix':
-            displayDateCurrentAsUnix();
+            console.log("calling displayDateCurrentAsUnix")
+            return displayDateCurrentAsUnix();
             break;
         default:
             console.log('Date time format not suported')

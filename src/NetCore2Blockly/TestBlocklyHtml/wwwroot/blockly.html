@@ -1046,7 +1046,7 @@
             interpreter.setProperty(globalObject, 'convertToDate',
                 interpreter.createNativeFunction(wrapper));
 
-            var wrapper = () => displayDateFormatted();
+            var wrapper = (item) => displayDateFormatted(item);
             interpreter.setProperty(globalObject, 'displayDateFormatted',
                 interpreter.createNativeFunction(wrapper));
 
