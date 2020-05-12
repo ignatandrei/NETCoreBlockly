@@ -132,6 +132,24 @@
             <param name="rgbColor"></param>
             <returns></returns>
         </member>
+        <member name="T:NetCore2Blockly.BlocklyUIOptions">
+            <summary>
+            options for UI
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.BlocklyUIOptions.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NetCore2Blockly.BlocklyUIOptions"/> class.
+            </summary>
+        </member>
+        <member name="P:NetCore2Blockly.BlocklyUIOptions.StartBlocks">
+            <summary>
+            Gets or sets the start blocks.
+            </summary>
+            <value>
+            The start blocks.
+            </value>
+        </member>
         <member name="T:NetCore2Blockly.EnumerateWebAPI">
             <summary>
             enumerate and generate
@@ -221,11 +239,12 @@
             <param name="app"></param>
             <returns></returns>
         </member>
-        <member name="M:NetCore2Blockly.CLIExtension.UseBlocklyUI(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="M:NetCore2Blockly.CLIExtension.UseBlocklyUI(Microsoft.AspNetCore.Builder.IApplicationBuilder,NetCore2Blockly.BlocklyUIOptions)">
             <summary>
             Uses the cli.
             </summary>
             <param name="appBuilder">The application builder.</param>
+            <param name="options">The application builder.</param>
         </member>
         <member name="M:NetCore2Blockly.CLIExtension.UseBlocklyLocalStorage(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>

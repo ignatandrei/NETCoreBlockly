@@ -95,9 +95,14 @@ namespace TestBlocklyHtml
 
             //just developer testing! do not use in production
             app.UseFileServer(enableDirectoryBrowsing: true);
-            //TODO: put this in the real application
-            // or copy the blockly.html files and others from wwwroot
-            app.UseBlocklyUI();
+            //you can use simply this
+            //app.UseBlocklyUI();
+            //or you can use a start blocks
+            app.UseBlocklyUI(new BlocklyUIOptions()
+            {
+                StartBlocks = StartBlocksForUI
+            });
+
             app.UseBlocklyLocalStorage();//this is not necessary , if you use app.UseBlocklyUI();
             //app.UseBlocklySwagger("heroku", "https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json");
             app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json");
@@ -127,5 +132,60 @@ namespace TestBlocklyHtml
 
             app.UseBlockly();
         }
+        private readonly string StartBlocksForUI = @"<xml xmlns='https://developers.google.com/blockly/xml'>
+  <block type='variables_set' y='20' x='20' inline='true'>
+    <field id='hO`?kR*XbVn|uJq:?jJ_' name='VAR'>n</field>
+    <value name='VALUE'>
+      <block type='math_number'>
+        <field name='NUM'>1</field>
+      </block>
+    </value>
+    <next>
+      <block type='controls_repeat_ext' inline='true'>
+        <value name='TIMES'>
+          <block type='math_number'>
+            <field name='NUM'>4</field>
+          </block>
+        </value>
+        <statement name='DO'>
+          <block type='variables_set' inline='true'>
+            <field id='hO`?kR*XbVn|uJq:?jJ_' name='VAR'>n</field>
+            <value name='VALUE'>
+              <block type='math_arithmetic'>
+                <field name='OP'>MULTIPLY</field>
+                <value name='A'>
+                  <block type='variables_get'>
+                    <field id='hO`?kR*XbVn|uJq:?jJ_' name='VAR'>n</field>
+                  </block>
+                </value>
+                <value name='B'>
+                  <block type='math_number'>
+                    <field name='NUM'>2</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type='text_print'>
+                <value name='TEXT'>
+                  <block type='variables_get'>
+                    <field id='hO`?kR*XbVn|uJq:?jJ_' name='VAR'>n</field>
+                  </block>
+                </value>
+                <next>
+                  <block type='text_print'>
+                    <value name='TEXT'>
+                      <block type='WeatherForecast_GET'></block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>";
     }
 }

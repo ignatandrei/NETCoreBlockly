@@ -145,12 +145,31 @@ namespace NetCore2Blockly
         /// Uses the cli.
         /// </summary>
         /// <param name="appBuilder">The application builder.</param>
-        public static void UseBlocklyUI(this IApplicationBuilder appBuilder)
+        /// <param name="options">The application builder.</param>
+        public static void UseBlocklyUI(this IApplicationBuilder appBuilder, BlocklyUIOptions options =null)
         {
             var manifestEmbeddedProvider =
 new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
 
             mapFile("blocklyFiles", manifestEmbeddedProvider, appBuilder);
+
+            #region map options
+            options = options ?? new BlocklyUIOptions();
+            appBuilder.Map("/BlocklystartBlocks", app =>
+            {
+                app.Run(async cnt =>
+                {
+                    var data = options.StartBlocks?.Replace("`", @"\`");
+                    var str = $"var startBlocksStr=`{data}`;";
+                    var result = Encoding.UTF8.GetBytes(str);
+                    var m = new Memory<byte>(result);
+                    await cnt.Response.BodyWriter.WriteAsync(m);
+                });
+
+            });
+            #endregion
+
+
         }
         /// <summary>
         /// Uses the storage

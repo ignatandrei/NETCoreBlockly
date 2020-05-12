@@ -27,6 +27,7 @@
     <script src="/blockly/Http/blocklyHeader.js"></script>
     <!--this is generated at runtime by blockly storage nuget : local storage, sqlite...-->
     <script src="/blocklyStorage"></script>
+    
 
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js"></script>
@@ -69,7 +70,7 @@
     <script src="/BlocklyToolBoxValueDefinitionsSwagger"></script>
     <script src="/blocklyAPIFunctionsSwagger"></script>
     <script src="/BlocklyToolBoxFunctionDefinitionsSwagger"></script>
-
+    <script src="/BlocklystartBlocks"></script>
     <p>
         <button onclick="runCode()" id="runButton" style="width:300px">E X E C U T E !</button>
 
@@ -1038,9 +1039,9 @@
             var nameSwagger = dictSwagger[i].key;
             existglbVar(nameSwagger);
         }
-        
-        //end swagger
 
+        //end swagger
+        //region start blocks to display
         var urlParams = window.location.search.split('dom=');
 
         if (urlParams.length == 2) {
@@ -1056,8 +1057,16 @@
             }
         }
         else {
-            Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
+            
+            var startBlocks = document.getElementById('startBlocks');
+
+            if (startBlocksStr.length > 0) {
+                startBlocks = Blockly.Xml.textToDom(startBlocksStr);
+            }
+            
+            Blockly.Xml.domToWorkspace(startBlocks, demoWorkspace);
         }
+        //end start blocks to display
         //Blockly.Xml.domToWorkspace(document.getElementById('testSite'), demoWorkspace);
 
         //var tb = demoWorkspace.getToolbox();
@@ -1422,7 +1431,7 @@
         }
         /*doNotCopyToFinal*/
         displayLinksSavedStorage();
-                                /*enddoNotCopyToFinal*/
+                                    /*enddoNotCopyToFinal*/
     </script>
 
 </body>
