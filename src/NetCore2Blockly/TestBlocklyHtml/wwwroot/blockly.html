@@ -1472,6 +1472,12 @@
                     }
                     ,
                     {
+                        element: '#runButton',
+                        intro: "After finish this tutorial, click execute"
+                    },
+                    
+
+                    {
                         
                         intro: 'Click button done or outside to finish the tutorial'
                     }
@@ -1480,7 +1486,7 @@
 
             });
 
-            intro.start();
+            intro.setOption('showProgress', true).start();
         }
         startIntro();
     </script>

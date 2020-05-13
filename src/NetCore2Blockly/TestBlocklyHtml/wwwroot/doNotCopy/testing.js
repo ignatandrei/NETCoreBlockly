@@ -1646,5 +1646,111 @@ var testBlocks = [
     </value>
   </block>
 </xml>`
+    },
+    {
+        name: 'create pet (what if we put 0 as petid?)',
+        data:`<xml xmlns=\"https://developers.google.com/blockly/xml\">
+    <variables>
+        <variable id=\"hO\`?kR*XbVn|uJq:?jJ_\">n</variable>  
+    </variables>  
+    <block type=\"variables_set\" inline=\"true\" x=\"-363\" y=\"12\">
+        <field name=\"VAR\" id=\"hO\`?kR*XbVn|uJq:?jJ_\">n</field>    
+        <value name=\"VALUE\">
+            <block type=\"petstore_swagger_iov2__pet_post\">
+                <value name=\"val_Pet\">
+                    <shadow type=\"petstore_swagger_iov2_Pet\"></shadow>          
+                    <block type=\"petstore_swagger_iov2_Pet\">
+                        <value name=\"val_category\">
+                            <block type=\"petstore_swagger_iov2_Category\">
+                                <value name=\"val_id\">
+                                    <shadow type=\"math_number\"><field name=\"NUM\">0</field>                  
+                                    </shadow>                
+                                </value>                
+                                <value name=\"val_name\">
+                                    <shadow type=\"text\"><field name=\"TEXT\">test</field>                  
+                                    </shadow>                
+                                </value>              
+                            </block>            
+                        </value>            
+                        <value name=\"val_id\">
+                            <shadow type=\"math_number\">
+                                <field name=\"NUM\">0</field>              
+                            </shadow>              
+                            <block type=\"math_number\">
+                                <field name=\"NUM\">1</field>              
+                            </block>            
+                        </value>            
+                        <value name=\"val_name\">
+                            <shadow type=\"text\">
+                                <field name=\"TEXT\">MyPet</field>              
+                            </shadow>            
+                        </value>            
+                        <value name=\"val_photoUrls\">
+                            <shadow type=\"lists_create_with\">
+                                <mutation items=\"0\"></mutation>              
+                            </shadow>            
+                        </value>            
+                        <value name=\"val_status\">
+                            <shadow type=\"text\">
+                                <field name=\"TEXT\">ss</field>              
+                            </shadow>            
+                        </value>            
+                        <value name=\"val_tags\">
+                            <shadow type=\"lists_create_with\">
+                                <mutation items=\"0\"></mutation>              
+                            </shadow>            
+                        </value>          
+                    </block>        
+                </value>      
+            </block>    
+        </value>    
+        <next>
+            <block type=\"variables_set\">
+                <field name=\"VAR\" id=\"hO\`?kR*XbVn|uJq:?jJ_\">n</field>        
+                <value name=\"VALUE\">
+                    <block type=\"getproperty\">
+                        <field name=\"objectName\">object</field>            
+                        <field name=\"prop\">property</field>            
+                        <value name=\"ObjectToChange\">
+                            <block type=\"converttojson\">
+                                <value name=\"ValueToConvert\">
+                                    <block type=\"variables_get\"><field name=\"VAR\" id=\"hO\`?kR*XbVn|uJq:?jJ_\">n</field>                  
+                                    </block>                
+                                </value>              
+                            </block>            
+                        </value>            
+                        <value name=\"PropertyName\">
+                            <block type=\"text\">
+                                <field name=\"TEXT\">id</field>              
+                            </block>            
+                        </value>          
+                    </block>        
+                </value>        
+                <next>
+                    <block type=\"text_print\">
+                        <value name=\"TEXT\">
+                            <block type=\"variables_get\">
+                                <field name=\"VAR\" id=\"hO\`?kR*XbVn|uJq:?jJ_\">n</field>              
+                            </block>            
+                        </value>            
+                        <next>
+                            <block type=\"text_print\">
+                                <value name=\"TEXT\">
+                                    <block type=\"petstore_swagger_iov2__pet__petId__get\"><value name=\"val_petId\"><shadow type=\"math_number\"><field name=\"NUM\">0</field>                      
+                                            </shadow>                      
+                                            <block type=\"variables_get\"><field name=\"VAR\" id=\"hO\`?kR*XbVn|uJq:?jJ_\">n</field>                      
+                                            </block>                    
+                                        </value>                  
+                                    </block>                
+                                </value>              
+                            </block>            
+                        </next>          
+                    </block>        
+                </next>      
+            </block>    
+        </next>  
+    </block>
+</xml>`
+
     }
 ]
