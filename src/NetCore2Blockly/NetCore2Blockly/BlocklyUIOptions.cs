@@ -24,5 +24,12 @@ namespace NetCore2Blockly
         /// The start blocks.
         /// </value>
         public string StartBlocks { get; set; }
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public string HeaderName { get; set; }
     }
 }

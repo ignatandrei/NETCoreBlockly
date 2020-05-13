@@ -100,7 +100,8 @@ namespace TestBlocklyHtml
             //or you can use a start blocks
             app.UseBlocklyUI(new BlocklyUIOptions()
             {
-                StartBlocks = StartBlocksForUI
+                StartBlocks = StartBlocksForUI,
+                HeaderName = "Demo test for .NET Core WebAPI ( site with Blockly + 2 swaggers loaded)"
             });
 
             app.UseBlocklyLocalStorage();//this is not necessary , if you use app.UseBlocklyUI();

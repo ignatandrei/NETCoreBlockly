@@ -155,12 +155,14 @@ new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
 
             #region map options
             options = options ?? new BlocklyUIOptions();
-            appBuilder.Map("/BlocklystartBlocks", app =>
+            appBuilder.Map("/BlocklyOptions", app =>
             {
                 app.Run(async cnt =>
                 {
                     var data = options.StartBlocks?.Replace("`", @"\`");
                     var str = $"var startBlocksStr=`{data}`;";
+                    data = options.HeaderName.Replace("`", @"\`");
+                    str += $"{Environment.NewLine}var optHeaderName = `{data}`;";
                     var result = Encoding.UTF8.GetBytes(str);
                     var m = new Memory<byte>(result);
                     await cnt.Response.BodyWriter.WriteAsync(m);

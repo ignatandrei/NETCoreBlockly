@@ -150,6 +150,14 @@
             The start blocks.
             </value>
         </member>
+        <member name="P:NetCore2Blockly.BlocklyUIOptions.HeaderName">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
         <member name="T:NetCore2Blockly.EnumerateWebAPI">
             <summary>
             enumerate and generate

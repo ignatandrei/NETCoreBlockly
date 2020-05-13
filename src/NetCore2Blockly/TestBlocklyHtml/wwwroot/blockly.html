@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Blockly swagger demo</title>
+    <title>Blockly .NET Core demo</title>
     <script src="/blockly/acorn_interpreter.js"></script>
 
     <!--<script src="/blockly/acorn.js"></script>
@@ -51,7 +51,7 @@
     </style>
 </head>
 <body>
-    <h1>
+    <h1 id="headerName">
         Blockly Swagger
     </h1>
     <!--doNotCopyToFinal-->
@@ -70,7 +70,7 @@
     <script src="/BlocklyToolBoxValueDefinitionsSwagger"></script>
     <script src="/blocklyAPIFunctionsSwagger"></script>
     <script src="/BlocklyToolBoxFunctionDefinitionsSwagger"></script>
-    <script src="/BlocklystartBlocks"></script>
+    <script src="/BlocklyOptions"></script>
     <p>
         <button onclick="runCode()" id="runButton" style="width:300px">E X E C U T E !</button>
 
@@ -1067,6 +1067,11 @@
             Blockly.Xml.domToWorkspace(startBlocks, demoWorkspace);
         }
         //end start blocks to display
+        //start blockly customize
+        if (optHeaderName.length > 0) {
+            document.getElementById('headerName').innerHTML = optHeaderName;
+        }
+        //end blockly customize
         //Blockly.Xml.domToWorkspace(document.getElementById('testSite'), demoWorkspace);
 
         //var tb = demoWorkspace.getToolbox();
@@ -1433,6 +1438,6 @@
         displayLinksSavedStorage();
                                     /*enddoNotCopyToFinal*/
     </script>
-
+    <footer> <small> <a href="https://github.com/ignatandrei/netcoreblockly">GitHub</a></small></footer>
 </body>
 </html>
