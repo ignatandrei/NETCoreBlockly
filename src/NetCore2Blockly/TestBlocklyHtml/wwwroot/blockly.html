@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Blockly .NET Core demo</title>
+    <script src="others/intro.min.js"></script>
     <script src="/blockly/acorn_interpreter.js"></script>
 
     <!--<script src="/blockly/acorn.js"></script>
@@ -27,11 +28,13 @@
     <script src="/blockly/Http/blocklyHeader.js"></script>
     <!--this is generated at runtime by blockly storage nuget : local storage, sqlite...-->
     <script src="/blocklyStorage"></script>
-    
+
+    <link rel="stylesheet" type="text/css" href="others/introjs.min.css" />
 
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js"></script>
     <script src="doNotCopy/JRTemplating.js"></script>
+    
     <!--enddoNotCopyToFinal-->
     <style>
         body {
@@ -116,7 +119,9 @@
 
     </div>
     <!--enddoNotCopyToFinal-->
-    <script>
+    <script type="text/javascript">
+        
+           
         var _lsh = null;
         function lsh() {
             if (_lsh) {
@@ -180,7 +185,7 @@
 
     </script>
     <xml id="toolbox" style="display: none">
-        <category name="LocalSite" expanded="true">
+        <category name="LocalSite" expanded="true" id="localSite">
             <category id="LocalSiteFunctions" name="LocalSiteFunctions" expanded="true">
             </category>
             <category custom="LocalSiteValues" name="LocalSiteValues">
@@ -1436,7 +1441,48 @@
         }
         /*doNotCopyToFinal*/
         displayLinksSavedStorage();
-                                    /*enddoNotCopyToFinal*/
+        /*enddoNotCopyToFinal*/
+
+        function startIntro() {
+            var intro = introJs();
+            intro.setOptions({
+                steps: [
+                    {
+                        intro: "Welcome !"
+                    },
+                    {
+                        element: document.querySelector('#blocklyDiv'),
+                        intro: "This area is you <b>playground</b> with blocks"
+                    },
+                    {
+                        element: '#runButton',
+                        intro: "You can <b>execute</b> blocks by clicking here"
+                    },
+                    {
+                        element: '#output',
+                        intro: "And see the <b>result</b> here"
+                    },
+                    {
+                        element: '#saveBlocks',
+                        intro: "<b>Save</b> for later use by clicking here"
+                    },
+                    {
+                        element: document.getElementById('blockly:0'),
+                        intro: 'Explore <b>more</b> executing blocks here'
+                    }
+                    ,
+                    {
+                        
+                        intro: 'Click button done or outside to finish the tutorial'
+                    }
+
+                ]
+
+            });
+
+            intro.start();
+        }
+        startIntro();
     </script>
     <footer> <small> <a href="https://github.com/ignatandrei/netcoreblockly">GitHub</a></small></footer>
 </body>
