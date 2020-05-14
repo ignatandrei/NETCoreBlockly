@@ -45,13 +45,16 @@ To see the UI , please add
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
        
-       app.UseBlocklyUI();
+       app.UseBlocklyUI(); // you can customize (with BlocklyUIOptions argument )header name, start blocks, others... 
+       //you can add  storage like local storage or sqlite 
+       //app.UseBlocklyLocalStorage();
+       //app.UseBlocklySqliteStorage() ; // other nuget package
+       //you can add swaggers also
+      //app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json")
+       app.UseBlockly();
 }
 ```
  
-### Feel free to modify:
-
-Download from [![Build Status](https://dev.azure.com/ignatandrei0674/NETCoreBlockly/_apis/build/status/ignatandrei.NETCoreBlockly?branchName=master)](https://dev.azure.com/ignatandrei0674/NETCoreBlockly/_build/latest?definitionId=9&branchName=master) the blockly.zip  and put all contents in a wwwroot in the root of your site
 
 ## Step 4:
 Run the application and browse to  /blockly.html

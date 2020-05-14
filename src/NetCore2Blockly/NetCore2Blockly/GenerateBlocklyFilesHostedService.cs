@@ -26,9 +26,18 @@ namespace NetCore2Blockly
 
         internal async Task AddSwagger(string key, string endpoint)
         {
-            var data = await GenerateFromSwaggerEndPoint(endpoint);
+            try
+            {
+                var data = await GenerateFromSwaggerEndPoint(endpoint);
 
-            swaggers.Add(key, new BlocklyFileGenerator(data));
+                swaggers.Add(key, new BlocklyFileGenerator(data));
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"adding swagger {endpoint} throws error {ex?.Message}");
+                //swallowing error - should run even if the endpoint is not available
+                
+            }
         }
         internal string[] KeySwaggers()
         {
