@@ -161,7 +161,7 @@ new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
                 {
                     var data = options.StartBlocks?.Replace("`", @"\`");
                     var str = $"var startBlocksStr=`{data}`;";
-                    data = options.HeaderName.Replace("`", @"\`");
+                    data = options.HeaderName?.Replace("`", @"\`");
                     str += $"{Environment.NewLine}var optHeaderName = `{data}`;";
                     var result = Encoding.UTF8.GetBytes(str);
                     var m = new Memory<byte>(result);
