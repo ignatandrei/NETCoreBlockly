@@ -65,7 +65,7 @@ namespace NetCore2Blockly
         async Task<List<ActionInfo>> GenerateFromSwaggerEndPoint(string endpoint)
         {
             var uri = new Uri(endpoint);
-            var site = uri.Scheme + "://" + uri.Authority + (uri.IsDefaultPort ? "" : ":" + uri.Port);
+            var site = uri.Scheme + "://" + uri.Authority;
             
             var httpClient = new HttpClient
             {
