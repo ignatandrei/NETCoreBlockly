@@ -26,6 +26,7 @@
     <script src="blockly/DateTime/CurrentDateBlock.js"></script>
     <script src="/blockly/Http/blocklyXHR.js"></script>
     <script src="/blockly/Http/blocklyHeader.js"></script>
+    <script src="blockly/objects/createObject.js"></script>
     <!--this is generated at runtime by blockly storage nuget : local storage, sqlite...-->
     <script src="/blocklyStorage"></script>
 
@@ -537,6 +538,11 @@
                 <category name="Objects" id="Objects">
                     <block type="modifyproperty"></block>
                     <block type="getproperty"></block>
+                    <block type="object_create"></block>
+                    <!--<block type="object_from_json"></block>
+                    <block type="object_to_json"></block>
+                    <block type="object_get"></block>
+                    <block type="object_set"></block>-->
                 </category>
                 <category name="DateTime" id="DateTime">
                     <block type="fromUnixTimeToDate">
