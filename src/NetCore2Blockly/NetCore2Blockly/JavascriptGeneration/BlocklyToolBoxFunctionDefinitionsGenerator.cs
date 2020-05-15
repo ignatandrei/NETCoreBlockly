@@ -56,7 +56,7 @@ namespace NetCore2Blockly.JavascriptGeneration
                 foreach (var action in actionsGroupedByController)
                 {
                     blockText += $@"{Environment.NewLine}
-                        blockTextLocalSiteFunctions{key} += '<block type=""{action.GenerateCommandName()}"">';";
+                        blockTextLocalSiteFunctions{key} += '<block type=""text_print""> <value name=""TEXT""><block type=""{action.GenerateCommandName()}"">';";
                     if (action.HasParams)
                     {
                         foreach (var param in action.Params)
@@ -91,7 +91,7 @@ namespace NetCore2Blockly.JavascriptGeneration
                         }
                     }
 
-                    blockText += $"blockTextLocalSiteFunctions{key} += '</block>';";
+                    blockText += $"blockTextLocalSiteFunctions{key} += '</block></block>';";
                 }
                 blockText += $"blockTextLocalSiteFunctions{key}+='</category>';";
 
