@@ -105,14 +105,15 @@ namespace TestBlocklyHtml
             });
 
             app.UseBlocklyLocalStorage();//this is not necessary , if you use app.UseBlocklyUI();
-            //app.UseBlocklySwagger("heroku", "https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json");
+            
             app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json");
-            app.UseBlocklySwagger("apiGuru","https://api.apis.guru/v2/swagger.yaml");
+            app.UseBlocklySwagger("apiGuru", "https://api.apis.guru/v2/swagger.yaml");
+            app.UseBlocklySwagger("heroku", "https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json");
             //TODO: find if figshare respects swagger or not
             //app.UseBlocklySwagger("figShare", "https://docs.figshare.com/swagger.json");
-        
-              //app.UseBlocklySqliteStorage();
-              //this is not necessary to be added
+
+            //app.UseBlocklySqliteStorage();
+            //this is not necessary to be added
             app.UseSwagger();
 
             //this is not necessary to be added
