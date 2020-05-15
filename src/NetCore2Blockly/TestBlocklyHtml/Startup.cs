@@ -108,7 +108,7 @@ namespace TestBlocklyHtml
             
             app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json");
             app.UseBlocklySwagger("apiGuru", "https://api.apis.guru/v2/swagger.yaml");
-            app.UseBlocklySwagger("heroku", "https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json");
+            //app.UseBlocklySwagger("heroku", "https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json");
             //TODO: find if figshare respects swagger or not
             //app.UseBlocklySwagger("figShare", "https://docs.figshare.com/swagger.json");
 
