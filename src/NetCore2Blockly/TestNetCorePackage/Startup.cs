@@ -66,6 +66,7 @@ namespace TestNetCorePackage
                 endpoints.MapControllers();
             });
             app.UseBlocklyLocalStorage();
+            app.UseBlocklySwagger("heroku", "https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json");
             app.UseBlockly();
         }
     }
