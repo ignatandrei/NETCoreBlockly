@@ -6,14 +6,28 @@ on:
   milestone:
     types: [closed]
 
+# jobs:
+#   create-release-notes:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@master
+#     - name: Create Release Notes
+#       uses: docker://decathlon/release-notes-generator-action:2.0.1
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         OUTPUT_FOLDER: temp_release_notes
+#         USE_MILESTONE_TITLE: "true"
+
 jobs:
-  create-release-notes:
+  release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Create Release Notes
-      uses: docker://decathlon/release-notes-generator-action:2.0.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        OUTPUT_FOLDER: temp_release_notes
-        USE_MILESTONE_TITLE: "true"
+      - name: Create a release draft for a milestone
+        id: create-release-milestone
+        uses: ecampidoglio/auto-release-milestone@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Print the URL of the release draft
+        if: steps.create-release-milestone.outputs.release-url != ''
+        run: echo ${{ steps.create-release-draft.outputs.release-url }}
