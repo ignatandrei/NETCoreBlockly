@@ -31,6 +31,7 @@
     <script src="/blocklyStorage?v=version"></script>
 
     <script src="blockly/workspaceSearch.js?v=version"></script>
+    <script src="blockly/search/toolboxSearch.js?v=version"></script>
     <link rel="stylesheet" type="text/css" href="others/introjs.min.css" />
 
     <!--doNotCopyToFinal-->
@@ -200,6 +201,8 @@
         <category custom="savedBlocks" name="Saved Blocks">
 
         </category>
+        <category custom="SearchBlocks" name="Search"></category>
+
 
         <category name="BlocklyCore">
 
@@ -541,9 +544,9 @@
                     <block type="getproperty"></block>
                     <block type="object_create"></block>
                     <!--<block type="object_from_json"></block>
-                    <block type="object_to_json"></block>
-                    <block type="object_get"></block>
-                    <block type="object_set"></block>-->
+                <block type="object_to_json"></block>
+                <block type="object_get"></block>
+                <block type="object_set"></block>-->
                 </category>
                 <category name="DateTime" id="DateTime">
                     <block type="fromUnixTimeToDate">
@@ -1033,10 +1036,10 @@
         demoWorkspace.registerButtonCallback('crae',
             function (button) { Blockly.Variables.createVariable(button.getTargetWorkspace(), null, 'TestWebAPISite_Controllers_SumArgs'); }
         );
-
         const workspaceSearch = new WorkspaceSearch(demoWorkspace);
         workspaceSearch.init();
         workspaceSearch.open();
+        registerSearch(demoWorkspace);
         //demoWorkspace.registerToolboxCategoryCallback('LocalSiteFunctions', registerFunctions);
         //function (ws) {
         //    //var tb = ws.getToolbox();

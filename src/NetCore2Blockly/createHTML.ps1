@@ -1,7 +1,7 @@
 $TimeNow = Get-Date
 $d = $TimeNow.ToUniversalTime()
 $version=$d.ToString("yyyyMMddHHmm")
-?$version= '?v='+ $version
+$version= '?v='+ $version
 $folder= ".\TestBlocklyHtml\wwwroot\"
 $file = Join-Path -Path $folder -ChildPath "blockly.html"
 $fileContent = Get-Content $file
