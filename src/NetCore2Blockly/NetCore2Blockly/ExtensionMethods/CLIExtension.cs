@@ -81,6 +81,7 @@ ApplicationServices
             MapJS(app, "/blocklyAPIFunctions", b => b.BlocklyAPIFunctions);
             MapJS(app, "/BlocklyToolBoxFunctionDefinitions", b => b.BlocklyToolBoxFunctionDefinition);
             MapJS(app, "/BlocklySwaggers", b => b.SwaggersDictionaryJS);
+            MapJS(app, "/BlocklyODatas", b => b.ODataDictionaryJS);
             //var blocklyFilesHostedService =
             //    app.
             //        ApplicationServices
@@ -92,6 +93,14 @@ ApplicationServices
                 MapJS(app, "/BlocklyToolBoxValueDefinitionsSwagger" , b => b.SwaggerBlocklyToolBoxValueDefinition());
                 MapJS(app, "/blocklyAPIFunctionsSwagger" , b => b.SwaggerBlocklyAPIFunctions());
                 MapJS(app, "/BlocklyToolBoxFunctionDefinitionsSwagger" , b => b.SwaggerBlocklyToolBoxFunctionDefinition());
+
+            }
+
+            {
+                MapJS(app, "/BlocklyDefinitionsOData", b => b.ODataBlocklyTypesDefinition());
+                MapJS(app, "/BlocklyToolBoxValueDefinitionsOData", b => b.ODataBlocklyToolBoxValueDefinition());
+                MapJS(app, "/blocklyAPIFunctionsOData", b => b.ODataBlocklyAPIFunctions());
+                MapJS(app, "/BlocklyToolBoxFunctionDefinitionsOData", b => b.ODataBlocklyToolBoxFunctionDefinition());
 
             }
 

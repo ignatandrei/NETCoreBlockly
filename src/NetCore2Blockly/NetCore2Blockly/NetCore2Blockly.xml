@@ -580,6 +580,11 @@
             <param name="key">key</param>
             <returns></returns>
         </member>
+        <member name="M:NetCore2Blockly.OData.ActionInfoOdata.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NetCore2Blockly.OData.ActionInfoOdata"/> class.
+            </summary>
+        </member>
         <member name="M:NetCore2Blockly.Swagger.ActionInfoSwagger.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:NetCore2Blockly.Swagger.ActionInfoSwagger"/> class.

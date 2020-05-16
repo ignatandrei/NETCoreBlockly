@@ -1752,5 +1752,21 @@ var testBlocks = [
     </block>
 </xml>`
 
+    },
+    {
+        name: 'odata airport',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" y="117" x="62">
+    <value name="TEXT">
+      <block type="GetOneAirports_GET">
+        <value name="val_IcaoCode">
+          <block type="text">
+            <field name="TEXT">KSFO</field>
+          </block>
+        </value>
+      </block>
+    </value>
+  </block>
+</xml>`
     }
 ]

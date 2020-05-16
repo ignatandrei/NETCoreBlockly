@@ -5,11 +5,13 @@ using Microsoft.OpenApi.Extensions;
 using Microsoft.OpenApi.Readers;
 using NetCore2Blockly.OData;
 using NetCore2Blockly.Swagger;
+using SharpYaml.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,6 +29,7 @@ namespace NetCore2Blockly
 
         #region swaggers
         private Dictionary<string, BlocklyFileGenerator> swaggers;
+        private Dictionary<string, BlocklyFileGenerator> oDatas;
 
         internal async Task AddSwagger(string key, string endpoint)
         {
@@ -260,7 +263,36 @@ namespace NetCore2Blockly
 
 
         #region odata
-        internal async Task AddValues(string OdataContextUrl)
+
+        internal string ODataBlocklyToolBoxFunctionDefinition()
+        {
+            return string.Join(Environment.NewLine, oDatas.Select(it => it.Value.GenerateBlocklyToolBoxFunctionDefinitionFile(it.Key))); ;
+        }
+        internal string ODataBlocklyAPIFunctions()
+        {
+            return string.Join(Environment.NewLine, oDatas.Select(it => it.Value.GenerateBlocklyAPIFunctions(it.Key)));
+        }
+        internal string ODataBlocklyToolBoxValueDefinition()
+        {
+            return string.Join(Environment.NewLine, oDatas.Select(it => it.Value.GenerateBlocklyToolBoxValueDefinitionFile(it.Key)));
+        }
+        internal string ODataBlocklyTypesDefinition()
+        {
+
+            return string.Join(Environment.NewLine, oDatas.Select(it => it.Value.GenerateNewBlocklyTypesDefinition()));
+
+        }
+        internal string ODataDictionaryJS
+        {
+            get
+            {
+                var s = string.Join(Environment.NewLine,
+                    oDatas.Select(it => $@"dictOData.push({{key:'{it.Key}',value:'{it.Value}'}});"));
+
+                return $@"var dictOData=[]; {s}";
+            }
+        }
+        internal async Task<ListTypeToGenerateOData> AddValues(string OdataContextUrl)
         {
             var uri = new Uri(OdataContextUrl);
             var site = uri.Scheme + "://" + uri.Authority;
@@ -271,12 +303,57 @@ namespace NetCore2Blockly
             };
             var str = await httpClient.GetStringAsync(uri.PathAndQuery);
             var data= XDocument.Parse(str);
+            
+            var types = new ListTypeToGenerateOData();
+
             var entities = data.Root.XPathSelectElements("//*[local-name()='EntitySet']");
+
             foreach (var et in entities){
-                var newType = new TypeToGenerateOData(et, data);
+                var newType = TypeToGenerateOData.CreateFromEntitySet(et, data);
+                types.Add(newType);
             }
+            entities = data.Root.XPathSelectElements("//*[local-name()='ComplexType']");
+            foreach (var et in entities)
+            {
+                var newType = TypeToGenerateOData.CreateFromComplexType(et,data);
+                types.Add(newType);
+            }
+
+
+            var existingTypes = types.ToArray();
+
+
+            foreach (var t in existingTypes)
+            {
+                foreach (var prop in t.GetProperties())
+                {
+                    if (prop.PropertyType != null)
+                        continue;
+                    if (!(prop is PropertyBaseOData pbs))
+                        continue;
+                    var val = pbs.typeOdata;
+                    prop.PropertyType = types.FindAfterId(val);
+                }
+            }
+            return types;
+
         }
         internal async Task AddOdata(string key, string endpoint)
+        {
+            try
+            {
+                var data = await GenerateFromODataEndPoint(endpoint);
+
+                oDatas.Add(key, new BlocklyFileGenerator(data));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"adding swagger {endpoint} throws error {ex?.Message}");
+                //swallowing error - should run even if the endpoint is not available
+
+            }
+        }
+        internal async Task<List<ActionInfo>> GenerateFromODataEndPoint( string endpoint)
         {
             var uri = new Uri(endpoint);
             var site = uri.Scheme + "://" + uri.Authority;
@@ -290,15 +367,51 @@ namespace NetCore2Blockly
             var root = js.RootElement;
             var entitiesLocation =root.GetProperty("@odata.context").GetString();
 
-            await AddValues(entitiesLocation);
+            var types = await AddValues(entitiesLocation);
 
             var urls = root.GetProperty("value");
-            foreach(var entity in urls.EnumerateArray())
+            var actions = new List<ActionInfo>();
+            foreach (var entity in urls.EnumerateArray())
             {
-                var action = entity.GetProperty("url");
+                var kind = entity.GetProperty("kind").GetString();
+                if (kind != "EntitySet")
+                    continue;
+
+                var action = entity.GetProperty("url").GetString();
+                var  nameAction = entity.GetProperty("name").GetString();
+
+                var newAction = new ActionInfoOdata();
+                newAction.ActionName = $"Get{nameAction}";
+                newAction.ControllerName = action;
+                newAction.Site = entitiesLocation.Replace("$metadata", "");
+                newAction.Verb = "GET";
+                newAction.RelativeRequestUrl = action;
+                newAction.ReturnType = types.FindAfterId("array");
+                actions.Add(newAction);
+
+                newAction = new ActionInfoOdata();
+                newAction.ActionName = $"GetOne{nameAction}";
+                newAction.ControllerName = action;
+                newAction.Site = entitiesLocation.Replace("$metadata", "");
+                newAction.Verb = "GET";
+                newAction.RelativeRequestUrl = $"{action}({{id}})";
+                var type = types.FirstOrDefault(it => it.Name == nameAction || it.id == nameAction);
+                var odatType = type as TypeToGenerateOData;
+                foreach(var item in odatType.Keys)
+                {
+
+                }
+                newAction.Params.Add("id", (type, BindingSourceDefinition.Path));
+                newAction.ReturnType = types.FindAfterId(null);//see what are the properties of the object at odata
+                actions.Add(newAction);
+
+
+
+
             }
-            await Task.CompletedTask;
-            return;
+            
+
+            return actions;
         }
         #endregion
             /// <summary>
@@ -335,6 +448,7 @@ namespace NetCore2Blockly
         {
             this.api = api;
             this.swaggers = new  Dictionary<string, BlocklyFileGenerator>();
+            this.oDatas = new Dictionary<string, BlocklyFileGenerator>();
         }
         /// <summary>
         /// starts

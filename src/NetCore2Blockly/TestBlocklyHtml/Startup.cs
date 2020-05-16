@@ -137,7 +137,8 @@ namespace TestBlocklyHtml
             //app.UseBlocklySwagger("heroku", "https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json");
             //TODO: find if figshare respects swagger or not
             //app.UseBlocklySwagger("figShare", "https://docs.figshare.com/swagger.json");
-            app.UseBlocklyOData("localodata", "/odata");
+            //app.UseBlocklyOData("localodata", "/odata");
+            app.UseBlocklyOData("TriPin", "https://services.odata.org/TripPinRESTierService/");
             //this is not necessary to be added
             app.UseSwagger();
 

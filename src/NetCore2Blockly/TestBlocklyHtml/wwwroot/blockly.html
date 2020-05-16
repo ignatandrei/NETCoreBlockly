@@ -71,11 +71,19 @@
     <script src="/BlocklyToolBoxValueDefinitions?v=version"></script>
     <script src="/blocklyAPIFunctions?v=version"></script>
     <script src="/BlocklyToolBoxFunctionDefinitions?v=version"></script>
+
     <script src="/BlocklySwaggers?v=version"></script>
     <script src="/blocklyDefinitionsSwagger?v=version"></script>
     <script src="/BlocklyToolBoxValueDefinitionsSwagger?v=version"></script>
     <script src="/blocklyAPIFunctionsSwagger?v=version"></script>
     <script src="/BlocklyToolBoxFunctionDefinitionsSwagger?v=version"></script>
+
+    <script src="/BlocklyODatas?v=version"></script>
+    <script src="/blocklyDefinitionsOData?v=version"></script>
+    <script src="/BlocklyToolBoxValueDefinitionsOData?v=version"></script>
+    <script src="/blocklyAPIFunctionsOData?v=version"></script>
+    <script src="/BlocklyToolBoxFunctionDefinitionsOData?v=version"></script>
+
     <script src="/BlocklyOptions"></script>
     <p>
         <button onclick="runCode()" id="runButton" style="width:300px">E X E C U T E !</button>
@@ -123,8 +131,8 @@
     </div>
     <!--enddoNotCopyToFinal-->
     <script type="text/javascript">
-        
-           
+
+
         var _lsh = null;
         function lsh() {
             if (_lsh) {
@@ -198,6 +206,7 @@
         </category>
         <sep></sep>
         <category name="OtherSwagggers"></category>
+        <category name="OtherOData"></category>
         <category custom="savedBlocks" name="Saved Blocks">
 
         </category>
@@ -999,16 +1008,16 @@
             document.body.appendChild(s);
         }
         var toolbox = document.getElementById('toolbox');
-        var xmlString = '';
+        var xmlStringSwagger = '';
         for (var i = 0; i < dictSwagger.length; i++) {
             var nameSwagger = dictSwagger[i].key;
             var name = `blockTextLocalSiteFunctions${nameSwagger}`;
-            xmlString += `<category name="${nameSwagger}" expanded="false">`;
-            xmlString += `<category name="${nameSwagger} Functions" id="${nameSwagger}Functions" expanded="true">`;
-            xmlString += window[name];
-            xmlString += `</category>`;
-            xmlString += `<category name="${nameSwagger} Values" custom="SiteValues${nameSwagger}"></category>`;
-            xmlString += "</category>";
+            xmlStringSwagger += `<category name="${nameSwagger}" expanded="false">`;
+            xmlStringSwagger += `<category name="${nameSwagger} Functions" id="${nameSwagger}Functions" expanded="true">`;
+            xmlStringSwagger += window[name];
+            xmlStringSwagger += `</category>`;
+            xmlStringSwagger += `<category name="${nameSwagger} Values" custom="SiteValues${nameSwagger}"></category>`;
+            xmlStringSwagger += "</category>";
         }
         function existglbVar(key) {
             var name = `glbVar${key}`;
@@ -1016,10 +1025,30 @@
             window[name](demoWorkspace);
             demoWorkspace.registerToolboxCategoryCallback(`SiteValues${key}`, window[`registerValues${key}`]);
         }
-        if (xmlString.length > 0) {
-            xmlString = '<category name="Swagggers">' + xmlString + '</category>';
+        if (xmlStringSwagger.length > 0) {
+            xmlStringSwagger = '<category name="Swagggers">' + xmlStringSwagger + '</category>';
         }
-        var html = toolbox.innerHTML.replace('<category name="OtherSwagggers"></category>', xmlString);
+
+
+        var xmlStringOdata = '';
+        for (var i = 0; i < dictOData.length; i++) {
+            var nameSwagger = dictOData[i].key;
+            var name = `blockTextLocalSiteFunctions${nameSwagger}`;
+            xmlStringOdata += `<category name="${nameSwagger}" expanded="false">`;
+            xmlStringOdata += `<category name="${nameSwagger} Functions" id="${nameSwagger}Functions" expanded="true">`;
+            xmlStringOdata += window[name];
+            xmlStringOdata += `</category>`;
+            xmlStringOdata += `<category name="${nameSwagger} Values" custom="SiteValues${nameSwagger}"></category>`;
+            xmlStringOdata += "</category>";
+        }
+        if (xmlStringOdata.length > 0) {
+            xmlStringOdata = '<category name="OData">' + xmlStringOdata + '</category>';
+        }
+        
+
+        var html = toolbox.innerHTML.replace('<category name="OtherSwagggers"></category>', xmlStringSwagger);
+
+        html = html.replace('<category name="OtherOData"></category>', xmlStringOdata);
         toolbox.innerHTML = html;
 
         //end swagger
@@ -1061,6 +1090,11 @@
             existglbVar(nameSwagger);
         }
 
+        for (var i = 0; i < dictOData.length; i++) {
+            var nameSwagger = dictOData[i].key;
+            existglbVar(nameSwagger);
+        }
+
         //end swagger
         //region start blocks to display
         var urlParams = window.location.search.split('dom=');
@@ -1078,13 +1112,13 @@
             }
         }
         else {
-            
+
             var startBlocks = document.getElementById('startBlocks');
 
             if (startBlocksStr.length > 0) {
                 startBlocks = Blockly.Xml.textToDom(startBlocksStr);
             }
-            
+
             Blockly.Xml.domToWorkspace(startBlocks, demoWorkspace);
         }
         //end start blocks to display
@@ -1491,10 +1525,10 @@
                         element: '#runButton',
                         intro: "After finish this tutorial, click execute"
                     },
-                    
+
 
                     {
-                        
+
                         intro: 'Click button done or outside to finish the tutorial'
                     }
 
