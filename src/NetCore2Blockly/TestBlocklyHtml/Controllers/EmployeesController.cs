@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using efcore=Microsoft.EntityFrameworkCore;
 using TestBlocklyHtml.DB;
 
 namespace TestBlocklyHtml.Controllers
@@ -24,7 +23,7 @@ namespace TestBlocklyHtml.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployee()
         {            
-            return await _context.Employee.ToListAsync();
+            return await _context.Employee.ToArrayAsync();
         }
 
         // GET: api/Employees/5
@@ -52,13 +51,13 @@ namespace TestBlocklyHtml.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(employee).State = EntityState.Modified;
+            _context.Entry(employee).State = efcore.EntityState.Modified;
 
             try
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (efcore.DbUpdateConcurrencyException)
             {
                 if (!EmployeeExists(id))
                 {

@@ -1016,7 +1016,9 @@
             window[name](demoWorkspace);
             demoWorkspace.registerToolboxCategoryCallback(`SiteValues${key}`, window[`registerValues${key}`]);
         }
-
+        if (xmlString.length > 0) {
+            xmlString = '<category name="Swagggers">' + xmlString + '</category>';
+        }
         var html = toolbox.innerHTML.replace('<category name="OtherSwagggers"></category>', xmlString);
         toolbox.innerHTML = html;
 

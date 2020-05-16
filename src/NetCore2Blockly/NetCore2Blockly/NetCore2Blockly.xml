@@ -231,6 +231,15 @@
             <param name="serviceCollection">The service collection.</param>
             <returns></returns>
         </member>
+        <member name="M:NetCore2Blockly.CLIExtension.UseBlocklyOData(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String,System.String)">
+            <summary>
+            Uses the blockly swagger.
+            </summary>
+            <param name="app">The application.</param>
+            <param name="name">The name.</param>
+            <param name="endPoint">The end point.</param>
+            <returns></returns>
+        </member>
         <member name="M:NetCore2Blockly.CLIExtension.UseBlocklySwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String,System.String)">
             <summary>
             Uses the blockly swagger.

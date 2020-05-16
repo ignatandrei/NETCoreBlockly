@@ -3,14 +3,18 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Extensions;
 using Microsoft.OpenApi.Readers;
+using NetCore2Blockly.OData;
 using NetCore2Blockly.Swagger;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace NetCore2Blockly
 {
@@ -250,12 +254,56 @@ namespace NetCore2Blockly
             return actions;
 
         }
-       
+
 
         #endregion
-        /// <summary>
-        /// The blockly tool box function definition
-        /// </summary>
+
+
+        #region odata
+        internal async Task AddValues(string OdataContextUrl)
+        {
+            var uri = new Uri(OdataContextUrl);
+            var site = uri.Scheme + "://" + uri.Authority;
+
+            var httpClient = new HttpClient
+            {
+                BaseAddress = new Uri(site)
+            };
+            var str = await httpClient.GetStringAsync(uri.PathAndQuery);
+            var data= XDocument.Parse(str);
+            var entities = data.Root.XPathSelectElements("//*[local-name()='EntitySet']");
+            foreach (var et in entities){
+                var newType = new TypeToGenerateOData(et, data);
+            }
+        }
+        internal async Task AddOdata(string key, string endpoint)
+        {
+            var uri = new Uri(endpoint);
+            var site = uri.Scheme + "://" + uri.Authority;
+
+            var httpClient = new HttpClient
+            {
+                BaseAddress = new Uri(site)
+            };
+            var str = await httpClient.GetStringAsync(uri.PathAndQuery);
+            var js = JsonDocument.Parse(str);
+            var root = js.RootElement;
+            var entitiesLocation =root.GetProperty("@odata.context").GetString();
+
+            await AddValues(entitiesLocation);
+
+            var urls = root.GetProperty("value");
+            foreach(var entity in urls.EnumerateArray())
+            {
+                var action = entity.GetProperty("url");
+            }
+            await Task.CompletedTask;
+            return;
+        }
+        #endregion
+            /// <summary>
+            /// The blockly tool box function definition
+            /// </summary>
         public string BlocklyToolBoxFunctionDefinition;
 
         /// <summary>

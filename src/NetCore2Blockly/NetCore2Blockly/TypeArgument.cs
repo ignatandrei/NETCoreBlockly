@@ -72,7 +72,7 @@ namespace NetCore2Blockly
         /// <value>
         /// The full name.
         /// </value>
-        public abstract string FullName { get; }
+        public abstract string FullName { get;  }
         /// <summary>
         /// Translates the type of to blockly.
         /// </summary>

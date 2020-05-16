@@ -18,6 +18,13 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.IdentityModel.Logging;
 using System.Text.Json.Serialization;
+using Microsoft.AspNet.OData.Extensions;
+using Microsoft.OData.Edm;
+using OdataToEntity.EfCore.DynamicDataContext;
+using OdataToEntity.EfCore.DynamicDataContext.InformationSchema;
+using OdataToEntity.AspNetCore;
+using Microsoft.AspNet.OData.Formatter;
+using Microsoft.Net.Http.Headers;
 
 namespace TestBlocklyHtml
 {
@@ -45,8 +52,22 @@ namespace TestBlocklyHtml
                                       ;
                                   });
             });
+            services.AddOData();
             services.AddControllers().AddJsonOptions(options =>
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+            #region for odata
+            services.AddMvcCore(options =>
+            {
+                foreach (var outputFormatter in options.OutputFormatters.OfType<ODataOutputFormatter>().Where(_ => _.SupportedMediaTypes.Count == 0))
+                {
+                    outputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/prs.odatatestxx-odata"));
+                }
+                foreach (var inputFormatter in options.InputFormatters.OfType<ODataInputFormatter>().Where(_ => _.SupportedMediaTypes.Count == 0))
+                {
+                    inputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/prs.odatatestxx-odata"));
+                }
+            });
+            #endregion
             services.AddBlockly();
             services.AddDbContext<testsContext>(options => options
 
@@ -85,6 +106,9 @@ namespace TestBlocklyHtml
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            #region odata
+            var edmModel = ModelDB();
+            #endregion
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -113,7 +137,7 @@ namespace TestBlocklyHtml
             //app.UseBlocklySwagger("heroku", "https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json");
             //TODO: find if figshare respects swagger or not
             //app.UseBlocklySwagger("figShare", "https://docs.figshare.com/swagger.json");
-
+            app.UseBlocklyOData("localodata", "/odata");
             //this is not necessary to be added
             app.UseSwagger();
 
@@ -130,10 +154,42 @@ namespace TestBlocklyHtml
 
             app.UseEndpoints(endpoints =>
             {
+                if (edmModel != null)
+                {
+                    endpoints.EnableDependencyInjection();
+                    endpoints.Select().Expand().Filter().OrderBy().MaxTop(2).Count();
+                    endpoints.MapODataRoute("odata", "odata", edmModel);
+                }
                 endpoints.MapControllers();
             });
-
+            if (edmModel != null)
+            {
+                app.UseOdataToEntityMiddleware<OePageMiddleware>("/odata", edmModel);
+            }
             app.UseBlockly();
+        }
+        private IEdmModel ModelDB()
+        {
+            try
+            {
+                #region odata
+                var optionsBuilder = new DbContextOptionsBuilder<DynamicDbContext>();
+                IEdmModel edmModel;
+                optionsBuilder = optionsBuilder.UseSqlServer("Server=.;Initial Catalog=test;Trusted_Connection=No;UID=sa;PWD=Your_password123");
+            
+                using (var providerSchema = new SqlServerSchema(optionsBuilder.Options))
+                {
+                    edmModel = DynamicMiddlewareHelper.CreateEdmModel(providerSchema, informationSchemaMapping: null);
+
+                }
+                return edmModel;
+                #endregion 
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
         private readonly string StartBlocksForUI = @"<xml xmlns='https://developers.google.com/blockly/xml'>
   <block type='variables_set' y='20' x='20' inline='true'>

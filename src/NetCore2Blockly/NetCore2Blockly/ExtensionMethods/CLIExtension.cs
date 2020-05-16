@@ -44,6 +44,22 @@ namespace NetCore2Blockly
         /// <param name="name">The name.</param>
         /// <param name="endPoint">The end point.</param>
         /// <returns></returns>
+        public static IApplicationBuilder UseBlocklyOData(this IApplicationBuilder app, string name, string endPoint)
+        {
+            var blocklyFilesHostedService = app.
+ApplicationServices
+.GetService<GenerateBlocklyFilesHostedService>();
+            var t= blocklyFilesHostedService.AddOdata(name, "https://services.odata.org/TripPinRESTierService/");
+            t.GetAwaiter().GetResult();
+            return app;
+        }
+        /// <summary>
+        /// Uses the blockly swagger.
+        /// </summary>
+        /// <param name="app">The application.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="endPoint">The end point.</param>
+        /// <returns></returns>
         public static IApplicationBuilder UseBlocklySwagger(this IApplicationBuilder app, string name, string endPoint)
         {
             var blocklyFilesHostedService =app.
