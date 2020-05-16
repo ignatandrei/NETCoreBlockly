@@ -29,7 +29,7 @@
     <script src="blockly/objects/createObject.js"></script>
     <!--this is generated at runtime by blockly storage nuget : local storage, sqlite...-->
     <script src="/blocklyStorage"></script>
-
+    <script src="blockly/workspaceSearch.js"></script>
     <link rel="stylesheet" type="text/css" href="others/introjs.min.css" />
 
     <!--doNotCopyToFinal-->
@@ -122,7 +122,7 @@
     <!--enddoNotCopyToFinal-->
     <script type="text/javascript">
         
-           
+        
         var _lsh = null;
         function lsh() {
             if (_lsh) {
@@ -1032,6 +1032,9 @@
         demoWorkspace.registerButtonCallback('crae',
             function (button) { Blockly.Variables.createVariable(button.getTargetWorkspace(), null, 'TestWebAPISite_Controllers_SumArgs'); }
         );
+        const workspaceSearch = new WorkspaceSearch(demoWorkspace);
+        workspaceSearch.init();
+        workspaceSearch.open();
         //demoWorkspace.registerToolboxCategoryCallback('LocalSiteFunctions', registerFunctions);
         //function (ws) {
         //    //var tb = ws.getToolbox();
