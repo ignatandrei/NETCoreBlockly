@@ -91,10 +91,10 @@ namespace TestBlocklyHtml
                 app.UseStatusCodePages();
                 IdentityModelEventSource.ShowPII = true;
                 //just developer testing! do not use in production
-                app.UseFileServer(enableDirectoryBrowsing: true);
-
+         
             }
             app.UseCors("AllowAll");
+            app.UseFileServer(enableDirectoryBrowsing: true);
 
             //you can use simply this
             //app.UseBlocklyUI();
