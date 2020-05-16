@@ -11,23 +11,23 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      
-      - name: data
-        run: | 
-        git fetch --prune --unshallow
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: data
+      run: | 
+      git fetch --prune --unshallow
 
-      - name: Create changelogs
-        uses: heineiuo/create-changelogs@master
+    - name: Create changelogs
+      uses: heineiuo/create-changelogs@master
 
-      - name: Create Release
-        uses: actions/create-release@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          body: ${{ steps.changelogs.outputs.changelog_text }}
-          draft: false
-          prerelease: ${{ steps.changelogs.outputs.release_type == 'prerelease' }}  
+    - name: Create Release
+      uses: actions/create-release@latest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: ${{ github.ref }}
+        body: ${{ steps.changelogs.outputs.changelog_text }}
+        draft: false
+        prerelease: ${{ steps.changelogs.outputs.release_type == 'prerelease' }}  
