@@ -1,28 +1,34 @@
-# Trigger the workflow on milestone events
-on: 
-  milestone:
-    types: [closed]
-name: Milestone Closure
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+name: Create Release
+
 jobs:
-  create-release-notes:
+  build:
+    name: Create Release
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Create Release Notes
-      uses: docker://decathlon/release-notes-generator-action:2.0.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        OUTPUT_FOLDER: release_notes
-        USE_MILESTONE_TITLE: "true"
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - run: |
+        git fetch --prune --unshallow
 
-    - name: Commit files
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add --all
-        git commit -m "adding new data" -a --allow-empty
-          
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create changelogs
+        id: changelogs
+        uses: heineiuo/create-changelogs@master
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: ${{ steps.changelogs.outputs.changelog_text }}
+          draft: false
+          prerelease: ${{ steps.changelogs.outputs.release_type == 'prerelease' }}
