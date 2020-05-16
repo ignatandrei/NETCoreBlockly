@@ -318,7 +318,12 @@ namespace NetCore2Blockly
                 var newType = TypeToGenerateOData.CreateFromComplexType(et,data);
                 types.Add(newType);
             }
-
+            entities = data.Root.XPathSelectElements("//*[local-name()='EnumType']");
+            foreach (var et in entities)
+            {
+                var newType = TypeToGenerateOData.CreateFromEnumType(et, data);
+                types.Add(newType);
+            }
 
             var existingTypes = types.ToArray();
 
@@ -416,7 +421,7 @@ namespace NetCore2Blockly
                     //item.orig.PropertyType 
                     newAction.Params.Add(item.Name, (item.orig.PropertyType, BindingSourceDefinition.Path));
                 }
-                newAction.ReturnType = type;
+                newAction.ReturnType = odatType;
                 actions.Add(newAction);
 
 

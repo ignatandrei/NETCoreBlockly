@@ -35,6 +35,7 @@ namespace NetCore2Blockly
                  types.SelectMany(it => it.GetProperties())
                 .Where(it => it != null && it.PropertyType != null)
                 .Where(it => it.PropertyType.TranslateToBlocklyType() == null)
+                .Where(type => type.PropertyType.id != null)
                 .Select(it => it.PropertyType)
                 .ToArray();
 
@@ -42,6 +43,22 @@ namespace NetCore2Blockly
             if (remaining.Length > 0)
                 types = types.Union(remaining).ToArray();
 
+
+            var returnTypes = list
+
+                .Select(it => it.ReturnType)
+                .Where(it=>it != null)
+                .Distinct()
+                .Where(type => type.TranslateToBlocklyType() == null)
+                .Where(type => type.id != null)
+                .ToArray();
+
+            remaining = returnTypes.Where(it => !ids.Contains(it.id)).ToArray();
+            if (remaining.Length > 0)
+                types = types.Union(remaining).ToArray();
+
+
+            
             return types;
 
         }

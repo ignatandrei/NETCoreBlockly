@@ -140,6 +140,36 @@ namespace NetCore2Blockly.OData
         PropertyBaseOData[] properties;
         internal string baseType;
         public string[] Keys;
+        internal static TypeToGenerateOData CreateFromEnumType(XElement et, XDocument data)
+        {
+            var name = et.Attribute(XName.Get("Name")).Value;
+            var id = name;
+            if (et.Parent?.Attribute("Namespace") != null)
+                id = et.Parent.Attribute("Namespace").Value + "." + id;
+
+            var t = new TypeToGenerateOData(id);
+            t.properties=new PropertyBaseOData[0];
+            t.Name = name;
+            t.isEnum = true;
+            t.enumValues = new Dictionary<string, object>(); 
+            var props = new List<PropertyBaseOData>();
+            foreach (var node in et.DescendantNodes())
+            {
+                if (!(node is XElement xe))
+                    continue;
+
+                
+                var nameProps = xe.Attribute("Name").Value;
+                var typeProps = xe.Attribute("Value").Value;
+                t.enumValues.Add(nameProps, typeProps);
+                
+            }
+
+
+            
+            return t;
+
+        }
         internal static TypeToGenerateOData CreateFromComplexType(XElement et, XDocument data)
         {
             var name = et.Attribute(XName.Get("Name")).Value;
@@ -223,11 +253,11 @@ namespace NetCore2Blockly.OData
         }
 
         public override string FullName  => id;
-
+        private bool isEnum=false;
         public override bool IsEnum {
             get
             {
-                return false;
+                return isEnum;
             }
         }
         public override string TypeNameForBlockly
@@ -249,10 +279,10 @@ namespace NetCore2Blockly.OData
         {
             return properties;
         }
-
+        private Dictionary<string, object> enumValues;
         public override Dictionary<string, object> GetValuesForEnum()
         {
-            throw new NotImplementedException();
+            return enumValues;
         }
 
         public override string TranslateToBlocklyBlocksType()

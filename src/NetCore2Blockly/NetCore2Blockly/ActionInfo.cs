@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -97,7 +99,17 @@ namespace NetCore2Blockly
                     ret= ret.GetGenericArguments()[0];
 
                 }
+                if (!(typeof(IEnumerable).IsAssignableFrom(ret)))
+                {
+                    var args = ret.GetGenericArguments();
+                    if (args?.Length > 0)
+                        ret = args[0];
+                }
             }
+            var nonReturn = new[] { "Task", "IActionResult" };
+            if (nonReturn.Contains(ret.Name))
+                ret = typeof(void);
+
             ReturnType = new TypeToGenerateFromCSharp(ret);
             ControllerName = actionDescriptor?.ControllerName;
 
