@@ -394,15 +394,29 @@ namespace NetCore2Blockly
                 newAction.ControllerName = action;
                 newAction.Site = entitiesLocation.Replace("$metadata", "");
                 newAction.Verb = "GET";
-                newAction.RelativeRequestUrl = $"{action}({{id}})";
+
                 var type = types.FirstOrDefault(it => it.Name == nameAction || it.id == nameAction);
                 var odatType = type as TypeToGenerateOData;
-                foreach(var item in odatType.Keys)
-                {
 
+
+                var paramKeys = odatType
+                   .Keys
+                   .Select(it => odatType.GetProperties().First(pr => pr.Name == it))
+                   .Select(pr => new { orig = pr, Name = pr.Name, IsString = pr.PropertyType.TranslateToBlocklyBlocksType() == "text" })
+
+                   .ToArray();
+
+
+
+                var paramKeysStr = string.Join(",", paramKeys.Select(pr => (pr.IsString ? @"\\'" : "") + "{" + pr.Name + "}" + (pr.IsString ? @"\\'" : "")));
+                newAction.RelativeRequestUrl = $"{action}({paramKeysStr})";
+
+                foreach (var item in paramKeys)
+                {
+                    //item.orig.PropertyType 
+                    newAction.Params.Add(item.Name, (item.orig.PropertyType, BindingSourceDefinition.Path));
                 }
-                newAction.Params.Add("id", (type, BindingSourceDefinition.Path));
-                newAction.ReturnType = types.FindAfterId(null);//see what are the properties of the object at odata
+                newAction.ReturnType = type;
                 actions.Add(newAction);
 
 

@@ -82,10 +82,31 @@ namespace NetCore2Blockly.OData
 
         public override string TranslateToNewTypeName()
         {
-            var upperCaseFirst = id.First().ToString().ToUpper() + id.Substring(1);
-            if (upperCaseFirst == "Integer")
-                upperCaseFirst = "Number";
-            return upperCaseFirst;
+            switch (id?.ToLower())
+            {
+                case "edm.double":
+                case "edm.int32":
+                case "edm.int64":
+                    return "Number";
+
+                case "edm.string":
+                case "edm.guid":
+                case "edm.datetimeoffset":
+                    return "String";
+
+                case "edm.boolean":
+                    return "Boolean";
+
+                case "array":
+                    return "Array";
+
+
+
+            }
+            if (id?.StartsWith("Collection(") ?? false)
+                return "Array";
+
+            return null;
         }
     }
     class PropertyBaseOData : PropertyBase
