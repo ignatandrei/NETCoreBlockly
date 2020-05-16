@@ -23,5 +23,5 @@ jobs:
         ACTION_MAIL: autobot@github.com
         ACTION_NAME: wikirobot
         OWNER: ignatandrei
-        REPO_NAME: netcoreblockly
+        REPO_NAME: NETCoreBlockly
         SKIP_MD: README.md
