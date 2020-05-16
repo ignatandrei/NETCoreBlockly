@@ -107,7 +107,7 @@ namespace TestBlocklyHtml
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             #region odata
-            var edmModel = ModelDB();
+            IEdmModel edmModel = null;//this is for local demo: ModelDB();
             #endregion
             if (env.IsDevelopment())
             {
@@ -176,7 +176,7 @@ namespace TestBlocklyHtml
                 #region odata
                 var optionsBuilder = new DbContextOptionsBuilder<DynamicDbContext>();
                 IEdmModel edmModel;
-                optionsBuilder = optionsBuilder.UseSqlServer("Server=.;Initial Catalog=test;Trusted_Connection=No;UID=sa;PWD=Your_password123");
+                optionsBuilder = optionsBuilder.UseSqlServer("Server=.;Initial Catalog=test;Trusted_Connection=No;UID=sa;PWD=Your_password123;Connect Timeout=5");
             
                 using (var providerSchema = new SqlServerSchema(optionsBuilder.Options))
                 {
