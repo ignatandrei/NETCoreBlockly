@@ -15,11 +15,11 @@ jobs:
         OUTPUT_FOLDER: temp_release_notes
         USE_MILESTONE_TITLE: "true"
 
-    - name: Upload Release Notes to Wiki
+    - name: cp files
       uses: docker://decathlon/wiki-page-creator-action:2.0.1
       env:
         MD_FOLDER: temp_release_notes
-        GH_PAT: ${{ secrets.GH_PAT }}
+        GH_PAT: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN  }}
         ACTION_MAIL: autobot@github.com
         ACTION_NAME: wikirobot
         OWNER: ignatandrei
