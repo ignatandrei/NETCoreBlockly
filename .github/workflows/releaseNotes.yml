@@ -14,15 +14,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       
-      - run: |
+      - name: data
+        run: | 
         git fetch --prune --unshallow
 
       - name: Create changelogs
-        id: changelogs
         uses: heineiuo/create-changelogs@master
 
       - name: Create Release
-        id: create_release
         uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -31,4 +30,4 @@ jobs:
           release_name: ${{ github.ref }}
           body: ${{ steps.changelogs.outputs.changelog_text }}
           draft: false
-          prerelease: ${{ steps.changelogs.outputs.release_type == 'prerelease' }}
+          prerelease: ${{ steps.changelogs.outputs.release_type == 'prerelease' }}  
