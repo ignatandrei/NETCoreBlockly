@@ -1,3 +1,6 @@
+$d = $TimeNow.ToUniversalTime()
+$version=$d.ToString("yyyyMMddHHmm")
+?$version= '?v='+ $version
 $folder= ".\TestBlocklyHtml\wwwroot\"
 $file = Join-Path -Path $folder -ChildPath "blockly.html"
 $fileContent = Get-Content $file
@@ -6,9 +9,10 @@ $fileContent = $fileContent.Replace('<!--doNotCopyToFinal-->','<!--')
 $fileContent = $fileContent.Replace('<!--enddoNotCopyToFinal-->','-->')
 $fileContent = $fileContent.Replace('/*doNotCopyToFinal*/','/*')
 $fileContent = $fileContent.Replace('/*enddoNotCopyToFinal*/','*/')
+$fileContent = $fileContent.Replace('?v=version',$version)
 
 Out-File -InputObject $fileContent  -FilePath ".\TestBlocklyHtml\wwwroot\blockly.html"
-$zipFile = "$folder\blocklyNetCore.zip"
+$zipFile = "$folder\blocklyNetCore.zip" 
 $compress = @{
   Path = "$Folder"
   CompressionLevel = "Fastest"
