@@ -65,6 +65,7 @@ namespace TestNetCorePackage
             {
                 endpoints.MapControllers();
             });
+            app.UseBlocklyLocalStorage();
             app.UseBlockly();
         }
     }
