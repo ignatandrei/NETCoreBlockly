@@ -1,3 +1,4 @@
+$TimeNow = Get-Date
 $d = $TimeNow.ToUniversalTime()
 $version=$d.ToString("yyyyMMddHHmm")
 ?$version= '?v='+ $version
