@@ -90,11 +90,12 @@ namespace TestBlocklyHtml
                 app.UseDeveloperExceptionPage();
                 app.UseStatusCodePages();
                 IdentityModelEventSource.ShowPII = true;
+                //just developer testing! do not use in production
+                app.UseFileServer(enableDirectoryBrowsing: true);
+
             }
             app.UseCors("AllowAll");
 
-            //just developer testing! do not use in production
-            app.UseFileServer(enableDirectoryBrowsing: true);
             //you can use simply this
             //app.UseBlocklyUI();
             //or you can use a start blocks
@@ -104,15 +105,15 @@ namespace TestBlocklyHtml
                 HeaderName = "Demo test for .NET Core WebAPI ( site with Blockly + 2 swaggers loaded)"
             });
 
-            app.UseBlocklyLocalStorage();//this is not necessary , if you use app.UseBlocklyUI();
-            
+            app.UseBlocklyLocalStorage();
+            //app.UseBlocklySqliteStorage();
+
             app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json");
             app.UseBlocklySwagger("apiGuru", "https://api.apis.guru/v2/swagger.yaml");
             //app.UseBlocklySwagger("heroku", "https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json");
             //TODO: find if figshare respects swagger or not
             //app.UseBlocklySwagger("figShare", "https://docs.figshare.com/swagger.json");
 
-            //app.UseBlocklySqliteStorage();
             //this is not necessary to be added
             app.UseSwagger();
 
