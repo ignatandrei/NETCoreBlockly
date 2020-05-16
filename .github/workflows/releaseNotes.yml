@@ -12,16 +12,17 @@ jobs:
       uses: docker://decathlon/release-notes-generator-action:2.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        OUTPUT_FOLDER: temp_release_notes
+        OUTPUT_FOLDER: release_notes
         USE_MILESTONE_TITLE: "true"
 
-    - name: cp files
-      uses: docker://decathlon/wiki-page-creator-action:2.0.1
-      env:
-        MD_FOLDER: temp_release_notes
-        GH_PAT: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN  }}
-        ACTION_MAIL: autobot@github.com
-        ACTION_NAME: wikirobot
-        OWNER: ignatandrei
-        REPO_NAME: NETCoreBlockly
-        SKIP_MD: README.md
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add --all
+        git commit -m "adding new data" -a --allow-empty
+          
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
