@@ -2,9 +2,9 @@
 
 name: Milestone Closure
 
-on: 
-  milestone:
-    types: [closed]
+# on: 
+#   milestone:
+#     types: [closed]
 
 # jobs:
 #   create-release-notes:
@@ -18,16 +18,32 @@ on:
 #         OUTPUT_FOLDER: temp_release_notes
 #         USE_MILESTONE_TITLE: "true"
 
+# jobs:
+#   release:
+#     name: Release
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Create a release draft for a milestone
+#         id: create-release-milestone
+#         uses: ecampidoglio/auto-release-milestone@v1
+#         with:
+#           repo-token: ${{ secrets.GITHUB_TOKEN }}
+#       - name: Print the URL of the release draft
+#         if: steps.create-release-milestone.outputs.release-url != ''
+#         run: echo ${{ steps.create-release-draft.outputs.release-url }}
+
+on:
+  create:
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Create a release draft for a milestone
-        id: create-release-milestone
-        uses: ecampidoglio/auto-release-milestone@v1
+      - name: Create a release draft for a version tag
+        id: create-release-draft
+        uses: ecampidoglio/auto-release-draft@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Print the URL of the release draft
-        if: steps.create-release-milestone.outputs.release-url != ''
+        if: steps.create-release-draft.outputs.release-url != ''
         run: echo ${{ steps.create-release-draft.outputs.release-url }}
