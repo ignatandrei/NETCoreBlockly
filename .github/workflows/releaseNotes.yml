@@ -38,12 +38,20 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    # steps:
+    #   - name: Create a release draft for a version tag
+    #     id: create-release-draft
+    #     uses: ecampidoglio/auto-release-draft@v1
+    #     with:
+    #       repo-token: ${{ secrets.GITHUB_TOKEN }}
+    #   - name: Print the URL of the release draft
+    #     if: steps.create-release-draft.outputs.release-url != ''
+    #     run: echo ${{ steps.create-release-draft.outputs.release-url }}
     steps:
-      - name: Create a release draft for a version tag
-        id: create-release-draft
-        uses: ecampidoglio/auto-release-draft@v1
+      - uses: gittools/actions/gitreleasemanager/create@v0.9.2
+        name: Create release with GitReleaseManager
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Print the URL of the release draft
-        if: steps.create-release-draft.outputs.release-url != ''
-        run: echo ${{ steps.create-release-draft.outputs.release-url }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          owner: 'ignatandrei'
+          repository: 'NetCoreBlockly'          
+          name: 'v0.1.0'
