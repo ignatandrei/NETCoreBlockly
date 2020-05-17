@@ -85,7 +85,10 @@ namespace NetCore2Blockly.Swagger
                     .Replace("/", "")
                     .Replace("file://", "")
                     .Replace("file:", "")
-                    ;   
+                    .Replace(":", "")
+                    .Replace("-", "")
+
+                    ;
 
             }
         }

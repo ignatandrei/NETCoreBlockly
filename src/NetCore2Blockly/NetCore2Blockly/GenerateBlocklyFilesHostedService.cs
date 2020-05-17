@@ -143,6 +143,14 @@ namespace NetCore2Blockly
                         site = server.Url;
                         break;
                     }
+                    if (server.Url.StartsWith("https://"))//prefer https
+                    {
+                        site = server.Url;
+                        break;
+                    }
+                    site = server.Url;
+
+
                 }
             }
             var comp = openApiDocument.Components;

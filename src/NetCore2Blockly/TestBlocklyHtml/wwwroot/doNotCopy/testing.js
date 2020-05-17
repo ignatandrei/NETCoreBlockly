@@ -1648,7 +1648,7 @@ var testBlocks = [
 </xml>`
     },
     {
-        name: 'create pet (what if we put 0 as petid?)',
+        name: 'swagger create pet (what if we put 0 as petid?)',
         data:`<xml xmlns=\"https://developers.google.com/blockly/xml\">
     <variables>
         <variable id=\"hO\`?kR*XbVn|uJq:?jJ_\">n</variable>  
