@@ -9,6 +9,7 @@ using SharpYaml.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
@@ -29,8 +30,15 @@ namespace NetCore2Blockly
 
         #region swaggers
         private Dictionary<string, BlocklyFileGenerator> swaggers;
+        private string _SwaggerBlocklyToolBoxFunctionDefinition;
+        private string _SwaggerBlocklyAPIFunctions;
+        private string _SwaggerBlocklyToolBoxValueDefinition;
+        private string _SwaggerBlocklyTypesDefinition;
         private Dictionary<string, BlocklyFileGenerator> oDatas;
-
+        private string _ODataBlocklyToolBoxFunctionDefinition;
+        private string _ODataBlocklyAPIFunctions;
+        private string _ODataBlocklyToolBoxValueDefinition;
+        private string _ODataBlocklyTypesDefinition;
         internal async Task AddSwagger(string key, string endpoint)
         {
             try
@@ -52,21 +60,40 @@ namespace NetCore2Blockly
         }
         internal string SwaggerBlocklyToolBoxFunctionDefinition()
         {
-            return string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateBlocklyToolBoxFunctionDefinitionFile(it.Key))); ;
+            if (string.IsNullOrWhiteSpace(_SwaggerBlocklyToolBoxFunctionDefinition))
+            {
+                lock(this)
+                    _SwaggerBlocklyToolBoxFunctionDefinition = string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateBlocklyToolBoxFunctionDefinitionFile(it.Key))); ;
+            }
+            return _SwaggerBlocklyToolBoxFunctionDefinition;
         }
         internal string SwaggerBlocklyAPIFunctions()
         {
-            return string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateBlocklyAPIFunctions(it.Key)));
+            if (string.IsNullOrWhiteSpace(_SwaggerBlocklyAPIFunctions))
+            {
+                lock(this)
+                _SwaggerBlocklyAPIFunctions =string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateBlocklyAPIFunctions(it.Key)));
+            }
+            return _SwaggerBlocklyAPIFunctions;
         }
         internal string SwaggerBlocklyToolBoxValueDefinition()
         {
-            return string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateBlocklyToolBoxValueDefinitionFile(it.Key)));
+            if (string.IsNullOrWhiteSpace(_SwaggerBlocklyToolBoxValueDefinition))
+            {
+                lock(this)
+                _SwaggerBlocklyToolBoxValueDefinition = string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateBlocklyToolBoxValueDefinitionFile(it.Key)));
+            }
+            return _SwaggerBlocklyToolBoxValueDefinition ;
         }
+
         internal string SwaggerBlocklyTypesDefinition()
         {
-
-            return string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateNewBlocklyTypesDefinition()));
-            
+            if (string.IsNullOrWhiteSpace(_SwaggerBlocklyTypesDefinition))
+            {
+                lock(this)
+                    _SwaggerBlocklyTypesDefinition =string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateNewBlocklyTypesDefinition()));
+            }
+            return _SwaggerBlocklyTypesDefinition;
         }
         internal string SwaggersDictionaryJS
         {
@@ -78,18 +105,35 @@ namespace NetCore2Blockly
                 return $@"var dictSwagger=[]; {s}";
             }
         }
+        async Task<Stream> GetFromURL(string endpoint)
+        {
+            
+            var uri = new Uri(endpoint);
+            var site = uri.Scheme + "://" + uri.Authority;
+            if (uri.IsFile)
+            {
+                return new FileStream(uri.LocalPath, FileMode.Open, FileAccess.Read);
+            }
+            else
+            {
+                var httpClient = new HttpClient
+                {
+                    BaseAddress = new Uri(site)
+                };
+                return await httpClient.GetStreamAsync(uri.PathAndQuery);
+            }
+
+            
+
+        }
         async Task<List<ActionInfo>> GenerateFromSwaggerEndPoint(string endpoint)
         {
             var uri = new Uri(endpoint);
             var site = uri.Scheme + "://" + uri.Authority;
-            
-            var httpClient = new HttpClient
-            {
-                BaseAddress = new Uri(site)
-            };
-            using var stream = await httpClient.GetStreamAsync(uri.PathAndQuery);
+            using var stream = await GetFromURL(endpoint);
             var openApiDocument = new OpenApiStreamReader().Read(stream, out var diagnostic);
             var servers = openApiDocument.Servers;
+            
             if (servers?.Count > 0)
             {
                 foreach (var server in servers)
@@ -132,6 +176,10 @@ namespace NetCore2Blockly
                     }
                     if (!string.IsNullOrWhiteSpace(val.Type))
                     {
+                        if(val.Type == "object" && val.AdditionalPropertiesAllowed)
+                        {
+                            val.Type=val.AdditionalProperties.Type;
+                        }
                         prop.PropertyType = types.FindAfterId(val.Type);
                         continue;
                     }
@@ -211,7 +259,15 @@ namespace NetCore2Blockly
                                 break;
 
                         }
-                        act.Params.Add(name, (myType, bs));
+                        if (act.Params.ContainsKey(name))
+                        {
+                            Console.WriteLine($"DUPLICATE PARAM {name} FOR {act.RelativeRequestUrl}");
+                            
+                        }
+                        else
+                        {
+                            act.Params.Add(name, (myType, bs));
+                        }
                     }
                     var postData = val1.RequestBody?.Content;
                     if (postData != null )
@@ -266,21 +322,38 @@ namespace NetCore2Blockly
 
         internal string ODataBlocklyToolBoxFunctionDefinition()
         {
-            return string.Join(Environment.NewLine, oDatas.Select(it => it.Value.GenerateBlocklyToolBoxFunctionDefinitionFile(it.Key))); ;
+            if (string.IsNullOrWhiteSpace(_ODataBlocklyToolBoxFunctionDefinition))
+            {
+                _ODataBlocklyToolBoxFunctionDefinition= string.Join(Environment.NewLine, oDatas.Select(it => it.Value.GenerateBlocklyToolBoxFunctionDefinitionFile(it.Key))); ;
+            }
+            return _ODataBlocklyToolBoxFunctionDefinition;
         }
         internal string ODataBlocklyAPIFunctions()
         {
-            return string.Join(Environment.NewLine, oDatas.Select(it => it.Value.GenerateBlocklyAPIFunctions(it.Key)));
+            if (string.IsNullOrWhiteSpace(_ODataBlocklyAPIFunctions))
+            {
+                lock(this)
+                _ODataBlocklyAPIFunctions = string.Join(Environment.NewLine, oDatas.Select(it => it.Value.GenerateBlocklyAPIFunctions(it.Key)));
+            }
+            return _ODataBlocklyAPIFunctions;
         }
         internal string ODataBlocklyToolBoxValueDefinition()
         {
-            return string.Join(Environment.NewLine, oDatas.Select(it => it.Value.GenerateBlocklyToolBoxValueDefinitionFile(it.Key)));
+            if (string.IsNullOrWhiteSpace(_ODataBlocklyToolBoxValueDefinition))
+            {
+                lock (this)
+                    _ODataBlocklyToolBoxValueDefinition = string.Join(Environment.NewLine, oDatas.Select(it => it.Value.GenerateBlocklyToolBoxValueDefinitionFile(it.Key)));
+            }
+            return _ODataBlocklyToolBoxValueDefinition;
         }
         internal string ODataBlocklyTypesDefinition()
         {
-
-            return string.Join(Environment.NewLine, oDatas.Select(it => it.Value.GenerateNewBlocklyTypesDefinition()));
-
+            if (string.IsNullOrWhiteSpace(_ODataBlocklyTypesDefinition))
+            {
+                lock(this)
+                    _ODataBlocklyTypesDefinition = string.Join(Environment.NewLine, oDatas.Select(it => it.Value.GenerateNewBlocklyTypesDefinition()));
+            }
+            return _ODataBlocklyTypesDefinition;
         }
         internal string ODataDictionaryJS
         {
