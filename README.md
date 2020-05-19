@@ -51,6 +51,8 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
        //app.UseBlocklySqliteStorage() ; // other nuget package
        //you can add swaggers also
       //app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json")
+      //or you can add odata
+      //app.UseBlocklyOData("TriPin", "https://services.odata.org/TripPinRESTierService/");
        app.UseBlockly();
 }
 ```
