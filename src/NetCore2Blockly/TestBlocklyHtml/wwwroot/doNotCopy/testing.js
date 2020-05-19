@@ -1768,5 +1768,36 @@ var testBlocks = [
     </value>
   </block>
 </xml>`
+    },
+    {
+        name: 'odata top skip select ',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" y="50" x="65">
+    <value name="TEXT">
+      <block type="GetAirports_Odata_GET">
+        <value name="val_$count">
+          <shadow type="logic_boolean">
+            <field name="BOOL">FALSE</field>
+          </shadow>
+        </value>
+        <value name="val_$top">
+          <shadow type="math_number">
+            <field name="NUM">2</field>
+          </shadow>
+        </value>
+        <value name="val_$skip">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="val_$select">
+          <shadow type="text">
+            <field name="TEXT">IataCode,Location</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+  </block>
+</xml>`
     }
 ]

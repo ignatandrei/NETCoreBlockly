@@ -467,14 +467,29 @@ namespace NetCore2Blockly
                 var  nameAction = entity.GetProperty("name").GetString();
 
                 var newAction = new ActionInfoOdata();
-                newAction.ActionName = $"Get{nameAction}";
+                newAction.ActionName = $"GetAll{nameAction}";
                 newAction.ControllerName = action;
                 newAction.Site = entitiesLocation.Replace("$metadata", "");
                 newAction.Verb = "GET";
-                newAction.RelativeRequestUrl = action+ "?$count=true";
+                newAction.RelativeRequestUrl = action;
+                newAction.ReturnType = types.FindAfterId("array");
+                actions.Add(newAction);
+
+
+                newAction = new ActionInfoOdata();
+                newAction.ActionName = $"Get{nameAction}_Odata";
+                newAction.ControllerName = action;
+                newAction.Site = entitiesLocation.Replace("$metadata", "");
+                newAction.Verb = "GET";
+                newAction.RelativeRequestUrl = action;
+                var typeBool= types.FindAfterId("Edm.Boolean");
                 var typeInt = types.FindAfterId("Edm.Int32");
+                var typeString = types.FindAfterId("Edm.String");
+                newAction.Params.Add("$count", (typeBool, BindingSourceDefinition.Query));
                 newAction.Params.Add("$top", (typeInt, BindingSourceDefinition.Query));
                 newAction.Params.Add("$skip", (typeInt, BindingSourceDefinition.Query));
+                newAction.Params.Add("$select", (typeString, BindingSourceDefinition.Query));
+
                 newAction.ReturnType = types.FindAfterId("array");
                 actions.Add(newAction);
 
