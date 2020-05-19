@@ -1799,5 +1799,60 @@ var testBlocks = [
     </value>
   </block>
 </xml>`
+    },
+    {
+        name: 'odata v3',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="headersbeforehttp" y="-55" x="99">
+    <value name="HttpDomain">
+      <shadow type="text">
+        <field name="TEXT">services.odata.org</field>
+      </shadow>
+    </value>
+    <value name="HeaderName">
+      <shadow type="text">
+        <field name="TEXT">Accept</field>
+      </shadow>
+    </value>
+    <value name="HeaderValue">
+      <shadow type="text_join">
+        <mutation items="2"></mutation>
+      </shadow>
+      <block type="text">
+        <field name="TEXT">application/json</field>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="GetProducts_Odata_GET">
+            <value name="val_$inlinecount">
+              <shadow type="text">
+                <field name="TEXT">allpages</field>
+              </shadow>
+            </value>
+            <value name="val_$top">
+              <shadow type="math_number">
+                <field name="NUM">3</field>
+              </shadow>
+            </value>
+            <value name="val_$skip">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+            </value>
+            <value name="val_$select">
+              <shadow type="text">
+                <field name="TEXT">ID,Name,Price</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>`
     }
 ]
+
+

@@ -393,6 +393,25 @@ namespace NetCore2Blockly
                 var newType = TypeToGenerateOData.CreateFromEntitySet(et, data);
                 types.Add(newType);
             }
+
+            entities = data.Root.XPathSelectElements("//*[local-name()='EntityType']");
+
+            foreach (var et in entities)
+            {
+                
+                var name = et.Attribute("Name").Value;
+                var schema = et.Parent?.Attribute("Namespace")?.Value;
+                if (!string.IsNullOrWhiteSpace(schema))
+                {
+                    name = $"{schema}.{name}";
+                }
+                if (types.Exists(it => it.id == name))
+                    continue;
+
+                var newType = TypeToGenerateOData.CreateFromEntityType(et, data);
+                types.Add(newType);
+            }
+
             entities = data.Root.XPathSelectElements("//*[local-name()='ComplexType']");
             foreach (var et in entities)
             {
@@ -448,10 +467,20 @@ namespace NetCore2Blockly
             {
                 BaseAddress = new Uri(site)
             };
+            httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
             var str = await httpClient.GetStringAsync(uri.PathAndQuery);
             var js = JsonDocument.Parse(str);
             var root = js.RootElement;
-            var entitiesLocation =root.GetProperty("@odata.context").GetString();
+            JsonElement value;
+            var versionOData = 4;   
+            if (!root.TryGetProperty("@odata.context", out value))
+            {
+                versionOData = 3;
+                if (!root.TryGetProperty("odata.metadata", out value))
+                    throw new ArgumentNullException($"cannot find @odata.context or odata.metadata for {endpoint}")
+                            ;
+            }
+            var entitiesLocation =value.GetString();
 
             var types = await AddValues(entitiesLocation);
 
@@ -459,12 +488,16 @@ namespace NetCore2Blockly
             var actions = new List<ActionInfo>();
             foreach (var entity in urls.EnumerateArray())
             {
-                var kind = entity.GetProperty("kind").GetString();
-                if (kind != "EntitySet")
-                    continue;
+
+                if (entity.TryGetProperty("kind", out var kind))//v4
+                {
+                    if (kind.GetString() != "EntitySet")
+                        continue;
+
+                };
 
                 var action = entity.GetProperty("url").GetString();
-                var  nameAction = entity.GetProperty("name").GetString();
+                var nameAction = entity.GetProperty("name").GetString();
 
                 var newAction = new ActionInfoOdata();
                 newAction.ActionName = $"GetAll{nameAction}";
@@ -482,10 +515,19 @@ namespace NetCore2Blockly
                 newAction.Site = entitiesLocation.Replace("$metadata", "");
                 newAction.Verb = "GET";
                 newAction.RelativeRequestUrl = action;
-                var typeBool= types.FindAfterId("Edm.Boolean");
+                var typeBool = types.FindAfterId("Edm.Boolean");
                 var typeInt = types.FindAfterId("Edm.Int32");
                 var typeString = types.FindAfterId("Edm.String");
-                newAction.Params.Add("$count", (typeBool, BindingSourceDefinition.Query));
+                switch (versionOData) {
+                    case 4:
+                        newAction.Params.Add("$count", (typeBool, BindingSourceDefinition.Query));
+                        break;
+                    case 3:
+                        newAction.Params.Add("$inlinecount", (typeString, BindingSourceDefinition.Query));
+                        break;
+                    default:
+                        throw new ArgumentException($"not know odata version {versionOData}");
+                }
                 newAction.Params.Add("$top", (typeInt, BindingSourceDefinition.Query));
                 newAction.Params.Add("$skip", (typeInt, BindingSourceDefinition.Query));
                 newAction.Params.Add("$select", (typeString, BindingSourceDefinition.Query));

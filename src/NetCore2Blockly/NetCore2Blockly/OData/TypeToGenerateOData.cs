@@ -50,12 +50,17 @@ namespace NetCore2Blockly.OData
             {
                 case "edm.double":
                 case "edm.int32":
+                case "edm.int16":
                 case "edm.int64":
+                case "edm.byte":
                     return "math_number";
 
                 case "edm.string":
                 case "edm.guid":
                 case "edm.datetimeoffset":
+                case "edm.datetime":
+                case "edm.stream":
+                case "edm.geographypoint":
                     return "text";
 
                 case "edm.boolean":
@@ -86,12 +91,18 @@ namespace NetCore2Blockly.OData
             {
                 case "edm.double":
                 case "edm.int32":
+                case "edm.int16":
                 case "edm.int64":
+                case "edm.byte":
+                
                     return "Number";
 
                 case "edm.string":
                 case "edm.guid":
                 case "edm.datetimeoffset":
+                case "edm.stream":
+                case "edm.datetime":
+                case "edm.geographypoint":
                     return "String";
 
                 case "edm.boolean":
@@ -124,9 +135,15 @@ namespace NetCore2Blockly.OData
     }
     class ListTypeToGenerateOData: List<TypeArgumentBase>
     {
+        
         internal TypeArgumentBase FindAfterId(string id)
         {
             var ret= this.FirstOrDefault(it => it.id == id);
+            if(ret== null)
+            {
+                var lastId = id.Split('.', StringSplitOptions.RemoveEmptyEntries).Last();
+                ret = this.FirstOrDefault(it => it.id == id);
+            }
             if(ret == null)
             {
                 ret = BlocklyTypeOdata.CreateValue(id);
@@ -205,16 +222,34 @@ namespace NetCore2Blockly.OData
             return t;
 
         }
+        internal static TypeToGenerateOData CreateFromEntityType(XElement et, XDocument data)
+        {
+            var name = et.Attribute("Name").Value;
+            var schema = et.Parent?.Attribute("Namespace")?.Value;
+            if (!string.IsNullOrWhiteSpace(schema))
+            {
+                name = $"{schema}.{name}";
+            }
+            var t = new TypeToGenerateOData(name);
+            t.Name = et.Attribute(XName.Get("Name")).Value;
+            return AddPropsFromEntityType(t, et, data);
+
+        }
 
         internal static TypeToGenerateOData CreateFromEntitySet(XElement et, XDocument data)
         {
             var t = new TypeToGenerateOData(et.Attribute(XName.Get("EntityType")).Value);
             t.Name = et.Attribute(XName.Get("Name")).Value;
 
-            var props = new List<PropertyBaseOData>();
             string name = t.id.Split('.').Last();
             var els = data.Root.XPathSelectElement($"//*[local-name()='EntityType'][@Name='{name}']");
             //maybe verify namespace ?
+            return AddPropsFromEntityType(t,els,data);
+        }
+        static TypeToGenerateOData AddPropsFromEntityType(TypeToGenerateOData t,XElement els,XDocument data) 
+        {
+            var props = new List<PropertyBaseOData>();
+
             foreach (var node in els.DescendantNodes())
             {
 
@@ -238,7 +273,46 @@ namespace NetCore2Blockly.OData
                     continue;
 
                 var nameProps = xe.Attribute("Name").Value;
-                var typeProps = xe.Attribute("Type").Value;
+                var type = xe.Attributes().FirstOrDefault(it => it.Name == "Type");
+                string typeProps = "";
+                if (type != null)//v4
+                {
+                    typeProps = xe.Attribute("Type").Value;
+                }
+                else//v3
+                {
+                    var relationship = xe.Attribute("Relationship").Value;
+                    var toRole = xe.Attribute("ToRole").Value;
+                    var assoc = data
+                        .Root
+                        .XPathSelectElements($"//*[local-name()='Association'][@Name='{relationship}']")
+                        .ToArray();
+                    if(assoc.Length != 1)
+                    {
+                        relationship = relationship.Split('.',StringSplitOptions.RemoveEmptyEntries).Last();
+                        assoc = data
+                        .Root
+                        .XPathSelectElements($"//*[local-name()='Association'][@Name='{relationship}']")
+                        .ToArray();
+                    }
+                    var asociation = assoc.First();
+                    foreach (var endrole in asociation.Descendants())
+                    {
+                        if (endrole.Attribute("Role")?.Value != toRole)
+                            continue;
+
+                        var mult = endrole.Attribute("Multiplicity").Value;
+                        var toRoleObj = endrole.Attribute("Type").Value;
+                        if (mult == "*")
+                        {
+                            typeProps = $"Collection({toRoleObj})";
+                        }
+                        else
+                        {
+                            typeProps = toRoleObj;
+                        }
+                    }
+                }
                 var prop = new PropertyBaseOData(nameProps, typeProps);
                 props.Add(prop);
             }
@@ -299,5 +373,6 @@ namespace NetCore2Blockly.OData
         {
             return FullName;
         }
+
     }
 }
