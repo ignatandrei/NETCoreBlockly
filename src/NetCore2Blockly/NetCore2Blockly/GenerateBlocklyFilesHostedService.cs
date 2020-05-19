@@ -471,7 +471,7 @@ namespace NetCore2Blockly
                 newAction.ControllerName = action;
                 newAction.Site = entitiesLocation.Replace("$metadata", "");
                 newAction.Verb = "GET";
-                newAction.RelativeRequestUrl = action+ "?$inlinecount=allpages";
+                newAction.RelativeRequestUrl = action+ "?$count=true";
                 var typeInt = types.FindAfterId("Edm.Int32");
                 newAction.Params.Add("$top", (typeInt, BindingSourceDefinition.Query));
                 newAction.Params.Add("$skip", (typeInt, BindingSourceDefinition.Query));

@@ -80,10 +80,15 @@ namespace NetCore2Blockly.JavascriptGeneration
             {
                 strQueryString = string.Join("&",
                     paramsQuery.Select(it => it.Key)
-                    .Select(it => $"&{it}={{{it}}}"));
+                    .Select(it => $"{it}={{{it}}}"));
             }
             if (strQueryString.Length > 0)
-                strQueryString = $"?{strQueryString}";
+            {
+                if (actionInfo.RelativeRequestUrl.Contains("?"))
+                    strQueryString = $"&{strQueryString}";
+                else
+                    strQueryString = $"?{strQueryString}";
+            }
             string paramsFunction = "";
             if (actionInfo.HasParams)
             {
