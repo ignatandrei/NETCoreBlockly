@@ -49,7 +49,7 @@ namespace NetCore2Blockly
             var blocklyFilesHostedService = app.
 ApplicationServices
 .GetService<GenerateBlocklyFilesHostedService>();
-            var t= blocklyFilesHostedService.AddOdata(name, "https://services.odata.org/TripPinRESTierService/");
+            var t= blocklyFilesHostedService.AddOdata(name, endPoint);
             t.GetAwaiter().GetResult();
             return app;
         }

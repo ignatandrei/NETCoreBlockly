@@ -139,6 +139,8 @@ namespace TestBlocklyHtml
             //app.UseBlocklySwagger("figShare", "https://docs.figshare.com/swagger.json");
             //app.UseBlocklyOData("localodata", "/odata");
             app.UseBlocklyOData("TriPin", "https://services.odata.org/TripPinRESTierService/");
+            //app.UseBlocklyOData("heroku", "https://netcoreblockly.herokuapp.com/odata");
+
             //this is not necessary to be added
             app.UseSwagger();
 
@@ -177,10 +179,14 @@ namespace TestBlocklyHtml
                 var optionsBuilder = new DbContextOptionsBuilder<DynamicDbContext>();
                 IEdmModel edmModel;
                 //optionsBuilder = optionsBuilder.UseSqlServer("Server=.;Initial Catalog=test;Trusted_Connection=No;UID=sa;PWD=Your_password123;Connect Timeout=5");
+                //using (var providerSchema = new SqlServerSchema(optionsBuilder.Options))
+
                 var con = Environment.GetEnvironmentVariable("MySql");
                 optionsBuilder = optionsBuilder.UseMySQL(con);
-                //using (var providerSchema = new SqlServerSchema(optionsBuilder.Options))
                 using (var providerSchema = new MySqlSchema(optionsBuilder.Options))
+                //var con = Environment.GetEnvironmentVariable("Postgres");
+                //optionsBuilder = optionsBuilder.UseNpgsql(con);
+                //using (var providerSchema = new PostgreSqlSchema(optionsBuilder.Options))
                 {
                     edmModel = DynamicMiddlewareHelper.CreateEdmModel(providerSchema, informationSchemaMapping: null);
 
