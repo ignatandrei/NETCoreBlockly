@@ -474,6 +474,7 @@ namespace NetCore2Blockly
                 newAction.RelativeRequestUrl = action;
                 var typeInt = types.FindAfterId("Edm.Int32");
                 newAction.Params.Add("$top", (typeInt, BindingSourceDefinition.Query));
+                newAction.Params.Add("$skip", (typeInt, BindingSourceDefinition.Query));
                 newAction.ReturnType = types.FindAfterId("array");
                 actions.Add(newAction);
 
