@@ -107,7 +107,7 @@ namespace TestBlocklyHtml
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             #region odata
-            IEdmModel edmModel = null;//this is for local demo: ModelDB();
+            IEdmModel edmModel = ModelDB();
             #endregion
             if (env.IsDevelopment())
             {
@@ -176,9 +176,11 @@ namespace TestBlocklyHtml
                 #region odata
                 var optionsBuilder = new DbContextOptionsBuilder<DynamicDbContext>();
                 IEdmModel edmModel;
-                optionsBuilder = optionsBuilder.UseSqlServer("Server=.;Initial Catalog=test;Trusted_Connection=No;UID=sa;PWD=Your_password123;Connect Timeout=5");
-            
-                using (var providerSchema = new SqlServerSchema(optionsBuilder.Options))
+                //optionsBuilder = optionsBuilder.UseSqlServer("Server=.;Initial Catalog=test;Trusted_Connection=No;UID=sa;PWD=Your_password123;Connect Timeout=5");
+                var con = Environment.GetEnvironmentVariable("MySql");
+                optionsBuilder = optionsBuilder.UseMySQL(con);
+                //using (var providerSchema = new SqlServerSchema(optionsBuilder.Options))
+                using (var providerSchema = new MySqlSchema(optionsBuilder.Options))
                 {
                     edmModel = DynamicMiddlewareHelper.CreateEdmModel(providerSchema, informationSchemaMapping: null);
 
@@ -187,8 +189,9 @@ namespace TestBlocklyHtml
                 #endregion 
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine($" exception {ex.Message}");
                 return null;
             }
         }
