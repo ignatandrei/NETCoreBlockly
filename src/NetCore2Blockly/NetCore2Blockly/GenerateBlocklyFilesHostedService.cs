@@ -565,11 +565,21 @@ namespace NetCore2Blockly
                 newAction.ReturnType = odatType;
                 actions.Add(newAction);
 
+                newAction = new ActionInfoOdata();
+                newAction.ActionName = $"Create {nameAction}";
+                newAction.ControllerName = action;
+                newAction.Site = entitiesLocation.Replace("$metadata", "");
+                newAction.Verb = "POST";
+                newAction.RelativeRequestUrl = action;
+                newAction.ReturnType = odatType;
+                newAction.Params.Add(odatType.Name, (odatType, BindingSourceDefinition.Body));
+                actions.Add(newAction);
+
 
 
 
             }
-            
+
 
             return actions;
         }
