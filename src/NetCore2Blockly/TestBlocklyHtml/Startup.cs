@@ -133,6 +133,8 @@ namespace TestBlocklyHtml
             //app.UseBlocklySqliteStorage();
 
             app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json");
+            //Cors, http, https issues and latest / solving
+            //app.UseBlocklySwagger("xkcd", "https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/xkcd.com/1.0.0/openapi.yaml");
             //app.UseBlocklySwagger("apiGuru", "https://api.apis.guru/v2/swagger.yaml");
             //app.UseBlocklySwagger("heroku", "https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json");
             //TODO: find if figshare respects swagger or not

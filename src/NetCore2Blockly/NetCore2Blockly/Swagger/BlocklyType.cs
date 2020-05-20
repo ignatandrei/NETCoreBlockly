@@ -47,6 +47,7 @@ namespace NetCore2Blockly.Swagger
             switch (id)
             {
                 case "integer":
+                case "number":
                         return "math_number";
 
                 case "string":

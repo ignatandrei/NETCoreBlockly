@@ -72,6 +72,14 @@ namespace NetCore2Blockly.JavascriptGeneration
 
         internal string GenerateGet(ActionInfo actionInfo)
         {
+            string relativeRequest = actionInfo.RelativeRequestUrl;
+            if (!string.IsNullOrWhiteSpace(actionInfo.Site))
+            {
+                if(relativeRequest.StartsWith("/") && actionInfo.Site.EndsWith("/"))
+                {
+                    relativeRequest = relativeRequest.Substring(1);
+                }
+            }
             var paramsXHR = "strUrl";
             bool existBody = false;
             var strQueryString = "";
@@ -84,7 +92,7 @@ namespace NetCore2Blockly.JavascriptGeneration
             }
             if (strQueryString.Length > 0)
             {
-                if (actionInfo.RelativeRequestUrl.Contains("?"))
+                if (relativeRequest.Contains("?"))
                     strQueryString = $"&{strQueryString}";
                 else
                     strQueryString = $"?{strQueryString}";
@@ -111,7 +119,7 @@ namespace NetCore2Blockly.JavascriptGeneration
             }
 
             var str = $@"function({paramsFunction}){{
-                var strUrl =  '{actionInfo.Site}{actionInfo.RelativeRequestUrl}{strQueryString}';      
+                var strUrl =  '{actionInfo.Site}{relativeRequest}{strQueryString}';      
                 ";
             if (actionInfo.HasParams)
                 foreach (var param in actionInfo.Params)
