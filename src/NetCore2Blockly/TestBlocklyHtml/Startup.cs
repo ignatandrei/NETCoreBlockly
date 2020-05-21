@@ -159,12 +159,12 @@ namespace TestBlocklyHtml
 
             app.UseEndpoints(endpoints =>
             {
-                if (edmModel != null)
-                {
-                    endpoints.EnableDependencyInjection();
-                    endpoints.Select().Expand().Filter().OrderBy().MaxTop(2).Count();
-                    endpoints.MapODataRoute("odata", "odata", edmModel);
-                }
+                //if (edmModel != null)
+                //{
+                //    endpoints.EnableDependencyInjection();
+                //    endpoints.Select().Expand().Filter().OrderBy().MaxTop(2).Count();
+                //    endpoints.MapODataRoute("odata", "odata", edmModel);
+                //}
                 endpoints.MapControllers();
             });
             if (edmModel != null)
