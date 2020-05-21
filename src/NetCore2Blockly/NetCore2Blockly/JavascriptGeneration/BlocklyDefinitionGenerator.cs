@@ -189,14 +189,26 @@ namespace NetCore2Blockly.JavascriptGeneration
                            $"objPropString.push('\"{it.prop.Name}\":'+val{it.prop.Name}{it.filter});"+
                            $"}}")
                );
+            if (type.AddDefinitions.Count > 0)
+            {
+                var strDef = string.Join(
+                    Environment.NewLine, 
+                    type.AddDefinitions.Select(it=>
+                    $"console.log('andrei');" +
+                    $"objPropString.push('\"{it.Key}\":\"{it.Value}\"');" 
+                           ));
 
+                objectProperties += strDef;
+
+            }
             var strJS = $@" Blockly.JavaScript['{type.TranslateToNewTypeName()}'] = function(block) {{
-                            console.log(block);
+                            //console.log(block);
+                            console.log('andrei{type.AddDefinitions.Count}...');
                             var objPropString=[];
                             {objectProperties}
                             console.log(objPropString);
                             var code ='{{ '+ objPropString.join(',') +' }}';
-                            console.log(code);
+                            //console.log(code);
                             return [code, Blockly.JavaScript.ORDER_NONE];
                             }};";
 

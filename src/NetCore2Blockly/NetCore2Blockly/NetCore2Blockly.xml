@@ -590,6 +590,35 @@
             Initializes a new instance of the <see cref="T:NetCore2Blockly.Swagger.ActionInfoSwagger"/> class.
             </summary>
         </member>
+        <member name="T:NetCore2Blockly.PropertyBase">
+            <summary>
+            emulates a property
+            </summary>
+        </member>
+        <member name="P:NetCore2Blockly.PropertyBase.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:NetCore2Blockly.PropertyBase.PropertyType">
+            <summary>
+            Gets or sets the type of the property.
+            </summary>
+            <value>
+            The type of the property.
+            </value>
+        </member>
+        <member name="P:NetCore2Blockly.PropertyBase.IsArray">
+            <summary>
+            Gets a value indicating whether this instance is array.
+            </summary>
+            <value>
+              <c>true</c> if this instance is array; otherwise, <c>false</c>.
+            </value>
+        </member>
         <member name="T:NetCore2Blockly.TypeArgumentBase">
             <summary>
             emultates a type
@@ -600,6 +629,12 @@
             Initializes a new instance of the <see cref="T:NetCore2Blockly.TypeArgumentBase"/> class.
             </summary>
             <param name="id">The identifier.</param>
+        </member>
+        <member name="F:NetCore2Blockly.TypeArgumentBase.AddDefinitions">
+            <summary>
+            more defintions to add
+            see odata.type 
+            </summary>
         </member>
         <member name="P:NetCore2Blockly.TypeArgumentBase.Site">
             <summary>
@@ -685,35 +720,6 @@
             </summary>
             <value>
               <c>true</c> if this instance is value type; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="T:NetCore2Blockly.PropertyBase">
-            <summary>
-            emulates a property
-            </summary>
-        </member>
-        <member name="P:NetCore2Blockly.PropertyBase.Name">
-            <summary>
-            Gets or sets the name.
-            </summary>
-            <value>
-            The name.
-            </value>
-        </member>
-        <member name="P:NetCore2Blockly.PropertyBase.PropertyType">
-            <summary>
-            Gets or sets the type of the property.
-            </summary>
-            <value>
-            The type of the property.
-            </value>
-        </member>
-        <member name="P:NetCore2Blockly.PropertyBase.IsArray">
-            <summary>
-            Gets a value indicating whether this instance is array.
-            </summary>
-            <value>
-              <c>true</c> if this instance is array; otherwise, <c>false</c>.
             </value>
         </member>
     </members>
