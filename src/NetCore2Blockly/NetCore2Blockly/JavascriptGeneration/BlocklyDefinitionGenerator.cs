@@ -50,6 +50,7 @@ namespace NetCore2Blockly.JavascriptGeneration
             var definitionString = $@"
                                 Blockly.Blocks['{blocklyTypeName}'] = {{
                                 init: function() {{
+//this.setInputsInline(true);
                                     this.appendDummyInput()
                                         .appendField('{typeName}');
                                     {tooltipAndpropsDef.propsDef}
