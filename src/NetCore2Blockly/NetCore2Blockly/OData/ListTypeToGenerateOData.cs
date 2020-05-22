@@ -10,7 +10,7 @@ namespace NetCore2Blockly.OData
         internal TypeArgumentBase FindAfterId(string id)
         {
             var ret= this.FirstOrDefault(it => it.id == id);
-            if(ret== null)
+            if(ret== null && id!= null)
             {
                 var lastId = id.Split('.', StringSplitOptions.RemoveEmptyEntries).Last();
                 ret = this.FirstOrDefault(it => it.id == id);

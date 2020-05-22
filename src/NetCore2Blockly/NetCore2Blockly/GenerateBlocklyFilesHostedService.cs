@@ -570,11 +570,39 @@ namespace NetCore2Blockly
                 newAction.ControllerName = action;
                 newAction.Site = entitiesLocation.Replace("$metadata", "");
                 newAction.Verb = "POST";
-                newAction.RelativeRequestUrl = action;
+                newAction.RelativeRequestUrl = $"{action}({paramKeysStr})"; 
                 newAction.ReturnType = odatType;
                 newAction.Params.Add(odatType.Name, (odatType, BindingSourceDefinition.Body));
                 actions.Add(newAction);
 
+                newAction = new ActionInfoOdata();
+                newAction.ActionName = $"Modify {nameAction}";
+                newAction.ControllerName = action;
+                newAction.Site = entitiesLocation.Replace("$metadata", "");
+                newAction.Verb = "PUT";
+                newAction.RelativeRequestUrl = $"{action}({paramKeysStr})"; 
+                foreach (var item in paramKeys)
+                {
+                    //item.orig.PropertyType 
+                    newAction.Params.Add(item.Name, (item.orig.PropertyType, BindingSourceDefinition.Path));
+                }
+                newAction.ReturnType = odatType;
+                newAction.Params.Add(odatType.Name, (odatType, BindingSourceDefinition.Body));
+                actions.Add(newAction);
+
+                newAction = new ActionInfoOdata();
+                newAction.ActionName = $"Delete {nameAction}";
+                newAction.ControllerName = action;
+                newAction.Site = entitiesLocation.Replace("$metadata", "");
+                newAction.Verb = "DELETE";
+                newAction.RelativeRequestUrl = $"{action}({paramKeysStr})";
+                foreach (var item in paramKeys)
+                {
+                    //item.orig.PropertyType 
+                    newAction.Params.Add(item.Name, (item.orig.PropertyType, BindingSourceDefinition.Path));
+                }
+                newAction.ReturnType = odatType;
+                actions.Add(newAction);
 
 
 

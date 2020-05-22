@@ -194,7 +194,7 @@ namespace NetCore2Blockly.JavascriptGeneration
                 var strDef = string.Join(
                     Environment.NewLine, 
                     type.AddDefinitions.Select(it=>
-                    $"console.log('andrei');" +
+                    $"//console.log('andrei');" +
                     $"objPropString.push('\"{it.Key}\":\"{it.Value}\"');" 
                            ));
 
@@ -203,10 +203,10 @@ namespace NetCore2Blockly.JavascriptGeneration
             }
             var strJS = $@" Blockly.JavaScript['{type.TranslateToNewTypeName()}'] = function(block) {{
                             //console.log(block);
-                            console.log('andrei{type.AddDefinitions.Count}...');
+                            //console.log('andrei{type.AddDefinitions.Count}...');
                             var objPropString=[];
                             {objectProperties}
-                            console.log(objPropString);
+                            //console.log(objPropString);
                             var code ='{{ '+ objPropString.join(',') +' }}';
                             //console.log(code);
                             return [code, Blockly.JavaScript.ORDER_NONE];
