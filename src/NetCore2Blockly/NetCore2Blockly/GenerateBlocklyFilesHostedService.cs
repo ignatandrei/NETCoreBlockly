@@ -301,7 +301,7 @@ namespace NetCore2Blockly
                             act.Params.Add(name, (myType, bs));
                         }
                     }
-                    Console.WriteLine(op.Key);
+                    //Console.WriteLine(op.Key);
                 }
             }
             var typesFromActionToTransformBlocks= actions

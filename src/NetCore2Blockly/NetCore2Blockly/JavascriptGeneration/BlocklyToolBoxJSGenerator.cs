@@ -38,9 +38,9 @@ namespace NetCore2Blockly.JavascriptGeneration
 
 
                 blockText += $@"{Environment.NewLine}blockText_{typeName} += '</block>';{Environment.NewLine}
-                                var block_{typeName} = Blockly.Xml.textToDom(blockText_{typeName});
-                                xmlList.push(block_{typeName});
-                                var block_{typeName}Set='<block type=""variables_set""><field name=""VAR"">var_{typeName}</field></block>';
+                                var block_{typeName}_dom = Blockly.Xml.textToDom(blockText_{typeName});
+                                /*xmlList.push(block_{typeName}_dom);*/
+                                var block_{typeName}Set=`<block type=""variables_set""><field name=""VAR"">var_{typeName}</field> <value name=""VALUE"">${{blockText_{typeName}}}</value></block>`;
                                 block_{typeName}Set = Blockly.Xml.textToDom(block_{typeName}Set);
                                 xmlList.push(block_{typeName}Set);
                                 ";
