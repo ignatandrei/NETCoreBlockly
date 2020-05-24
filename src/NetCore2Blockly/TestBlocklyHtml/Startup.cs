@@ -172,9 +172,9 @@ namespace TestBlocklyHtml
             });
             if (edmModel != null)
             {
-                app.UseOdataToEntityMiddleware<OePageMiddleware>("/odata", edmModel);
+                app.UseOdataToEntityMiddleware<OePageMiddleware>("/odataDB", edmModel);
             }
-            app.UseBlockly();
+            app.UseBlockly("/odataDB");
         }
         private IEdmModel ModelDB()
         {

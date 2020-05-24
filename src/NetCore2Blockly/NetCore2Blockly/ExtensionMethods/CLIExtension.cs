@@ -70,9 +70,19 @@ ApplicationServices
         /// </summary>
         /// <param name="app"></param>
         /// <returns></returns>
-        public static IApplicationBuilder UseBlockly(this IApplicationBuilder app)
+        public static IApplicationBuilder UseBlockly(this IApplicationBuilder app, params string[] localOdata)
         {
+            var service = app.ApplicationServices.GetService<GenerateBlocklyFilesHostedService>();
 
+            if (localOdata?.Length > 0)
+            {
+                foreach (var item in localOdata)
+                {
+                    var odata= service.AddOdata(item, item);
+                    odata.GetAwaiter().GetResult();
+                }
+            }
+            service.app = app;
             MapJS(app, "/blocklyDefinitions", b => b.BlocklyTypesDefinition);
             MapJS(app, "/BlocklyToolBoxValueDefinitions", b => b.BlocklyToolBoxValueDefinition);
             MapJS(app, "/blocklyAPIFunctions", b => b.BlocklyAPIFunctions);

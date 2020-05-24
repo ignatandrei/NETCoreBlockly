@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Extensions;
@@ -27,6 +28,8 @@ namespace NetCore2Blockly
     /// <seealso cref="Microsoft.Extensions.Hosting.IHostedService" />
     public class GenerateBlocklyFilesHostedService : IHostedService
     {
+
+        internal IApplicationBuilder app;
 
         #region swaggers
         private Dictionary<string, BlocklyFileGenerator> swaggers;
@@ -443,12 +446,17 @@ namespace NetCore2Blockly
             return types;
 
         }
+        List<string> odataLater = new List<string>();
         internal async Task AddOdata(string key, string endpoint)
         {
             try
             {
+                if (endpoint.StartsWith("/"))
+                {
+                    odataLater.Add(endpoint);
+                    return;
+                }
                 var data = await GenerateFromODataEndPoint(endpoint);
-
                 oDatas.Add(key, new BlocklyFileGenerator(data));
             }
             catch (Exception ex)
@@ -666,7 +674,6 @@ namespace NetCore2Blockly
         private void DoWork(object state)
         {
            
-            _timer.Dispose();
             var e = new EnumerateWebAPI(api);
             var actionList = e.CreateActionList();
             var blocklyFileGenerator = new BlocklyFileGenerator(actionList);
@@ -674,7 +681,39 @@ namespace NetCore2Blockly
             BlocklyAPIFunctions = blocklyFileGenerator.GenerateBlocklyAPIFunctions();
             BlocklyToolBoxValueDefinition = blocklyFileGenerator.GenerateBlocklyToolBoxValueDefinitionFile();
             BlocklyToolBoxFunctionDefinition = blocklyFileGenerator.GenerateBlocklyToolBoxFunctionDefinitionFile();
-           
+            if (app == null)
+                return;
+            var serverAddresses = app.ServerFeatures.Get<IServerAddressesFeature>();
+            if ((serverAddresses?.Addresses?.Count() ?? 0) == 0)
+                return;
+
+            if (odataLater.Count > 0)
+            {
+                
+                _timer.Dispose();
+                var Host = "";
+                foreach(var item in serverAddresses.Addresses)
+                {
+                    if (item.StartsWith("https"))
+                    {
+                        Host = item;
+                    }
+                    if (Host.Length == 0)
+                        Host = item;
+
+                }
+                Host = Host.Replace("0.0.0.0", "localhost");
+                Host = Host.Replace("[::]", "localhost");
+                foreach(var item in odataLater)
+                {
+                    var b = new UriBuilder(Host);
+                    b.Path = item;
+                    var x= AddOdata(item.Replace("/", ""), b.Uri.ToString());
+                    x.GetAwaiter().GetResult();
+                }
+                odataLater.Clear();
+            }
+            _timer.Dispose();
         }
         
         /// <summary>
