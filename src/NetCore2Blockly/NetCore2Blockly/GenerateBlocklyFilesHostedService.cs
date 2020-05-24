@@ -377,10 +377,14 @@ namespace NetCore2Blockly
         {
             var uri = new Uri(OdataContextUrl);
             var site = uri.Scheme + "://" + uri.Authority;
-
+            var newUri = new UriBuilder(site);
+            if(newUri.Port == 0)
+            {
+                newUri.Port = 80;
+            }
             var httpClient = new HttpClient
             {
-                BaseAddress = new Uri(site)
+                BaseAddress = newUri.Uri
             };
             var str = await httpClient.GetStringAsync(uri.PathAndQuery);
             var data= XDocument.Parse(str);
