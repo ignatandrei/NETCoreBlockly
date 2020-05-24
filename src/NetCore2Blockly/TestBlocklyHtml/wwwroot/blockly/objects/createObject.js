@@ -1,4 +1,4 @@
-https://gist.github.com/mark-friedman/48f43a9b62b1c8ad029a75d4b4e61f31
+//https://gist.github.com/mark-friedman/48f43a9b62b1c8ad029a75d4b4e61f31
 Blockly.JavaScript['object_from_json'] = function(block) {
   const value_json = Blockly.JavaScript.valueToCode(block, 'JSON', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Maybe check that the parsed value is actually an object.
