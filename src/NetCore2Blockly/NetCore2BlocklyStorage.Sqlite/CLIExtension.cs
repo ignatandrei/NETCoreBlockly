@@ -158,11 +158,12 @@ namespace NetCore2Blockly
             {
                 app.Run(async cnt =>
                 {
+                    cnt.Response.ContentType = "application/javascript";
+                    
                     string nameFile = "extensions/SaveToSqliteStorage.js";
                     
                     var f = manifestEmbeddedProvider.GetFileInfo("blocklyFiles/" + nameFile);
-                    
-                    //TODO: add corect mime type for js files
+
                     using var stream = new MemoryStream();
                     using var cs = f.CreateReadStream();
                     byte[] buffer = new byte[2048]; // read in chunks of 2KB
