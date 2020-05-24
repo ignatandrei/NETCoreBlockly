@@ -378,10 +378,6 @@ namespace NetCore2Blockly
             var uri = new Uri(OdataContextUrl);
             var site = uri.Scheme + "://" + uri.Authority;
             var newUri = new UriBuilder(site);
-            if(newUri.Port == 0)
-            {
-                newUri.Port = 80;
-            }
             var httpClient = new HttpClient
             {
                 BaseAddress = newUri.Uri
@@ -485,7 +481,12 @@ namespace NetCore2Blockly
                             ;
             }
             var entitiesLocation =value.GetString();
-
+            var newUri = new UriBuilder(entitiesLocation);
+            if (newUri.Port == 0)
+            {
+                newUri.Port = 80;
+            }
+            entitiesLocation = newUri.Uri.ToString();
             var types = await AddValues(entitiesLocation);
 
             var urls = root.GetProperty("value");
@@ -574,7 +575,7 @@ namespace NetCore2Blockly
                 newAction.ControllerName = action;
                 newAction.Site = entitiesLocation.Replace("$metadata", "");
                 newAction.Verb = "POST";
-                newAction.RelativeRequestUrl = $"{action}({paramKeysStr})"; 
+                newAction.RelativeRequestUrl = $"{action}"; 
                 newAction.ReturnType = odatType;
                 newAction.Params.Add(odatType.Name, (odatType, BindingSourceDefinition.Body));
                 actions.Add(newAction);

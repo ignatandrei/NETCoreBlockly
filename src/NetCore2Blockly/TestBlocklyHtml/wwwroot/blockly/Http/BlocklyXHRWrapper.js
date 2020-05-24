@@ -134,7 +134,7 @@ const doDelete = (href, callback) => {
     var req = new XMLHttpRequest();
 
     req.open('DELETE', href, true);
-    req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    //req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
