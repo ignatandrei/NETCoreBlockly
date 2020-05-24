@@ -21,12 +21,14 @@
     <script src="others/FileSaver.min.js?v=version"></script>
     <script src="blockly/Http/BlocklyXHRWrapper.js?v=version"></script>
     <script src="blockly/converters/convertCSV.js?v=version"></script>
+    <script src="blockly/converters/convertJSONString.js?v=version"></script>
     <script src="blockly/exporters/exportFile.js?v=version"></script>
     <script src="blockly/DateTime/DateTime.js?v=version"></script>
     <script src="blockly/DateTime/CurrentDateBlock.js?v=version"></script>
     <script src="/blockly/Http/blocklyXHR.js?v=version"></script>
     <script src="/blockly/Http/blocklyHeader.js?v=version"></script>
     <script src="blockly/objects/createObject.js?v=version"></script>
+    <script src="blockly/objects/propJS.js?v=version"></script>
     <!--this is generated at runtime by blockly storage nuget : local storage, sqlite...-->
     <script src="/blocklyStorage?v=version"></script>
 
@@ -890,115 +892,8 @@
         localSiteDom.innerHTML = blockTextLocalSiteFunctions;
 
 
-        Blockly.Blocks['converttojson'] = {
-            init: function () {
-                this.appendDummyInput()
-                    .appendField("ConvertToJSON");
-                this.appendValueInput("ValueToConvert")
-                    .setCheck(null);
-                this.setInputsInline(true);
-                this.setOutput(true, null);
-                this.setTooltip("Convert to JSON");
-                this.setHelpUrl("");
-            }
-        };
-
-        Blockly.Blocks['converttojson'] = {
-            init: function () {
-                this.appendDummyInput()
-                    .appendField("ConvertToJSON");
-                this.appendValueInput("ValueToConvert")
-                    .setCheck(null);
-                this.setInputsInline(true);
-                this.setOutput(true, null);
-                this.setTooltip("Convert to JSON");
-                this.setHelpUrl("");
-            }
-        };
-        Blockly.JavaScript['converttojson'] = function (block) {
-            var value_ValueToConvert = Blockly.JavaScript.valueToCode(block, 'ValueToConvert', Blockly.JavaScript.ORDER_ATOMIC);
-            //value_ValueToConvert = value_ValueToConvert.replace(/(\r\n|\n|\r)/gm, "")
-            const code = 'JSON.parse(' + value_ValueToConvert + ')';
-            return [code, Blockly.JavaScript.ORDER_NONE];
-
-        };
-        Blockly.Blocks['converttostring'] = {
-            init: function () {
-                this.appendDummyInput()
-                    .appendField("ConvertToString");
-                this.appendValueInput("ValueToConvert")
-                    .setCheck(null);
-                this.setInputsInline(true);
-                this.setOutput(true, null);
-                this.setTooltip("Convert to String");
-                this.setHelpUrl("");
-            }
-        };
-        Blockly.JavaScript['converttostring'] = function (block) {
-            var value_ValueToConvert = Blockly.JavaScript.valueToCode(block, 'ValueToConvert', Blockly.JavaScript.ORDER_ATOMIC);
-            var code = 'JSON.stringify(' + value_ValueToConvert + ')';
-            return [code, Blockly.JavaScript.ORDER_NONE];
-        };
-
-        //https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#7jmg3m
-        Blockly.Blocks['modifyproperty'] = {
-            init: function () {
-                this.appendDummyInput()
-                    .appendField("Modify ");
-                this.appendValueInput("ObjectToChange")
-                    .setCheck(null)
-                    .setAlign(Blockly.ALIGN_CENTRE)
-                    .appendField(new Blockly.FieldLabelSerializable("object"), "objectName");
-                this.appendValueInput("PropertyName")
-                    .setCheck(null)
-                    .setAlign(Blockly.ALIGN_RIGHT)
-                    .appendField(new Blockly.FieldLabelSerializable(",property"), "prop");
-                this.appendValueInput("NewValue")
-                    .setCheck(null)
-                    .setAlign(Blockly.ALIGN_RIGHT)
-                    .appendField(new Blockly.FieldLabelSerializable("toValue"), "newValue");
-                this.setInputsInline(true);
-                this.setPreviousStatement(true, null);
-                this.setNextStatement(true, null);
-                this.setTooltip("");
-                this.setHelpUrl("");
-            }
-        };
-        Blockly.JavaScript['modifyproperty'] = function (block) {
-            var value_objecttochange = Blockly.JavaScript.valueToCode(block, 'ObjectToChange', Blockly.JavaScript.ORDER_ATOMIC);
-            var value_propertyname = Blockly.JavaScript.valueToCode(block, 'PropertyName', Blockly.JavaScript.ORDER_ATOMIC);
-            var value_newvalue = Blockly.JavaScript.valueToCode(block, 'NewValue', Blockly.JavaScript.ORDER_ATOMIC);
-            var code = value_objecttochange + "[" + value_propertyname + ']=' + value_newvalue + ";";
-            return code;
-        };
-
-        Blockly.Blocks['getproperty'] = {
-            init: function () {
-                this.appendDummyInput()
-                    .appendField("Get from");
-                this.appendValueInput("ObjectToChange")
-                    .setCheck(null)
-                    .setAlign(Blockly.ALIGN_CENTRE)
-                    .appendField(new Blockly.FieldLabelSerializable("object"), "objectName");
-                this.appendValueInput("PropertyName")
-                    .setCheck(null)
-                    .setAlign(Blockly.ALIGN_RIGHT)
-                    .appendField(new Blockly.FieldLabelSerializable("property"), "prop");
-                this.setInputsInline(true);
-                this.setOutput(true, null)
-                //this.setTooltip("");
-                //this.setHelpUrl("");
-            }
-
-        };
-        Blockly.JavaScript['getproperty'] = function (block) {
-            var value_objecttochange = Blockly.JavaScript.valueToCode(block, 'ObjectToChange', Blockly.JavaScript.ORDER_ATOMIC);
-            var value_propertyname = Blockly.JavaScript.valueToCode(block, 'PropertyName', Blockly.JavaScript.ORDER_ATOMIC);
-
-            var code = value_objecttochange + "[" + value_propertyname + ']';
-            // TODO: Change ORDER_NONE to the correct strength.
-            return [code, Blockly.JavaScript.ORDER_NONE];
-        };
+        
+        
         //start swagger
 
         //window.alert(JSON.stringify(dictSwagger));
@@ -1071,16 +966,6 @@
         workspaceSearch.init();
         workspaceSearch.open();
         registerSearch(demoWorkspace);
-        //demoWorkspace.registerToolboxCategoryCallback('LocalSiteFunctions', registerFunctions);
-        //function (ws) {
-        //    //var tb = ws.getToolbox();
-        //    //console.log(tb);
-        //    //window.alert('adsa');
-        //    registerFunctions();
-        //    //var tb = demoWorkspace.getToolbox();
-        //    //tb.refreshSelection();
-        //});
-
 
         //start swagger
 
