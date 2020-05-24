@@ -25,6 +25,7 @@ using OdataToEntity.EfCore.DynamicDataContext.InformationSchema;
 using OdataToEntity.AspNetCore;
 using Microsoft.AspNet.OData.Formatter;
 using Microsoft.Net.Http.Headers;
+using Hellang.Middleware.ProblemDetails;
 
 namespace TestBlocklyHtml
 {
@@ -106,6 +107,7 @@ namespace TestBlocklyHtml
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseProblemDetails();
             #region odata
             IEdmModel edmModel = ModelDB();
             #endregion
