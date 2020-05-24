@@ -173,8 +173,13 @@ namespace TestBlocklyHtml
             if (edmModel != null)
             {
                 app.UseOdataToEntityMiddleware<OePageMiddleware>("/odataDB", edmModel);
+                app.UseBlockly("/odataDB");
             }
-            app.UseBlockly("/odataDB");
+            else
+            {
+                app.UseBlockly();
+            }
+            
         }
         private IEdmModel ModelDB()
         {

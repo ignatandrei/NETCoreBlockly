@@ -1852,6 +1852,165 @@ var testBlocks = [
     </next>
   </block>
 </xml>`
+    },
+    {
+        name: 'ODATA local DB',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="hO\`?kR*XbVn|uJq:?jJ_">n</variable>
+    <variable id="J=uTKf528=Ou5g1ROhh-">var_OdataToEntity_EfCore_DynamicDataContext_Types_DynamicType1</variable>
+  </variables>
+  <block type="variables_set" inline="true" x="-400" y="-138">
+    <field name="VAR" id="hO\`?kR*XbVn|uJq:?jJ_">n</field>
+    <value name="VALUE">
+      <block type="math_number">
+        <field name="NUM">21</field>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="J=uTKf528=Ou5g1ROhh-">var_OdataToEntity_EfCore_DynamicDataContext_Types_DynamicType1</field>
+        <value name="VALUE">
+          <block type="OdataToEntity.EfCore.DynamicDataContext.Types.DynamicType1">
+            <value name="val_idClassRoom">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="variables_get">
+                <field name="VAR" id="hO\`?kR*XbVn|uJq:?jJ_">n</field>
+              </block>
+            </value>
+            <value name="val_Name">
+              <shadow type="text">
+                <field name="TEXT">first</field>
+              </shadow>
+            </value>
+            <value name="val_Students">
+              <shadow type="lists_create_with">
+                <mutation items="0"></mutation>
+              </shadow>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="GetAllClassRoom_GET"></block>
+            </value>
+            <next>
+              <block type="text_print">
+                <value name="TEXT">
+                  <block type="Create ClassRoom_POST">
+                    <value name="val_ClassRoom">
+                      <shadow type="OdataToEntity.EfCore.DynamicDataContext.Types.DynamicType1"></shadow>
+                      <block type="variables_get">
+                        <field name="VAR" id="J=uTKf528=Ou5g1ROhh-">var_OdataToEntity_EfCore_DynamicDataContext_Types_DynamicType1</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print">
+                    <value name="TEXT">
+                      <block type="GetOneClassRoom_GET">
+                        <value name="val_idClassRoom">
+                          <shadow type="math_number">
+                            <field name="NUM">0</field>
+                          </shadow>
+                          <block type="variables_get">
+                            <field name="VAR" id="hO\`?kR*XbVn|uJq:?jJ_">n</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="text_print">
+                        <value name="TEXT">
+                          <block type="Modify ClassRoom_PATCH">
+                            <value name="val_idClassRoom">
+                              <shadow type="math_number">
+                                <field name="NUM">0</field>
+                              </shadow>
+                              <block type="variables_get">
+                                <field name="VAR" id="hO\`?kR*XbVn|uJq:?jJ_">n</field>
+                              </block>
+                            </value>
+                            <value name="val_ClassRoom">
+                              <shadow type="OdataToEntity.EfCore.DynamicDataContext.Types.DynamicType1"></shadow>
+                              <block type="OdataToEntity.EfCore.DynamicDataContext.Types.DynamicType1">
+                                <value name="val_idClassRoom">
+                                  <shadow type="math_number">
+                                    <field name="NUM">0</field>
+                                  </shadow>
+                                  <block type="variables_get">
+                                    <field name="VAR" id="hO\`?kR*XbVn|uJq:?jJ_">n</field>
+                                  </block>
+                                </value>
+                                <value name="val_Name">
+                                  <shadow type="text">
+                                    <field name="TEXT">second</field>
+                                  </shadow>
+                                </value>
+                                <value name="val_Students">
+                                  <shadow type="lists_create_with">
+                                    <mutation items="0"></mutation>
+                                  </shadow>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="text_print">
+                            <value name="TEXT">
+                              <block type="GetOneClassRoom_GET">
+                                <value name="val_idClassRoom">
+                                  <shadow type="math_number">
+                                    <field name="NUM">0</field>
+                                  </shadow>
+                                  <block type="variables_get">
+                                    <field name="VAR" id="hO\`?kR*XbVn|uJq:?jJ_">n</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="text_print">
+                                <value name="TEXT">
+                                  <block type="Delete ClassRoom_DELETE">
+                                    <value name="val_idClassRoom">
+                                      <shadow type="math_number">
+                                        <field name="NUM">0</field>
+                                      </shadow>
+                                      <block type="variables_get">
+                                        <field name="VAR" id="hO\`?kR*XbVn|uJq:?jJ_">n</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="text_print">
+                                    <value name="TEXT">
+                                      <block type="GetAllClassRoom_GET"></block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>`
     }
 ]
 

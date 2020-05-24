@@ -79,6 +79,9 @@ ApplicationServices
             {
                 foreach (var item in localOdata)
                 {
+                    if (string.IsNullOrWhiteSpace(item))
+                        continue;
+
                     var odata= service.AddOdata(item, item);
                     odata.GetAwaiter().GetResult();
                 }
