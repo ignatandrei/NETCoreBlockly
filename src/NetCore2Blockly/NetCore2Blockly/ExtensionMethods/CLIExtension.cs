@@ -66,9 +66,10 @@ ApplicationServices
             return app;
         }
         /// <summary>
-        ///  use blockly
+        /// Uses the blockly.
         /// </summary>
-        /// <param name="app"></param>
+        /// <param name="app">The application.</param>
+        /// <param name="localOdata">The local odata path, if exists</param>
         /// <returns></returns>
         public static IApplicationBuilder UseBlockly(this IApplicationBuilder app, params string[] localOdata)
         {

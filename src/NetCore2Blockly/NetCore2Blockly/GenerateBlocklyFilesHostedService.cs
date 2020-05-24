@@ -447,7 +447,7 @@ namespace NetCore2Blockly
 
         }
         List<string> odataLater = new List<string>();
-        internal async Task AddOdata(string key, string endpoint)
+        internal async Task AddOdata(string key, string endpoint, bool makeActionLocal=false)
         {
             try
             {
@@ -457,6 +457,15 @@ namespace NetCore2Blockly
                     return;
                 }
                 var data = await GenerateFromODataEndPoint(endpoint);
+                if (makeActionLocal)
+                {
+                    foreach(var item in data)
+                    {
+                        item.Host = null;
+                        item.RelativeRequestUrl = new Uri(item.Site).PathAndQuery + item.RelativeRequestUrl;
+                        item.Site = null;
+                    }
+                }
                 oDatas.Add(key, new BlocklyFileGenerator(data));
             }
             catch (Exception ex)
@@ -687,6 +696,7 @@ namespace NetCore2Blockly
             if ((serverAddresses?.Addresses?.Count() ?? 0) == 0)
                 return;
 
+            lock(this)
             if (odataLater.Count > 0)
             {
                 
@@ -708,10 +718,14 @@ namespace NetCore2Blockly
                 {
                     var b = new UriBuilder(Host);
                     b.Path = item;
-                    var x= AddOdata(item.Replace("/", ""), b.Uri.ToString());
+                    var x= AddOdata(item.Replace("/", ""), b.Uri.ToString(),true);
                     x.GetAwaiter().GetResult();
                 }
                 odataLater.Clear();
+                this._ODataBlocklyAPIFunctions = null;
+                this._ODataBlocklyToolBoxFunctionDefinition= null;
+                this._ODataBlocklyTypesDefinition = null;
+                this._ODataBlocklyToolBoxValueDefinition = null;
             }
             _timer.Dispose();
         }

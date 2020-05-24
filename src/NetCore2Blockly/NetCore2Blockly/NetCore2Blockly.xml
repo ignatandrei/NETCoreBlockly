@@ -249,11 +249,12 @@
             <param name="endPoint">The end point.</param>
             <returns></returns>
         </member>
-        <member name="M:NetCore2Blockly.CLIExtension.UseBlockly(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="M:NetCore2Blockly.CLIExtension.UseBlockly(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String[])">
             <summary>
-             use blockly
+            Uses the blockly.
             </summary>
-            <param name="app"></param>
+            <param name="app">The application.</param>
+            <param name="localOdata">The local odata path, if exists</param>
             <returns></returns>
         </member>
         <member name="M:NetCore2Blockly.CLIExtension.UseBlocklyUI(Microsoft.AspNetCore.Builder.IApplicationBuilder,NetCore2Blockly.BlocklyUIOptions)">
