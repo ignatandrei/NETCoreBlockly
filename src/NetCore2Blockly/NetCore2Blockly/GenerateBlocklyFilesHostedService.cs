@@ -601,7 +601,7 @@ namespace NetCore2Blockly
                 newAction.ActionName = $"Modify {nameAction}";
                 newAction.ControllerName = action;
                 newAction.Site = entitiesLocation.Replace("$metadata", "");
-                newAction.Verb = "PUT";
+                newAction.Verb = "PATCH";
                 newAction.RelativeRequestUrl = $"{action}({paramKeysStr})"; 
                 foreach (var item in paramKeys)
                 {

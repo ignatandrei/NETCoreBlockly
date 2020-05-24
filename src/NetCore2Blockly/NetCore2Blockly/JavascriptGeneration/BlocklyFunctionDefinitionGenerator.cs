@@ -58,7 +58,7 @@ namespace NetCore2Blockly.JavascriptGeneration
             else
                 returnType = $@"this.setOutput(true,'');";
             var actionHash  = actionInfo.CustomGetHashCode();
-            string[] verbHasImage =new string[] { "get", "post", "put", "delete" };
+            string[] verbHasImage =new string[] { "patch","get", "post", "put", "delete" };
             bool hasImage = verbHasImage.Contains(actionInfo.Verb.ToLower());
             var blockColor = BlocklyStringToColor.ConvertToHue(actionHash);
             return $@"

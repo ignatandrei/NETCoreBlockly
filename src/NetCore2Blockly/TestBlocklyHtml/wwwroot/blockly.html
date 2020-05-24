@@ -1162,6 +1162,27 @@
                 interpreter.createAsyncFunction(wrapper));
 
 
+            var wrapper = (href, objectToPost, callback) => {
+                try {
+                    var heads = interpreter.pseudoToNative(headersForDomain);
+                    var hostname = '(localSite)';
+                    if (href.startsWith('http://') || href.startsWith('https://')) {
+                        hostname = (new URL(href)).hostname;
+                    }
+                    var arrHeaders = [];
+                    if (hostname in heads) {
+                        arrHeaders = heads[hostname];
+                    }
+                    doPatch(href, objectToPost, callback);
+                }
+                catch (e) {
+                    alert("is an error" + e);
+                }
+            };
+            interpreter.setProperty(globalObject, 'patchXhr',
+                interpreter.createAsyncFunction(wrapper));
+
+
             var wrapper = (href, callback) => {
                 try {
                     var heads = interpreter.pseudoToNative(headersForDomain);

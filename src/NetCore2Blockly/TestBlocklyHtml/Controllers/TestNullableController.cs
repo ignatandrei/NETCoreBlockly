@@ -15,9 +15,14 @@ namespace TestBlocklyHtml.Controllers
         [HttpGet("{id?}")]
         public string ActionWithNullParameter(int? id)
         {
-            return (id == null) ? "no parameter" : $"parameter {id}";
+            return (id == null) ? "from GET no parameter" : $"from GET parameter {id}";
         }
 
+        [HttpPatch("{id?}")]
+        public string ActionWithNullParameterPATCH(int? id)
+        {
+            return (id == null) ? "from PATCH no parameter" : $"from PATCH parameter {id}";
+        }
         [HttpGet("{id}")]
         public string ActionWith2ParametersAndARoute(int id, int x, int y)
         {
