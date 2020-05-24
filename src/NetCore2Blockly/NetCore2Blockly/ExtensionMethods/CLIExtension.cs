@@ -114,6 +114,7 @@ ApplicationServices
                     .GetService<GenerateBlocklyFilesHostedService>();
                 app.Run(async context =>
                 {
+                    context.Response.ContentType = "application/javascript";
                     await GetBlocklyFilesHostedServices(context, content(blocklyFilesHostedService));
                 });
             });
