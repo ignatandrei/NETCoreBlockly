@@ -52,7 +52,7 @@ namespace NetCore2Blockly.JavascriptGeneration
                                 init: function() {{
 //this.setInputsInline(true);
                                     this.appendDummyInput()
-                                        .appendField('{typeName}');
+                                        .appendField('{type.Name}');
                                     {tooltipAndpropsDef.propsDef}
                                     this.setTooltip('{tooltipAndpropsDef.tooltip}');
                         
@@ -125,7 +125,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         }
         internal (string tooltip, string propsDef) GenerateTooltipAndPropDef(TypeArgumentBase type)
         {
-            string tooltip = $"{type.Name} with props:";
+            string tooltip = $"{type.TranslateToNewTypeName()} with props:";
             string propsDef = "";
             
             var validProperties = type.GetProperties();
