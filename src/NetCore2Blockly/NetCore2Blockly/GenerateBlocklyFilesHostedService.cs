@@ -187,7 +187,7 @@ namespace NetCore2Blockly
                     }
                     if (!string.IsNullOrWhiteSpace(val.Type))
                     {
-                        if(val.Type == "object" && val.AdditionalPropertiesAllowed)
+                        if(val.Type == "object" && val.AdditionalPropertiesAllowed && val.AdditionalProperties != null)
                         {
                             val.Type=val.AdditionalProperties.Type;
                         }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.FileProviders.Physical;
@@ -16,11 +17,51 @@ namespace NetCore2Blockly
     /// </summary>
     public static class CLIExtension
     {
+        private const string Key = "NetCoreBlockly:OtherLinks";
+
         static CLIExtension()
         {
             var assName = Assembly.GetExecutingAssembly().GetName();
             Console.WriteLine($"{assName.Name} version:{assName.Version.ToString()}");
 
+        }
+        /// <summary>
+        /// Uses the blockly links from config
+        /// </summary>
+        /// <param name="app">The application.</param>
+        /// <param name="config">The configuration.</param>
+        /// <returns></returns>
+        public static IApplicationBuilder UseBlocklyLinksFromConfig(this IApplicationBuilder app, IConfiguration  config)
+        {
+            var otherLinks = config.GetSection(Key).Get<BLocklyOtherLinks>();
+            return UseBatchBlocklyLinks(app, otherLinks);
+        }
+        /// <summary>
+        /// Adds the batch blockly links.
+        /// </summary>
+        /// <param name="app">The application.</param>
+        /// <param name="links">The links.</param>
+        /// <returns></returns>
+        public static IApplicationBuilder UseBatchBlocklyLinks(this IApplicationBuilder  app,BLocklyOtherLinks links)
+        {
+            if (links == null)
+                return app;
+
+            if (links.ODatas?.Length > 0)
+            {
+                foreach(var item in links.ODatas)
+                {
+                    UseBlocklyOData(app, item.Name, item.Link);
+                }
+            }
+            if (links.Swaggers?.Length > 0)
+            {
+                foreach (var item in links.Swaggers)
+                {
+                    UseBlocklySwagger(app, item.Name, item.Link);
+                }
+            }
+            return app;
         }
         /// <summary>
         /// Adds the blockly to startup

@@ -145,7 +145,9 @@ namespace TestBlocklyHtml
             //app.UseBlocklyOData("localodata", "/odata");
             app.UseBlocklyOData("OdataV4", "https://services.odata.org/TripPinRESTierService/");
             //app.UseBlocklyOData("heroku", "https://netcoreblockly.herokuapp.com/odata");
-            app.UseBlocklyOData("OdataV3", "https://services.odata.org/V3/OData/OData.svc");
+            //app.UseBlocklyOData("OdataV3", "https://services.odata.org/V3/OData/OData.svc");
+            //app.UseBatchBlocklyLinks(this.Configuration.GetSection("NetCoreBlockly:OtherLinks").Get<BLocklyOtherLinks>());
+            app.UseBlocklyLinksFromConfig(this.Configuration);
             //this is not necessary to be added
             app.UseSwagger();
 

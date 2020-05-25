@@ -224,6 +224,22 @@
             extension to register to the startup
             </summary>
         </member>
+        <member name="M:NetCore2Blockly.CLIExtension.UseBlocklyLinksFromConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Uses the blockly links from config
+            </summary>
+            <param name="app">The application.</param>
+            <param name="config">The configuration.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCore2Blockly.CLIExtension.UseBatchBlocklyLinks(Microsoft.AspNetCore.Builder.IApplicationBuilder,NetCore2Blockly.BLocklyOtherLinks)">
+            <summary>
+            Adds the batch blockly links.
+            </summary>
+            <param name="app">The application.</param>
+            <param name="links">The links.</param>
+            <returns></returns>
+        </member>
         <member name="M:NetCore2Blockly.CLIExtension.AddBlockly(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Adds the blockly to startup
@@ -269,6 +285,45 @@
             Uses the storage
             </summary>
             <param name="appBuilder">The application builder.</param>
+        </member>
+        <member name="T:NetCore2Blockly.BLocklyNameLink">
+            <summary>
+            name link in config
+            </summary>
+        </member>
+        <member name="P:NetCore2Blockly.BLocklyNameLink.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:NetCore2Blockly.BLocklyNameLink.Link">
+            <summary>
+            Gets or sets the link.
+            </summary>
+            <value>
+            The link.
+            </value>
+        </member>
+        <member name="T:NetCore2Blockly.BLocklyOtherLinks">
+            <summary>
+            other dynamic links
+            </summary>
+        </member>
+        <member name="P:NetCore2Blockly.BLocklyOtherLinks.Swaggers">
+            <summary>
+            Initializes a new instance of the <see cref="T:NetCore2Blockly.BLocklyOtherLinks" /> class.
+            </summary>
+        </member>
+        <member name="P:NetCore2Blockly.BLocklyOtherLinks.ODatas">
+            <summary>
+            Gets or sets the o datas.
+            </summary>
+            <value>
+            The o datas.
+            </value>
         </member>
         <member name="T:NetCore2Blockly.TypeExtensions">
             <summary>
