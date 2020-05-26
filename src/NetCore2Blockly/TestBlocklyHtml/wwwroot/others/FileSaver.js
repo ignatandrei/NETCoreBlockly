@@ -86,7 +86,10 @@
   } // Detect WebKit inside a native macOS app
 
 
-  var isWebKit = /AppleWebKit/.test(navigator.userAgent);
+  //var isWebKit = /AppleWebKit/.test(navigator.userAgent);
+  var isWebKit = 
+    /AppleWebKit/.test(navigator.userAgent) && (!/Chrome/.test(navigator.userAgent));
+	
   var saveAs = _global.saveAs || ( // probably in some web worker
   typeof window !== 'object' || window !== _global ? function saveAs() {}
   /* noop */
