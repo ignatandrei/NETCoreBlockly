@@ -211,7 +211,6 @@ ApplicationServices
                             stream.Write(buffer, 0, bytesRead);
                         }
                         byte[] result = stream.ToArray();
-                        // TODO: do something with the result
                         var m = new Memory<byte>(result);
                         await cnt.Response.BodyWriter.WriteAsync(m);
                     });
