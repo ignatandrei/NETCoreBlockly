@@ -67,6 +67,12 @@
       "commands": [
         "dotnet-outdated"
       ]
+    },
+    "dotnet-gitchanges": {
+      "version": "0.8.1",
+      "commands": [
+        "gitchanges"
+      ]
     }
   }
 }

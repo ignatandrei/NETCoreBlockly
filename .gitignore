@@ -349,3 +349,6 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 src/NetCore2Blockly/TestBlocklyHtml/blocklySqlite.db
+cgitchangessettings.txt
+changelog.md
+hist.txt
