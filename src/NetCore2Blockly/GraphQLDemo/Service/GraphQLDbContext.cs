@@ -13,8 +13,9 @@ namespace GraphQLDemo.Service
 {
     public partial class GraphQLDbContext : DbContext
     {
+
         public GraphQLDbContext(DbContextOptions<GraphQLDbContext> options)
-          : base(options)
+            : base(options)
         {
         }
 
@@ -41,7 +42,7 @@ namespace GraphQLDemo.Service
                     .WithMany(p => p.Employee)
                     .HasForeignKey(d => d.Iddepartment)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    /*.HasConstraintName("FK_Employee_Department")*/;
+                    .HasConstraintName("FK_Employee_Department");
             });
 
             modelBuilder.Entity<Test>(entity =>
@@ -52,8 +53,8 @@ namespace GraphQLDemo.Service
             });
 
             OnModelCreatingPartial(modelBuilder);
-
         }
+
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
