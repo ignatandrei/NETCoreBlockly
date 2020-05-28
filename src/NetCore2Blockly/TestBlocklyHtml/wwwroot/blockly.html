@@ -149,8 +149,8 @@
             return _lsh;
         }
         function LoadFromStorage(i) {
-            //window.alert(arrSavedLocalStorage[i]);
-            var ls = getBlocksFromLocalStorage();
+            //window.alert(arrSavedStorage[i]);
+            var ls = getBlocksFromstorage();
             demoWorkspace.clear();
             var content = ls[i].val;
             //window.alert(content);
@@ -850,7 +850,7 @@
 
         function registerSavedBlocks() {
             var xmlList = [];
-            var fromStorage = getBlocksFromLocalStorage();
+            var fromStorage = getBlocksFromstorage();
             for (var i = 0; i < fromStorage.length; i++) {
                 var storage = fromStorage[i];
                 try {
@@ -874,20 +874,7 @@
                 }
                 //window.alert(xmlList.length);
             }
-            //var blockText_Math2Values = '<block type="TestBlocklyHtml_Math2Values">';
-
-
-            //var blockTextLocalSiteFunctions = '<value name="val_x"><shadow type="math_number"></shadow></value>';
-            //blockText_Math2Values += blockTextLocalSiteFunctions;
-
-            //var blockTextLocalSiteFunctions = '<value name="val_y"><shadow type="math_number"></shadow></value>';
-            //blockText_Math2Values += blockTextLocalSiteFunctions; blockText_Math2Values += '</block>';
-            //block_Math2Values = Blockly.Xml.textToDom(blockText_Math2Values);
-            //xmlList.push(block_Math2Values);
-            //var block_Math2ValuesSet = '<block type="variables_set"><field name="VAR">var_Math2Values</field></block>';
-            //block_Math2ValuesSet = Blockly.Xml.textToDom(block_Math2ValuesSet);
-            //xmlList.push(block_Math2ValuesSet);
-
+    
             return xmlList;
         }
 
@@ -1077,19 +1064,6 @@
                 interpreter.createNativeFunction(wrapper));
 
 
-            //var wrapper = function (obj) {
-            //    var json = JSON.parse(obj);
-            //    var objNew = {};
-            //    console.log(Blockly.mainWorkspace.getAllVariables());
-            //    for (var key in json) {
-            //        console.log(`evaluating ${key}`);
-            //        objNew[key] = eval(json[key]);
-            //        console.log(`finish ${key}`);
-            //    }
-            //    return objNew;
-            //}
-            //interpreter.setProperty(globalObject, 'resolveObject',
-            //    interpreter.createNativeFunction(wrapper));
             var wrapper = (item) => convertCSV(item);
             interpreter.setProperty(globalObject, 'convertToCSV',
                 interpreter.createNativeFunction(wrapper));
@@ -1326,21 +1300,6 @@
 
                     if (obj.type == "text_print")
                         return;
-                    //var print = event.getEventWorkspace_().getAllBlocks().find(it => it.type = 'text_print');
-                    //console.log(event.getEventWorkspace_().getAllBlocks());// .addTypedBlock
-                    //console.log(print);
-                    //event.getEventWorkspace_().addTopBlock(print);
-                    var dom = Blockly.Xml.textToDom(
-                        '<xml xmlns="http://www.w3.org/1999/xhtml">' +
-                        '  <block type="text_print" inline="true" x="21" y="23">' +
-                        ' <shadow type="text">' +
-                        '<field name = "TEXT"> abc</field>' +
-                        '</shadow >' +
-                        '  </block>' +
-                        '</xml>');
-
-
-                    //Blockly.Xml.appendDomToWorkspace(dom, event.getEventWorkspace_());
 
                 }
             }
@@ -1361,8 +1320,8 @@
             lsh().set("savedBlockly_" + n, ({ name: "savedBlockly_" + n, val: xml_text }));
             window.alert("copy the url from the browser");
         }
-        function getBlocksFromLocalStorage() {
-            var arrSavedLocalStorage = [];
+        function getBlocksFromstorage() {
+            var arrSavedStorage = [];
             var nrItems = lsh().length;
 
             for (var iStor = 0; iStor < nrItems; iStor++) {
@@ -1370,18 +1329,18 @@
                 //window.alert(key);
                 if (key.indexOf("savedBlockly_") != 0)
                     continue;
-                arrSavedLocalStorage.push(lsh().get(key));
+                arrSavedStorage.push(lsh().get(key));
 
             }
-            //window.alert(arrSavedLocalStorage.length);
-            return arrSavedLocalStorage;
+            //window.alert(arrSavedStorage.length);
+            return arrSavedStorage;
         }
         function displayLinksSavedStorage() {
 
             var ls = document.getElementById("localStorageSaved");
-            ls.innerHTML = tmpl("storage_tmpl", { data: getBlocksFromLocalStorage() });
+            ls.innerHTML = tmpl("storage_tmpl", { data: getBlocksFromstorage() });
 
-            //window.alert(arrSavedLocalStorage.length);
+            //window.alert(arrSavedStorage.length);
         }
         function formatInt(number) {
             return number < 10 ? '0' + number : number;
