@@ -532,7 +532,7 @@ namespace NetCore2Blockly
 
 
                 newAction = new ActionInfoOdata();
-                newAction.ActionName = $"Get{nameAction}_Odata";
+                newAction.ActionName = $"Get{nameAction}";
                 newAction.ControllerName = action;
                 newAction.Site = entitiesLocation.Replace("$metadata", "");
                 newAction.Verb = "GET";

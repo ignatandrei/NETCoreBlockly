@@ -83,8 +83,15 @@ namespace NetCore2Blockly
         /// <param name="apiDescription">The API description.</param>
         public ActionInfoFromNetAPI(ApiDescription apiDescription)
         {
+            var name = apiDescription.RelativePath;
 
-            ActionName = apiDescription.RelativePath;
+            if (name.Contains('/'))
+            {
+                var arr = apiDescription.RelativePath.Split('/', StringSplitOptions.RemoveEmptyEntries);
+                
+                name =arr.Where(it=>!it.Contains("{")).Last();
+            }
+            ActionName = name;
             Verb = apiDescription.HttpMethod ?? "GET";
             RelativeRequestUrl = apiDescription.RelativePath;
             Params = GetParameters(apiDescription.ParameterDescriptions.ToArray());

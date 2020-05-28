@@ -1413,7 +1413,7 @@ var testBlocks = [
         'data':`<xml xmlns="https://developers.google.com/blockly/xml">
     <block type="text_print" y="22" x="39">
         <value name="TEXT">
-            <block type="api_RestWithArgs_PostWithArgs_POST">
+            <block type="api_RestWithArgs_PostWithArgs_value_POST">
                 <value name="val_value">
                     <shadow type="text">
                         <field name="TEXT">Bring me back</field>
@@ -1656,7 +1656,7 @@ var testBlocks = [
     <block type=\"variables_set\" inline=\"true\" x=\"-363\" y=\"12\">
         <field name=\"VAR\" id=\"hO\`?kR*XbVn|uJq:?jJ_\">n</field>    
         <value name=\"VALUE\">
-            <block type=\"petstore_swagger_iov2__pet_post\">
+            <block type=\"petstore_swagger_io_v2__pet_post\">
                 <value name=\"val_Pet\">
                     <shadow type=\"petstore_swagger_iov2_Pet\"></shadow>          
                     <block type=\"petstore_swagger_iov2_Pet\">
@@ -1736,7 +1736,7 @@ var testBlocks = [
                         <next>
                             <block type=\"text_print\">
                                 <value name=\"TEXT\">
-                                    <block type=\"petstore_swagger_iov2__pet__petId__get\"><value name=\"val_petId\"><shadow type=\"math_number\"><field name=\"NUM\">0</field>                      
+                                    <block type=\"petstore_swagger_io_v2__pet__petId__get\"><value name=\"val_petId\"><shadow type=\"math_number\"><field name=\"NUM\">0</field>                      
                                             </shadow>                      
                                             <block type=\"variables_get\"><field name=\"VAR\" id=\"hO\`?kR*XbVn|uJq:?jJ_\">n</field>                      
                                             </block>                    
@@ -1758,7 +1758,7 @@ var testBlocks = [
         data:`<xml xmlns="https://developers.google.com/blockly/xml">
   <block type="text_print" y="117" x="62">
     <value name="TEXT">
-      <block type="GetOneAirports_GET">
+      <block type="services_odata_org_TripPinRESTierService__Airports_____IcaoCode______GET">
         <value name="val_IcaoCode">
           <block type="text">
             <field name="TEXT">KSFO</field>
@@ -1774,7 +1774,7 @@ var testBlocks = [
         data:`<xml xmlns="https://developers.google.com/blockly/xml">
   <block type="text_print" y="50" x="65">
     <value name="TEXT">
-      <block type="GetAirports_Odata_GET">
+      <block type="services_odata_org_TripPinRESTierService__Airports__count__top__skip__select_GET">
         <value name="val_$count">
           <shadow type="logic_boolean">
             <field name="BOOL">FALSE</field>
@@ -1825,7 +1825,7 @@ var testBlocks = [
     <next>
       <block type="text_print">
         <value name="TEXT">
-          <block type="GetProducts_Odata_GET">
+          <block type="services_odata_org_V3_OData_OData_svc__Products__inlinecount__top__skip__select_GET">
             <value name="val_$inlinecount">
               <shadow type="text">
                 <field name="TEXT">allpages</field>
@@ -1895,12 +1895,12 @@ var testBlocks = [
         <next>
           <block type="text_print">
             <value name="TEXT">
-              <block type="GetAllClassRoom_GET"></block>
+              <block type="_odataDB_ClassRoom_GET"></block>
             </value>
             <next>
               <block type="text_print">
                 <value name="TEXT">
-                  <block type="Create ClassRoom_POST">
+                  <block type="_odataDB_ClassRoom_POST">
                     <value name="val_ClassRoom">
                       <shadow type="OdataToEntity.EfCore.DynamicDataContext.Types.DynamicType1"></shadow>
                       <block type="variables_get">
@@ -1912,7 +1912,7 @@ var testBlocks = [
                 <next>
                   <block type="text_print">
                     <value name="TEXT">
-                      <block type="GetOneClassRoom_GET">
+                      <block type="_odataDB_ClassRoom__idClassRoom___GET">
                         <value name="val_idClassRoom">
                           <shadow type="math_number">
                             <field name="NUM">0</field>
@@ -1926,7 +1926,7 @@ var testBlocks = [
                     <next>
                       <block type="text_print">
                         <value name="TEXT">
-                          <block type="Modify ClassRoom_PATCH">
+                          <block type="_odataDB_ClassRoom__idClassRoom___PATCH">
                             <value name="val_idClassRoom">
                               <shadow type="math_number">
                                 <field name="NUM">0</field>
@@ -1963,7 +1963,7 @@ var testBlocks = [
                         <next>
                           <block type="text_print">
                             <value name="TEXT">
-                              <block type="GetOneClassRoom_GET">
+                              <block type="_odataDB_ClassRoom__idClassRoom___GET">
                                 <value name="val_idClassRoom">
                                   <shadow type="math_number">
                                     <field name="NUM">0</field>
@@ -1977,7 +1977,7 @@ var testBlocks = [
                             <next>
                               <block type="text_print">
                                 <value name="TEXT">
-                                  <block type="Delete ClassRoom_DELETE">
+                                  <block type="_odataDB_ClassRoom__idClassRoom___DELETE">
                                     <value name="val_idClassRoom">
                                       <shadow type="math_number">
                                         <field name="NUM">0</field>
@@ -1991,7 +1991,7 @@ var testBlocks = [
                                 <next>
                                   <block type="text_print">
                                     <value name="TEXT">
-                                      <block type="GetAllClassRoom_GET"></block>
+                                      <block type="_odataDB_ClassRoom_GET"></block>
                                     </value>
                                   </block>
                                 </next>
