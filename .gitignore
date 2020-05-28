@@ -350,7 +350,6 @@ MigrationBackup/
 .ionide/
 src/NetCore2Blockly/TestBlocklyHtml/blocklySqlite.db
 cgitchangessettings.txt
-changelog.md
 hist.txt
 package.json
 package-lock.json
