@@ -1505,7 +1505,7 @@ var testBlocks = [
         <mutation items="2"></mutation>
         <value name="ADD0">
           <block type="text">
-            <field name="TEXT">Bearer </field>
+            <field name="TEXT">CustomBearer </field>
           </block>
         </value>
         <value name="ADD1">

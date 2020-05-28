@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TestBlocklyHtml.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "CustomBearer")]
+    //[Authorize]
     [Route("api/[controller]")]
     public class RestrictedAccessController : ControllerBase
     {

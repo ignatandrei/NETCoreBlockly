@@ -91,9 +91,35 @@ namespace TestBlocklyHtml
             //var key = Encoding.ASCII.GetBytes(Configuration["ApplicationSecret"]);
             //please change also in AuthorizationToken . 
             var key = Encoding.ASCII.GetBytes("mySecretKeyThatShouldBeStoredInConfiguration");
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
+            services.AddAuthentication()
+                .AddJwtBearer("CustomBearer", options =>
                 {
+                    options.Events = new JwtBearerEvents()
+                    {
+                        OnMessageReceived = ctx =>
+                        {
+                            if (!(ctx?.Request?.Headers?.ContainsKey("Authorization") ?? true))
+                            {
+                                ctx.NoResult();
+                                return Task.CompletedTask;
+                            };
+                            var auth = ctx.Request.Headers["Authorization"].ToString();
+                            if (string.IsNullOrEmpty(auth))
+                            {
+                                ctx.NoResult();
+                                return Task.CompletedTask;
+                            }
+                            if (!auth.StartsWith("CustomBearer ", StringComparison.OrdinalIgnoreCase))
+                            {
+                                ctx.NoResult();
+                                return Task.CompletedTask;
+                            }
+
+                            ctx.Token = auth.Substring("CustomBearer ".Length).Trim();
+                            return Task.CompletedTask;
+
+                        }
+                    };
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
@@ -103,6 +129,20 @@ namespace TestBlocklyHtml
                         ValidateLifetime = false
                     };
                 });
+            services.AddAuthorization(options =>
+            {
+                //var defaultAuthorizationPolicyBuilder = new AuthorizationPolicyBuilder(
+                //    //JwtBearerDefaults.AuthenticationScheme,
+                //    "CustomBearer");
+                //defaultAuthorizationPolicyBuilder =
+                //    defaultAuthorizationPolicyBuilder.RequireAuthenticatedUser();
+                //options.DefaultPolicy = defaultAuthorizationPolicyBuilder.Build();
+                options.AddPolicy("CustomBearer", policy =>
+                {
+                    policy.AuthenticationSchemes.Add("CustomBearer");
+                    policy.RequireAuthenticatedUser();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
