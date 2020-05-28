@@ -4,15 +4,47 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H"  1.1.2020.12601295..1.1.2020.12631554
+git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H"  1.1.2020.12631554..1.1.2020.12824981
 
+## 1.1.2020.12824981
+
+ #### [Generate smaller name for the command] 
+ Author ignatandrei on 2020-05-28 13:27:35 +0300 
+
+ hash 1f6f94b 1f6f94b1fc4148724b554d21bfc9687928be9b94
+
+ #### [refactor html] 
+ Author ignatandrei on 2020-05-28 08:56:45 +0300 
+
+ hash 30083dd 30083dd2617092bcadce9776c4d180c5c434f335
+
+ #### [added change log] 
+ Author ignatandrei on 2020-05-28 08:17:38 +0300 
+
+ hash bcfaa5d bcfaa5d05bafc29d46a7bf7dd790e85f3bdc8969
+
+ #### [push versions] 
+ Author ignatandrei on 2020-05-28 07:38:35 +0300 
+
+ hash ba770ad ba770ade0de3d4d90fe12b8d2c904ba4b1820bdc
+
+ #### [added tool] 
+ Author ignatandrei on 2020-05-27 22:52:49 +0300 
+
+ hash 8669bc4 8669bc45a58aa57f8254d094a9b2472e377757b2
+
+ #### [update latest version] 
+ Author ignatandrei on 2020-05-26 21:49:37 +0300 
+
+ hash 6c179d2 6c179d25f34b8da06e804ce4f3111a1eb4f9968d
+
+ #### [bump the .csproj to latest nuget to see if it is working] 
+ Author ignatandrei on 2020-05-26 08:24:29 +0300 
+
+ hash 0eb5b6c 0eb5b6cd7eaf7768a86838069314802cce740bc0
 
 ### 1.1.2020.12631554
 
-#### [todo]
- Author ignatandrei on 2020-05-26 08:13:49 +0300
-
- hash 0ea958b 0ea958bbd8971eb7a91ff938c72221f0f342e585
 
  #### [save name files i  chrome]
  Author ignatandrei on 2020-05-26 07:43:52 +0300
