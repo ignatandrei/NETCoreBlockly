@@ -193,7 +193,7 @@ namespace TestBlocklyHtml
                 //optionsBuilder = optionsBuilder.UseSqlServer("Server=.;Initial Catalog=test;Trusted_Connection=No;UID=sa;PWD=Your_password123;Connect Timeout=5");
                 //using (var providerSchema = new SqlServerSchema(optionsBuilder.Options))
 
-                var con = "Server=sql7.freemysqlhosting.net;Database=sql7341223;Uid=sql7341223;Pwd=sSuvYBVdwu;";
+                var con = Environment.GetEnvironmentVariable("MySql");
                 optionsBuilder = optionsBuilder.UseMySQL(con);
                 using (var providerSchema = new MySqlSchema(optionsBuilder.Options))
                 //var con = Environment.GetEnvironmentVariable("Postgres");
