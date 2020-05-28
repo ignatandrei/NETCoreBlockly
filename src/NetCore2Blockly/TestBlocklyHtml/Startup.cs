@@ -92,6 +92,11 @@ namespace TestBlocklyHtml
             //please change also in AuthorizationToken . 
             var key = Encoding.ASCII.GetBytes("mySecretKeyThatShouldBeStoredInConfiguration");
             services.AddAuthentication()
+                .AddJwtBearer("AuthoBearer",options =>
+                {
+                    options.Authority = "https://ignatandrei.eu.auth0.com/";
+                    options.Audience = "andreiTest";
+                })
                 .AddJwtBearer("CustomBearer", options =>
                 {
                     options.Events = new JwtBearerEvents()
@@ -137,6 +142,11 @@ namespace TestBlocklyHtml
                 //defaultAuthorizationPolicyBuilder =
                 //    defaultAuthorizationPolicyBuilder.RequireAuthenticatedUser();
                 //options.DefaultPolicy = defaultAuthorizationPolicyBuilder.Build();
+                options.AddPolicy("Auth0Policy", policy =>
+                {
+                    policy.AuthenticationSchemes.Add("AuthoBearer");
+                    policy.RequireAuthenticatedUser();
+                });
                 options.AddPolicy("CustomBearer", policy =>
                 {
                     policy.AuthenticationSchemes.Add("CustomBearer");
