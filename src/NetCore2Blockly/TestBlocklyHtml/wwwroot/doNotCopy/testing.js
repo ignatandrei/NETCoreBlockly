@@ -2011,6 +2011,121 @@ var testBlocks = [
     </next>
   </block>
 </xml>`
+    },
+    {
+        name: 'first version auth0',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="RRZ-(HL..n:DbSi7KPbv">token</variable>
+  </variables>
+  <block type="variables_set" x="61" y="13">
+    <field name="VAR" id="RRZ-(HL..n:DbSi7KPbv">token</field>
+    <value name="VALUE">
+      <block type="httprequest">
+        <field name="TypeOutput">JSON</field>
+        <field name="TypeRequest">POST</field>
+        <value name="TheUrl">
+          <shadow type="text">
+            <field name="TEXT">https://ignatandrei.eu.auth0.com/oauth/token</field>
+          </shadow>
+        </value>
+        <value name="Data">
+          <block type="auth0webapidata">
+            <value name="client_id">
+              <shadow type="text">
+                <field name="TEXT">dvshpeMH6Jx9v3JY2NUrnhGqlCclFf7e</field>
+              </shadow>
+            </value>
+            <value name="client_secret">
+              <shadow type="text">
+                <field name="TEXT">7Lt_K_YxV-_NBx4zHpyedZZSf728ZvtsfNjrjR_-6Qu_b05J5qBSGmVhEO0QaYUm</field>
+              </shadow>
+            </value>
+            <value name="audience">
+              <shadow type="text">
+                <field name="TEXT">mytest</field>
+              </shadow>
+            </value>
+            <value name="grant_type">
+              <shadow type="text">
+                <field name="TEXT">client_credentials</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="RRZ-(HL..n:DbSi7KPbv">token</field>
+        <value name="VALUE">
+          <block type="getproperty">
+            <field name="objectName">object</field>
+            <field name="prop">property</field>
+            <value name="ObjectToChange">
+              <block type="variables_get">
+                <field name="VAR" id="RRZ-(HL..n:DbSi7KPbv">token</field>
+              </block>
+            </value>
+            <value name="PropertyName">
+              <block type="text">
+                <field name="TEXT">access_token</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="variables_get">
+                <field name="VAR" id="RRZ-(HL..n:DbSi7KPbv">token</field>
+              </block>
+            </value>
+            <next>
+              <block type="headersbeforehttp">
+                <value name="HttpDomain">
+                  <shadow type="text">
+                    <field name="TEXT">(localSite)</field>
+                  </shadow>
+                </value>
+                <value name="HeaderName">
+                  <shadow type="text">
+                    <field name="TEXT">Authorization</field>
+                  </shadow>
+                </value>
+                <value name="HeaderValue">
+                  <shadow type="text_join">
+                    <mutation items="2"></mutation>
+                  </shadow>
+                  <block type="text_join">
+                    <mutation items="2"></mutation>
+                    <value name="ADD0">
+                      <block type="text">
+                        <field name="TEXT">Bearer </field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="variables_get">
+                        <field name="VAR" id="RRZ-(HL..n:DbSi7KPbv">token</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print">
+                    <value name="TEXT">
+                      <block type="api_RestrictedAccess_Auth0Secret_GET"></block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>`
     }
 ]
 

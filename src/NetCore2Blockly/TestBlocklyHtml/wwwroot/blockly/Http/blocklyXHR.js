@@ -28,8 +28,7 @@ Blockly.JavaScript['httprequest'] = function (block) {
             operation = "(function(url){ var res=JSON.parse(getXhr(url)); if(res.statusOK) return res.text;errHandler(JSON.stringify(res)); throw res;}("+ value_theurl +") )";
             break;
         case "POST":
-            //TODO: implement post for generic HTTP request  - call postXhr
-            throw 'not implemented';
+            operation = "(function(url,data){ var res=JSON.parse(postXhr(url,JSON.stringify(data))); if(res.statusOK) return res.text;errHandler(JSON.stringify(res)); throw res;}(" + value_theurl + "," +  value_data  + ") )";
             break;
     }
     

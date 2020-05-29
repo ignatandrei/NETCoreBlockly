@@ -96,7 +96,7 @@ namespace TestBlocklyHtml
                 .AddJwtBearer("AuthoBearer",options =>
                 {
                     options.Authority = "https://ignatandrei.eu.auth0.com/";
-                    options.Audience = "andreiTest";
+                    options.Audience = "mytest";
                     //options.TokenValidationParameters = new TokenValidationParameters
                     //{
                     //    NameClaimType = ClaimTypes.NameIdentifier

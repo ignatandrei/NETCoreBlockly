@@ -31,6 +31,8 @@
     <script src="/blockly/Http/blocklyHeader.js?v=version"></script>
     <script src="blockly/objects/createObject.js?v=version"></script>
     <script src="blockly/objects/propJS.js?v=version"></script>
+    <script src="blockly/auth0/auth0blocks.js?v=version"></script>
+        
     <!--this is generated at runtime by blockly storage nuget : local storage, sqlite...-->
     <script src="/blocklyStorage?v=version"></script>
 
@@ -530,6 +532,34 @@
                 <block type="converttostring"></block>
                 <block type="convertcsv">
 
+                </block>
+            </category>
+            <category id="Auth0" name="Auth0">
+                <block type="auth0webapidata">
+                    <value name="client_id">
+                        <shadow type="text">
+                            <field name="TEXT">client_id?</field>
+                        </shadow>
+
+                    </value>
+                    <value name="client_secret">
+                        <shadow type="text">
+                            <field name="TEXT">client_secret?</field>
+                        </shadow>
+
+                    </value>
+                    <value name="audience">
+                        <shadow type="text">
+                            <field name="TEXT">audience</field>
+                        </shadow>
+
+                    </value>
+                    <value name="grant_type">
+                        <shadow type="text">
+                            <field name="TEXT">grant_type?</field>
+                        </shadow>
+
+                    </value>
                 </block>
             </category>
             <category id="catExporter" colour="160" name="Exporter">
