@@ -26,6 +26,7 @@ using OdataToEntity.AspNetCore;
 using Microsoft.AspNet.OData.Formatter;
 using Microsoft.Net.Http.Headers;
 using Hellang.Middleware.ProblemDetails;
+using System.Security.Claims;
 
 namespace TestBlocklyHtml
 {
@@ -96,6 +97,10 @@ namespace TestBlocklyHtml
                 {
                     options.Authority = "https://ignatandrei.eu.auth0.com/";
                     options.Audience = "andreiTest";
+                    //options.TokenValidationParameters = new TokenValidationParameters
+                    //{
+                    //    NameClaimType = ClaimTypes.NameIdentifier
+                    //};
                 })
                 .AddJwtBearer("CustomBearer", options =>
                 {

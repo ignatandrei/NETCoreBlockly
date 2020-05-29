@@ -1522,7 +1522,7 @@ var testBlocks = [
     <next>
       <block type="text_print">
         <value name="TEXT">
-          <block type="api_RestrictedAccess_GET"></block>
+          <block type="api_RestrictedAccess_CustomJWT_GET"></block>
         </value>
       </block>
     </next>
