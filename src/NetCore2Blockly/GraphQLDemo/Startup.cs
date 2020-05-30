@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GraphQL;
+using GraphQL.Server;
+using GraphQLDemo.Repository;
+using GraphQLDemo.Schemas;
 using GraphQLDemo.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,9 +33,17 @@ namespace GraphQLDemo
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<GraphQLDbContext>(options => options
+            services.AddDbContext<GraphQLDbContext>(options => options.UseInMemoryDatabase("MyDBGraphQL"));
 
-             .UseInMemoryDatabase("MyDBGraphQL"));
+            services.AddScoped<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
+
+            //Add GraphQL support
+            // using GraphQL.Server; - import this using, otherwise it will not be found.
+            services.AddGraphQL(o => { o.ExposeExceptions = false; })
+                            .AddGraphTypes(ServiceLifetime.Scoped);
+
+            services.AddScoped<DepartmentRepository>();
+            services.AddScoped<DepartmentSchema>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +65,7 @@ namespace GraphQLDemo
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseGraphQL<DepartmentSchema>();
 
             app.UseEndpoints(endpoints =>
             {
