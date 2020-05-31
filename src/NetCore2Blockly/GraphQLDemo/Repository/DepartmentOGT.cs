@@ -20,7 +20,7 @@ namespace GraphQLDemo.Repository
             public GetAllQuery(DepartmentRepository departmentRepository)
             {
                 Field<ListGraphType<DepartmentOGT>>(
-                              "helloWorld",
+                              "department",
                               resolve: context => departmentRepository.GetDepartment()
                           );
             }

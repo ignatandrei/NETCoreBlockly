@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using GraphQL;
 using GraphQL.Server;
+using GraphQL.Server.Ui.Playground;
 using GraphQLDemo.Repository;
 using GraphQLDemo.Schemas;
 using GraphQLDemo.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +33,14 @@ namespace GraphQLDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<KestrelServerOptions>(options =>
+            {
+                options.AllowSynchronousIO = true;
+            });
+            services.Configure<IISServerOptions>(options =>
+            {
+                options.AllowSynchronousIO = true;
+            });
             services.AddControllersWithViews();
 
             services.AddDbContext<GraphQLDbContext>(options => options.UseInMemoryDatabase("MyDBGraphQL"));
@@ -39,7 +49,7 @@ namespace GraphQLDemo
 
             //Add GraphQL support
             // using GraphQL.Server; - import this using, otherwise it will not be found.
-            services.AddGraphQL(o => { o.ExposeExceptions = false; })
+            services.AddGraphQL(o => { o.ExposeExceptions = true; })
                             .AddGraphTypes(ServiceLifetime.Scoped);
 
             services.AddScoped<DepartmentRepository>();
@@ -65,6 +75,7 @@ namespace GraphQLDemo
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
             app.UseGraphQL<DepartmentSchema>();
 
             app.UseEndpoints(endpoints =>
