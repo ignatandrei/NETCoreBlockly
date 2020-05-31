@@ -338,6 +338,11 @@
             </summary>
             <param name="cancellationToken">Indicates that the shutdown process should no longer be graceful.</param>
         </member>
+        <member name="P:NetCore2Blockly.GraphQL.GraphQLTypeArgument.FullName">
+            <summary>
+            Gets the OGT name. ie DepartmentOGT
+            </summary>
+        </member>
         <member name="T:NetCore2Blockly.ActionInfo">
             <summary>
             generic action info
