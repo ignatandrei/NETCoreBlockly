@@ -6,6 +6,10 @@ Generated with
 
 git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.12824981..1.1.2020.13325959 
 
+More details at 
+http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
+
+
 ## 1.1.2020.13325959
 
  #### [auth0 and  smaller names and post] 
