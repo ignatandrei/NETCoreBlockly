@@ -19,7 +19,7 @@ jobs:
       run: |
         cd src
         cd NetCore2Blockly
-        dotnet tool restore
+        dotnet tool restore --add-source https://myget.org/F/natemcmaster/api/v3/index.json
         dotnet dotnet-project-licenses  -j  -i NetCore2Blockly.sln
     - name: test
       run: echo done
