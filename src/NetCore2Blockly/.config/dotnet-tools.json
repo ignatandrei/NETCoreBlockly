@@ -38,12 +38,6 @@
         "dotnet-aop"
       ]
     },
-    "loxsmoke.mddox": {
-      "version": "0.5.1",
-      "commands": [
-        "mddox"
-      ]
-    },
     "dotnet-project-licenses": {
       "version": "2.1.0",
       "commands": [
