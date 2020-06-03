@@ -1,0 +1,408 @@
+####################################################################################################
+Package:coverlet.collector
+Version:1.0.1
+project URL:http://github.com/tonerdo/coverlet
+Description:Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.
+licenseUrl:https://licenses.nuget.org/MIT
+license Type:MIT
+
+####################################################################################################
+Package:GraphQL
+Version:2.4.0
+project URL:https://github.com/graphql-dotnet/graphql-dotnet
+Description:GraphQL for .NET
+licenseUrl:https://github.com/graphql-dotnet/graphql-dotnet/blob/master/LICENSE.md
+license Type:
+
+####################################################################################################
+Package:GraphQL.Server.Transports.AspNetCore
+Version:3.4.0
+project URL:https://github.com/graphql-dotnet/server
+Description:HTTP middleware for graphql
+licenseUrl:
+license Type:
+
+####################################################################################################
+Package:GraphQL.Server.Ui.Playground
+Version:3.4.0
+project URL:https://github.com/graphql-dotnet/server
+Description:GraphQL playground extension
+licenseUrl:
+license Type:
+
+####################################################################################################
+Package:Hellang.Middleware.ProblemDetails
+Version:5.1.0
+project URL:https://github.com/khellang/Middleware
+Description:Error handling middleware, using RFC7807
+licenseUrl:https://licenses.nuget.org/MIT
+license Type:MIT
+
+####################################################################################################
+Package:Microsoft.AspNetCore.Authentication.JwtBearer
+Version:3.1.4
+project URL:https://asp.net/
+Description:ASP.NET Core middleware that enables an application to receive an OpenID Connect bearer token.
+
+This package was built from the source code at https://github.com/aspnet/AspNetCore/tree/67e04394e98d5bfa6a5684d471a72fcbe30fd587
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.AspNetCore.OData
+Version:7.4.0
+project URL:http://odata.github.io/
+Description:This package contains everything you need to create OData v4.0 endpoints using ASP.NET Core MVC and to support OData query syntax for your web APIs.
+licenseUrl:https://raw.githubusercontent.com/OData/WebApi/master/License.txt
+license Type:
+
+####################################################################################################
+Package:Microsoft.EntityFrameworkCore
+Version:3.1.4
+project URL:https://docs.microsoft.com/ef/core/
+Description:Entity Framework Core is a lightweight and extensible version of the popular Entity Framework data access technology.
+
+Commonly Used Types:
+Microsoft.EntityFrameworkCore.DbContext
+Microsoft.EntityFrameworkCore.DbSet
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.EntityFrameworkCore.InMemory
+Version:3.1.3
+project URL:https://docs.microsoft.com/ef/core/
+Description:In-memory database provider for Entity Framework Core (to be used for testing purposes).
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.EntityFrameworkCore.InMemory
+Version:3.1.4
+project URL:https://docs.microsoft.com/ef/core/
+Description:In-memory database provider for Entity Framework Core (to be used for testing purposes).
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.EntityFrameworkCore.InMemory
+Version:3.1.4
+project URL:https://docs.microsoft.com/ef/core/
+Description:In-memory database provider for Entity Framework Core (to be used for testing purposes).
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.EntityFrameworkCore.Relational
+Version:3.1.3
+project URL:https://docs.microsoft.com/ef/core/
+Description:Shared Entity Framework Core components for relational database providers.
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.EntityFrameworkCore.Relational
+Version:3.1.4
+project URL:https://docs.microsoft.com/ef/core/
+Description:Shared Entity Framework Core components for relational database providers.
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.EntityFrameworkCore.Sqlite
+Version:3.1.3
+project URL:https://docs.microsoft.com/ef/core/
+Description:SQLite database provider for Entity Framework Core.
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.EntityFrameworkCore.Sqlite
+Version:3.1.4
+project URL:https://docs.microsoft.com/ef/core/
+Description:SQLite database provider for Entity Framework Core.
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.EntityFrameworkCore.Sqlite
+Version:3.1.3
+project URL:https://docs.microsoft.com/ef/core/
+Description:SQLite database provider for Entity Framework Core.
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.EntityFrameworkCore.Sqlite
+Version:3.1.4
+project URL:https://docs.microsoft.com/ef/core/
+Description:SQLite database provider for Entity Framework Core.
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.EntityFrameworkCore.SqlServer
+Version:3.1.4
+project URL:https://docs.microsoft.com/ef/core/
+Description:Microsoft SQL Server database provider for Entity Framework Core.
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.EntityFrameworkCore.SqlServer
+Version:3.1.4
+project URL:https://docs.microsoft.com/ef/core/
+Description:Microsoft SQL Server database provider for Entity Framework Core.
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.EntityFrameworkCore.Tools
+Version:3.1.3
+project URL:https://docs.microsoft.com/ef/core/
+Description:Entity Framework Core Tools for the NuGet Package Manager Console in Visual Studio.
+
+Enables these commonly used commands:
+Add-Migration
+Drop-Database
+Get-DbContext
+Scaffold-DbContext
+Script-Migrations
+Update-Database
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.EntityFrameworkCore.Tools
+Version:3.1.3
+project URL:https://docs.microsoft.com/ef/core/
+Description:Entity Framework Core Tools for the NuGet Package Manager Console in Visual Studio.
+
+Enables these commonly used commands:
+Add-Migration
+Drop-Database
+Get-DbContext
+Scaffold-DbContext
+Script-Migrations
+Update-Database
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.EntityFrameworkCore.Tools
+Version:3.1.4
+project URL:https://docs.microsoft.com/ef/core/
+Description:Entity Framework Core Tools for the NuGet Package Manager Console in Visual Studio.
+
+Enables these commonly used commands:
+Add-Migration
+Drop-Database
+Get-DbContext
+Scaffold-DbContext
+Script-Migrations
+Update-Database
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.Extensions.FileProviders.Embedded
+Version:3.1.3
+project URL:https://asp.net/
+Description:File provider for files in embedded resources for Microsoft.Extensions.FileProviders.
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.Extensions.FileProviders.Embedded
+Version:3.1.3
+project URL:https://asp.net/
+Description:File provider for files in embedded resources for Microsoft.Extensions.FileProviders.
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.NET.Test.Sdk
+Version:16.2.0
+project URL:https://github.com/microsoft/vstest/
+Description:The MSbuild targets and properties for building .NET test projects.
+licenseUrl:http://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm
+license Type:MS-EULA
+
+####################################################################################################
+Package:Microsoft.OpenApi.Readers
+Version:1.1.4
+project URL:https://github.com/Microsoft/OpenAPI.NET
+Description:OpenAPI.NET Readers for JSON and YAML documents
+licenseUrl:https://raw.githubusercontent.com/Microsoft/OpenAPI.NET/master/LICENSE
+license Type:
+
+####################################################################################################
+Package:Microsoft.SourceLink.GitHub
+Version:1.0.0
+project URL:https://github.com/dotnet/sourcelink
+Description:Generates source link for GitHub repositories.
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.SourceLink.GitHub
+Version:1.0.0
+project URL:https://github.com/dotnet/sourcelink
+Description:Generates source link for GitHub repositories.
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.VisualStudio.Azure.Containers.Tools.Targets
+Version:1.10.8
+project URL:https://aka.ms/vscontainertools
+Description:Targets files to enable the Visual Studio Tools for Containers.
+licenseUrl:https://aka.ms/deprecateLicenseUrl
+license Type:EULA.md
+
+####################################################################################################
+Package:Microsoft.VisualStudio.Web.CodeGeneration.Design
+Version:3.1.2
+project URL:https://github.com/aspnet/scaffolding
+Description:Code Generation tool for ASP.NET Core. Contains the dotnet-aspnet-codegenerator command used for generating controllers and views.
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Microsoft.VisualStudio.Web.CodeGeneration.Design
+Version:3.1.3
+project URL:https://github.com/dotnet/scaffolding
+Description:Code Generation tool for ASP.NET Core. Contains the dotnet-aspnet-codegenerator command used for generating controllers and views.
+licenseUrl:https://licenses.nuget.org/Apache-2.0
+license Type:Apache-2.0
+
+####################################################################################################
+Package:Moq
+Version:4.13.1
+project URL:
+Description:Moq is the most popular and friendly mocking framework for .NET.
+licenseUrl:https://raw.githubusercontent.com/moq/moq4/master/License.txt
+license Type:
+
+####################################################################################################
+Package:MySql.Data.EntityFrameworkCore
+Version:8.0.20
+project URL:https://dev.mysql.com/downloads/
+Description:MySql.Data.EntityFrameworkCore for Entity Framework.
+licenseUrl:https://downloads.mysql.com/docs/licenses/connector-net-8.0-gpl-en.pdf
+license Type:
+
+####################################################################################################
+Package:NetCore2Blockly
+Version:1.1.2020.12631554
+project URL:
+Description:This program will generate ASP.NET Core WebAPI blockly blocks. And from other swagger files.
+      Can be usefull for just making a demo, interacting or others.
+      Please see https://github.com/ignatandrei/NETCoreBlockly for details
+licenseUrl:https://aka.ms/deprecateLicenseUrl
+license Type:LICENSE
+
+####################################################################################################
+Package:Npgsql
+Version:4.1.3.1
+project URL:https://www.npgsql.org/
+Description:Npgsql is the open source .NET data provider for PostgreSQL.
+licenseUrl:https://licenses.nuget.org/PostgreSQL
+license Type:PostgreSQL
+
+####################################################################################################
+Package:Npgsql.EntityFrameworkCore.PostgreSQL
+Version:3.1.3
+project URL:https://github.com/npgsql/efcore.pg
+Description:PostgreSQL/Npgsql provider for Entity Framework Core.
+licenseUrl:https://licenses.nuget.org/PostgreSQL
+license Type:PostgreSQL
+
+####################################################################################################
+Package:OdataToEntity
+Version:2.5.0.3
+project URL:https://github.com/voronov-maxim/OdataToEntity
+Description:Classes to serialize, deserialize OData JSON payloads. Supports OData v4 only. Enables construction of OData services via Entity Framework (Linq2Db) DataContext (with/without controller).
+licenseUrl:https://aka.ms/deprecateLicenseUrl
+license Type:LICENSE
+
+####################################################################################################
+Package:OdataToEntity.AspNetCore
+Version:2.5.0.3
+project URL:https://github.com/voronov-maxim/OdataToEntity
+Description:Extension for easy create Asp Mvc .Net Core service
+licenseUrl:https://aka.ms/deprecateLicenseUrl
+license Type:LICENSE
+
+####################################################################################################
+Package:OdataToEntity.EfCore.DynamicDataContext
+Version:2.5.0.2
+project URL:
+Description:Access database without data context.
+licenseUrl:https://aka.ms/deprecateLicenseUrl
+license Type:LICENSE
+
+####################################################################################################
+Package:Swashbuckle.AspNetCore
+Version:5.4.1
+project URL:https://github.com/domaindrivendev/Swashbuckle.AspNetCore
+Description:Swagger tools for documenting APIs built on ASP.NET Core
+licenseUrl:https://raw.githubusercontent.com/domaindrivendev/Swashbuckle.AspNetCore/master/LICENSE
+license Type:
+
+####################################################################################################
+Package:Swashbuckle.AspNetCore
+Version:5.4.1
+project URL:https://github.com/domaindrivendev/Swashbuckle.AspNetCore
+Description:Swagger tools for documenting APIs built on ASP.NET Core
+licenseUrl:https://raw.githubusercontent.com/domaindrivendev/Swashbuckle.AspNetCore/master/LICENSE
+license Type:
+
+####################################################################################################
+Package:System.IO.Pipelines
+Version:4.7.2
+project URL:https://github.com/dotnet/corefx
+Description:Single producer single consumer byte buffer management.
+
+Commonly Used Types:
+System.IO.Pipelines.Pipe
+System.IO.Pipelines.PipeWriter
+System.IO.Pipelines.PipeReader
+ 
+When using NuGet 3.x this package requires at least version 3.4.
+licenseUrl:https://licenses.nuget.org/MIT
+license Type:MIT
+
+####################################################################################################
+Package:System.IO.Pipelines
+Version:4.7.2
+project URL:https://github.com/dotnet/corefx
+Description:Single producer single consumer byte buffer management.
+
+Commonly Used Types:
+System.IO.Pipelines.Pipe
+System.IO.Pipelines.PipeWriter
+System.IO.Pipelines.PipeReader
+ 
+When using NuGet 3.x this package requires at least version 3.4.
+licenseUrl:https://licenses.nuget.org/MIT
+license Type:MIT
+
+####################################################################################################
+Package:xunit
+Version:2.4.0
+project URL:https://github.com/xunit/xunit
+Description:xUnit.net is a developer testing framework, built to support Test Driven Development, with a design goal of extreme simplicity and alignment with framework features.
+
+Installing this package installs xunit.core, xunit.assert, and xunit.analyzers.
+licenseUrl:https://raw.githubusercontent.com/xunit/xunit/master/license.txt
+license Type:
+
+####################################################################################################
+Package:xunit.runner.visualstudio
+Version:2.4.0
+project URL:https://github.com/xunit/xunit
+Description:Visual Studio 2012+ Test Explorer runner for the xUnit.net framework. Capable of running xUnit.net v1.9.2 and v2.0+ tests. Supports .NET 2.0 or later, .NET Core 1.0 or later, and Universal Windows 10.0 or later.
+licenseUrl:https://raw.githubusercontent.com/xunit/xunit/master/license.txt
+license Type:
+
