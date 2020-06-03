@@ -3,8 +3,6 @@ name: .NET Core
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build:
@@ -20,7 +18,7 @@ jobs:
     - name: Install dependencies
       run: |
         cd src
-        cd NetCoreBlockly
+        cd NetCore2Blockly
         dotnet tool restore
         dotnet dotnet-project-licenses  -j  -i NetCore2Blockly.sln
     - name: test
