@@ -4,7 +4,57 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H"  1.1.2020.12631554..1.1.2020.12824981
+git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.12824981..1.1.2020.13325959 
+
+## 1.1.2020.13325959
+
+ #### [auth0 and  smaller names and post] 
+ Author ignatandrei on 2020-06-03 08:37:30 +0300 
+
+ hash 43b2dc0 43b2dc052f5c314c0a77453efce76b7c6927c781
+
+
+ #### [WIP Try to generate GraphQL schema] 
+ Author Cosmin Popescu on 2020-05-31 12:07:03 +0300 
+
+ hash c9306b2 c9306b2885278dd1011cd4c63741dac84f5bc96c
+
+ #### [Added GraphQL support -resolver -schemas] 
+ Author Cosmin Popescu on 2020-05-30 08:52:56 +0300 
+
+ hash 135e40c 135e40ca7baa3373089a712b76d04495900c990b
+
+ #### [xhr and first version of blockly with auth0] 
+ Author ignatandrei on 2020-05-29 08:50:27 +0300 
+
+ hash acdc6c0 acdc6c0dcd7faf144371b89ed9bad956512b9fee
+
+ #### [put in place the code for auth0] 
+ Author ignatandrei on 2020-05-29 07:29:43 +0300 
+
+ hash a3d2b4e a3d2b4ef1ecbf20b1b4c198a0cf39e68888388a7
+
+ #### [adding auth0 policy] 
+ Author ignatandrei on 2020-05-29 01:47:35 +0300 
+
+ hash a6b22ce a6b22ce6a611887a1989562c66af88802add1c99
+
+ #### [made a custom bearer ( preparing for auth0)] 
+ Author ignatandrei on 2020-05-29 00:26:41 +0300 
+
+ hash 0228075 0228075bada4db75e4527a7a0057672179546e28
+
+ #### [back to environment variable in mysql] 
+ Author ignatandrei on 2020-05-28 13:50:21 +0300 
+
+ hash 6878dd5 6878dd56af3d7cd896719165aa45e3b4ce684c32
+
+ #### [Added new project for GraphQL demo] 
+ Author Cosmin Popescu on 2020-05-18 08:49:43 +0300 
+
+ hash 0d95799 0d95799e2bcf7f6dec266d52a872672b4a631b74
+
+
 
 ## 1.1.2020.12824981
 
