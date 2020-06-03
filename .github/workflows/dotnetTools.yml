@@ -21,6 +21,7 @@ jobs:
         cd NetCore2Blockly
         dotnet tool restore --add-source https://myget.org/F/natemcmaster/api/v3/index.json
         dotnet dotnet-project-licenses  -j  -i NetCore2Blockly.sln
-        dotnet dotnetthx
+        dotnet dotnet-thx
+        dotnet dotnet-outdated
     - name: test
       run: echo done
