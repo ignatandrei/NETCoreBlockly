@@ -19,10 +19,15 @@ jobs:
       run: |
         cd src
         cd NetCore2Blockly
+        dotnet restore
+        echo 'done restore'
         dotnet tool restore --add-source https://myget.org/F/natemcmaster/api/v3/index.json
-        dotnet dotnet-project-licenses  -j  -i NetCore2Blockly.sln
+        dotnet dotnet-project-licenses  -j  -i .
+        echo 'done project licences'
         dotnet dotnet-thx > thanks.txt
+        echo 'done thanks'
         dotnet dotnet-outdated -o outdated.csv -of csv
+        echo 'done outdated'
         dotnet pwsh copyToRoot.ps1
     - name: test
       run: echo done
