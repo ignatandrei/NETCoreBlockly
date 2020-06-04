@@ -3,6 +3,9 @@ name: .NET Core
 on:
   push:
     branches: [ master ]
+    paths:
+    - '**.csproj'
+    - '**.sln'
 
 jobs:
   build:
