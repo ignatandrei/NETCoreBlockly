@@ -21,5 +21,10 @@ namespace GraphQLDemo.Repository
         {
             return await _context.Department.ToListAsync();
         }
+
+        public async Task<IEnumerable<Employee>> GetEmployees()
+        {
+            return await _context.Employee.ToListAsync();
+        }
     }
 }
