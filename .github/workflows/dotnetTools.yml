@@ -29,11 +29,15 @@ jobs:
         dotnet dotnet-outdated -o outdated.csv -of csv
         echo 'done outdated'
         dotnet pwsh copyToRoot.ps1
+        cd ..
+        cd ..
+        dir
     - name: test
       run: echo done
 
     - name: run commit
-      run: |                      
+      run: |         
+        
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git commit -m "generate thanks, outdate, licences" -a --allow-empty
