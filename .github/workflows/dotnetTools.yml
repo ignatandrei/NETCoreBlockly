@@ -21,7 +21,20 @@ jobs:
         cd NetCore2Blockly
         dotnet tool restore --add-source https://myget.org/F/natemcmaster/api/v3/index.json
         dotnet dotnet-project-licenses  -j  -i NetCore2Blockly.sln
-        dotnet dotnet-thx
-        dotnet dotnet-outdated
+        dotnet dotnet-thx > thanks.txt
+        dotnet dotnet-outdated -o outdated.csv -of csv
+        dotnet pwsh copyToRoot.ps1
     - name: test
       run: echo done
+
+    - name: run commit
+      run: |                      
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "generate thanks, outdate, licences" -a --allow-empty
+      shell: cmd
+           
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
