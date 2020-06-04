@@ -28,8 +28,29 @@ namespace NetCore2Blockly.GraphQL
         {
             //just for the demo. the schema
             var schema = "{\"_queryType\":\"GetAllQuery\",\"_mutationType\":null,\"_subscriptionType\":null,\"_directives\":[\"@include\",\"@skip\",\"@deprecated\"],\"_typeMap\":{\"String\":\"String\",\"Boolean\":\"Boolean\",\"Float\":\"Float\",\"Int\":\"Int\",\"ID\":\"ID\",\"Date\":\"Date\",\"DateTime\":\"DateTime\",\"DateTimeOffset\":\"DateTimeOffset\",\"Seconds\":\"Seconds\",\"Milliseconds\":\"Milliseconds\",\"Decimal\":\"Decimal\",\"__Schema\":\"__Schema\",\"__Type\":\"__Type\",\"__TypeKind\":\"__TypeKind\",\"__Field\":\"__Field\",\"__InputValue\":\"__InputValue\",\"__EnumValue\":\"__EnumValue\",\"__Directive\":\"__Directive\",\"__DirectiveLocation\":\"__DirectiveLocation\",\"GetAllQuery\":\"GetAllQuery\",\"DepartmentOGT\":\"DepartmentOGT\"},\"_subTypeMap\":{},\"_implementationsMap\":{}}\r\n";
-            var schema1 = JsonSerializer.Deserialize<dynamic>(schema); //try to deserilize schema
-            Debug.WriteLine(schema1);
+
+            var desc = new Dictionary<string, (TypeArgumentBase type, BindingSourceDefinition bs)>();
+
+            if (parameterDescriptions?.Length == 0)
+                return desc;
+
+            var bindingSources = new[]
+            {
+                BindingSource.Query,
+                BindingSource.Header,
+                BindingSource.Path,
+                null // for the items that have not binding source
+            };
+
+            // parse the above schema
+            using (JsonDocument doc = JsonDocument.Parse(schema))
+            {
+                JsonElement root = doc.RootElement;
+                JsonElement info = root;
+
+                Console.WriteLine(info.GetProperty("_typeMap").GetProperty("DepartmentOGT"));
+                desc.Add("queyType", (null, BindingSourceDefinition.Query)); //not correct
+            }
             return null;
         }
     }
