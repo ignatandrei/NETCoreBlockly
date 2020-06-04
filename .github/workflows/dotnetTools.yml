@@ -27,7 +27,8 @@ jobs:
         dotnet dotnet-thx > thanks.txt
         echo 'done thanks'
         dotnet dotnet-outdated -o outdated.csv -of csv
-        dotnet list package --outdated 
+        rem dotnet dotnet-outdated -u
+        dotnet list package --outdated  --include-transitive
         echo 'done outdated'
         dotnet pwsh copyToRoot.ps1
         cd ..
