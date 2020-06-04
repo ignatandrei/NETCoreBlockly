@@ -31,15 +31,16 @@ jobs:
         dotnet pwsh copyToRoot.ps1
         cd ..
         cd ..
-        dir
+        echo 'back to source dir'
     - name: test
       run: echo done
 
     - name: run commit
       run: |         
-        
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
+        git add --all
+        git status
         git commit -m "generate thanks, outdate, licences" -a --allow-empty
       shell: cmd
            
