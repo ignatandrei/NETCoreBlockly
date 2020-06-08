@@ -41,3 +41,6 @@ $releaseNotes
 
 dotnet-property "**/*.csproj" PackageReleaseNotes:"$releaseNotes"
 dotnet dotnet-property "**/*.csproj" PackageReleaseNotes:"$releaseNotes"
+
+dotnet-property "**/*.csproj" AssemblyTitle:"NetCoreBlockly $moniker"
+dotnet dotnet-property "**/*.csproj" AssemblyTitle:"NetCoreBlockly $moniker"
