@@ -4,10 +4,59 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.12824981..1.1.2020.13325959 
+git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.13325959..1.1.2020.13803878 
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
+
+
+## 1.1.2020.13803878 exciting-liger-200608182437 
+
+ #### [deploy with moniker] 
+ Author ignatandrei on 2020-06-08 21:21:57 +0300 
+
+ hash 1fd20ce 1fd20ce6067973999057bf11550aa8fa476c8ac6
+
+ #### [generate thanks, outdate, licences] 
+ Author GitHub Action on 2020-06-04 05:49:29 +0000 
+
+ hash 0dc4bab 0dc4babecabb0ceef4da25d13654ef16b79a1c46
+
+ #### [generate thanks, outdate, licences] 
+ Author GitHub Action on 2020-06-04 05:03:55 +0000 
+
+ hash f01a5a3 f01a5a392ee23c1bc8fe7995a685f724babeac8d
+
+
+ #### [added dotnet outdated] 
+ Author ignatandrei on 2020-06-03 21:33:10 +0300 
+
+ hash 50fdefb 50fdefb8654872a5f82b88cfa77c29926630c8b0
+
+ #### [added dotnet thx] 
+ Author ignatandrei on 2020-06-03 21:20:54 +0300 
+
+ hash bc5e845 bc5e84520a4c43bb5613a8d5ae3df6f247ffb787
+
+ #### [licences : dotnet dotnet-project-licenses  -o  -i NetCore2Blockly.sln] 
+ Author ignatandrei on 2020-06-03 20:55:27 +0300 
+
+ hash 2bedad6 2bedad6c4f7a0cc7c2844170e5be75f30f7ef27b
+
+ #### [testing logrocket] 
+ Author ignatandrei on 2020-06-03 15:51:04 +0300 
+
+ hash 15286d3 15286d383fc3e3ae81d323b8eddc123491fddbbe
+
+ #### [documentation for changelog] 
+ Author ignatandrei on 2020-06-03 08:58:31 +0300 
+
+ hash 0bdc99a 0bdc99a3ff527cbffd173bede343cae09914fa31
+
+ #### [changelog] 
+ Author ignatandrei on 2020-06-03 08:56:40 +0300 
+
+ hash 9f1f63b 9f1f63baa5135d74220fb11acc30b4d2c9381adb
 
 
 ## 1.1.2020.13325959
