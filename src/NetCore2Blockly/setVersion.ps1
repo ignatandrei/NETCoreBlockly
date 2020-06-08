@@ -6,6 +6,19 @@ $startOfYear = Get-Date -Year $year -Month 1 -Day 1 -Hour 0 -Minute 0 -Second 0 
 $diff = NEW-TIMESPAN -Start $startOfYear -End $TimeNow
 #$diff.TotalSeconds -as [int]
 
+$dateToPrint=[long] $d.ToString('yyMMddHHmmss')
+$result = $dateToPrint % 2
+if($result -eq 0){
+	$moniker = "$(dotnet moniker -s moby)-$dateToPrint"
+	}
+else{
+	$moniker = "$(dotnet moniker -s moniker)-$dateToPrint"
+	}
+
+Write-Host $moniker
+
+
+
 $assemblyVersion=$d.ToString("1.yyyy.1MMdd.1HHmm")
 dotnet-property "**/*.csproj" AssemblyVersion:"$assemblyVersion"
 dotnet dotnet-property "**/*.csproj" AssemblyVersion:"$assemblyVersion"

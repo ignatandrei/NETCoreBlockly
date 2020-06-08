@@ -61,6 +61,12 @@
       "commands": [
         "dotnet-outdated"
       ]
+    },
+    "moniker.cli": {
+      "version": "1.0.0",
+      "commands": [
+        "moniker"
+      ]
     }
   }
 }
