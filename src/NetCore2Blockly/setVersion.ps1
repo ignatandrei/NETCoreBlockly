@@ -29,11 +29,11 @@ dotnet dotnet-property "**/*.csproj" Version:"$version"
 
 $releaseNotes = "For using please read github.com/ignatandrei/netCoreBlockly/"
 # $releaseNotes +="\r\n"
-$releaseNotes += ";BuildNumber $env:BUILD_BUILDNUMBER"
+$releaseNotes += (";BuildNumber $env:BUILD_BUILDNUMBER with name "+ $moniker)
 # $releaseNotes +="\r\n"
-$releaseNotes += ";author $env:BUILD_SOURCEVERSIONAUTHOR"
+#$releaseNotes += ";author $env:BUILD_SOURCEVERSIONAUTHOR"
 # $releaseNotes +="\r\n"
-$releaseNotes += ";message $env:BUILD_SOURCEVERSIONMESSAGE"
+#$releaseNotes += ";message $env:BUILD_SOURCEVERSIONMESSAGE"
 # $releaseNotes +="\r\n"
 $releaseNotes +=";source for this release //github.com/ignatandrei/netCoreBlockly/commit/$env:BUILD_SOURCEVERSION"
 
