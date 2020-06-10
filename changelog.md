@@ -4,11 +4,16 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.13325959..1.1.2020.13803878 
+git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.13803878..1.1.2020.13928632
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
 
+## 1.1.2020.13928632 giggly-oyster-200610050351
+ #### [show assembly ttile in the output] 
+ Author ignatandrei on 2020-06-10 07:56:01 +0300 
+
+ hash 422930a 422930aee5777c83288bd9683a2b5980c7913a08
 
 ## 1.1.2020.13803878 exciting-liger-200608182437 
 

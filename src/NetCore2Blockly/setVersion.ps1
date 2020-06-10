@@ -6,7 +6,7 @@ $startOfYear = Get-Date -Year $year -Month 1 -Day 1 -Hour 0 -Minute 0 -Second 0 
 $diff = NEW-TIMESPAN -Start $startOfYear -End $TimeNow
 #$diff.TotalSeconds -as [int]
 
-$dateToPrint=[long] $d.ToString('yyMMddHHmmss')
+$dateToPrint=[long] $d.ToString('yyyyMMddHHmmss')
 $result = $dateToPrint % 2
 if($result -eq 0){
 	$moniker = "$(dotnet moniker -s moby)-$dateToPrint"
