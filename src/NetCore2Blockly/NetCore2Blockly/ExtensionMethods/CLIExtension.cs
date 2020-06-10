@@ -123,23 +123,10 @@ ApplicationServices
         /// Uses the blockly.
         /// </summary>
         /// <param name="app">The application.</param>
-        /// <param name="localOdata">The local odata path, if exists</param>
         /// <returns></returns>
-        public static IApplicationBuilder UseBlockly(this IApplicationBuilder app, params string[] localOdata)
+        public static IApplicationBuilder UseBlockly(this IApplicationBuilder app)
         {
             var service = app.ApplicationServices.GetService<GenerateBlocklyFilesHostedService>();
-
-            if (localOdata?.Length > 0)
-            {
-                foreach (var item in localOdata)
-                {
-                    if (string.IsNullOrWhiteSpace(item))
-                        continue;
-
-                    var odata= service.AddOdata(item, item);
-                    odata.GetAwaiter().GetResult();
-                }
-            }
             service.app = app;
             MapJS(app, "/blocklyDefinitions", b => b.BlocklyTypesDefinition);
             MapJS(app, "/BlocklyToolBoxValueDefinitions", b => b.BlocklyToolBoxValueDefinition);
