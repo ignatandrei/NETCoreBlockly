@@ -21,8 +21,11 @@ namespace NetCore2Blockly
 
         static CLIExtension()
         {
-            var assName = Assembly.GetExecutingAssembly().GetName();
-            Console.WriteLine($"{assName.Name} version:{assName.Version.ToString()}");
+            var ass = Assembly.GetExecutingAssembly();
+            var assName = ass.GetName();
+            var title = ass.GetCustomAttribute<AssemblyTitleAttribute>();
+            var nameTitle = title?.Title;
+            Console.WriteLine($"{assName.Name} {nameTitle} version:{assName.Version.ToString()}");
 
         }
         /// <summary>
