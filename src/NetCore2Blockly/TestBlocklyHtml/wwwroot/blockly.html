@@ -1384,10 +1384,31 @@
         }
         /*doNotCopyToFinal*/
         displayLinksSavedStorage();
+        
         /*enddoNotCopyToFinal*/
+        function displayVersion() {
+            
+            let req = new XMLHttpRequest();
 
-        startIntro();
+            req.open('GET', '/NetCore2BlocklyVersion', true);
+            
+            req.onreadystatechange = function () {
+                if (req.readyState == 4) {
+                    if (req.status >= 200 && req.status < 300) {
+                        var version = req.responseText;
+                        //window.alert(answer);
+                        document.getElementById("version").innerHTML = version ;
+                        startIntro(version );
+                    };
+                }
+            }
+            req.send(null);
+        };
+        displayVersion();
+        
     </script>
-    <footer> <small> <a href="https://github.com/ignatandrei/netcoreblockly">GitHub</a></small></footer>
+    <footer> <small> <a href="https://github.com/ignatandrei/netcoreblockly">GitHub</a></small>
+    <small><span id="version">version</span></small>
+    </footer>
 </body>
 </html>

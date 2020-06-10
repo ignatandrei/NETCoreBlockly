@@ -18,15 +18,25 @@ namespace NetCore2Blockly
     public static class CLIExtension
     {
         private const string Key = "NetCoreBlockly:OtherLinks";
-
-        static CLIExtension()
+        static string nameBlockly()
         {
             var ass = Assembly.GetExecutingAssembly();
             var assName = ass.GetName();
-            var title = ass.GetCustomAttribute<AssemblyTitleAttribute>();
-            var nameTitle = title?.Title;
-            Console.WriteLine($"{assName.Name} {nameTitle} version:{assName.Version.ToString()}");
-
+            var nameBlockly = assName.Name;
+            try
+            {
+                var title = ass.GetCustomAttribute<AssemblyTitleAttribute>();
+                nameBlockly = title?.Title ?? nameBlockly;
+            }
+            catch
+            {
+                //do nothing
+            }
+            return $"{nameBlockly} version:{assName.Version.ToString()}";
+        }
+        static CLIExtension()
+        {          
+            Console.WriteLine(nameBlockly());
         }
         /// <summary>
         /// Uses the blockly links from config
@@ -158,7 +168,13 @@ ApplicationServices
                 MapJS(app, "/BlocklyToolBoxFunctionDefinitionsOData", b => b.ODataBlocklyToolBoxFunctionDefinition());
 
             }
-
+            app.Map("/NetCore2BlocklyVersion", config =>
+             {
+                 config.Run(async context =>
+                 {
+                     await context.Response.WriteAsync(nameBlockly());
+                 });
+             });
             return app;
         }
 

@@ -1,9 +1,9 @@
-function startIntro() {
+function startIntro(version) {
             var intro = introJs();
             intro.setOptions({
                 steps: [
                     {
-                        intro: "Welcome !"
+                        intro: "Welcome to " + version + " !"
                     },
                     {
                         element: document.querySelector('#blocklyDiv'),
