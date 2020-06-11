@@ -942,7 +942,7 @@
             demoWorkspace.registerToolboxCategoryCallback(`SiteValues${key}`, window[`registerValues${key}`]);
         }
         if (xmlStringSwagger.length > 0) {
-            xmlStringSwagger = '<category name="Swagggers">' + xmlStringSwagger + '</category>';
+            xmlStringSwagger = '<category name="Swaggers">' + xmlStringSwagger + '</category>';
         }
 
 
@@ -962,7 +962,7 @@
         }
         
 
-        var html = toolbox.innerHTML.replace('<category name="OtherSwagggers"></category>', xmlStringSwagger);
+        var html = toolbox.innerHTML.replace('<category name="OtherSwaggers"></category>', xmlStringSwagger);
 
         html = html.replace('<category name="OtherOData"></category>', xmlStringOdata);
         toolbox.innerHTML = html;
