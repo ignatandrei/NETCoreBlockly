@@ -28,6 +28,16 @@ namespace GraphQLDemo.Repository
                              "employeeQuery",
                              resolve: context => departmentRepository.GetEmployees()
                          );
+
+                Field<DepartmentOGT>(
+                    "getOneDepartment",
+                    arguments: new QueryArguments(new QueryArgument<IdGraphType> { Name = "id" }),
+                    resolve: context =>
+                    {
+                        var id = context.GetArgument<int>("id");
+                        return departmentRepository.GetOneDepartment(id);
+                    }
+                    );
             }
         }
     }

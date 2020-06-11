@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 
@@ -60,19 +61,30 @@ namespace NetCore2Blockly.GraphQL
         private async static Task<JsonElement> GetIntrospection()
         {
 
-            var schema = "{\r\n  __schema {\r\n    queryType {\r\n      name\r\n    }\r\n    mutationType {\r\n      name\r\n    }\r\n    subscriptionType {\r\n      name\r\n    }\r\n    types {\r\n      ...FullType\r\n    }\r\n    directives {\r\n      name\r\n      description\r\n      locations\r\n      args {\r\n        ...InputValue\r\n      }\r\n    }\r\n  }\r\n}\r\n\r\nfragment FullType on __Type {\r\n  kind\r\n  name\r\n  description\r\n  fields(includeDeprecated: true) {\r\n    name\r\n    description\r\n    args {\r\n      ...InputValue\r\n    }\r\n    type {\r\n      ...TypeRef\r\n    }\r\n    isDeprecated\r\n    deprecationReason\r\n  }\r\n  inputFields {\r\n    ...InputValue\r\n  }\r\n  interfaces {\r\n    ...TypeRef\r\n  }\r\n  enumValues(includeDeprecated: true) {\r\n    name\r\n    description\r\n    isDeprecated\r\n    deprecationReason\r\n  }\r\n  possibleTypes {\r\n    ...TypeRef\r\n  }\r\n}\r\n\r\nfragment InputValue on __InputValue {\r\n  name\r\n  description\r\n  type {\r\n    ...TypeRef\r\n  }\r\n  defaultValue\r\n}\r\n\r\nfragment TypeRef on __Type {\r\n  kind\r\n  name\r\n  ofType {\r\n    kind\r\n    name\r\n    ofType {\r\n      kind\r\n      name\r\n      ofType {\r\n        kind\r\n        name\r\n        ofType {\r\n          kind\r\n          name\r\n          ofType {\r\n            kind\r\n            name\r\n            ofType {\r\n              kind\r\n              name\r\n              ofType {\r\n                kind\r\n                name\r\n              }\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}";
+            var typesKindName = @"{
+                                      __schema {
+                                        types {
+                                          name kind
+                                        }
+                                      }
+                                    }";
             var endpoint = "https://localhost:5001/graphql?query=";
-            var response = await client.GetAsync($"{endpoint + schema}");
+            var response = await client.GetAsync($"{endpoint + typesKindName}");
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(responseBody);
             using (JsonDocument doc = JsonDocument.Parse(responseBody))
             {
                 JsonElement root = doc.RootElement;
                 JsonElement info = root;
-                //Console.WriteLine(info.GetProperty("data").GetProperty("__schema").GetProperty("queryType"));
-                return info;
+                var types = info.GetProperty("data").GetProperty("__schema").GetProperty("types");
+                var x = types.EnumerateArray().ToArray();//because our collection is an array
+                var ourTypes = x.Where(condition => condition.GetProperty("kind").GetString().Equals("OBJECT"))
+                                .Where(condition => !condition.GetProperty("name").GetString().StartsWith("__"));
+
+                ourTypes.ToList().ForEach(res => Console.WriteLine(res));
+
             }
+            return new JsonElement();
         }
     
     }
