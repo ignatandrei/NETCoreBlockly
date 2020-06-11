@@ -4,11 +4,30 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.13928632..1.1.2020.14011834
+git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.14011834..1.1.2020.14048285
 
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
+
+## 1.1.2020.14048285 kindled-pug-20200611141805
+
+ #### [added dictionary and cosmetics] 
+ Author ignatandrei on 2020-06-11 17:16:14 +0300 
+
+ hash 6ff3df0 6ff3df0c67fa96ef430cb8cbdd1a4c25ba803936
+
+ #### [Added querying by an argument More trials at introspections] 
+ Author Cosmin Popescu on 2020-06-11 08:27:44 +0300 
+
+ hash 7805554 780555495510c66e863d7b496494803b5bb9f66f
+
+ hash e7d3f16 e7d3f16a249a738e66b9d705bc9fede13a41a96b
+
+ #### [Added EmployeeOGT wip - introspections] 
+ Author Cosmin Popescu on 2020-06-04 10:02:21 +0300 
+
+ hash 6a71feb 6a71feb74c0872d714adeaad55ac9e4ea5e6967b
 
 ## 1.1.2020.14011834 lunging-aardwolf-20200611041033
 
