@@ -28,5 +28,15 @@ namespace TestBlocklyHtml.Controllers
         {
             return $"received route {id} and parameters {x} {y}";
         }
+
+        [HttpPost()]
+        public string ActionWithDictionary([FromBody]Dictionary<string,string> id)
+        {
+            var str = 
+                string.Join(",",
+                id.Select(it => it.Key + "= " + it.Value)
+                );
+            return $"received {str}";
+        }
     }
 }

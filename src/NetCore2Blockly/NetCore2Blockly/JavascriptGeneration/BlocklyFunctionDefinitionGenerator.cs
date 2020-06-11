@@ -26,10 +26,19 @@ namespace NetCore2Blockly.JavascriptGeneration
             {
                 var blocklyType = param.Value.type.TranslateToBlocklyType();
                 var typeName = param.Key;
+                string blocklyTypeCheck = blocklyType;
+                if (blocklyTypeCheck?.Length > 0)
+                    blocklyTypeCheck = $"'{blocklyTypeCheck}'";
 
+                if (blocklyTypeCheck == "'Array'")
+                {
+                    //Dictionary<string,string> is ienumerable, but an object
+                    blocklyTypeCheck = "null";
+                }
+                
                 strPropsDefinition += $@"
                     this.appendValueInput('val_{typeName}')
-                    .setCheck('{blocklyType}')
+                    .setCheck({blocklyTypeCheck})
                     .appendField('{typeName}'); ";
 
                 tooltip += $"{typeName}: {blocklyType}";

@@ -2126,6 +2126,40 @@ var testBlocks = [
     </next>
   </block>
 </xml>`
+    },
+    {
+        name: 'IDictionary C#',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" x="59" y="116">
+    <value name="TEXT">
+      <block type="api_VariousTests_ActionWithDictionary_POST">
+        <value name="val_id">
+          <shadow type="lists_create_with">
+            <mutation items="3"></mutation>
+          </shadow>
+          <block type="object_create">
+            <mutation xmlns="http://www.w3.org/1999/xhtml" num_fields="2">
+              <field name="asdas"></field>
+              <field name="asdasd"></field>
+            </mutation>
+            <field name="field1">item1</field>
+            <field name="field2">item2</field>
+            <value name="field_input1">
+              <block type="text">
+                <field name="TEXT">2</field>
+              </block>
+            </value>
+            <value name="field_input2">
+              <block type="text">
+                <field name="TEXT">3</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+  </block>
+</xml>`
     }
 ]
 
