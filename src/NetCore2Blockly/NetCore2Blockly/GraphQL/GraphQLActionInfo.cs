@@ -3,16 +3,20 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Net.Http;
 using System.Text;
 
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace NetCore2Blockly.GraphQL
 {
     class GraphQLActionInfo : ActionInfo
     {
-        
+        static readonly HttpClient client = new HttpClient();
+
         private BindingSourceDefinition ConvertFromBindingSource(BindingSource bindingSource)
         {
             return bindingSource switch
@@ -53,5 +57,35 @@ namespace NetCore2Blockly.GraphQL
             }
             return null;
         }
+
+        private async static Task<JsonElement> GetIntrospection()
+        {
+
+            var typesKindName = @"{
+                                      __schema {
+                                        types {
+                                          name kind
+                                        }
+                                      }
+                                    }";
+            var endpoint = "https://localhost:5001/graphql?query=";
+            var response = await client.GetAsync($"{endpoint + typesKindName}");
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
+            using (JsonDocument doc = JsonDocument.Parse(responseBody))
+            {
+                JsonElement root = doc.RootElement;
+                JsonElement info = root;
+                var types = info.GetProperty("data").GetProperty("__schema").GetProperty("types");
+                var x = types.EnumerateArray().ToArray();//because our collection is an array
+                var ourTypes = x.Where(condition => condition.GetProperty("kind").GetString().Equals("OBJECT"))
+                                .Where(condition => !condition.GetProperty("name").GetString().StartsWith("__"));
+
+                ourTypes.ToList().ForEach(res => Console.WriteLine(res));
+
+            }
+            return new JsonElement();
+        }
+    
     }
 }

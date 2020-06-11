@@ -21,5 +21,15 @@ namespace GraphQLDemo.Repository
         {
             return await _context.Department.ToListAsync();
         }
+
+        public async Task<Department> GetOneDepartment(int id)
+        {
+            return await _context.Department.FirstOrDefaultAsync(dep => dep.Iddepartment == id);
+        }
+
+        public async Task<IEnumerable<Employee>> GetEmployees()
+        {
+            return await _context.Employee.ToListAsync();
+        }
     }
 }
