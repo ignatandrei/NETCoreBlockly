@@ -68,18 +68,37 @@ namespace NetCore2Blockly.GraphQL
                                         }
                                       }
                                     }";
+            var schemaQuery = @"{
+                                  __schema {
+                                    queryType {
+                                      name kind
+                                    }
+                                  }
+                                }";
             var endpoint = "https://localhost:5001/graphql?query=";
-            var response = await client.GetAsync($"{endpoint + typesKindName}");
+            var response = await client.GetAsync($"{endpoint + schemaQuery}");
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
+            string nameQuery = "";
             using (JsonDocument doc = JsonDocument.Parse(responseBody))
+            {
+                JsonElement root = doc.RootElement;
+                JsonElement info = root;
+                var types = info.GetProperty("data").GetProperty("__schema").GetProperty("queryType");
+                nameQuery = types.GetProperty("name").GetString();
+            }
+
+            var response1 = await client.GetAsync($"{endpoint + typesKindName}");
+            response1.EnsureSuccessStatusCode();
+            string responseBody1 = await response1.Content.ReadAsStringAsync();
+            using (JsonDocument doc = JsonDocument.Parse(responseBody1))
             {
                 JsonElement root = doc.RootElement;
                 JsonElement info = root;
                 var types = info.GetProperty("data").GetProperty("__schema").GetProperty("types");
                 var x = types.EnumerateArray().ToArray();//because our collection is an array
                 var ourTypes = x.Where(condition => condition.GetProperty("kind").GetString().Equals("OBJECT"))
-                                .Where(condition => !condition.GetProperty("name").GetString().StartsWith("__"));
+                                .Where(condition => condition.GetProperty("name").GetString() == nameQuery);
 
                 ourTypes.ToList().ForEach(res => Console.WriteLine(res));
 
