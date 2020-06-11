@@ -4,13 +4,30 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.13803878..1.1.2020.13928632
+git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.13928632..1.1.2020.14011834
+
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
 
+## 1.1.2020.14011834 lunging-aardwolf-20200611041033
+
+ #### [modified local odata to accept also other endpoints] 
+ Author ignatandrei on 2020-06-10 20:09:28 +0300 
+
+ hash 37f8b14 37f8b14be093a71b72d30c6e9dd067f24a686e29
+
+
+ #### [added display versioning] 
+ Author ignatandrei on 2020-06-10 08:51:17 +0300 
+
+ hash 8be8021 8be802113911f60096cafb58ea5a6e8d066e59e1
+
+
+
 ## 1.1.2020.13928632 giggly-oyster-200610050351
- #### [show assembly ttile in the output] 
+
+#### [show assembly ttile in the output] 
  Author ignatandrei on 2020-06-10 07:56:01 +0300 
 
  hash 422930a 422930aee5777c83288bd9683a2b5980c7913a08
