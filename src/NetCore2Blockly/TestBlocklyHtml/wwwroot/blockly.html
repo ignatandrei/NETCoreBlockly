@@ -1399,7 +1399,13 @@
                         var version = req.responseText;
                         //window.alert(answer);
                         document.getElementById("version").innerHTML = version ;
-                        startIntro(version );
+                        if (optHeaderName.length > 0) {
+                            startIntro(optHeaderName);
+                        }
+                        else {
+                            startIntro(version);
+                        }
+                        
                     };
                 }
             }
