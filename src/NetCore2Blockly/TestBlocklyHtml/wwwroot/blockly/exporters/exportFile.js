@@ -26,7 +26,7 @@ Blockly.JavaScript['exportfile'] = function (block) {
     var value_contentfile = Blockly.JavaScript.valueToCode(block, 'contentFile', Blockly.JavaScript.ORDER_ATOMIC);
     var value_converttobyte = Blockly.JavaScript.valueToCode(block, 'convertToByte', Blockly.JavaScript.ORDER_ATOMIC);
     
-    var code = 'exportToFile('+ value_filename+','+value_contentfile+','+ value_converttobyte + ')';
+    var code = 'exportToFile('+ value_filename+','+value_contentfile+','+ value_converttobyte + ');\n';
     return code;
 };
 const exportToFile = function (nameFile, content, toByte) {
