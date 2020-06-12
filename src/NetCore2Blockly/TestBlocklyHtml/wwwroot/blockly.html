@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Blockly .NET Core demo</title>
+    <title id="title">Blockly .NET Core demo</title>
     <script src="others/intro.min.js?v=version"></script>
     <script src="/others/blocklyIntro.js?v=version"></script>
 
@@ -1031,6 +1031,7 @@
         //start blockly customize
         if (optHeaderName.length > 0) {
             document.getElementById('headerName').innerHTML = optHeaderName;
+            document.getElementById('title').innerHTML = optHeaderName;
         }
         //end blockly customize
 
