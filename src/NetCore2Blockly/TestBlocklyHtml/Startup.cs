@@ -27,6 +27,8 @@ using Microsoft.AspNet.OData.Formatter;
 using Microsoft.Net.Http.Headers;
 using Hellang.Middleware.ProblemDetails;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using TestBlocklyHtml.resolveAtRuntime;
 
 namespace TestBlocklyHtml
 {
@@ -42,6 +44,9 @@ namespace TestBlocklyHtml
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IActionDescriptorChangeProvider>(MyActionDescriptorChangeProvider.Instance);
+            services.AddSingleton(MyActionDescriptorChangeProvider.Instance);
+
             services.AddProblemDetails();
             services.AddCors(options =>
             {
