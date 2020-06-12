@@ -53,9 +53,10 @@ namespace TestBlocklyHtml.Controllers
         }
 
         [HttpGet]
-        public bool AddRuntimeController([FromServices] ApplicationPartManager partManager, [FromServices]MyActionDescriptorChangeProvider provider)
+        public string AddRuntimeController([FromServices] ApplicationPartManager partManager, [FromServices]MyActionDescriptorChangeProvider provider)
         {
-            var ass = CreateController("andrei");
+            string name = "andrei" + DateTime.Now.ToString("yyyyMMddHHmmss");
+            var ass = CreateController(name);
             
             if (ass != null)
             {
@@ -63,9 +64,9 @@ namespace TestBlocklyHtml.Controllers
                 // Notify change
                 provider.HasChanged = true;
                 provider.TokenSource.Cancel();
-                return true;
+                return "api/"+ name;
             }
-            return false;
+            throw new Exception("controller not generated");
         }
 
         private Assembly CreateController(string name)
