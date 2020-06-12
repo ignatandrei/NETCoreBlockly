@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Extensions;
 using Microsoft.OpenApi.Readers;
@@ -664,9 +665,15 @@ namespace NetCore2Blockly
         /// Initializes a new instance of the <see cref="GenerateBlocklyFilesHostedService"/> class.
         /// </summary>
         /// <param name="api">The API.</param>
-        public GenerateBlocklyFilesHostedService(IApiDescriptionGroupCollectionProvider api)
+        public GenerateBlocklyFilesHostedService(IActionDescriptorCollectionProvider prov, IApiDescriptionGroupCollectionProvider api)
         {
             this.api = api;
+            var cp = prov as ActionDescriptorCollectionProvider;
+            cp.GetChangeToken().RegisterChangeCallback(a =>
+            {
+                string s = "";
+                DoWork(null);
+            }, this);
             this.swaggers = new  Dictionary<string, BlocklyFileGenerator>();
             this.oDatas = new Dictionary<string, BlocklyFileGenerator>();
         }
