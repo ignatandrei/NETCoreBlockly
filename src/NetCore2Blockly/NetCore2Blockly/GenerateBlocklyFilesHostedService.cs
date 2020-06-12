@@ -660,7 +660,20 @@ namespace NetCore2Blockly
 
 
         private readonly IApiDescriptionGroupCollectionProvider api;
+        private readonly ActionDescriptorCollectionProvider cp;
 
+        internal void registerCallback()
+        {
+            cp.GetChangeToken().RegisterChangeCallback(a =>
+            {
+               
+                
+                var s = a as GenerateBlocklyFilesHostedService;
+                s.DoWork(null);
+                s.registerCallback();
+            }, this);
+
+        }
         /// <summary>
         /// Initializes a new instance of the <see cref="GenerateBlocklyFilesHostedService"/> class.
         /// </summary>
@@ -668,12 +681,8 @@ namespace NetCore2Blockly
         public GenerateBlocklyFilesHostedService(IActionDescriptorCollectionProvider prov, IApiDescriptionGroupCollectionProvider api)
         {
             this.api = api;
-            var cp = prov as ActionDescriptorCollectionProvider;
-            cp.GetChangeToken().RegisterChangeCallback(a =>
-            {
-                string s = "";
-                DoWork(null);
-            }, this);
+            this.cp = prov as ActionDescriptorCollectionProvider;
+            registerCallback();
             this.swaggers = new  Dictionary<string, BlocklyFileGenerator>();
             this.oDatas = new Dictionary<string, BlocklyFileGenerator>();
         }
