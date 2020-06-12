@@ -4,11 +4,38 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.14011834..1.1.2020.14048285
+git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.14048285..1.1.2020.14121979
 
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
+
+## 1.1.2020.14121979 bold-hog-20200612104619;
+
+
+ #### [minus compiler platform] 
+ Author Andrei Ignat on 2020-06-12 11:50:35 +0300 
+
+ hash 5572a99 5572a9958b389a4444d1058ced96004068fa69a8
+
+ #### [finalize adding new dynamic controllers] 
+ Author Andrei Ignat on 2020-06-12 11:42:54 +0300 
+
+ hash 8633dee 8633deef7d07c0355b13a1f98b6eb070555cc9a8
+
+#### [generated runtime with different names] 
+ Author Andrei Ignat on 2020-06-12 10:11:40 +0300 
+
+ hash e36a3fe e36a3febc7b6cbf1def206a566d982d5898bc36b
+
+
+#### [adding controller at runtime] 
+ Author Andrei Ignat on 2020-06-12 09:57:18 +0300 
+
+ hash 45bca1e 45bca1ef1994d3c69095e1ff017f4242094e5825
+
+
+
 
 ## 1.1.2020.14048285 kindled-pug-20200611141805
 
