@@ -4,13 +4,42 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.14048285..1.1.2020.14121979
+git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.14121979..1.1.2020.14218283
 
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
 
-## 1.1.2020.14121979 bold-hog-20200612104619;
+
+## 1.1.2020.14218283 gallant-haslett-20200613133122
+
+ #### [deploy] Grid to display results
+ Author ignatandrei on 2020-06-13 16:29:37 +0300 
+
+ hash 8390858 83908582c2f645c34841a4bf43013ac7f5f41b5d
+
+
+ #### [fix #110] 
+ Author ignatandrei on 2020-06-12 21:59:48 +0300 
+
+ hash 077d41e 077d41edd0c32f1670af4b2285799df1dc061b03
+
+ #### [hearder name in intro] 
+ Author ignatandrei on 2020-06-12 21:23:07 +0300 
+
+ hash 18efb1d 18efb1deea32e9e7d361d8c40df87bf2bf091a70
+
+ #### [fix #113] 
+ Author ignatandrei on 2020-06-12 19:35:07 +0300 
+
+ hash 165ab63 165ab637a2aa7a3ff4f3957cdb29801a8126168e
+
+ #### [fix #111] 
+ Author ignatandrei on 2020-06-12 19:31:18 +0300 
+
+ hash 720d412 720d412edd1e0c69aa773d2cc9636cca76eee2ce
+
+## 1.1.2020.14121979 bold-hog-20200612104619
 
 
  #### [minus compiler platform] 
