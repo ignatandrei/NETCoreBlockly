@@ -21,6 +21,9 @@
     <script src="blockly/blocklyControls.js?v=version"></script>
     <script src="others/jszip.min.js?v=version"></script>
     <script src="others/FileSaver.js?v=version"></script>
+
+    <script src="others/gridjs.production.min.js?v=version"></script>
+
     <script src="blockly/Http/BlocklyXHRWrapper.js?v=version"></script>
     <script src="blockly/converters/convertCSV.js?v=version"></script>
     <script src="blockly/converters/convertJSONString.js?v=version"></script>
@@ -39,13 +42,14 @@
 
     <script src="blockly/workspaceSearch.js?v=version"></script>
     <script src="blockly/search/toolboxSearch.js?v=version"></script>
-    <link rel="stylesheet" type="text/css" href="others/introjs.min.css" />
+    <link rel="stylesheet" type="text/css" href="others/introjs.min.css?v=version" />
+    <link rel="stylesheet" type="text/css" href="others/mermain.min.css?v=version"  />
 
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js?v=version"></script>
     <script src="doNotCopy/JRTemplating.js?v=version"></script>
-    <script src="https://cdn.lr-ingest.io/LogRocket.min.js" crossorigin="anonymous"></script>
-    <script>window.LogRocket && window.LogRocket.init('qmhtid/test');</script>
+    <!--<script src="https://cdn.lr-ingest.io/LogRocket.min.js" crossorigin="anonymous"></script>
+    <script>window.LogRocket && window.LogRocket.init('qmhtid/test');</script>-->
     <!--enddoNotCopyToFinal-->
     <style>
         body {
@@ -110,6 +114,97 @@
       
     </textarea>
 
+
+
+        <div id="steps" style="display: inline-block; width: 96%;"></div>
+        <script>
+            var dataObject = [];
+            var objectsForGrid = [];
+            var hotElement = document.querySelector('#steps');
+            var hot = new gridjs.Grid({
+                columns: ['Step'],
+                data: [['next steps']]
+                                    
+            }).render(hotElement);
+
+            function AddDataToGrid(value) {
+                dataObject.push([value]);
+                hotElement.innerHTML = '';
+                hot.updateConfig({data: dataObject });
+                hot.forceRender();
+                
+                if (value.startsWith("{") && value.endsWith("}")) {
+                    try {
+                        var obj = JSON.parse(value);
+                        objectsForGrid.push(obj);
+                    }
+                    catch  {
+                        //do nothing
+                    }
+                };
+                if (value.startsWith("[") && value.endsWith("]")) {
+                    try {
+                        var arr = JSON.parse(value);
+                        for (var i = 0; i < arr.length; i++) {
+                            objectsForGrid.push(arr[i]);
+                        };
+                    }
+                    catch  {
+                        //do nothing
+                    }
+
+                };
+
+            }
+            function ClearDataGrid() {
+                dataObject = [];
+                objectsForGrid = [];
+                hot.updateConfig({
+                    columns: ['Step'],
+                    data: [['next steps']]
+                });
+                hot.forceRender();
+
+            }
+            function FinishGrid() {
+                
+                if (objectsForGrid.length == 0)
+                    return;
+
+                var headers = [];
+                var obj = objectsForGrid;
+                for (var i = 0; i < obj.length; i++) {
+                    var data = obj[i];
+                    headers.push(...Object.keys(data));
+
+                }
+                var mySet = new Set(headers);
+                headers = Array.from(mySet);
+
+                var fullData = [];
+                for (var i = 0; i < obj.length; i++) {
+                    var data = obj[i];
+                    var res = [];
+                    for (var p = 0; p < headers.length; p++) {
+                        var key = headers[p];
+                        
+                        if (data && data.hasOwnProperty(key))
+                            res.push(data[key]);
+                        else
+                            res.push('');
+                    }
+                    fullData.push(res);
+                }
+                hot.updateConfig({
+                    columns: headers,
+                    data: fullData
+                });
+                hot.forceRender();
+
+
+            }
+
+        </script>
     </div>
     <!--doNotCopyToFinal-->
     Saved
@@ -1067,6 +1162,7 @@
                 console.log(`step ${step}`);
                 zip.file(`result ${step}) ${text}`);
                 outputArea.value = outputArea.value + '\n step' + step + ':' + text;
+                AddDataToGrid(text);
             };
 
 
@@ -1098,7 +1194,7 @@
                 interpreter.createNativeFunction(wrapper));
 
             var wrapper = (item) => {
-                outputArea.value += '\n error --' + '\n' + item + '\n error --';
+                outputArea.value += '\n error --' + '\n' + item + '\n error --';                
             };
 
             interpreter.setProperty(globalObject, 'errHandler',
@@ -1254,6 +1350,7 @@
             if (clearOutput) {
                 zip = new JSZip();
                 outputArea.value = 'Program output:\n=================';
+                ClearDataGrid();
             }
         }
         function ShowInnerWorkings() {
@@ -1313,7 +1410,7 @@
                             } else {
                                 // Program is complete.
                                 outputArea.value += '\n\n<< Program complete >>';
-
+                                FinishGrid();
                                 resetInterpreter();
                                 resetStepUi(false);
                             }
