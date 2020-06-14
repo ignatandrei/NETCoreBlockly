@@ -11,9 +11,11 @@
 # What it does
 NETCore2Blockly generates [Blockly](https://developers.google.com/blockly) blocks for each of your controller actions. 
 
-Demo at https://netcoreblockly.herokuapp.com/blockly.html ( play with the links from the bottom)
+Demo at https://netcoreblockly.herokuapp.com/ ( play with the links from the bottom)
 
 Demo Video at https://www.youtube.com/watch?v=GptkNWjmCzk
+
+Sample Project is TestBlocklyHtml from this repository
 
 # How to install NETCore2Blockly in a .NET Core 3.1  WebAPI / MVC application
 
@@ -38,8 +40,6 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
 
 ## Step 3:
 
-### Recommended:
-
 To see the UI , please add
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
@@ -48,19 +48,35 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
        //you can add  storage like local storage or sqlite 
        //app.UseBlocklyLocalStorage();
        //app.UseBlocklySqliteStorage() ; // other nuget package
-       //you can add swaggers also
-      //app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json")
-      //or you can add odata
-      //app.UseBlocklyOData("TriPin", "https://services.odata.org/TripPinRESTierService/");
        app.UseBlockly();
 }
 ```
- 
+
+### For Swagger ( local or remote )
+
+app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json")
+
+
+### For ODATA ( local or remote)
+
+app.UseBlocklyOData("OdataV4", "https://services.odata.org/TripPinRESTierService/");
+
+### For GraphQL
+
+app.UseBlocklyGraphQL("localGraphql", "/graphql");
+
+
+## For authentication 
+
+See links 22 for JWT and 31 for Auth0 
 
 ## Step 4:
+
 Run the application and browse to  /blockly.html
 
 That's all!
+
+
 
 
 
