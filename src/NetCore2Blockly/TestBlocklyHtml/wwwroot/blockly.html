@@ -1095,7 +1095,7 @@
 
             var startBlocks = document.getElementById('startBlocks');
 
-            if (startBlocksStr.length > 0) {
+            if ('startBlocksStr' in window && startBlocksStr.length > 0) {
                 startBlocks = Blockly.Xml.textToDom(startBlocksStr);
             }
 
@@ -1103,7 +1103,7 @@
         }
         //end start blocks to display
         //start blockly customize
-        if (optHeaderName.length > 0) {
+        if ('optHeaderName' in window && optHeaderName.length > 0) {
             document.getElementById('headerName').innerHTML = optHeaderName;
             document.getElementById('title').innerHTML = optHeaderName;
         }
@@ -1475,7 +1475,7 @@
                         var version = req.responseText;
                         //window.alert(answer);
                         document.getElementById("version").innerHTML = version;
-                        if (optHeaderName.length > 0) {
+                        if ('optHeaderName' in window && optHeaderName.length > 0) {
                             startIntro(optHeaderName);
                         }
                         else {
