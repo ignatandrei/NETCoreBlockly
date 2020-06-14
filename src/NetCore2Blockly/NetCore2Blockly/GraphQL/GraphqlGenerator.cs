@@ -45,20 +45,46 @@ namespace NetCore2Blockly.GraphQL
                     .Where(condition => condition.GetProperty("name").GetString().Equals(queryTypeName.GetString()));
                 var schemaObjectsToString = string.Join("", schemaObjects);
 
-                /*
-                 * Getting the OGT Fields
-                 */
-                var typesOGT = allTypes
-                    .Where(condition => condition.GetProperty("kind").GetString().Equals("OBJECT"))
-                    .Where(condition => condition.GetProperty("name").GetString().Contains("OGT"));// for the moment, hardcoded
-
                 //Console.WriteLine(schemaObjectsToString);
                 var obj = Root.FromJson(schemaObjectsToString);//works
+
+                var nameObjectReturns = obj.Fields
+                    .Where(it => it.Type?.OfType?.Name != null)
+                    .Select(it => it.Type.OfType)
+                    .Select(it => it.Name)
+                    .ToArray();
+
+                var nameObjectArgs = obj.Fields
+                    .Where(it => it.Args?.Count > 0)
+                    .SelectMany(it => it.Args)
+                    .Select(it => it?.Type?.Name)
+                    .Where(it=>it != null)
+                    .ToArray();
+
+                //remove from args the returns
+                nameObjectArgs = 
+                        nameObjectArgs.Where(it =>
+                    !nameObjectReturns.Contains(it)).ToArray();
+
+                var allObjectsNames = nameObjectReturns
+                    .Union(nameObjectArgs)
+                    .ToArray();
+                // finally get the json
+                var typesWithFields = allTypes
+                    .Where(condition => condition.GetProperty("kind").GetString().Equals("OBJECT"))
+                    .Where(condition => allObjectsNames.Contains( condition.GetProperty("name").GetString()))
+                    .ToArray();
+
+                var allTypesInGraph = typesWithFields
+                    .Select(it => new GraphQLTypeArgument(it))
+                    .ToArray();
+
+
                 string controllerName = obj.Name;
                 foreach(var f in obj.Fields)
                 {
                     // generate GraphQLActionInfo
-                    var action = new GraphQLActionInfo(f);
+                    var action = new GraphQLActionInfo(f, allTypesInGraph);
                     action.ControllerName = controllerName; 
                     action.Init();
 
@@ -66,24 +92,6 @@ namespace NetCore2Blockly.GraphQL
 
                 }
 
-                //there are a few ogts
-                foreach (var ogt in typesOGT)
-                {
-                    var myOGTsToStr = string.Join("", ogt);
-                    var objOGT = Root.FromJson(myOGTsToStr);
-                    string controllerNameOGT = obj.Name;
-
-                    foreach (var field in objOGT.Fields)
-                    {
-                        var action = new GraphQLActionInfo(field);
-                        action.ControllerName = controllerNameOGT;
-                        action.Init();
-                        arrayOfActions.Add(action);
-                    }
-
-
-
-                }
 
             }
             //return the array of ACtion Info

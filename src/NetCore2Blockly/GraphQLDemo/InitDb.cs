@@ -26,6 +26,11 @@ namespace GraphQLDemo
 
 
                     );
+
+                context.Employee.AddRange(
+                    new Employee { Iddepartment = 1, Name = "andrei" },
+                    new Employee { Iddepartment = 1, Name = "cosmin" }
+                    );
                 context.SaveChanges();
             }
         }

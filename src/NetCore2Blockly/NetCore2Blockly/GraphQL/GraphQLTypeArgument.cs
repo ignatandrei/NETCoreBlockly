@@ -1,23 +1,40 @@
-﻿using System;
+﻿using NetCore2Blockly.Swagger;
+using System;
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
-
-
+using System.Text.Json;
 
 namespace NetCore2Blockly.GraphQL
 {
     class GraphQLTypeArgument : TypeArgumentBase
     {
-        public GraphQLTypeArgument(string id) : base(id)
+        private JsonElement it;
+        private PropertyBase[] properties;
+
+        public GraphQLTypeArgument(JsonElement it):base(it.GetProperty("name").GetString())
         {
-            
+            List<PropertyBase> props = new List<PropertyBase>();
+            this.it = it;
+            var fields = it.GetProperty("fields");
+            var l=fields.GetArrayLength();
+            for(var i = 0; i < l; i++)
+            {
+                var current = fields[i];
+                var prop = new GraphQLPropertyBase();
+                prop.Name = current.GetProperty("name").GetString();
+                //put here real name
+                prop.PropertyType = BlocklyType.CreateValue(null);
+
+                props.Add(prop);
+            }
+            properties = props.ToArray();
         }
 
         /// <summary>
         /// Gets the OGT name. ie DepartmentOGT
         /// </summary>
-        public override string FullName => id;
+        public override string FullName => it.GetProperty("name").GetString();
 
         public override bool IsEnum => false;
 
@@ -32,7 +49,7 @@ namespace NetCore2Blockly.GraphQL
 
         public override PropertyBase[] GetProperties()
         {
-            return null;
+            return properties;
         }
 
         public override Dictionary<string, object> GetValuesForEnum()
@@ -42,17 +59,17 @@ namespace NetCore2Blockly.GraphQL
 
         public override string TranslateToBlocklyBlocksType()
         {
-            throw new NotImplementedException();
+            return $"TranslateToBlocklyBlocksType=>{id}";
         }
 
         public override string TranslateToBlocklyType()
         {
-            throw new NotImplementedException();
+            return $"TranslateToBlocklyType=>{id}";
         }
 
         public override string TranslateToNewTypeName()
         {
-            throw new NotImplementedException();
+            return $"TranslateToNewTypeName=>{id}";
         }
     }
 }
