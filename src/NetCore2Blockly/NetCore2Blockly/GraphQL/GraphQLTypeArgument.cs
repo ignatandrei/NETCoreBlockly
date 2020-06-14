@@ -59,7 +59,7 @@ namespace NetCore2Blockly.GraphQL
 
         public override string TranslateToBlocklyBlocksType()
         {
-            return $"TranslateToBlocklyBlocksType=>{id}";
+            return $"GraphQLTypeArgument TranslateToBlocklyBlocksType=>{id}";
         }
 
         public override string TranslateToBlocklyType()

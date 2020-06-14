@@ -15,12 +15,11 @@ namespace NetCore2Blockly.GraphQL
     class GraphQLActionInfo : ActionInfo
     {
         private Field f;
-        private GraphQLTypeArgument returnType;
-        List<Arg> args;
-        private GraphQLTypeArgument[] allTypesInGraph;
+        private TypeArgumentBase returnType;
+        private AllTypes allTypesInGraph;
 
 
-        public GraphQLActionInfo(Field f, GraphQLTypeArgument[] allTypesInGraph) 
+        public GraphQLActionInfo(Field f, AllTypes allTypesInGraph) 
         {
             this.f = f;
             this.allTypesInGraph = allTypesInGraph;
@@ -30,28 +29,33 @@ namespace NetCore2Blockly.GraphQL
         {
             ActionName = f.Name;
             var retName = f.Type?.OfType?.Name ?? f.Type.Name;
-            returnType = allTypesInGraph.FirstOrDefault(it => it.Name == retName);
+            returnType = allTypesInGraph.FindAfterId(retName);
             string ret = "";
             if(returnType != null)
             {
                 ret = string.Join(" ",
                     returnType.GetProperties().Select(it => it.Name)
                     );
-            } 
-                
-            
-            RelativeRequestUrl = "/graphql?query={" + f.Name + "{"+ ret +"}}";
-            Verb = "GET";
-            
-            args = f.Args;
+            }
 
+            string argsInQuery = "";
             if (f.Args?.Count > 0)
             {
                 foreach (var arg in f.Args)
                 {
-                    //Params.Add(arg.Name, (BlocklyType.CreateValue('string'), BindingSourceDefinition.Query));
+                    var type = arg.Type;
+                    var typeInGraph = allTypesInGraph.FindAfterId(type.Name);
+                    Params.Add(arg.Name, (typeInGraph, BindingSourceDefinition.Query));
                 }
+                argsInQuery = string.Join(",",
+                    Params.Select(it=>it.Key +":{" +it.Key+"}")
+
+                    );
+                argsInQuery = $"({argsInQuery})";
             }
+
+            RelativeRequestUrl = "/graphql?query={" + f.Name + argsInQuery+ "{"+ ret +"}}";
+            Verb = "GET";
             ReturnType = BlocklyType.CreateValue(null);
 
 

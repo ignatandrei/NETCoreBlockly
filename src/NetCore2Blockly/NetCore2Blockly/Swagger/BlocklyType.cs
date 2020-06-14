@@ -44,8 +44,9 @@ namespace NetCore2Blockly.Swagger
 
         public override string TranslateToBlocklyBlocksType()
         {
-            switch (id)
+            switch (id?.ToLower())
             {
+                case "int":
                 case "integer":
                 case "number":
                         return "math_number";
@@ -53,7 +54,7 @@ namespace NetCore2Blockly.Swagger
                 case "string":
                         return "text";
 
-                case "boolean"://TODO: add controller with boolean
+                case "boolean":
                         return "logic_boolean";
 
                 case "array": 
@@ -62,7 +63,7 @@ namespace NetCore2Blockly.Swagger
                
 
             }
-            return $"TranslateToBlocklyBlocksType=>{id}";
+            return $"BlocklyType TranslateToBlocklyBlocksType=>{id}";
         }
 
         public override string TranslateToBlocklyType()
@@ -75,7 +76,7 @@ namespace NetCore2Blockly.Swagger
         public override string TranslateToNewTypeName()
         {
             var upperCaseFirst = id.First().ToString().ToUpper() + id.Substring(1);
-            if (upperCaseFirst == "Integer")
+            if (upperCaseFirst == "Integer" || upperCaseFirst == "Int")
                 upperCaseFirst = "Number";
             return upperCaseFirst;
         }

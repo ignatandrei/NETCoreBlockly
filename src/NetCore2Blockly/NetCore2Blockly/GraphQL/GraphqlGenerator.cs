@@ -79,12 +79,13 @@ namespace NetCore2Blockly.GraphQL
                     .Select(it => new GraphQLTypeArgument(it))
                     .ToArray();
 
+                var allTypesIncludingValues = new AllTypes(allTypesInGraph);
 
                 string controllerName = obj.Name;
                 foreach(var f in obj.Fields)
                 {
                     // generate GraphQLActionInfo
-                    var action = new GraphQLActionInfo(f, allTypesInGraph);
+                    var action = new GraphQLActionInfo(f, allTypesIncludingValues);
                     action.ControllerName = controllerName; 
                     action.Init();
 

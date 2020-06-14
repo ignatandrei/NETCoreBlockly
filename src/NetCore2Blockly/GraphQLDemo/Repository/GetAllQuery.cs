@@ -20,7 +20,7 @@ namespace GraphQLDemo.Repository
 
                 Field<DepartmentOGT>(
                     "getOneDepartment",
-                    arguments: new QueryArguments(new QueryArgument<IdGraphType> { Name = "id" }),
+                    arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "id" }),
                     resolve: context =>
                     {
                         var id = context.GetArgument<int>("id");
