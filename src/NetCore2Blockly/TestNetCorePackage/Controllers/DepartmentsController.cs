@@ -17,7 +17,7 @@ namespace TestNetCorePackage.Controllers
 
         public DepartmentsController(testsContext context)
         {
-            context.Database.EnsureCreated();
+           
             _context = context;
         }
 

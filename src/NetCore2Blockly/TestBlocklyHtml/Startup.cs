@@ -29,6 +29,10 @@ using Hellang.Middleware.ProblemDetails;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using TestBlocklyHtml.resolveAtRuntime;
+using GraphQL.Server;
+using TestBlocklyHtml.GraphQL;
+using GraphQL;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 namespace TestBlocklyHtml
 {
@@ -77,6 +81,17 @@ namespace TestBlocklyHtml
             });
             #endregion
             services.AddBlockly();
+
+            #region for graphql
+            services.Configure<KestrelServerOptions>(options =>
+            {
+                options.AllowSynchronousIO = true;
+            });
+            services.Configure<IISServerOptions>(options =>
+            {
+                options.AllowSynchronousIO = true;
+            });
+            #endregion
             services.AddDbContext<testsContext>(options => options
 
               .UseInMemoryDatabase(databaseName: "MyDB"));
@@ -93,6 +108,12 @@ namespace TestBlocklyHtml
                 });
                 
             });
+            services.AddScoped<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
+            services.AddGraphQL(o => { o.ExposeExceptions = true; })
+                            .AddGraphTypes(ServiceLifetime.Scoped);
+
+            services.AddScoped<DepartmentRepository>();
+            services.AddScoped<DepartmentSchema>();
 
             //var key = Encoding.ASCII.GetBytes(Configuration["ApplicationSecret"]);
             //please change also in AuthorizationToken . 
@@ -189,7 +210,7 @@ namespace TestBlocklyHtml
             app.UseBlocklyUI(new BlocklyUIOptions()
             {
                 StartBlocks = StartBlocksForUI,
-                HeaderName = "Demo test for .NET Core WebAPI ( site with Blockly +  swaggers + odata loaded)"
+                HeaderName = "Demo test for .NET Core WebAPI ( site with Blockly +  swaggers + odata loaded + graphql)"
             });
 
             app.UseBlocklyLocalStorage();
@@ -221,6 +242,7 @@ namespace TestBlocklyHtml
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseGraphQL<DepartmentSchema>();
 
             app.UseEndpoints(endpoints =>
             {
@@ -237,7 +259,11 @@ namespace TestBlocklyHtml
                 app.UseOdataToEntityMiddleware<OePageMiddleware>("/odataDB", edmModel);
                 app.UseBlocklyOData("/odataDB","/odataDB");
             }
+            app.UseBlocklyGraphQL("localGraphql", "/graphql");
             app.UseBlockly();
+            using var scope = app.ApplicationServices.CreateScope();
+            using var context = scope.ServiceProvider.GetService<testsContext>();
+            context.Database.EnsureCreated();
 
         }
         private IEdmModel ModelDB()

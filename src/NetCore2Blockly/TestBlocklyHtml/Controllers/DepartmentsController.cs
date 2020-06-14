@@ -17,7 +17,7 @@ namespace TestBlocklyHtml.Controllers
 
         public DB_DepartmentsController(testsContext context)
         {
-            context.Database.EnsureCreated();
+           
             _context = context;
         }
 
