@@ -21,6 +21,7 @@
     <script src="blockly/blocklyControls.js?v=version"></script>
     <script src="others/jszip.min.js?v=version"></script>
     <script src="others/FileSaver.js?v=version"></script>
+    <script src="others/split.min.js?v=version"></script>
 
     <script src="others/gridjs.production.min.js?v=version"></script>
 
@@ -66,6 +67,12 @@
             display: inline-block;
         }
         /*enddoNotCopyToFinal*/
+        .gutter.gutter-horizontal {
+            cursor: col-resize;
+            background-color: #909090; /* Same color as content_border */
+            margin: 0 2px;
+        }
+
     </style>
 </head>
 <body>
@@ -107,23 +114,70 @@
     </p>
 
     <div style="width: 100%">
-        <div id="blocklyDiv"
-             style="display: inline-block; height: 480px; width: 68%"></div>
+        <div id="blocklyArea"
+             style="border: 1px solid #4CAF50; display: inline-block; height: 480px; width: 68%"></div>
         <textarea id="output"
-                  style="display: inline-block; height: 480px; width: 28%;">
-      
-    </textarea>
+                  style="display: inline-block; height: 480px; width: 18%;">
+        </textarea>
+    
+        <div id="blocklyDiv"
+             style="position: absolute;display: inline-block; height: 480px; width: 68%"></div>
+        
+
 
     </div>
+
+    <script>
+        var blocklyArea = document.getElementById('blocklyArea');
+        var blocklyDivx = document.getElementById('blocklyDiv');
+        var output = document.getElementById('output');
+        function initializeSplit() {
+            split = window.Split([blocklyArea, output], {
+                direction: 'horizontal',
+                sizes: [75, 25],
+                minSize: [200, 100],
+                gutterSize: 4,
+                snapOffset: 0,
+                onDrag: resizeBlocklyArea,
+            });
+        }
+        //initializeSplit();
+        function resizeBlocklyArea() {
+            
+            // Compute the absolute coordinates and dimensions of blocklyArea.            
+            var x = 0;
+            var y = 0;
+            var w = blocklyArea.offsetWidth;
+            var h = blocklyArea.offsetHeight;
+            var element = blocklyArea;            
+            do {
+                x += element.offsetLeft;
+                y += element.offsetTop;
+                element = element.offsetParent;
+            } while (element);
+            // Position blocklyDiv over blocklyArea.
+            
+            blocklyDivx.style.left = x +"px";
+            blocklyDivx.style.top = y + "px";
+            blocklyDivx.style.width = w + "px";
+            blocklyDivx.style.height = h + "px";
+            blocklyDivx.style.position = "absolute";
+            if('demoWorkspace' in window)
+            Blockly.svgResize(demoWorkspace);
+            
+        }
+        window.addEventListener('resize', resizeBlocklyArea, false);
+        resizeBlocklyArea();
+    </script>
 
     <div id="steps" style="display: inline-block; width: 96%;"></div>
     <script>
         var gridElement = document.getElementById('steps');
         initGrid(gridElement);
     </script>
-    
+
     <!--doNotCopyToFinal-->
-    Saved
+    <div>Saved blocks</div>
     <ul id="localStorageSaved">
     </ul>
 
@@ -1078,7 +1132,7 @@
                 console.log(`step ${step}`);
                 zip.file(`result ${step}) ${text}`);
                 outputArea.value = outputArea.value + '\n step' + step + ':' + text;
-                AddDataToGrid(text,gridElement);
+                AddDataToGrid(text, gridElement);
             };
 
 
