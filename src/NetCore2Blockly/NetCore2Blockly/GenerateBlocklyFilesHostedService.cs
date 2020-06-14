@@ -775,7 +775,7 @@ namespace NetCore2Blockly
 
         private void InterpretSchemaGraphQl(string key, Uri uri)
         {
-            var action = new GraphQLActionInfo(uri.ToString());
+            var action = new GraphqlGenerator(uri.ToString());
             try
             {
                 var s = action.GetIntrospection().GetAwaiter().GetResult();
