@@ -4,12 +4,142 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.14121979..1.1.2020.14218283
+git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.14218283..1.1.2020.14333504
 
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
 
+## 1.1.2020.14333504 altered-arachnid-20200614213143 
+
+### GraphQL and Grid for displaying data
+
+
+ #### [first version grpahql] 
+ Author ignatandrei on 2020-06-15 00:29:48 +0300 
+
+ hash bf49974 bf49974bb4493e257643eaca57750c0416d9183f
+
+
+
+ #### [now with graphql] 
+ Author ignatandrei on 2020-06-15 00:25:30 +0300 
+
+ hash fe4f29d fe4f29daf401ff7cac7a68c0aeb7e0e36cdeffc8
+
+
+ #### [adding graphql] 
+ Author ignatandrei on 2020-06-14 23:43:15 +0300 
+
+ hash 22479fa 22479faf647451105df2f1fe31168b6d927e4397
+
+ #### [now works with department query] 
+ Author ignatandrei on 2020-06-14 23:30:27 +0300 
+
+ hash d6c7ed2 d6c7ed22a0aa8f84b59d414c9e14a2897ce9752e
+
+ #### [getting employee and departments] 
+ Author ignatandrei on 2020-06-14 22:50:55 +0300 
+
+ hash 7da4b09 7da4b092c3faa4e8bce3ded90042a1acc120665d
+
+ #### [Trying to get other OGTs] 
+ Author Cosmin Popescu on 2020-06-14 20:24:59 +0300 
+
+ hash e1a6471 e1a64710641ce10275c05eeb963c389deb9b3ca0
+
+ #### [refactoring] 
+ Author ignatandrei on 2020-06-14 20:00:02 +0300 
+
+ hash 5ada612 5ada612a04a70d1d263c28a15505d1574ad828dc
+
+ #### [stringify] 
+ Author ignatandrei on 2020-06-14 19:26:12 +0300 
+
+ hash 72b347b 72b347b9686529f8783f71b62e10b55879a0e722
+
+ #### [more replace parameters when generating name] 
+ Author ignatandrei on 2020-06-14 19:10:24 +0300 
+
+ hash 3ce8a6b 3ce8a6bc74d71b759d49a64437c72c66cf3876dd
+
+ #### [moved blockly outside] 
+ Author ignatandrei on 2020-06-14 18:45:45 +0300 
+
+ hash 6493f07 6493f07889d7784d1ba2b733f411f67753354cf4
+
+ #### [verify if variables are ok] 
+ Author ignatandrei on 2020-06-14 17:42:03 +0300 
+
+ hash c65ec51 c65ec5132fac4d30cdee8ccd8fac79e1fa9fa691
+
+
+ #### [departmentquery works!] 
+ Author ignatandrei on 2020-06-14 17:28:19 +0300 
+
+ hash cefdfbe cefdfbe564296068eb4831669a561825e88d69b6
+
+ #### [first milestoen to see the graphql] 
+ Author ignatandrei on 2020-06-14 17:15:15 +0300 
+
+ hash 252ffff 252ffffa8b25274d35ad2e12d97f974ce026402a
+
+ #### [genreated sample for graphql] 
+ Author ignatandrei on 2020-06-14 16:58:11 +0300 
+
+ hash c8c943e c8c943ed8bcfe0e2e7c705c4f92dcc463a876c65
+
+ #### [added to blockly graphql dictionary] 
+ Author ignatandrei on 2020-06-14 16:47:13 +0300 
+
+ hash 0702703 0702703d7ac28e4dace6e547a23fe79a6f22a755
+
+ #### [Created ActionInfo] 
+ Author Cosmin Popescu on 2020-06-14 16:37:40 +0300 
+
+ hash d248aa3 d248aa34af441ba5411910578245e9a56838e2c3
+
+
+ #### [now generated graph ql;] 
+ Author ignatandrei on 2020-06-14 15:54:40 +0300 
+
+ hash 48b1418 48b1418fedcae26a2aca84eb4fe3173c0c4c538e
+
+
+ #### [get all query works !] 
+ Author ignatandrei on 2020-06-14 15:43:57 +0300 
+
+ hash aa3fca2 aa3fca2995b100ad8b88917c25d87a891ec6fb84
+
+ #### [adde graphql] 
+ Author ignatandrei on 2020-06-14 15:00:27 +0300 
+
+ hash 11a52aa 11a52aa9c548770f27a288a34b890b2174543ba0
+
+ 
+ #### [Deserialised into classes] 
+ Author Cosmin Popescu on 2020-06-14 14:53:58 +0300 
+
+ hash eedc5c1 eedc5c1c05c908af412acb1596518baa44add470
+
+
+
+ hash 9653ae8 9653ae8033e9388a97bed075195b7ff919c7b1cb
+
+ #### [refactor js] 
+ Author ignatandrei on 2020-06-14 11:37:58 +0300 
+
+ hash 3e89966 3e89966275adf4a136c41b7e160c27ea48878291
+
+ #### [order number for grid] 
+ Author ignatandrei on 2020-06-14 11:25:15 +0300 
+
+ hash 6675b7e 6675b7e7e6b28eb527e99311adce3e2dc9dc3d4d
+
+ #### [Getting schema query] 
+ Author Cosmin Popescu on 2020-06-11 08:58:00 +0300 
+
+ hash 9cfa479 9cfa479d849ecf274ab8e3303f16df167f89c5dc
 
 ## 1.1.2020.14218283 gallant-haslett-20200613133122
 
