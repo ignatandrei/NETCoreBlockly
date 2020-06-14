@@ -57,8 +57,9 @@ namespace NetCore2Blockly.GraphQL
 
                     arrayOfActions.Add(action);
                     // from the field args generate grpahtqltypearguments
-
-                    action.RelativeRequestUrl = f.Name;
+                    //
+                    action.RelativeRequestUrl = "/graphql?query={" + f.Name +"{iddepartment}}";
+                    
                     action.Verb  =  "GET";
                     action.ReturnType= BlocklyType.CreateValue(null); 
 
