@@ -45,6 +45,16 @@ namespace NetCore2Blockly
         private string _ODataBlocklyAPIFunctions;
         private string _ODataBlocklyToolBoxValueDefinition;
         private string _ODataBlocklyTypesDefinition;
+
+        private Dictionary<string, BlocklyFileGenerator> GraphQL;
+
+        private string _GraphQLBlocklyToolBoxFunctionDefinition;
+        private string _GraphQLBlocklyAPIFunctions;
+        private string _GraphQLBlocklyToolBoxValueDefinition;
+        private string _GraphQLBlocklyTypesDefinition;
+
+
+
         internal async Task AddSwagger(string key, string endpoint)
         {
             try
@@ -696,6 +706,8 @@ namespace NetCore2Blockly
             registerCallback();
             this.swaggers = new Dictionary<string, BlocklyFileGenerator>();
             this.oDatas = new Dictionary<string, BlocklyFileGenerator>();
+            this.GraphQL= new Dictionary<string, BlocklyFileGenerator>();
+
         }
         /// <summary>
         /// starts
@@ -778,7 +790,8 @@ namespace NetCore2Blockly
             var action = new GraphqlGenerator(uri.ToString());
             try
             {
-                var s = action.GetIntrospection().GetAwaiter().GetResult();
+                var actions = action.GetIntrospection().GetAwaiter().GetResult();
+                this.GraphQL.Add(key,new BlocklyFileGenerator(actions));
             }
             catch(Exception ex)
             {
