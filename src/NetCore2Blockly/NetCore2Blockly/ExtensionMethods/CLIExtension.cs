@@ -7,6 +7,7 @@ using Microsoft.Extensions.FileProviders.Physical;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -164,8 +165,17 @@ ApplicationServices
              });
             return app;
         }
+        public static IApplicationBuilder UseBlocklyGraphQL(this IApplicationBuilder app,string key, string endpoint)
+        {
+            var blocklyFilesHostedService = app.ApplicationServices
+                    .GetService<GenerateBlocklyFilesHostedService>();
+            var t = blocklyFilesHostedService.AddGraphQL(key, endpoint);
+            t.GetAwaiter().GetResult();
 
-        private static void MapJS(IApplicationBuilder app, string url, Func<GenerateBlocklyFilesHostedService, string> content)
+            return app;
+        }
+
+            private static void MapJS(IApplicationBuilder app, string url, Func<GenerateBlocklyFilesHostedService, string> content)
         {
             app.Map(url, app =>
             {

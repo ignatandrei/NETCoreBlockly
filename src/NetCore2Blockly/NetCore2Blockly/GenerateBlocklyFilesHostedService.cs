@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Extensions;
 using Microsoft.OpenApi.Readers;
+using NetCore2Blockly.ExtensionMethods;
+using NetCore2Blockly.GraphQL;
 using NetCore2Blockly.OData;
 using NetCore2Blockly.Swagger;
 using SharpYaml.Tokens;
@@ -51,11 +53,11 @@ namespace NetCore2Blockly
 
                 swaggers.Add(key, new BlocklyFileGenerator(data));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"adding swagger {endpoint} throws error {ex?.Message}");
                 //swallowing error - should run even if the endpoint is not available
-                
+
             }
         }
         internal string[] KeySwaggers()
@@ -66,7 +68,7 @@ namespace NetCore2Blockly
         {
             if (string.IsNullOrWhiteSpace(_SwaggerBlocklyToolBoxFunctionDefinition))
             {
-                lock(this)
+                lock (this)
                     _SwaggerBlocklyToolBoxFunctionDefinition = string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateBlocklyToolBoxFunctionDefinitionFile(it.Key))); ;
             }
             return _SwaggerBlocklyToolBoxFunctionDefinition;
@@ -75,8 +77,8 @@ namespace NetCore2Blockly
         {
             if (string.IsNullOrWhiteSpace(_SwaggerBlocklyAPIFunctions))
             {
-                lock(this)
-                _SwaggerBlocklyAPIFunctions =string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateBlocklyAPIFunctions(it.Key)));
+                lock (this)
+                    _SwaggerBlocklyAPIFunctions = string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateBlocklyAPIFunctions(it.Key)));
             }
             return _SwaggerBlocklyAPIFunctions;
         }
@@ -84,18 +86,18 @@ namespace NetCore2Blockly
         {
             if (string.IsNullOrWhiteSpace(_SwaggerBlocklyToolBoxValueDefinition))
             {
-                lock(this)
-                _SwaggerBlocklyToolBoxValueDefinition = string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateBlocklyToolBoxValueDefinitionFile(it.Key)));
+                lock (this)
+                    _SwaggerBlocklyToolBoxValueDefinition = string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateBlocklyToolBoxValueDefinitionFile(it.Key)));
             }
-            return _SwaggerBlocklyToolBoxValueDefinition ;
+            return _SwaggerBlocklyToolBoxValueDefinition;
         }
 
         internal string SwaggerBlocklyTypesDefinition()
         {
             if (string.IsNullOrWhiteSpace(_SwaggerBlocklyTypesDefinition))
             {
-                lock(this)
-                    _SwaggerBlocklyTypesDefinition =string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateNewBlocklyTypesDefinition()));
+                lock (this)
+                    _SwaggerBlocklyTypesDefinition = string.Join(Environment.NewLine, swaggers.Select(it => it.Value.GenerateNewBlocklyTypesDefinition()));
             }
             return _SwaggerBlocklyTypesDefinition;
         }
@@ -111,7 +113,7 @@ namespace NetCore2Blockly
         }
         async Task<Stream> GetFromURL(string endpoint)
         {
-            
+
             var uri = new Uri(endpoint);
             var site = uri.Scheme + "://" + uri.Authority;
             if (uri.IsFile)
@@ -127,7 +129,7 @@ namespace NetCore2Blockly
                 return await httpClient.GetStreamAsync(uri.PathAndQuery);
             }
 
-            
+
 
         }
         async Task<List<ActionInfo>> GenerateFromSwaggerEndPoint(string endpoint)
@@ -137,7 +139,7 @@ namespace NetCore2Blockly
             using var stream = await GetFromURL(endpoint);
             var openApiDocument = new OpenApiStreamReader().Read(stream, out var diagnostic);
             var servers = openApiDocument.Servers;
-            
+
             if (servers?.Count > 0)
             {
                 foreach (var server in servers)
@@ -169,11 +171,11 @@ namespace NetCore2Blockly
             }
             //do it again to find property types
             var existingTypes = new AllTypes(types);
-            
 
-           foreach(var t in existingTypes)
+
+            foreach (var t in existingTypes)
             {
-                foreach(var prop in t.GetProperties())
+                foreach (var prop in t.GetProperties())
                 {
                     if (prop.PropertyType != null)
                         continue;
@@ -188,9 +190,9 @@ namespace NetCore2Blockly
                     }
                     if (!string.IsNullOrWhiteSpace(val.Type))
                     {
-                        if(val.Type == "object" && val.AdditionalPropertiesAllowed && val.AdditionalProperties != null)
+                        if (val.Type == "object" && val.AdditionalPropertiesAllowed && val.AdditionalProperties != null)
                         {
-                            val.Type=val.AdditionalProperties.Type;
+                            val.Type = val.AdditionalProperties.Type;
                         }
                         prop.PropertyType = types.FindAfterId(val.Type);
                         continue;
@@ -198,7 +200,7 @@ namespace NetCore2Blockly
                     //should almost never happen , but , if not discovered...
                     prop.PropertyType = types.FindAfterId(null);
                     //Debug.Assert(prop.PropertyType != null);
-                    
+
 
                 }
             }
@@ -215,24 +217,24 @@ namespace NetCore2Blockly
                     act.Site = site;
                     act.Verb = op.Key.GetDisplayName();
                     act.RelativeRequestUrl = f.Key;
-                    act.ActionName =TypeToGenerateSwagger.Prefix(site) + "_"+ act.RelativeRequestUrl;
+                    act.ActionName = TypeToGenerateSwagger.Prefix(site) + "_" + act.RelativeRequestUrl;
                     var R200 = val1.Responses.FirstOrDefault(it => it.Key == "200");
                     var type = R200.Value?.Content?.FirstOrDefault().Value?.Schema?.Type;
-                    if (!string.IsNullOrEmpty(type) && type !="object")
+                    if (!string.IsNullOrEmpty(type) && type != "object")
                         act.ReturnType = types.FindAfterId(type);
 
-                    if(act.ReturnType == null)
+                    if (act.ReturnType == null)
                     {
-                        var refer= R200.Value?.Content?.FirstOrDefault().Value?.Schema?.Reference;
-                        if(refer != null)
-                        act.ReturnType = types.FindAfterId(refer.ReferenceV2 + "_" + refer.ReferenceV3);
+                        var refer = R200.Value?.Content?.FirstOrDefault().Value?.Schema?.Reference;
+                        if (refer != null)
+                            act.ReturnType = types.FindAfterId(refer.ReferenceV2 + "_" + refer.ReferenceV3);
 
                     }
-                    if(act.ReturnType == null)
+                    if (act.ReturnType == null)
                     {
                         act.ReturnType = types.FindAfterId(null);//null type
                     }
-                    
+
                     if (val1.Tags?.Count > 0)
                     {
                         act.ControllerName = val1.Tags.First().Name;
@@ -274,7 +276,7 @@ namespace NetCore2Blockly
                         if (act.Params.ContainsKey(name))
                         {
                             Console.WriteLine($"DUPLICATE PARAM {name} FOR {act.RelativeRequestUrl}");
-                            
+
                         }
                         else
                         {
@@ -282,7 +284,7 @@ namespace NetCore2Blockly
                         }
                     }
                     var postData = val1.RequestBody?.Content;
-                    if (postData != null )
+                    if (postData != null)
                     {
                         var bs = BindingSourceDefinition.Body;
                         var data = postData.Values.FirstOrDefault();
@@ -308,7 +310,7 @@ namespace NetCore2Blockly
                     //Console.WriteLine(op.Key);
                 }
             }
-            var typesFromActionToTransformBlocks= actions
+            var typesFromActionToTransformBlocks = actions
 
                 .SelectMany(it => it.Params)
                 .Select(param => param.Value.type)
@@ -318,7 +320,7 @@ namespace NetCore2Blockly
                 .ToArray();
 
             var typesToTransfromBlocks = types
-                .Where(t=>t != null)
+                .Where(t => t != null)
                 .Where(type => type.TranslateToBlocklyType() == null).ToArray();
 
             var remaining = typesToTransfromBlocks.Except(typesFromActionToTransformBlocks).ToArray();
@@ -336,7 +338,7 @@ namespace NetCore2Blockly
         {
             if (string.IsNullOrWhiteSpace(_ODataBlocklyToolBoxFunctionDefinition))
             {
-                _ODataBlocklyToolBoxFunctionDefinition= string.Join(Environment.NewLine, oDatas.Select(it => it.Value.GenerateBlocklyToolBoxFunctionDefinitionFile(it.Key))); ;
+                _ODataBlocklyToolBoxFunctionDefinition = string.Join(Environment.NewLine, oDatas.Select(it => it.Value.GenerateBlocklyToolBoxFunctionDefinitionFile(it.Key))); ;
             }
             return _ODataBlocklyToolBoxFunctionDefinition;
         }
@@ -344,8 +346,8 @@ namespace NetCore2Blockly
         {
             if (string.IsNullOrWhiteSpace(_ODataBlocklyAPIFunctions))
             {
-                lock(this)
-                _ODataBlocklyAPIFunctions = string.Join(Environment.NewLine, oDatas.Select(it => it.Value.GenerateBlocklyAPIFunctions(it.Key)));
+                lock (this)
+                    _ODataBlocklyAPIFunctions = string.Join(Environment.NewLine, oDatas.Select(it => it.Value.GenerateBlocklyAPIFunctions(it.Key)));
             }
             return _ODataBlocklyAPIFunctions;
         }
@@ -362,7 +364,7 @@ namespace NetCore2Blockly
         {
             if (string.IsNullOrWhiteSpace(_ODataBlocklyTypesDefinition))
             {
-                lock(this)
+                lock (this)
                     _ODataBlocklyTypesDefinition = string.Join(Environment.NewLine, oDatas.Select(it => it.Value.GenerateNewBlocklyTypesDefinition()));
             }
             return _ODataBlocklyTypesDefinition;
@@ -387,13 +389,13 @@ namespace NetCore2Blockly
                 BaseAddress = newUri.Uri
             };
             var str = await httpClient.GetStringAsync(uri.PathAndQuery);
-            var data= XDocument.Parse(str);
-            
+            var data = XDocument.Parse(str);
+
             var types = new ListTypeToGenerateOData();
 
             var entities = data.Root.XPathSelectElements("//*[local-name()='EntitySet']");
 
-            foreach (var et in entities){
+            foreach (var et in entities) {
                 var newType = TypeToGenerateOData.CreateFromEntitySet(et, data);
                 types.Add(newType);
             }
@@ -402,7 +404,7 @@ namespace NetCore2Blockly
 
             foreach (var et in entities)
             {
-                
+
                 var name = et.Attribute("Name").Value;
                 var schema = et.Parent?.Attribute("Namespace")?.Value;
                 if (!string.IsNullOrWhiteSpace(schema))
@@ -419,7 +421,7 @@ namespace NetCore2Blockly
             entities = data.Root.XPathSelectElements("//*[local-name()='ComplexType']");
             foreach (var et in entities)
             {
-                var newType = TypeToGenerateOData.CreateFromComplexType(et,data);
+                var newType = TypeToGenerateOData.CreateFromComplexType(et, data);
                 types.Add(newType);
             }
             entities = data.Root.XPathSelectElements("//*[local-name()='EnumType']");
@@ -448,7 +450,16 @@ namespace NetCore2Blockly
 
         }
         List<string> odataLater = new List<string>();
-        internal async Task AddOdata(string key, string endpoint, bool makeActionLocal=false)
+        Dictionary<string, string> graphQLLater = new Dictionary<string, string>();
+        internal async Task AddGraphQL(string key, string endpoint)
+        {
+            if (endpoint.StartsWith("/"))
+            {
+                graphQLLater.Add(key, endpoint);
+            }
+            await Task.Delay(1);
+        }
+        internal async Task AddOdata(string key, string endpoint, bool makeActionLocal = false)
         {
             try
             {
@@ -460,7 +471,7 @@ namespace NetCore2Blockly
                 var data = await GenerateFromODataEndPoint(endpoint);
                 if (makeActionLocal)
                 {
-                    foreach(var item in data)
+                    foreach (var item in data)
                     {
                         item.Host = null;
                         item.RelativeRequestUrl = new Uri(item.Site).PathAndQuery + item.RelativeRequestUrl;
@@ -476,7 +487,7 @@ namespace NetCore2Blockly
 
             }
         }
-        internal async Task<List<ActionInfo>> GenerateFromODataEndPoint( string endpoint)
+        internal async Task<List<ActionInfo>> GenerateFromODataEndPoint(string endpoint)
         {
             var uri = new Uri(endpoint);
             var site = uri.Scheme + "://" + uri.Authority;
@@ -490,7 +501,7 @@ namespace NetCore2Blockly
             var js = JsonDocument.Parse(str);
             var root = js.RootElement;
             JsonElement value;
-            var versionOData = 4;   
+            var versionOData = 4;
             if (!root.TryGetProperty("@odata.context", out value))
             {
                 versionOData = 3;
@@ -498,7 +509,7 @@ namespace NetCore2Blockly
                     throw new ArgumentNullException($"cannot find @odata.context or odata.metadata for {endpoint}")
                             ;
             }
-            var entitiesLocation =value.GetString();
+            var entitiesLocation = value.GetString();
             var newUri = new UriBuilder(entitiesLocation);
             if (newUri.Port == 0)
             {
@@ -593,7 +604,7 @@ namespace NetCore2Blockly
                 newAction.ControllerName = action;
                 newAction.Site = entitiesLocation.Replace("$metadata", "");
                 newAction.Verb = "POST";
-                newAction.RelativeRequestUrl = $"{action}"; 
+                newAction.RelativeRequestUrl = $"{action}";
                 newAction.ReturnType = odatType;
                 newAction.Params.Add(odatType.Name, (odatType, BindingSourceDefinition.Body));
                 actions.Add(newAction);
@@ -603,7 +614,7 @@ namespace NetCore2Blockly
                 newAction.ControllerName = action;
                 newAction.Site = entitiesLocation.Replace("$metadata", "");
                 newAction.Verb = "PATCH";
-                newAction.RelativeRequestUrl = $"{action}({paramKeysStr})"; 
+                newAction.RelativeRequestUrl = $"{action}({paramKeysStr})";
                 foreach (var item in paramKeys)
                 {
                     //item.orig.PropertyType 
@@ -635,9 +646,9 @@ namespace NetCore2Blockly
             return actions;
         }
         #endregion
-            /// <summary>
-            /// The blockly tool box function definition
-            /// </summary>
+        /// <summary>
+        /// The blockly tool box function definition
+        /// </summary>
         public string BlocklyToolBoxFunctionDefinition;
 
         /// <summary>
@@ -656,7 +667,7 @@ namespace NetCore2Blockly
         public string BlocklyTypesDefinition;
 
         private Timer _timer;
-        
+
 
 
         private readonly IApiDescriptionGroupCollectionProvider api;
@@ -666,8 +677,8 @@ namespace NetCore2Blockly
         {
             cp.GetChangeToken().RegisterChangeCallback(a =>
             {
-               
-                
+
+
                 var s = a as GenerateBlocklyFilesHostedService;
                 s.DoWork(null);
                 s.registerCallback();
@@ -683,7 +694,7 @@ namespace NetCore2Blockly
             this.api = api;
             this.cp = prov as ActionDescriptorCollectionProvider;
             registerCallback();
-            this.swaggers = new  Dictionary<string, BlocklyFileGenerator>();
+            this.swaggers = new Dictionary<string, BlocklyFileGenerator>();
             this.oDatas = new Dictionary<string, BlocklyFileGenerator>();
         }
         /// <summary>
@@ -698,7 +709,7 @@ namespace NetCore2Blockly
         }
         private void DoWork(object state)
         {
-           
+
             var e = new EnumerateWebAPI(api);
             var actionList = e.CreateActionList();
             var blocklyFileGenerator = new BlocklyFileGenerator(actionList);
@@ -712,39 +723,72 @@ namespace NetCore2Blockly
             if ((serverAddresses?.Addresses?.Count() ?? 0) == 0)
                 return;
 
-            lock(this)
-            if (odataLater.Count > 0)
+            lock (this)
             {
-                
-                _timer.Dispose();
                 var Host = "";
-                foreach(var item in serverAddresses.Addresses)
+                if (odataLater.Count > 0 || graphQLLater.Count > 0)
                 {
-                    if (item.StartsWith("https"))
-                    {
-                        Host = item;
-                    }
-                    if (Host.Length == 0)
-                        Host = item;
 
+                    _timer.Dispose();
+
+                    foreach (var item in serverAddresses.Addresses)
+                    {
+                        if (item.StartsWith("https"))
+                        {
+                            Host = item;
+                        }
+                        if (Host.Length == 0)
+                            Host = item;
+
+                    }
+                    Host = Host.Replace("0.0.0.0", "localhost");
+                    Host = Host.Replace("[::]", "localhost");
                 }
-                Host = Host.Replace("0.0.0.0", "localhost");
-                Host = Host.Replace("[::]", "localhost");
-                foreach(var item in odataLater)
+                if (odataLater.Count > 0)
                 {
-                    var b = new UriBuilder(Host);
-                    b.Path = item;
-                    var x= AddOdata(item.Replace("/", ""), b.Uri.ToString(),true);
-                    x.GetAwaiter().GetResult();
+                    foreach (var item in odataLater)
+                    {
+                        var b = new UriBuilder(Host);
+                        b.Path = item;
+                        var x = AddOdata(item.Replace("/", ""), b.Uri.ToString(), true);
+                        x.GetAwaiter().GetResult();
+                    }
+                    odataLater.Clear();
+                    this._ODataBlocklyAPIFunctions = null;
+                    this._ODataBlocklyToolBoxFunctionDefinition = null;
+                    this._ODataBlocklyTypesDefinition = null;
+                    this._ODataBlocklyToolBoxValueDefinition = null;
                 }
-                odataLater.Clear();
-                this._ODataBlocklyAPIFunctions = null;
-                this._ODataBlocklyToolBoxFunctionDefinition= null;
-                this._ODataBlocklyTypesDefinition = null;
-                this._ODataBlocklyToolBoxValueDefinition = null;
+                if (graphQLLater.Count > 0)
+                {
+                    foreach (var item in graphQLLater)
+                    {
+                        var uri = new UriBuilder(Host);
+                        uri.Path = item.Value;
+                        InterpretSchemaGraphQl(item.Key, uri.Uri);
+
+                    }
+                }
+                _timer.Dispose();
             }
-            _timer.Dispose();
         }
+
+        private void InterpretSchemaGraphQl(string key, Uri uri)
+        {
+            var action = new GraphQLActionInfo(uri.ToString());
+            try
+            {
+                var s = action.GetIntrospection().GetAwaiter().GetResult();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return;
+
+
+        }
+    
         
         /// <summary>
         /// Triggered when the application host is performing a graceful shutdown.
@@ -756,5 +800,6 @@ namespace NetCore2Blockly
             return Task.CompletedTask;
         }
     }
-   
 }
+   
+
