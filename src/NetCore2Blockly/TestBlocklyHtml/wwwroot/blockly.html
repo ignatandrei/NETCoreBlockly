@@ -103,7 +103,16 @@
     <script src="/blocklyAPIFunctionsOData?v=version"></script>
     <script src="/BlocklyToolBoxFunctionDefinitionsOData?v=version"></script>
 
-    <script src="/BlocklyOptions"></script>
+
+    <script src="/BlocklyGraphQLs?v=version"></script>
+    <script src="/blocklyDefinitionsGraphQL?v=version"></script>
+    <script src="/BlocklyToolBoxValueDefinitionsGraphQL?v=version"></script>
+    <script src="/blocklyAPIFunctionsGraphQL?v=version"></script>
+    <script src="/BlocklyToolBoxFunctionDefinitionsGraphQL?v=version"></script>
+
+
+    <script src="/BlocklyOptions?v=version"></script>
+
 
     <p>
         <button onclick="runCode()" id="runButton" style="width:300px">E X E C U T E !</button>
@@ -279,6 +288,8 @@
         <sep></sep>
         <category name="OtherSwaggers"></category>
         <category name="OtherOData"></category>
+        <category name="OtherGraphQL"></category>
+
         <category custom="savedBlocks" name="Saved Blocks">
 
         </category>
@@ -653,9 +664,9 @@
                     <block type="getproperty"></block>
                     <block type="object_create"></block>
                     <!--<block type="object_from_json"></block>
-                    <block type="object_to_json"></block>
-                    <block type="object_get"></block>
-                    <block type="object_set"></block>-->
+                <block type="object_to_json"></block>
+                <block type="object_get"></block>
+                <block type="object_set"></block>-->
                 </category>
                 <category name="DateTime" id="DateTime">
                     <block type="fromUnixTimeToDate">
@@ -1033,10 +1044,26 @@
             xmlStringOdata = '<category name="OData">' + xmlStringOdata + '</category>';
         }
 
+        var xmlStringGraphQL = '';
+        for (var i = 0; i < dictGraphQL.length; i++) {
+            var nameSwagger = dictGraphQL[i].key;
+            var name = `blockTextLocalSiteFunctions${nameSwagger}`;
+            xmlStringGraphQL += `<category name="${nameSwagger}" expanded="false">`;
+            xmlStringGraphQL += `<category name="${nameSwagger} Functions" id="${nameSwagger}Functions" expanded="true">`;
+            xmlStringGraphQL += window[name];
+            xmlStringGraphQL += `</category>`;
+            xmlStringGraphQL += `<category name="${nameSwagger} Values" custom="SiteValues${nameSwagger}"></category>`;
+            xmlStringGraphQL += "</category>";
+        }
+        if (xmlStringGraphQL.length > 0) {
+            xmlStringGraphQL = '<category name="GraphQL">' + xmlStringGraphQL + '</category>';
+        }
 
         var html = toolbox.innerHTML.replace('<category name="OtherSwaggers"></category>', xmlStringSwagger);
 
         html = html.replace('<category name="OtherOData"></category>', xmlStringOdata);
+
+        html = html.replace('<category name="OtherGraphQL"></category>', xmlStringGraphQL);
         toolbox.innerHTML = html;
 
         //end swagger
