@@ -67,8 +67,8 @@ app.UseBlocklyGraphQL("localGraphql", "/graphql");
 
 
 ## For authentication 
-
-See links 22 for JWT and 31 for Auth0 
+ 
+See links 22 for JWT and 31 for Auth0  from https://netcoreblockly.herokuapp.com/ 
 
 ## Step 4:
 
