@@ -69,13 +69,13 @@
                 var fullData = [];
                 for (var i = 0; i < obj.length; i++) {
                     var data = obj[i];
-                    console.log(data);
+                    //console.log(data);
                     var res = [i+1];
                     for (var p = 0; p < headers.length; p++) {
                         var key = headers[p];
-                        console.log(`${key} ${data && data.hasOwnProperty(key)} `)
+                        //console.log(`${key} ${data && data.hasOwnProperty(key)} `)
                         if (data && data.hasOwnProperty(key))
-                            res.push(data[key]);
+                            res.push(JSON.stringify(data[key]));
                         else
                             res.push('');
                     }
