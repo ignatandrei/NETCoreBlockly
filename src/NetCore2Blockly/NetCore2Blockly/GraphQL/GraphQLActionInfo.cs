@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using NetCore2Blockly.Swagger;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,7 +13,33 @@ namespace NetCore2Blockly.GraphQL
 {
     class GraphQLActionInfo : ActionInfo
     {
-        
+        private Field f;
+
+        public GraphQLActionInfo(Field f)
+        {
+            this.f = f;
+
+        }
+
+        internal void Init()
+        {
+            ActionName = f.Name;
+            RelativeRequestUrl = "/graphql?query={" + f.Name + "{iddepartment}}";
+            Verb = "GET";
+
+
+            //if (f.Args?.Count > 0)
+            //{
+            //    foreach (var arg in f.Args)
+            //    {
+            //        action.Params.Add(arg.Name, (BlocklyType.CreateValue('string'), BindingSourceDefinition.Query));
+            //    }
+            //}
+            ReturnType = BlocklyType.CreateValue(null);
+
+
+
+        }
         private BindingSourceDefinition ConvertFromBindingSource(BindingSource bindingSource)
         {
             return bindingSource switch
