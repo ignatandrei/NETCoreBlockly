@@ -135,6 +135,7 @@ ApplicationServices
             MapJS(app, "/BlocklyToolBoxFunctionDefinitions", b => b.BlocklyToolBoxFunctionDefinition);
             MapJS(app, "/BlocklySwaggers", b => b.SwaggersDictionaryJS);
             MapJS(app, "/BlocklyODatas", b => b.ODataDictionaryJS);
+            MapJS(app, "/BlocklyGraphQLs", b => b.GraphQLDictionaryJS);
             //var blocklyFilesHostedService =
             //    app.
             //        ApplicationServices

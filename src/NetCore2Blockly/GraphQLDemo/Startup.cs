@@ -89,6 +89,7 @@ namespace GraphQLDemo
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
             app.UseBlocklyGraphQL("localGraphql","/graphql");
+            app.UseBlocklyLocalStorage();
             app.UseBlockly();
         }
     }
