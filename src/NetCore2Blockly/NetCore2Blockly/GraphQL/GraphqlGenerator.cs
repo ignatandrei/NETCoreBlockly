@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetCore2Blockly.Swagger;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -59,7 +60,8 @@ namespace NetCore2Blockly.GraphQL
 
                     action.RelativeRequestUrl = f.Name;
                     action.Verb  =  "GET";
-                    
+                    action.ReturnType= BlocklyType.CreateValue(null); 
+
                 }
             }
             //return the array of ACtion Info

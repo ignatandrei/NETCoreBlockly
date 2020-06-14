@@ -46,7 +46,7 @@ namespace NetCore2Blockly
         private string _ODataBlocklyToolBoxValueDefinition;
         private string _ODataBlocklyTypesDefinition;
 
-        private Dictionary<string, BlocklyFileGenerator> GraphQL;
+        private Dictionary<string, BlocklyFileGenerator> GraphQLs;
 
         private string _GraphQLBlocklyToolBoxFunctionDefinition;
         private string _GraphQLBlocklyAPIFunctions;
@@ -706,7 +706,7 @@ namespace NetCore2Blockly
             registerCallback();
             this.swaggers = new Dictionary<string, BlocklyFileGenerator>();
             this.oDatas = new Dictionary<string, BlocklyFileGenerator>();
-            this.GraphQL= new Dictionary<string, BlocklyFileGenerator>();
+            this.GraphQLs = new Dictionary<string, BlocklyFileGenerator>();
 
         }
         /// <summary>
@@ -791,7 +791,7 @@ namespace NetCore2Blockly
             try
             {
                 var actions = action.GetIntrospection().GetAwaiter().GetResult();
-                this.GraphQL.Add(key,new BlocklyFileGenerator(actions));
+                this.GraphQLs.Add(key,new BlocklyFileGenerator(actions));
             }
             catch(Exception ex)
             {
@@ -801,8 +801,57 @@ namespace NetCore2Blockly
 
 
         }
-    
-        
+        #region GraphQL
+
+        internal string GraphQLBlocklyToolBoxFunctionDefinition()
+        {
+            if (string.IsNullOrWhiteSpace(_GraphQLBlocklyToolBoxFunctionDefinition))
+            {
+                _GraphQLBlocklyToolBoxFunctionDefinition = string.Join(Environment.NewLine, GraphQLs.Select(it => it.Value.GenerateBlocklyToolBoxFunctionDefinitionFile(it.Key))); ;
+            }
+            return _GraphQLBlocklyToolBoxFunctionDefinition;
+        }
+        internal string GraphQLBlocklyAPIFunctions()
+        {
+            if (string.IsNullOrWhiteSpace(_GraphQLBlocklyAPIFunctions))
+            {
+                lock (this)
+                    _GraphQLBlocklyAPIFunctions = string.Join(Environment.NewLine, GraphQLs.Select(it => it.Value.GenerateBlocklyAPIFunctions(it.Key)));
+            }
+            return _GraphQLBlocklyAPIFunctions;
+        }
+        internal string GraphQLBlocklyToolBoxValueDefinition()
+        {
+            if (string.IsNullOrWhiteSpace(_GraphQLBlocklyToolBoxValueDefinition))
+            {
+                lock (this)
+                    _GraphQLBlocklyToolBoxValueDefinition = string.Join(Environment.NewLine, GraphQLs.Select(it => it.Value.GenerateBlocklyToolBoxValueDefinitionFile(it.Key)));
+            }
+            return _GraphQLBlocklyToolBoxValueDefinition;
+        }
+        internal string GraphQLBlocklyTypesDefinition()
+        {
+            if (string.IsNullOrWhiteSpace(_GraphQLBlocklyTypesDefinition))
+            {
+                lock (this)
+                    _GraphQLBlocklyTypesDefinition = string.Join(Environment.NewLine, GraphQLs.Select(it => it.Value.GenerateNewBlocklyTypesDefinition()));
+            }
+            return _GraphQLBlocklyTypesDefinition;
+        }
+        internal string GraphQLDictionaryJS
+        {
+            get
+            {
+                var s = string.Join(Environment.NewLine,
+                    GraphQLs.Select(it => $@"dictGraphQL.push({{key:'{it.Key}',value:'{it.Value}'}});"));
+
+                return $@"var dictGraphQL=[]; {s}";
+            }
+        }
+
+        #endregion
+
+
         /// <summary>
         /// Triggered when the application host is performing a graceful shutdown.
         /// </summary>

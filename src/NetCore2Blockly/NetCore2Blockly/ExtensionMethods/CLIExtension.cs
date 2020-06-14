@@ -156,6 +156,15 @@ ApplicationServices
                 MapJS(app, "/BlocklyToolBoxFunctionDefinitionsOData", b => b.ODataBlocklyToolBoxFunctionDefinition());
 
             }
+
+
+            {
+                MapJS(app, "/BlocklyDefinitionsGraphQL", b => b.GraphQLBlocklyTypesDefinition());
+                MapJS(app, "/BlocklyToolBoxValueDefinitionsGraphQL", b => b.GraphQLBlocklyToolBoxValueDefinition());
+                MapJS(app, "/blocklyAPIFunctionsGraphQL", b => b.GraphQLBlocklyAPIFunctions());
+                MapJS(app, "/BlocklyToolBoxFunctionDefinitionsGraphQL", b => b.GraphQLBlocklyToolBoxFunctionDefinition());
+
+            }
             app.Map("/NetCore2BlocklyVersion", config =>
              {
                  config.Run(async context =>
