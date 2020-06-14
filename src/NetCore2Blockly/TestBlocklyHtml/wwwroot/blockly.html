@@ -43,7 +43,7 @@
     <script src="blockly/workspaceSearch.js?v=version"></script>
     <script src="blockly/search/toolboxSearch.js?v=version"></script>
     <link rel="stylesheet" type="text/css" href="others/introjs.min.css?v=version" />
-    <link rel="stylesheet" type="text/css" href="others/mermain.min.css?v=version"  />
+    <link rel="stylesheet" type="text/css" href="others/mermain.min.css?v=version" />
 
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js?v=version"></script>
@@ -114,25 +114,25 @@
       
     </textarea>
 
+    </div>
 
-
-        <div id="steps" style="display: inline-block; width: 96%;"></div>
-        <script>
+    <div id="steps" style="display: inline-block; width: 96%;"></div>
+    <script>
             var dataObject = [];
             var objectsForGrid = [];
             var hotElement = document.querySelector('#steps');
             var hot = new gridjs.Grid({
                 columns: ['Step'],
                 data: [['next steps']]
-                                    
+
             }).render(hotElement);
 
             function AddDataToGrid(value) {
                 dataObject.push([value]);
                 hotElement.innerHTML = '';
-                hot.updateConfig({data: dataObject });
+                hot.updateConfig({ data: dataObject });
                 hot.forceRender();
-                
+
                 if (value.startsWith("{") && value.endsWith("}")) {
                     try {
                         var obj = JSON.parse(value);
@@ -167,7 +167,7 @@
 
             }
             function FinishGrid() {
-                
+
                 if (objectsForGrid.length == 0)
                     return;
 
@@ -184,10 +184,11 @@
                 var fullData = [];
                 for (var i = 0; i < obj.length; i++) {
                     var data = obj[i];
-                    var res = [];
+                    console.log(data);
+                    var res = [i+1];
                     for (var p = 0; p < headers.length; p++) {
                         var key = headers[p];
-                        
+                        console.log(`${key} ${data && data.hasOwnProperty(key)} `)
                         if (data && data.hasOwnProperty(key))
                             res.push(data[key]);
                         else
@@ -195,6 +196,7 @@
                     }
                     fullData.push(res);
                 }
+                headers.splice(0, 0, "Nr");
                 hot.updateConfig({
                     columns: headers,
                     data: fullData
@@ -205,7 +207,7 @@
             }
 
         </script>
-    </div>
+    
     <!--doNotCopyToFinal-->
     Saved
     <ul id="localStorageSaved">
@@ -685,9 +687,9 @@
                     <block type="getproperty"></block>
                     <block type="object_create"></block>
                     <!--<block type="object_from_json"></block>
-                <block type="object_to_json"></block>
-                <block type="object_get"></block>
-                <block type="object_set"></block>-->
+                    <block type="object_to_json"></block>
+                    <block type="object_get"></block>
+                    <block type="object_set"></block>-->
                 </category>
                 <category name="DateTime" id="DateTime">
                     <block type="fromUnixTimeToDate">
@@ -1009,7 +1011,7 @@
                 }
                 //window.alert(xmlList.length);
             }
-    
+
             return xmlList;
         }
 
@@ -1017,8 +1019,8 @@
         localSiteDom.innerHTML = blockTextLocalSiteFunctions;
 
 
-        
-        
+
+
         //start swagger
 
         //window.alert(JSON.stringify(dictSwagger));
@@ -1064,7 +1066,7 @@
         if (xmlStringOdata.length > 0) {
             xmlStringOdata = '<category name="OData">' + xmlStringOdata + '</category>';
         }
-        
+
 
         var html = toolbox.innerHTML.replace('<category name="OtherSwaggers"></category>', xmlStringSwagger);
 
@@ -1194,7 +1196,7 @@
                 interpreter.createNativeFunction(wrapper));
 
             var wrapper = (item) => {
-                outputArea.value += '\n error --' + '\n' + item + '\n error --';                
+                outputArea.value += '\n error --' + '\n' + item + '\n error --';
             };
 
             interpreter.setProperty(globalObject, 'errHandler',
@@ -1491,37 +1493,38 @@
         }
         /*doNotCopyToFinal*/
         displayLinksSavedStorage();
-        
+
         /*enddoNotCopyToFinal*/
         function displayVersion() {
-            
+
             let req = new XMLHttpRequest();
 
             req.open('GET', '/NetCore2BlocklyVersion', true);
-            
+
             req.onreadystatechange = function () {
                 if (req.readyState == 4) {
                     if (req.status >= 200 && req.status < 300) {
                         var version = req.responseText;
                         //window.alert(answer);
-                        document.getElementById("version").innerHTML = version ;
+                        document.getElementById("version").innerHTML = version;
                         if (optHeaderName.length > 0) {
                             startIntro(optHeaderName);
                         }
                         else {
                             startIntro(version);
                         }
-                        
+
                     };
                 }
             }
             req.send(null);
         };
 
-        
+
     </script>
-    <footer> <small> <a href="https://github.com/ignatandrei/netcoreblockly">GitHub</a></small>
-    <small><span id="version">version</span></small>
+    <footer>
+        <small> <a href="https://github.com/ignatandrei/netcoreblockly">GitHub</a></small>
+        <small><span id="version">version</span></small>
     </footer>
     <script>
         displayVersion();
