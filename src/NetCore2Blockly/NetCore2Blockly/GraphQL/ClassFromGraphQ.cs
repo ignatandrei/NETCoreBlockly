@@ -7,7 +7,7 @@ using System.Text;
 
 namespace NetCore2Blockly.GraphQL
 {
-    public partial class Root
+    partial class Root
     {
         // [JsonProperty("kind")]
         public string Kind { get; set; }

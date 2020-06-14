@@ -7,7 +7,7 @@ using System.Text;
 
 namespace NetCore2Blockly.GraphQL
 {
-    public class GraphQLTypeArgument : TypeArgumentBase
+    class GraphQLTypeArgument : TypeArgumentBase
     {
         public GraphQLTypeArgument(string id) : base(id)
         {
