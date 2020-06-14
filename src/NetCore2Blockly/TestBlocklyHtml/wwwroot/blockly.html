@@ -119,13 +119,11 @@
         <textarea id="output"
                   style="display: inline-block; height: 480px; width: 18%;">
         </textarea>
-    
-        <div id="blocklyDiv"
-             style="position: absolute;display: inline-block; height: 480px; width: 68%"></div>
-        
-
 
     </div>
+    <div id="blocklyDiv"
+         style="position: absolute;display: inline-block; height: 480px; width: 68%"></div>
+
 
     <script>
         var blocklyArea = document.getElementById('blocklyArea');
@@ -143,28 +141,28 @@
         }
         //initializeSplit();
         function resizeBlocklyArea() {
-            
-            // Compute the absolute coordinates and dimensions of blocklyArea.            
+
+            // Compute the absolute coordinates and dimensions of blocklyArea.
             var x = 0;
             var y = 0;
             var w = blocklyArea.offsetWidth;
             var h = blocklyArea.offsetHeight;
-            var element = blocklyArea;            
+            var element = blocklyArea;
             do {
                 x += element.offsetLeft;
                 y += element.offsetTop;
                 element = element.offsetParent;
             } while (element);
             // Position blocklyDiv over blocklyArea.
-            
-            blocklyDivx.style.left = x +"px";
+
+            blocklyDivx.style.left = x + "px";
             blocklyDivx.style.top = y + "px";
             blocklyDivx.style.width = w + "px";
             blocklyDivx.style.height = h + "px";
             blocklyDivx.style.position = "absolute";
-            if('demoWorkspace' in window)
-            Blockly.svgResize(demoWorkspace);
-            
+            if ('demoWorkspace' in window)
+                Blockly.svgResize(demoWorkspace);
+
         }
         window.addEventListener('resize', resizeBlocklyArea, false);
         resizeBlocklyArea();
