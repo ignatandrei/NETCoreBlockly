@@ -4,11 +4,38 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.14218283..1.1.2020.14333504
+git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.14333504..1.1.2020.14360511
 
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
+
+## 1.1.2020.14360511 cool-ellis-20200615050150 
+
+### graphql with more arguments
+
+#### [graphql with 2 arguments] 
+ Author ignatandrei on 2020-06-15 07:59:44 +0300 
+
+ hash 88d47d1 88d47d16d9a6070f69fb572190304f562f58414a
+
+
+ #### [added example for grpahql] 
+ Author ignatandrei on 2020-06-15 07:07:36 +0300 
+
+ hash 11ecf52 11ecf5218c52c53a6aab61ff9bebb6e8eed9918d
+
+
+ #### [more tags] 
+ Author ignatandrei on 2020-06-15 06:57:39 +0300 
+
+ hash a2bceec a2bceec8e41b4374b8a7947ee864f12b138c2e01
+
+ #### [update readme with swagger , odata and graphql] 
+ Author ignatandrei on 2020-06-15 00:50:32 +0300 
+
+ hash 301c281 301c281d4229e88457ab23a9a285f82aa7130985
+
 
 ## 1.1.2020.14333504 altered-arachnid-20200614213143 
 
