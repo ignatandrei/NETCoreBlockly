@@ -11,7 +11,7 @@
     <RepositoryType>GIT</RepositoryType>
     <Authors>Andrei Ignat</Authors>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageTags>WebAPI;ASP.NET Core;.NET Core;Blockly</PackageTags>
+    <PackageTags>WebAPI;ASP.NET Core;.NET Core;Blockly;OData;GraphQL;Swagger;OpenAPI</PackageTags>
     <Description>
       This program will generate ASP.NET Core WebAPI blockly blocks. And from other swagger files.
       Can be usefull for just making a demo, interacting or others.
