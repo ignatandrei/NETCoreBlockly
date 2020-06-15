@@ -45,8 +45,7 @@ namespace NetCore2Blockly.GraphQL
                     .Where(condition => condition.GetProperty("name").GetString().Equals(queryTypeName.GetString()));
                 var schemaObjectsToString = string.Join("", schemaObjects);
 
-                //Console.WriteLine(schemaObjectsToString);
-                var obj = Root.FromJson(schemaObjectsToString);//works
+                var obj = Root.FromJson(schemaObjectsToString);
 
                 var nameObjectReturns = obj.Fields
                     .Where(it => it.Type?.OfType?.Name != null)
