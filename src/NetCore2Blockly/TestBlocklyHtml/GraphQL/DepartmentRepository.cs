@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TestBlocklyHtml.DB;
@@ -17,18 +20,32 @@ namespace TestBlocklyHtml.GraphQL
         public async Task<IEnumerable<Department>> GetDepartment()
         {
 
-            var items= await _context.Department.ToArrayAsync();
+            var items= await _context.Department.AsQueryable().ToArrayAsync();
             return items;
         }
 
         public async Task<Department> GetOneDepartment(int id)
         {
-            return await _context.Department.FirstOrDefaultAsync(dep => dep.Iddepartment == id);
+            return await _context.Department.AsQueryable().FirstOrDefaultAsync(dep => dep.Iddepartment == id);
         }
 
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
-            return await _context.Employee.ToListAsync();
+            return await _context.Employee.AsQueryable().ToListAsync();
+        }
+
+        internal Task<Employee[]> GetEmployeesAfterName(string empName, string depName)
+        {
+            var data = _context.Employee.AsQueryable();
+            if(!string.IsNullOrWhiteSpace(empName))
+            {
+                data = data.Where(it => it.Name.Contains(empName));
+            }
+            if (!string.IsNullOrWhiteSpace(depName))
+            {
+                data = data.Where(it => it.Name.Contains(depName));
+            }
+            return data.AsQueryable().ToArrayAsync();
         }
     }
 }

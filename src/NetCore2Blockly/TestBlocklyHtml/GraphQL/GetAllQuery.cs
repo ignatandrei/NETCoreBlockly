@@ -27,6 +27,22 @@ namespace TestBlocklyHtml.GraphQL
                         return departmentRepository.GetOneDepartment(id);
                     }
                     );
+
+                FieldAsync< ListGraphType<EmployeeOGT>>(
+                    "getEmployeeAfterName",
+                    arguments: new QueryArguments(
+                        new QueryArgument<StringGraphType> { Name = "employeeName" },
+                        new QueryArgument<StringGraphType> { Name = "departmentName" }
+
+                        ),
+                    resolve:async  context =>
+                    {
+                        var empName = context.GetArgument<string>("employeeName");
+                        var depName = context.GetArgument<string>("departmentName");
+                        return await departmentRepository.GetEmployeesAfterName(empName,depName);
+                    }
+                    );
+
             }
         }
     }

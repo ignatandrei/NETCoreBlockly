@@ -67,6 +67,8 @@ namespace NetCore2Blockly.ExtensionMethods
                 .Replace(@"\", "_")
                 .Replace(@"?", "_")
                 .Replace(@"=", "_")
+                .Replace("\"", "_")
+                .Replace(":", "_")
                 ;
             return $"{nameCommand}_{actionInfo.Verb}";
 

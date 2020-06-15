@@ -2171,7 +2171,7 @@ var testBlocks = [
     <next>
       <block type="text_print">
         <value name="TEXT">
-          <block type="_graphql_query__getOneDepartment_id:_id___iddepartment name___id_GET">
+          <block type="_graphql_query__getOneDepartment_id__id___iddepartment name___id_GET">
             <value name="val_id">
               <shadow type="math_number">
                 <field name="NUM">1</field>
@@ -2181,6 +2181,27 @@ var testBlocks = [
         </value>
       </block>
     </next>
+  </block>
+</xml>`
+    },
+    {
+        name: 'graphql 2 arg string',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" x="95" y="213">
+    <value name="TEXT">
+      <block type="_graphql_query__getEmployeeAfterName_employeeName___employeeName__,departmentName___departmentName____idemployee name___employeeName_departmentName_GET">
+        <value name="val_employeeName">
+          <shadow type="text">
+            <field name="TEXT">erson</field>
+          </shadow>
+        </value>
+        <value name="val_departmentName">
+          <shadow type="text">
+            <field name="TEXT">IT</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
   </block>
 </xml>`
     }

@@ -48,13 +48,20 @@ namespace NetCore2Blockly.GraphQL
                     Params.Add(arg.Name, (typeInGraph, BindingSourceDefinition.Query));
                 }
                 argsInQuery = string.Join(",",
-                    Params.Select(it=>it.Key +":{" +it.Key+"}")
+                    f.Args
+                    .Select(it=>new { it.Name, isString=(it.Type.Name == "String") })
+                    .Select(it=>it.Name +":"
+                    + (it.isString ? "\"" : "")
+                    + "{" +it.Name +"}"
+                    + (it.isString ? "\"" : "")
+                    )
 
                     );
                 argsInQuery = $"({argsInQuery})";
             }
 
             RelativeRequestUrl = "/graphql?query={" + f.Name + argsInQuery+ "{"+ ret +"}}";
+            this.
             Verb = "GET";
             ReturnType = BlocklyType.CreateValue(null);
 
