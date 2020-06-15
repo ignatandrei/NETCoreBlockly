@@ -33,6 +33,7 @@ using GraphQL.Server;
 using TestBlocklyHtml.GraphQL;
 using GraphQL;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using GraphQL.Server.Ui.Playground;
 
 namespace TestBlocklyHtml
 {
@@ -242,6 +243,7 @@ namespace TestBlocklyHtml
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
             app.UseGraphQL<DepartmentSchema>();
 
             app.UseEndpoints(endpoints =>
