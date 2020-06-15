@@ -2160,6 +2160,29 @@ var testBlocks = [
     </value>
   </block>
 </xml>`
+    },
+    {
+        name: 'GraphQL Department',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" x="121" y="52">
+    <value name="TEXT">
+      <block type="_graphql_query__departmentQuery_iddepartment name___GET"></block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="_graphql_query__getOneDepartment_id:_id___iddepartment name___id_GET">
+            <value name="val_id">
+              <shadow type="math_number">
+                <field name="NUM">1</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>`
     }
 ]
 
