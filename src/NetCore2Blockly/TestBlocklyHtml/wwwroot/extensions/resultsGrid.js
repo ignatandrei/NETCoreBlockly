@@ -3,7 +3,7 @@ var dataObject = [];
 var objectsForGrid = [];
 var hot;
 function initGrid(gridElement) {
-    console.log(gridElement);
+    //console.log(gridElement);
     hot = new gridjs.Grid({
         columns: ['Step'],
         data: [['next steps']]

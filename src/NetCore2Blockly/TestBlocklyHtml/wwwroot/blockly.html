@@ -49,8 +49,6 @@
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js?v=version"></script>
     <script src="doNotCopy/JRTemplating.js?v=version"></script>
-    <!--<script src="https://cdn.lr-ingest.io/LogRocket.min.js" crossorigin="anonymous"></script>
-    <script>window.LogRocket && window.LogRocket.init('qmhtid/test');</script>-->
     <!--enddoNotCopyToFinal-->
     <style>
         body {
@@ -1022,7 +1020,7 @@
         }
         function existglbVar(key) {
             var name = `glbVar${key}`;
-            console.log('loaded glbvar:' + key);
+            //console.log('loaded glbvar:' + key);
             window[name](demoWorkspace);
             demoWorkspace.registerToolboxCategoryCallback(`SiteValues${key}`, window[`registerValues${key}`]);
         }
