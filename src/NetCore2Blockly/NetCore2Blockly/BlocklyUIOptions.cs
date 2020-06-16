@@ -31,5 +31,13 @@ namespace NetCore2Blockly
         /// The name.
         /// </value>
         public string HeaderName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the custom blocks.
+        /// </summary>
+        /// <value>
+        /// The custom blocks.
+        /// </value>
+        public string CustomBlocks { get; set; }
     }
 }

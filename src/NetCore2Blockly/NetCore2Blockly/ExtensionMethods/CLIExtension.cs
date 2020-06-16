@@ -266,6 +266,10 @@ new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
                     var str = $"var startBlocksStr=`{data}`;";
                     data = options.HeaderName?.Replace("`", @"\`");
                     str += $"{Environment.NewLine}var optHeaderName = `{data}`;";
+                    data= options.CustomBlocks?.Replace("`", @"\`");
+                    str += $"{Environment.NewLine}var customBlocks = `{data}`;";
+
+
                     var result = Encoding.UTF8.GetBytes(str);
                     var m = new Memory<byte>(result);
                     await cnt.Response.BodyWriter.WriteAsync(m);

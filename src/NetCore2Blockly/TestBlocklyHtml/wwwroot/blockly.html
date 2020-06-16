@@ -293,9 +293,7 @@
         <category custom="savedBlocks" name="Saved Blocks">
 
         </category>
-        <category id="CustomBlocks" name="Custom Blocks">
-
-        </category>
+        <category id="CustomBlocks" name="Custom Blocks"></category>
 
         <category custom="SearchBlocks" name="Search"></category>
 
@@ -1068,6 +1066,14 @@
         html = html.replace('<category name="OtherOData"></category>', xmlStringOdata);
 
         html = html.replace('<category name="OtherGraphQL"></category>', xmlStringGraphQL);
+
+        var customBlocksText = '';
+        
+        if ('customBlocks' in window) {
+            customBlocksText = customBlocks;
+        }
+        html = html.replace('<category id="CustomBlocks" name="Custom Blocks"></category>', customBlocksText)
+
         toolbox.innerHTML = html;
 
         //end swagger

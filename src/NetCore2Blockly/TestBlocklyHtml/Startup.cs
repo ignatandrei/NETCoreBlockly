@@ -211,7 +211,8 @@ namespace TestBlocklyHtml
             app.UseBlocklyUI(new BlocklyUIOptions()
             {
                 StartBlocks = StartBlocksForUI,
-                HeaderName = "Demo test for .NET Core WebAPI ( site with Blockly +  swaggers + odata loaded + graphql)"
+                HeaderName = "Demo test for .NET Core WebAPI ( site with Blockly +  swaggers + odata loaded + graphql)",
+                CustomBlocks = CustomBlocksForUI
             });
 
             app.UseBlocklyLocalStorage();
@@ -353,5 +354,97 @@ namespace TestBlocklyHtml
     </next>
   </block>
 </xml>";
+        private readonly string CustomBlocksForUI = @"
+<category name='UserDefinedBlocks'>
+<category name='Database'>
+
+ <block type='procedures_defreturn' x='97' y='25'>
+    <mutation>
+      <arg name='NameDepartment' varid='iyUw;Eri3EKdpA#7(]cT'></arg>
+    </mutation>
+    <field name='NAME'>FindEmployees</field>
+    <comment pinned='true' h='80' w='160'>Find all employees from department</comment>
+    <statement name='STACK'>
+      <block type='variables_set'>
+        <field name='VAR' id='hO`?kR*XbVn|uJq:?jJ_'>N</field>
+        <value name='VALUE'>
+          <block type='api_VariousTests_GetDepartment__name__GET'>
+            <value name='val_name'>
+              <shadow type='text'>
+                <field name='TEXT'>IT</field>
+              </shadow>
+              <block type='variables_get'>
+                <field name='VAR' id='iyUw;Eri3EKdpA#7(]cT'>NameDepartment</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type='variables_set'>
+            <field name='VAR' id='hO`?kR*XbVn|uJq:?jJ_'>N</field>
+            <value name='VALUE'>
+              <block type='converttojson'>
+                <value name='ValueToConvert'>
+                  <block type='variables_get'>
+                    <field name='VAR' id='hO`?kR*XbVn|uJq:?jJ_'>N</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type='variables_set'>
+                <field name='VAR' id='hO`?kR*XbVn|uJq:?jJ_'>N</field>
+                <value name='VALUE'>
+                  <block type='getproperty'>
+                    <field name='objectName'>object</field>
+                    <field name='prop'>property</field>
+                    <value name='ObjectToChange'>
+                      <block type='variables_get'>
+                        <field name='VAR' id='hO`?kR*XbVn|uJq:?jJ_'>N</field>
+                      </block>
+                    </value>
+                    <value name='PropertyName'>
+                      <block type='text'>
+                        <field name='TEXT'>employee</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name='RETURN'>
+      <block type='converttostring'>
+        <value name='ValueToConvert'>
+          <block type='variables_get'>
+            <field name='VAR' id='hO`?kR*XbVn|uJq:?jJ_'>N</field>
+          </block>
+        </value>
+      </block>
+    </value>
+  </block>
+  <block type='text_print' x='105' y='293'>
+    <value name='TEXT'>
+      <shadow type='text'>
+        <field name='TEXT'>abc</field>
+      </shadow>
+      <block type='procedures_callreturn'>
+        <mutation name='FindEmployees'>
+          <arg name='NameDepartment'></arg>
+        </mutation>
+        <value name='ARG0'>
+          <block type='text'>
+            <field name='TEXT'>IT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+  </block>
+</category>
+</category>
+";
     }
 }

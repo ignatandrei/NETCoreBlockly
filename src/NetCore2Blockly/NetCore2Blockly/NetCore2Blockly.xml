@@ -158,6 +158,14 @@
             The name.
             </value>
         </member>
+        <member name="P:NetCore2Blockly.BlocklyUIOptions.CustomBlocks">
+            <summary>
+            Gets or sets the custom blocks.
+            </summary>
+            <value>
+            The custom blocks.
+            </value>
+        </member>
         <member name="T:NetCore2Blockly.EnumerateWebAPI">
             <summary>
             enumerate and generate
