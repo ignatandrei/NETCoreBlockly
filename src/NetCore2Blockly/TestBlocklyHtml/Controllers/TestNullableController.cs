@@ -5,12 +5,15 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
+using Microsoft.EntityFrameworkCore;
+using TestBlocklyHtml.DB;
 using TestBlocklyHtml.resolveAtRuntime;
 
 namespace TestBlocklyHtml.Controllers
@@ -23,7 +26,23 @@ namespace TestBlocklyHtml.Controllers
         public VariousTestsController()
         {
         }
-
+        [HttpGet("{name}")]
+        public async Task<ActionResult<Department>> GetDepartment([FromServices] testsContext context, string name)
+        {
+            name = name?.ToLower();
+            var department = await context.Department.AsNoTracking()
+                .Include(it => it.Employee).FirstOrDefaultAsync(it => it.Name.ToLower() == name);
+            //var department = await _context.Department.FirstOrDefaultAsync(it => it.Iddepartment == id);
+            if (department == null)
+            {
+                return NotFound();
+            }
+            foreach (var emp in department.Employee)
+            {
+                emp.IddepartmentNavigation = null;
+            }
+            return department;
+        }
         [HttpGet("{id?}")]
         public string ActionWithNullParameter(int? id)
         {
