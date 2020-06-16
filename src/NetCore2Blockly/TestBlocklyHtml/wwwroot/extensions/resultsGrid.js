@@ -16,7 +16,7 @@ function AddStringToGrid(value) {
             var obj = JSON.parse(value);
             objectsForGrid.push(obj);
         }
-        catch  {
+        catch(err)  {
             //do nothing
         }
     };
@@ -27,7 +27,7 @@ function AddStringToGrid(value) {
                 objectsForGrid.push(arr[i]);
             };
         }
-        catch  {
+        catch(err) {
             //do nothing
         }
 

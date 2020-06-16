@@ -29,17 +29,30 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
 }
 Step 3:
 
-Recommended:
 To see the UI , please add
 
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
        
        app.UseBlocklyUI();
 }
-Feel free to modify:
-Download from Build Status the blockly.zip and put all contents in a wwwroot in the root of your site
+
 
 Step 4:
 Run the application and browse to /blockly.html
+
+For WebAPI (local):
+app.UseBlocklyUI();
+
+For Swagger ( local or remote )
+app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json")
+
+For ODATA ( local or remote)
+app.UseBlocklyOData("OdataV4", "https://services.odata.org/TripPinRESTierService/");
+
+For GraphQL
+app.UseBlocklyGraphQL("localGraphql", "/graphql");
+
+For authentication
+See links 22 for JWT and 31 for Auth0 from https://netcoreblockly.herokuapp.com/
 
 That's all!
