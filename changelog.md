@@ -4,10 +4,22 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.14360511..1.1.2020.14449579
+git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.14449579..1.1.2020.14500387
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
+
+## 1.1.2020.14500387 reverent-leakey-20200616195306
+
+ #### [readme , no empty catch, minor fixes]
+ Author ignatandrei on 2020-06-16 22:48:11 +0300
+
+ hash 4a6652e 4a6652e85b3e2ecf874725dc21f708f3ff6bb96c
+
+ #### [no logs in console]
+ Author ignatandrei on 2020-06-16 22:36:42 +0300
+
+ hash 4453785 4453785a64eceb77e5709f11c64dfeb52eb39847
 
 
 ## 1.1.2020.14449579 cranky-pike-20200616054619 added user blocks and grid displaying values, not objects
