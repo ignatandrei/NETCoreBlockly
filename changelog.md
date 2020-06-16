@@ -4,12 +4,51 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.14333504..1.1.2020.14360511
-
+git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.14360511..1.1.2020.14449579
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
 
+
+## 1.1.2020.14449579 cranky-pike-20200616054619 added user blocks and grid displaying values, not objects
+
+
+ #### [added custom blocks]
+ Author ignatandrei on 2020-06-16 08:44:24 +0300      
+
+ hash b027743 b027743c3064be57cc97cfdf705ac99a9026835c
+
+ #### [id instead of custom]
+ Author ignatandrei on 2020-06-16 08:24:14 +0300      
+
+ hash f9cada0 f9cada0a7457f8302db3069a5e9e0168078bdf03
+
+ #### [pushing results to grid in their own values]   
+ Author ignatandrei on 2020-06-16 08:18:32 +0300      
+
+ hash 9dd5056 9dd5056041232d3edda8f22ab7dd199e0758c572
+
+ #### [added first step of custom blocks]
+ Author ignatandrei on 2020-06-16 07:53:56 +0300      
+
+ hash 80f84f8 80f84f8952fee55049014bc774c3fa52339ce536
+
+ #### [added links to classic UI ( swagger, graphql)]
+ Author ignatandrei on 2020-06-15 21:55:46 +0300
+
+ hash dc22426 dc22426d5702d4bc7f80a61fd919a60279be305e
+
+  #### [Added GraphQL playground to main project]
+ Author Cosmin Popescu on 2020-06-15 20:56:50 +0300
+
+ hash 1669851 16698514817553227afcaef5a86d5e0cb108da7c
+
+ #### [Removed commented code form GraphQL folder]
+ Author Cosmin Popescu on 2020-06-15 20:31:15 +0300
+
+ hash a66d924 a66d924ca726157e8bdab88787c8c37807b39361
+
+ 
 ## 1.1.2020.14360511 cool-ellis-20200615050150 
 
 ### graphql with more arguments
