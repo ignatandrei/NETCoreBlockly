@@ -1252,7 +1252,7 @@
                 if (hostname in creds) {
                     withCreds = creds[hostname];
                 }
-                
+                                
                 return doGet(href, callback, arrHeaders, withCreds);
             }
             interpreter.setProperty(globalObject, 'getXhr',
@@ -1260,6 +1260,7 @@
 
             var wrapper = (href, objectToPost, callback) => {
                 try {
+                    var creds = interpreter.pseudoToNative(withCredsForDomain);
                     var heads = interpreter.pseudoToNative(headersForDomain);
                     var hostname = '(localSite)';
                     if (href.startsWith('http://') || href.startsWith('https://')) {
@@ -1269,7 +1270,12 @@
                     if (hostname in heads) {
                         arrHeaders = heads[hostname];
                     }
-                    doPost(href, objectToPost, callback);
+                    var withCreds = false;
+
+                    if (hostname in creds) {
+                        withCreds = creds[hostname];
+                    }
+                    doPost(href, objectToPost, callback, arrHeaders,withCreds);
                 }
                 catch (e) {
                     alert("is an error" + e);
@@ -1280,6 +1286,7 @@
 
             var wrapper = (href, objectToPost, callback) => {
                 try {
+                    var creds = interpreter.pseudoToNative(withCredsForDomain);
                     var heads = interpreter.pseudoToNative(headersForDomain);
                     var hostname = '(localSite)';
                     if (href.startsWith('http://') || href.startsWith('https://')) {
@@ -1289,7 +1296,12 @@
                     if (hostname in heads) {
                         arrHeaders = heads[hostname];
                     }
-                    doPut(href, objectToPost, callback);
+                    var withCreds = false;
+
+                    if (hostname in creds) {
+                        withCreds = creds[hostname];
+                    }
+                    doPut(href, objectToPost, callback,arrHeaders,withCreds);
                 }
                 catch (e) {
                     alert("is an error" + e);
@@ -1301,6 +1313,7 @@
 
             var wrapper = (href, objectToPost, callback) => {
                 try {
+                    var creds = interpreter.pseudoToNative(withCredsForDomain);
                     var heads = interpreter.pseudoToNative(headersForDomain);
                     var hostname = '(localSite)';
                     if (href.startsWith('http://') || href.startsWith('https://')) {
@@ -1310,7 +1323,12 @@
                     if (hostname in heads) {
                         arrHeaders = heads[hostname];
                     }
-                    doPatch(href, objectToPost, callback);
+                    var withCreds = false;
+
+                    if (hostname in creds) {
+                        withCreds = creds[hostname];
+                    }
+                    doPatch(href, objectToPost, callback,arrHeaders, withCreds);
                 }
                 catch (e) {
                     alert("is an error" + e);
@@ -1322,6 +1340,7 @@
 
             var wrapper = (href, callback) => {
                 try {
+                    var creds = interpreter.pseudoToNative(withCredsForDomain);
                     var heads = interpreter.pseudoToNative(headersForDomain);
                     var hostname = '(localSite)';
                     if (href.startsWith('http://') || href.startsWith('https://')) {
@@ -1331,7 +1350,13 @@
                     if (hostname in heads) {
                         arrHeaders = heads[hostname];
                     }
-                    doDelete(href, callback);
+                    var withCreds = false;
+
+                    if (hostname in creds) {
+                        withCreds = creds[hostname];
+                    }
+
+                    doDelete(href, callback,arrHeaders,withCreds);
                 }
                 catch (e) {
                     alert("is an error" + e);
