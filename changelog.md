@@ -4,10 +4,24 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.14449579..1.1.2020.14500387
+git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.14500387..1.1.2020.15098133
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
+
+
+## 1.1.2020.15098133 exhaling-elk-20200623175533  [with credentials] 
+
+ #### [with credentials]
+ Author ignatandrei on 2020-06-23 20:53:17 +0300      
+
+ hash a4a039d a4a039dfd3c7638289fd5f6f84e26f130e239a5b
+
+ #### [making first version of with credentials]      
+ Author ignatandrei on 2020-06-23 20:33:30 +0300      
+
+ hash aa80d56 aa80d56db56767e53afab76b880f6b631f8fac75
+
 
 ## 1.1.2020.14500387 reverent-leakey-20200616195306
 
