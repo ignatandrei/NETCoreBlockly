@@ -34,6 +34,7 @@
     <script src="blockly/DateTime/CurrentDateBlock.js?v=version"></script>
     <script src="/blockly/Http/blocklyXHR.js?v=version"></script>
     <script src="/blockly/Http/blocklyHeader.js?v=version"></script>
+    <script src="/blockly/Http/blocklyCreds.js?v=version"></script>
     <script src="blockly/objects/createObject.js?v=version"></script>
     <script src="blockly/objects/propJS.js?v=version"></script>
     <script src="blockly/auth0/auth0blocks.js?v=version"></script>
@@ -70,7 +71,6 @@
             background-color: #909090; /* Same color as content_border */
             margin: 0 2px;
         }
-
     </style>
 </head>
 <body>
@@ -699,6 +699,18 @@
                         </shadow>
                     </value>
                 </block>
+                <block type="credsforhttp">
+                    <value name="HttpDomain">
+                        <shadow type="text">
+                            <field name="TEXT">(localSite)</field>
+                        </shadow>
+                    </value>
+                    <value name="WithCreds">
+                        <shadow type="logic_boolean">
+                            <field name="BOOL">FALSE</field>
+                        </shadow>
+                    </value>                   
+                </block>
                 <block type="blockxhrresult"></block>
                 <block type="httprequest">
                     <value name="TheUrl">
@@ -1155,6 +1167,9 @@
             var headersForDomain = interpreter.nativeToPseudo({ '(localSite)': [] });
             interpreter.setProperty(globalObject, 'headersForDomain', headersForDomain);
 
+            var withCredsForDomain = interpreter.nativeToPseudo({ '(localSite)': false });
+            interpreter.setProperty(globalObject, 'withCredsForDomain', withCredsForDomain);
+
 
             // Add an API function for the alert() block, generated for "text_print" blocks.
             var wrapper = function (text) {
@@ -1221,6 +1236,8 @@
                 interpreter.createNativeFunction(wrapper));
 
             var wrapper = (href, callback) => {
+                var creds = interpreter.pseudoToNative(withCredsForDomain);
+
                 var heads = interpreter.pseudoToNative(headersForDomain);
                 var hostname = '(localSite)';
                 if (href.startsWith('http://') || href.startsWith('https://')) {
@@ -1230,7 +1247,13 @@
                 if (hostname in heads) {
                     arrHeaders = heads[hostname];
                 }
-                return doGet(href, callback, arrHeaders);
+                var withCreds = false;
+                
+                if (hostname in creds) {
+                    withCreds = creds[hostname];
+                }
+                
+                return doGet(href, callback, arrHeaders, withCreds);
             }
             interpreter.setProperty(globalObject, 'getXhr',
                 interpreter.createAsyncFunction(wrapper));

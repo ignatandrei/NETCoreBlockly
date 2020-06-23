@@ -1,9 +1,9 @@
 ﻿// XHR wrapper functions
 
-const doGet = (href, callback, headers) => {
+const doGet = (href, callback, headers, withCreds) => {
     console.log(href, callback);
     let req = new XMLHttpRequest();
-	
+    req.withCredentials = withCreds;
     req.open('GET', href, true);
 	if(headers.length>0){
 		//alert(JSON.stringify(headers));
