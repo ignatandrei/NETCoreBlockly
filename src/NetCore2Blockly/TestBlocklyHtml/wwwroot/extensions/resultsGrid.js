@@ -68,19 +68,28 @@ function FinishGrid() {
 
     var headers = [];
     var obj = objectsForGrid;
+    //console.log("object !", obj);
+    
     for (var i = 0; i < obj.length; i++) {
         var data = obj[i];
-        headers.push(...Object.keys(data));
-
+        if (typeof data === 'string') {
+            headers.push("_");
+        }
+        else {
+            headers.push(...Object.keys(data));
+        }
     }
+    //console.log("headers 1", headers);
     var mySet = new Set(headers);
     headers = Array.from(mySet);
+    
 
     var fullData = [];
     for (var i = 0; i < obj.length; i++) {
         var data = obj[i];
         //console.log(data);
         var res = [i + 1];
+
         for (var p = 0; p < headers.length; p++) {
             var key = headers[p];
             
@@ -92,8 +101,14 @@ function FinishGrid() {
                 else
                     res.push(val);
             }
-            else
-                res.push('');
+            else {
+                if (typeof data === 'string' && p===0) {
+                    res.push(data);
+                }
+                else {
+                    res.push('');
+                }
+            }
         }
         fullData.push(res);
     }

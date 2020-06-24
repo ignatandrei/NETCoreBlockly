@@ -2204,6 +2204,23 @@ var testBlocks = [
     </value>
   </block>
 </xml>`
+    },
+    {
+        name: 'test grid',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" x="104" y="97">
+    <value name="TEXT">
+      <block type="api_VariousTests_ReturnArrayStringForGrid_GET"></block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="WeatherForecast_GET"></block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>`
     }
 ]
 
