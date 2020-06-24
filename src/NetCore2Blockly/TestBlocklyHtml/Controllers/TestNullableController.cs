@@ -142,33 +142,16 @@ namespace TestBlocklyHtml.Controllers
 
 
         }
-        //var compilation = CSharpCompilation.Create("DynamicAssembly",
-        //    new[] { CSharpSyntaxTree.ParseText(code) },
-        //    new[] {
-        //        MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
-        //        MetadataReference.CreateFromFile(typeof(RemoteControllerFeatureProvider).Assembly.Location)
-        //    },
-        //    new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+        [HttpGet()]
+        public string[] ReturnArrayStringForGrid()
+        {
+            return new[]
+            {
+                "Andrei",
+                "Ignat",
+                "http://msprogrammer.serviciipeweb.ro/"
+            };
+        }
 
-        //var results = codeProvider.CompileAssemblyFromSource(parameters, code);
-        //if (results.Errors.Count > 0)
-        //{
-        //    Console.WriteLine("Build Failed");
-        //    foreach (CompilerError CompErr in results.Errors)
-        //    {
-        //        Console.WriteLine(
-        //        "Line number " + CompErr.Line +
-        //        ", Error Number: " + CompErr.ErrorNumber +
-        //        ", '" + CompErr.ErrorText + ";" +
-        //        Environment.NewLine + Environment.NewLine);
-        //    }
-        //}
-        //else
-        //{                
-        //    return results.CompiledAssembly;
-
-        //}
-
-        //return null;
     }
 }
