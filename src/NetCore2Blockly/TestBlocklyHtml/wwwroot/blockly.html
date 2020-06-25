@@ -601,17 +601,7 @@
         </category>
         <sep></sep>
         <category name="advanced">
-
-            <category id="catJSON" colour="160" name="Converters">
-                <!--                <button text="A button" callbackKey="crae"></button>-->
-                <block type="converttojson"></block>
-                <block type="converttostring"></block>
-                <block type="convertcsv">
-
-                </block>
-            </category>
-
-            <category id="Authentication" name="Authentication">
+            <category id="catAuthentication" name="Authentication">
                 <block type="credsforhttp">
                     <value name="HttpDomain">
                         <shadow type="text">
@@ -653,7 +643,7 @@
                             </value>
                         </block>
                     </value>
-                    
+
                 </block>
                 <block type="auth0webapidata">
                     <value name="client_id">
@@ -682,6 +672,7 @@
                     </value>
                 </block>
             </category>
+
             <category id="catExporter" colour="160" name="Exporter">
                 <!--                <button text="A button" callbackKey="crae"></button>-->
                 <block type="exportfile">
@@ -701,16 +692,33 @@
                 </block>
 
             </category>
-            <category id="JavaScriptRelated" name="JSBlocks">
+
+            <category id="catGUI" name="GUI">
+                <block type="window_open"></block>
+                <block type="valuefromtext">
+                    <value name="IdOfText">
+                        <shadow type="text">
+                            <field name="TEXT">output</field>
+                        </shadow>
+                    </value>
+                    <value name="ValueToObtain">
+                        <shadow type="text">
+                            <field name="TEXT">value</field>
+                        </shadow>
+                    </value>
+                </block>
+            </category>
+
+            <category id="catJSBLocks" name="JSBlocks">
                 <!--<block type="wait_seconds"></block>-->
                 <category name="Objects" id="Objects">
                     <block type="modifyproperty"></block>
                     <block type="getproperty"></block>
                     <block type="object_create"></block>
                     <!--<block type="object_from_json"></block>
-                <block type="object_to_json"></block>
-                <block type="object_get"></block>
-                <block type="object_set"></block>-->
+            <block type="object_to_json"></block>
+            <block type="object_get"></block>
+            <block type="object_set"></block>-->
                 </category>
                 <category name="DateTime" id="DateTime">
                     <block type="fromUnixTimeToDate">
@@ -725,58 +733,13 @@
                 </category>
 
             </category>
-            <category id="XHR" name="Request">
-                <block type="headersbeforehttp">
-                    <value name="HttpDomain">
-                        <shadow type="text">
-                            <field name="TEXT">(localSite)</field>
-                        </shadow>
-                    </value>
-                    <value name="HeaderName">
-                        <shadow type="text">
-                            <field name="TEXT">Authorization</field>
-                        </shadow>
-                    </value>
-                    <value name="HeaderValue">
-                        <shadow type="text_join">
 
-                        </shadow>
-                    </value>
-                </block>
-                <block type="credsforhttp">
-                    <value name="HttpDomain">
-                        <shadow type="text">
-                            <field name="TEXT">(localSite)</field>
-                        </shadow>
-                    </value>
-                    <value name="WithCreds">
-                        <shadow type="logic_boolean">
-                            <field name="BOOL">FALSE</field>
-                        </shadow>
-                    </value>                   
-                </block>
-                <block type="blockxhrresult"></block>
-                <block type="httprequest">
-                    <value name="TheUrl">
-                        <shadow type="text">
-                            <field name="TEXT">https://api.chucknorris.io/jokes/random</field>
-                        </shadow>
-                    </value>
-                </block>
-            </category>
-            <category id="Controls" name="GUI">
-                <block type="window_open"></block>
-                <block type="valuefromtext">
-                    <value name="IdOfText">
-                        <shadow type="text">
-                            <field name="TEXT">output</field>
-                        </shadow>
-                    </value>
-                    <value name="ValueToObtain">
-                        <shadow type="text">
-                            <field name="TEXT">value</field>
-                        </shadow>
-                    </value>
+            <category id="catJSON" colour="160" name="Converters">
+                <!--                <button text="A button" callbackKey="crae"></button>-->
+                <block type="converttojson"></block>
+                <block type="converttostring"></block>
+                <block type="convertcsv">
+
                 </block>
             </category>
 
@@ -805,6 +768,48 @@
                     </value>
                 </block>
             </category>
+        
+            <category id="XHR" name="Request">
+                <block type="headersbeforehttp">
+                    <value name="HttpDomain">
+                        <shadow type="text">
+                            <field name="TEXT">(localSite)</field>
+                        </shadow>
+                    </value>
+                    <value name="HeaderName">
+                        <shadow type="text">
+                            <field name="TEXT">Authorization</field>
+                        </shadow>
+                    </value>
+                    <value name="HeaderValue">
+                        <shadow type="text_join">
+
+                        </shadow>
+                    </value>
+                </block>
+                <block type="credsforhttp">
+                    <value name="HttpDomain">
+                        <shadow type="text">
+                            <field name="TEXT">(localSite)</field>
+                        </shadow>
+                    </value>
+                    <value name="WithCreds">
+                        <shadow type="logic_boolean">
+                            <field name="BOOL">FALSE</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="blockxhrresult"></block>
+                <block type="httprequest">
+                    <value name="TheUrl">
+                        <shadow type="text">
+                            <field name="TEXT">https://api.chucknorris.io/jokes/random</field>
+                        </shadow>
+                    </value>
+                </block>
+            </category>
+
+
         </category>
 
     </xml>
