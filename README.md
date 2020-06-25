@@ -52,16 +52,16 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
 }
 ```
 
-### For Swagger ( local or remote )
+### For Swagger ( local or remote  - CORS activated if remote)
 
 app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json")
 
 
-### For ODATA ( local or remote)
+### For ODATA ( local or remote - CORS activated if remote)
 
 app.UseBlocklyOData("OdataV4", "https://services.odata.org/TripPinRESTierService/");
 
-### For GraphQL
+### For GraphQL (local or remote - CORS activated if remote)- Work In progress
 
 app.UseBlocklyGraphQL("localGraphql", "/graphql");
 
@@ -69,6 +69,8 @@ app.UseBlocklyGraphQL("localGraphql", "/graphql");
 ## For authentication 
  
 See links 22 for JWT and 31 for Auth0  from https://netcoreblockly.herokuapp.com/ 
+
+Also, it works with AD enabled - see Authentication group.
 
 ## Step 4:
 
@@ -93,6 +95,7 @@ and
 and follow the code.
 
 All other code is just boilerplate for Swagger, OData,GraphQL that are mandataory for demo'ing the application, not for Blockly2NetCore itself.
+
 
 ## Contributors ✨
 
