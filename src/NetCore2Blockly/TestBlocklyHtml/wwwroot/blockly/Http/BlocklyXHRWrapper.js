@@ -53,7 +53,7 @@ const doPost = (href, objectToPost, callback, headers, withCreds) => {
     console.log(`sending ${data}`);
     let req = new XMLHttpRequest();
     req.open('POST', href, true);
-    req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    
     req.withCredentials = withCreds;
     if (headers.length > 0) {
         //alert(JSON.stringify(headers));
@@ -61,6 +61,8 @@ const doPost = (href, objectToPost, callback, headers, withCreds) => {
             var head = headers[iHeader];
             req.setRequestHeader(head.name, head.value);
         }
+    } else {
+        req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     }
 
     req.onreadystatechange = function () {
@@ -103,7 +105,7 @@ const doPut = (href, objectToPost, callback, headers, withCreds) => {
     let req = new XMLHttpRequest();
 
     req.open('PUT', href, true);
-    req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    
     req.withCredentials = withCreds;
     if (headers.length > 0) {
         //alert(JSON.stringify(headers));
@@ -112,7 +114,9 @@ const doPut = (href, objectToPost, callback, headers, withCreds) => {
             req.setRequestHeader(head.name, head.value);
         }
     }
-
+    else {
+        req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    }
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
             if (req.status >= 200 && req.status < 300) {
@@ -152,7 +156,7 @@ const doPatch = (href, objectToPost, callback, headers, withCreds) => {
     let req = new XMLHttpRequest();
 
     req.open('PATCH', href, true);
-    req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    
     req.withCredentials = withCreds;
     if (headers.length > 0) {
         //alert(JSON.stringify(headers));
@@ -160,6 +164,8 @@ const doPatch = (href, objectToPost, callback, headers, withCreds) => {
             var head = headers[iHeader];
             req.setRequestHeader(head.name, head.value);
         }
+    } else {
+        req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     }
 
     req.onreadystatechange = function () {
@@ -200,7 +206,7 @@ const doDelete = (href, callback, headers, withCreds) => {
     var req = new XMLHttpRequest();
 
     req.open('DELETE', href, true);
-    //req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    
     req.withCredentials = withCreds;
     if (headers.length > 0) {
         //alert(JSON.stringify(headers));
@@ -208,6 +214,8 @@ const doDelete = (href, callback, headers, withCreds) => {
             var head = headers[iHeader];
             req.setRequestHeader(head.name, head.value);
         }
+    } else {
+        req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     }
 
     req.onreadystatechange = function () {
