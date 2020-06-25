@@ -4,10 +4,37 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.14500387..1.1.2020.15098133
+git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15098133..1.1.2020.15212284
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
+
+## 1.1.2020.15212284 amber-deer-20200625013803
+
+ #### [improved display grid  and json for header]    
+ Author ignatandrei on 2020-06-25 04:36:23 +0300      
+
+ hash 7f3afa6 7f3afa68e229a441214fc4858b2adfb0b4d94969
+
+ #### [moves authentication to his own cathegory]     
+ Author ignatandrei on 2020-06-25 03:46:42 +0300 
+
+ hash d6e43e8 d6e43e8edb762cc7767b10384d2477a36e21eab6
+
+ #### [Add json only if no headers] 
+ Author ignatandrei on 2020-06-25 03:39:20 +0300 
+
+ hash 39e9cd4 39e9cd45b3b7c1992697e1925c84699a7f24d9fa
+
+ #### [improved display grid]
+ Author ignatandrei on 2020-06-24 09:26:51 +0300
+
+ hash 8c78b43 8c78b43ee4b30410bb7b5f7e25f12812c5b02e6a
+
+ #### [upgrade grid js]
+ Author ignatandrei on 2020-06-24 09:00:57 +0300
+
+ hash af74dc2 af74dc2f46c8bc601fb592973ecbac63ed94af7b
 
 
 ## 1.1.2020.15098133 exhaling-elk-20200623175533  [with credentials] 
