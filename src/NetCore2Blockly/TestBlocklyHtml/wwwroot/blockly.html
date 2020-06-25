@@ -610,7 +610,51 @@
 
                 </block>
             </category>
-            <category id="Auth0" name="Auth0">
+
+            <category id="Authentication" name="Authentication">
+                <block type="credsforhttp">
+                    <value name="HttpDomain">
+                        <shadow type="text">
+                            <field name="TEXT">(localSite)</field>
+                        </shadow>
+                    </value>
+                    <value name="WithCreds">
+                        <shadow type="logic_boolean">
+                            <field name="BOOL">FALSE</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="headersbeforehttp" x="60" y="105">
+                    <value name="HttpDomain">
+                        <shadow type="text">
+                            <field name="TEXT">(localSite)</field>
+                        </shadow>
+                    </value>
+                    <value name="HeaderName">
+                        <shadow type="text">
+                            <field name="TEXT">Authorization</field>
+                        </shadow>
+                    </value>
+                    <value name="HeaderValue">
+                        <shadow type="text">
+                            <field name="TEXT"></field>
+                        </shadow>
+                        <block type="text_join">
+                            <mutation items="2"></mutation>
+                            <value name="ADD0">
+                                <block type="text">
+                                    <field name="TEXT">CustomBearer </field>
+                                </block>
+                            </value>
+                            <value name="ADD1">
+                                <block type="text">
+                                    <field name="TEXT">Add hear JWT token or obtain from a http call </field>
+                                </block>
+                            </value>
+                        </block>
+                    </value>
+                    
+                </block>
                 <block type="auth0webapidata">
                     <value name="client_id">
                         <shadow type="text">
