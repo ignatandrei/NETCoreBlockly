@@ -212,7 +212,7 @@ namespace TestBlocklyHtml
             app.UseBlocklyUI(new BlocklyUIOptions()
             {
                 StartBlocks = StartBlocksForUI,
-                HeaderName = "Demo test for .NET Core WebAPI ( site with Blockly +  swaggers + odata loaded + graphql)",
+                HeaderName = "Demo test for .NET Core WebAPI To Blockly ( demo site with Blockly +  swaggers + odata loaded + graphql)",
                 CustomBlocks = CustomBlocksForUI
             });
 
