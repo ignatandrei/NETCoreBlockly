@@ -81,8 +81,9 @@ namespace TestBlocklyHtml
                 }
             });
             #endregion
+            #region blockly needed
             services.AddBlockly();
-
+            #endregion
             #region for graphql
             services.Configure<KestrelServerOptions>(options =>
             {
@@ -204,7 +205,7 @@ namespace TestBlocklyHtml
             }
             app.UseCors("AllowAll");
             app.UseFileServer(enableDirectoryBrowsing: true);
-
+            #region blockly needed
             //you can use simply this
             //app.UseBlocklyUI();
             //or you can use a start blocks
@@ -217,7 +218,8 @@ namespace TestBlocklyHtml
 
             app.UseBlocklyLocalStorage();
             //app.UseBlocklySqliteStorage();
-
+            #endregion
+            #region blockly optional
             app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json");
             //Cors, http, https issues and latest / solving
             //app.UseBlocklySwagger("xkcd", "https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/xkcd.com/1.0.0/openapi.yaml");
@@ -231,6 +233,7 @@ namespace TestBlocklyHtml
             //app.UseBlocklyOData("OdataV3", "https://services.odata.org/V3/OData/OData.svc");
             //app.UseBatchBlocklyLinks(this.Configuration.GetSection("NetCoreBlockly:OtherLinks").Get<BLocklyOtherLinks>());
             app.UseBlocklyLinksFromConfig(this.Configuration);
+            #endregion
             //this is not necessary to be added
             app.UseSwagger();
 
@@ -257,13 +260,17 @@ namespace TestBlocklyHtml
                 //}
                 endpoints.MapControllers();
             });
+            #region blockly optional
             if (edmModel != null)
             {
                 app.UseOdataToEntityMiddleware<OePageMiddleware>("/odataDB", edmModel);
                 app.UseBlocklyOData("/odataDB","/odataDB");
             }
             app.UseBlocklyGraphQL("localGraphql", "/graphql");
+            #endregion
+            #region blockly needed
             app.UseBlockly();
+            #endregion
             using var scope = app.ApplicationServices.CreateScope();
             using var context = scope.ServiceProvider.GetService<testsContext>();
             context.Database.EnsureCreated();

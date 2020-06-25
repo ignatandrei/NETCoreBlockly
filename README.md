@@ -77,12 +77,28 @@ Run the application and browse to  /blockly.html
 That's all!
 
 
+## More information
+
+Download the source code, run the TestBlocklyHtml project ( in the test folder ).
+
+See there 
+
+ region blockly needed
+
+and
+
+ region blockly optional 
 
 
+and follow the code.
+
+All other code is just boilerplate for Swagger, OData,GraphQL that are mandataory for demo'ing the application, not for Blockly2NetCore itself.
 
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+If you want to contribute, that is plenty of work to be done -see issues tab .
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
