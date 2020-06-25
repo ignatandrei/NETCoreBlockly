@@ -2221,6 +2221,82 @@ var testBlocks = [
     </next>
   </block>
 </xml>`
+    },
+    {
+        name: 'filter list',
+        data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="cn8tD}b,qY^62JyI+IFE">list</variable>
+  </variables>
+  <block type="variables_set" inline="true" x="-203" y="73">
+    <field name="VAR" id="cn8tD}b,qY^62JyI+IFE">list</field>
+    <value name="VALUE">
+      <block type="WeatherForecast_GET"></block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+          <block type="variables_get">
+            <field name="VAR" id="cn8tD}b,qY^62JyI+IFE">list</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" inline="true">
+            <field name="VAR" id="cn8tD}b,qY^62JyI+IFE">list</field>
+            <value name="VALUE">
+              <block type="converttojson">
+                <value name="ValueToConvert">
+                  <block type="variables_get">
+                    <field name="VAR" id="cn8tD}b,qY^62JyI+IFE">list</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" inline="true">
+                <field name="VAR" id="cn8tD}b,qY^62JyI+IFE">list</field>
+                <value name="VALUE">
+                  <block type="filterlist">
+                    <value name="LIST">
+                      <block type="variables_get">
+                        <field name="VAR" id="cn8tD}b,qY^62JyI+IFE">list</field>
+                      </block>
+                    </value>
+                    <value name="Logic">
+                      <shadow type="text">
+                        <field name="TEXT">item.summary == "Warm"</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print">
+                    <value name="TEXT">
+                      <shadow type="text">
+                        <field name="TEXT">abc</field>
+                      </shadow>
+                      <block type="converttostring">
+                        <value name="ValueToConvert">
+                          <block type="variables_get">
+                            <field name="VAR" id="cn8tD}b,qY^62JyI+IFE">list</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
+`
     }
 ]
 

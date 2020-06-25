@@ -2,9 +2,9 @@
   init: function() {
     this.appendDummyInput()
         .appendField("filterList");
-    this.appendValueInput("list")
-        .setCheck("Array")
-        .appendField("List");
+    this.appendValueInput("LIST")
+        .setCheck("Array");
+        
     this.appendValueInput("Logic")
         .setCheck("String")
         .appendField("item=>");
@@ -17,9 +17,16 @@
 };
 
 Blockly.JavaScript['filterlist'] = function(block) {
-  var value_list = Blockly.JavaScript.valueToCode(block, 'list', Blockly.JavaScript.ORDER_ATOMIC);
+  var list = Blockly.JavaScript.valueToCode(block, 'LIST',
+      Blockly.JavaScript.ORDER_MEMBER) || '[]';
+	  
   var value_logic = Blockly.JavaScript.valueToCode(block, 'Logic', Blockly.JavaScript.ORDER_ATOMIC);
-
-  var code = '\n';
+  if(typeof value_logic === 'string')// remove '
+	  value_logic = value_logic.substr(1,value_logic.length-2);
+	  
+  var code = '';
+  code += list + '.filter(function (item){ return ' + value_logic +';})';
+  code += '';
+  
   return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
 };

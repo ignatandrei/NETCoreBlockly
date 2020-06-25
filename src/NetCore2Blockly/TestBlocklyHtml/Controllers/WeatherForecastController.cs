@@ -32,6 +32,12 @@ namespace TestBlocklyHtml.Controllers
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = rng.Next(-20, 55),
                 Summary = Summaries[rng.Next(Summaries.Length)]
+            }).Append(new WeatherForecast()
+            {
+                Date=DateTime.Now,
+                TemperatureC = 25,
+                Summary = "Warm"
+
             })
             .ToArray();
         }
