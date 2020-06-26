@@ -19,7 +19,7 @@ Sample Project is TestBlocklyHtml from this repository
 
 *Contributors welcome!* - please send email to <img src='email.png' height='10px' title = "please write email from image" alt='email'></img>
 
-# How to install NETCore2Blockly in a .NET Core 3.1  WebAPI / MVC application
+# How to install NETCore2Blockly in a .NET Core 3.1  WebAPI / MVC application in 3 steps + run application
 
 ## Step 1:
 Install https://www.nuget.org/packages/NetCore2Blockly/ by running the following command in the Package Manager Console:
@@ -55,35 +55,61 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
 ```
 
 
-## Step 4:
+## Run application
 
-Run the application and browse to  /blockly.html
+Run the application from VS and browse to  /blockly.html
 
-That's all!
+## That's all !( 3 steps + run )
 
 
-## Working with remote data
+## Advanced usage remote data
 
-### For Swagger ( local or remote  - CORS activated if remote)
+
+### For Remote Swagger ( CORS activated )
 
 app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json")
+
+You can see demo at https://netcoreblockly.herokuapp.com/ ,colapse category local function, expand category Swagger.
+
+See link 25 from https://netcoreblockly.herokuapp.com/ 
 
 
 ### For ODATA ( local or remote - CORS activated if remote)
 
 app.UseBlocklyOData("OdataV4", "https://services.odata.org/TripPinRESTierService/");
 
+You can see demo at https://netcoreblockly.herokuapp.com/ ,colapse category local function, expand category OData.
+
+
 ### For GraphQL (local or remote - CORS activated if remote)- Work In progress
 
 app.UseBlocklyGraphQL("localGraphql", "/graphql");
 
+You can see demo at https://netcoreblockly.herokuapp.com/ ,colapse category local function, expand category GraphQL.
 
-### For authentication 
+See link 32,33 from https://netcoreblockly.herokuapp.com/ 
+
+### For authentication  - JSON Web Tokens
  
 See links 22 for JWT and 31 for Auth0  from https://netcoreblockly.herokuapp.com/ 
 
-Also, it works with AD enabled - see Authentication group.
+Also, it works with Active Directory enabled - see Authentication category.
 
+### For adding headers to Http requests
+ 
+See links 22 for JWT from https://netcoreblockly.herokuapp.com/ 
+
+### For exporting data as CSV
+
+See link 2  from https://netcoreblockly.herokuapp.com/ 
+
+### For exporting data as image
+
+See link 1  from https://netcoreblockly.herokuapp.com/ 
+
+### Making a simple CRUD ( create ,read, update , delete ) application
+
+See link 6,7,8,9,   from https://netcoreblockly.herokuapp.com/ 
 
 ## More information
 
