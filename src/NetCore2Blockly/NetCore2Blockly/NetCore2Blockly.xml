@@ -280,6 +280,15 @@
             <param name="app">The application.</param>
             <returns></returns>
         </member>
+        <member name="M:NetCore2Blockly.CLIExtension.UseBlocklyGraphQL(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String,System.String)">
+            <summary>
+            add GraphQL endpoints
+            </summary>
+            <param name="app"></param>
+            <param name="key"></param>
+            <param name="endpoint"></param>
+            <returns></returns>
+        </member>
         <member name="M:NetCore2Blockly.CLIExtension.UseBlocklyUI(Microsoft.AspNetCore.Builder.IApplicationBuilder,NetCore2Blockly.BlocklyUIOptions)">
             <summary>
             Uses the cli.

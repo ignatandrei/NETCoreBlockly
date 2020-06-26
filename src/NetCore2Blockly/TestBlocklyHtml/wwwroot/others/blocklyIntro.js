@@ -7,7 +7,7 @@ function startIntro(version) {
                     },
                     {
                         element: document.querySelector('#blocklyDiv'),
-                        intro: "This area is you <b>playground</b> with blocks"
+                        intro: "This area is your <b>playground</b> with blocks"
                     },
                     {
                         element: '#runButton',
@@ -16,6 +16,11 @@ function startIntro(version) {
                     {
                         element: '#output',
                         intro: "And see the <b>result</b> here"
+                    }
+                    ,
+                    {
+                        element: '#steps',
+                        intro: "Or here as a grid form"
                     },
                     {
                         element: '#saveBlocks',
