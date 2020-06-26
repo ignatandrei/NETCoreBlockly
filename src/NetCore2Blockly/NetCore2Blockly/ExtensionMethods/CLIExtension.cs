@@ -175,6 +175,13 @@ ApplicationServices
              });
             return app;
         }
+        /// <summary>
+        /// add GraphQL endpoints
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="key"></param>
+        /// <param name="endpoint"></param>
+        /// <returns></returns>
         public static IApplicationBuilder UseBlocklyGraphQL(this IApplicationBuilder app,string key, string endpoint)
         {
             var blocklyFilesHostedService = app.ApplicationServices
@@ -185,7 +192,7 @@ ApplicationServices
             return app;
         }
 
-            private static void MapJS(IApplicationBuilder app, string url, Func<GenerateBlocklyFilesHostedService, string> content)
+        private static void MapJS(IApplicationBuilder app, string url, Func<GenerateBlocklyFilesHostedService, string> content)
         {
             app.Map(url, app =>
             {

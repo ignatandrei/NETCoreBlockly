@@ -11,11 +11,13 @@
 # What it does
 NETCore2Blockly generates [Blockly](https://developers.google.com/blockly) blocks for each of your controller actions. 
 
-Demo at https://netcoreblockly.herokuapp.com/ ( play with the links from the bottom)
+*Demo* at https://netcoreblockly.herokuapp.com/ ( play with the links from the bottom)
 
-Demo Video at https://www.youtube.com/watch?v=GptkNWjmCzk
+*Demo* Video at https://www.youtube.com/watch?v=GptkNWjmCzk
 
 Sample Project is TestBlocklyHtml from this repository
+
+*Contributors welcome!* - please send email to <img src='email.png' height='10px' title = "please write email from image" alt='email'></img>
 
 # How to install NETCore2Blockly in a .NET Core 3.1  WebAPI / MVC application
 
@@ -52,6 +54,16 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
 }
 ```
 
+
+## Step 4:
+
+Run the application and browse to  /blockly.html
+
+That's all!
+
+
+## Working with remote data
+
 ### For Swagger ( local or remote  - CORS activated if remote)
 
 app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json")
@@ -66,17 +78,11 @@ app.UseBlocklyOData("OdataV4", "https://services.odata.org/TripPinRESTierService
 app.UseBlocklyGraphQL("localGraphql", "/graphql");
 
 
-## For authentication 
+### For authentication 
  
 See links 22 for JWT and 31 for Auth0  from https://netcoreblockly.herokuapp.com/ 
 
 Also, it works with AD enabled - see Authentication group.
-
-## Step 4:
-
-Run the application and browse to  /blockly.html
-
-That's all!
 
 
 ## More information
