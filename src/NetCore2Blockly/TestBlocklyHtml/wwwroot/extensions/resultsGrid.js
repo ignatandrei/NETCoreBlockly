@@ -4,11 +4,14 @@ var objectsForGrid = [];
 var hot;
 function initGrid(gridElement) {
     //console.log(gridElement);
-    hot = new gridjs.Grid({
-        columns: ['Step'],
-        data: [['next steps']]
+    hot = new Tabulator(gridElement, {
+        columns: [{ title: 'Step',field:'id' }],
+        layout: "fitColumns",    
 
-    }).render(gridElement);
+    });
+    var data = [{ id: 'next steps!' }]
+    hot.replaceData(data);
+    hot.redraw(true);
 }
 function AddStringToGrid(value) {
     if (value.startsWith("{") && value.endsWith("}")) {
@@ -36,9 +39,9 @@ function AddStringToGrid(value) {
 }
 function AddDataToGrid(value, gridElement) {
     dataObject.push([value]);
-    gridElement.innerHTML = '';
-    hot.updateConfig({ data: dataObject });
-    hot.forceRender();
+    //gridElement.innerHTML = '';
+    //hot.addData([dataObject]);
+    //hot.redraw(true);
     //window.alert(JSON.stringify(value) + typeof value);
     if (typeof value === 'string') {
         AddStringToGrid(value);
@@ -53,11 +56,13 @@ function ClearDataGrid() {
     dataObject = [];
     objectsForGrid = [];
     if (hot != null) {
-        hot.updateConfig({
-            columns: ['Step'],
-            data: [['next steps']]
-        });
-        hot.forceRender();
+        
+        hot.setColumns([{ title: 'Step',field:'id' }]);
+        hot.replaceData([{ id: 'next steps here' }]);
+        hot.redraw(true);           
+
+        
+        
     }
 
 }
@@ -88,7 +93,7 @@ function FinishGrid() {
     for (var i = 0; i < obj.length; i++) {
         var data = obj[i];
         //console.log(data);
-        var res = [i + 1];
+        var res = { Nr : i + 1 };
 
         for (var p = 0; p < headers.length; p++) {
             var key = headers[p];
@@ -97,28 +102,29 @@ function FinishGrid() {
             if (data && data.hasOwnProperty(key)) {
                 var val = data[key];
                 if (typeof val === "object")
-                    res.push(JSON.stringify(val));
+                    res[key]=JSON.stringify(val);
                 else
-                    res.push(val);
+                    res[key]=val;
             }
             else {
                 if (typeof data === 'string' && p===0) {
-                    res.push(data);
+                    res[key]=data;
                 }
                 else {
-                    res.push('');
+                    res[key]='';
                 }
             }
         }
         fullData.push(res);
     }
     headers.splice(0, 0, "Nr");
-    hot.updateConfig({
-        columns: headers,
-        data: fullData
-    });
-    hot.forceRender();
+    var hs = headers.map(it => { return { title: it, field: it } });
 
+    hot.setColumns(hs);
+    hot.replaceData(fullData);
+    hot.redraw(true);           
+    
+    
 
 }
 

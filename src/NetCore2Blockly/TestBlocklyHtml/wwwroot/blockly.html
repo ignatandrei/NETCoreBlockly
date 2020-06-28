@@ -23,8 +23,8 @@
     <script src="others/FileSaver.js?v=version"></script>
     <script src="others/split.min.js?v=version"></script>
 
-    <script src="others/gridjs.production.min.js?v=version"></script>
-
+    <!--<script src="others/gridjs.production.min.js?v=version"></script>-->
+    <script src="others/tabulator.min.js?v=version"></script>
     <script src="blockly/Http/BlocklyXHRWrapper.js?v=version"></script>
     <script src="blockly/list/filterList.js?v=version"></script>
     <script src="blockly/converters/convertCSV.js?v=version"></script>
@@ -46,7 +46,7 @@
     <script src="blockly/workspaceSearch.js?v=version"></script>
     <script src="blockly/search/toolboxSearch.js?v=version"></script>
     <link rel="stylesheet" type="text/css" href="others/introjs.min.css?v=version" />
-    <link rel="stylesheet" type="text/css" href="others/mermain.min.css?v=version" />
+    <link rel="stylesheet" type="text/css" href="others/tabulator.min.css?v=version" />
 
     <!--doNotCopyToFinal-->
     <script src="doNotCopy/testing.js?v=version"></script>
@@ -175,10 +175,11 @@
         window.addEventListener('resize', resizeBlocklyArea, false);
         resizeBlocklyArea();
     </script>
-
-    <div id="steps" style="display: inline-block; width: 96%;"></div>
+    <div>adsadads</div>
+    <div id="stepsA" style="display: inline-block; width: 96%;"></div>
+    <div>adsadads</div>
     <script>
-        var gridElement = document.getElementById('steps');
+        var gridElement = document.getElementById('stepsA');
         initGrid(gridElement);
     </script>
 
