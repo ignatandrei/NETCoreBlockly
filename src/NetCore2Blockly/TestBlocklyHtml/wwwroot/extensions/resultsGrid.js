@@ -97,34 +97,37 @@ function FinishGrid() {
 
         for (var p = 0; p < headers.length; p++) {
             var key = headers[p];
-            
+            var defKey = goodNameForKey(key);
             //console.log(`${key} ${data && data.hasOwnProperty(key)} `)
             if (data && data.hasOwnProperty(key)) {
                 var val = data[key];
                 if (typeof val === "object")
-                    res[key]=JSON.stringify(val);
+                    res[defKey]=JSON.stringify(val);
                 else
-                    res[key]=val;
+                    res[defKey]=val;
             }
             else {
                 if (typeof data === 'string' ) {
-                    res[key]=data;
+                    res[defKey]=data;
                 }
                 else {
-                    res[key]='';
+                    res[defKey]='';
                 }
             }
         }
         fullData.push(res);
     }
     headers.splice(0, 0, "Nr");
-    var hs = headers.map(it => { return { title: it, field: it,  headerFilter: true} });
-
+    var hs = headers.map(it => { return { title: it, field: goodNameForKey(it),  headerFilter: false} });
+    //window.alert(JSON.stringify(hs));
+    //window.alert(JSON.stringify(fullData));
     hot.setColumns(hs);
     hot.replaceData(fullData);
     hot.redraw(true);           
-    
-    
-
 }
 
+function goodNameForKey(key) {
+    var ret = key;
+    ret = ret.replace(".", "_");
+    return ret;
+}
