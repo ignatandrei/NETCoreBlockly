@@ -9,7 +9,11 @@ function initGrid(gridElement) {
         layout: "fitColumns",   
         dataTree: false,
         dataTreeStartExpanded: false,
-
+        movableRows: true,
+        movableColumns: true,
+        selectable: true,
+        selectableRangeMode: "click",
+        clipboard: "copy",
     });
     var data = [{ id: 'next steps!' }]
     hot.replaceData(data);
@@ -126,6 +130,7 @@ function FinishGrid() {
     headers.splice(0, 0, "Nr");
     allHeaders.splice(0, 0, "Nr");
     var hs = allHeaders.map(it => { return { title: it, field: goodNameForKey(it),  headerFilter: true} });
+    //hs.splice(0, 0, { formatter: "rowSelection", titleFormatter: "rowSelection", align: "center", headerSort: false });
     //window.alert(JSON.stringify(hs));
     //window.alert(JSON.stringify(fullData));
     hot.setColumns(hs);
@@ -137,4 +142,10 @@ function goodNameForKey(key) {
     var ret = key;
     ret = ret.replace(".", "_");
     return ret;
+}
+function copyClip() {
+    hot.copyToClipboard("all");
+}
+function copyCSV() {
+    hot.download("csv", "data.csv", { bom: true });
 }
