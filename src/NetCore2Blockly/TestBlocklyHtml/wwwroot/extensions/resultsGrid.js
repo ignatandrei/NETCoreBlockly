@@ -107,7 +107,7 @@ function FinishGrid() {
                     res[key]=val;
             }
             else {
-                if (typeof data === 'string' && p===0) {
+                if (typeof data === 'string' ) {
                     res[key]=data;
                 }
                 else {
@@ -118,7 +118,7 @@ function FinishGrid() {
         fullData.push(res);
     }
     headers.splice(0, 0, "Nr");
-    var hs = headers.map(it => { return { title: it, field: it } });
+    var hs = headers.map(it => { return { title: it, field: it,  headerFilter: true} });
 
     hot.setColumns(hs);
     hot.replaceData(fullData);
