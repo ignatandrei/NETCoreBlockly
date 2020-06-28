@@ -6,7 +6,9 @@ function initGrid(gridElement) {
     //console.log(gridElement);
     hot = new Tabulator(gridElement, {
         columns: [{ title: 'Step',field:'id' }],
-        layout: "fitColumns",    
+        layout: "fitColumns",   
+        dataTree: false,
+        dataTreeStartExpanded: false,
 
     });
     var data = [{ id: 'next steps!' }]
@@ -57,8 +59,8 @@ function ClearDataGrid() {
     objectsForGrid = [];
     if (hot != null) {
         
-        hot.setColumns([{ title: 'Step',field:'id' }]);
-        hot.replaceData([{ id: 'next steps here' }]);
+        hot.setColumns([{ title: 'Step', field: 'id' }, { title: 'Value', field: 'val' }]);
+        hot.replaceData([{id:'1', val: 'next steps here' }]);
         hot.redraw(true);           
 
         
@@ -88,26 +90,30 @@ function FinishGrid() {
     var mySet = new Set(headers);
     headers = Array.from(mySet);
     
-
+    var allHeaders = [...headers];
     var fullData = [];
     for (var i = 0; i < obj.length; i++) {
         var data = obj[i];
         //console.log(data);
         var res = { Nr : i + 1 };
-
+        //res["_children"] = [];
         for (var p = 0; p < headers.length; p++) {
             var key = headers[p];
             var defKey = goodNameForKey(key);
             //console.log(`${key} ${data && data.hasOwnProperty(key)} `)
             if (data && data.hasOwnProperty(key)) {
                 var val = data[key];
-                if (typeof val === "object")
-                    res[defKey]=JSON.stringify(val);
+                if (typeof val === "object") {
+                    res[defKey] = JSON.stringify(val);
+                    
+                    //res["_children"].push(val);
+                    //allHeaders.push(...Object.keys(val));
+                }
                 else
                     res[defKey]=val;
             }
             else {
-                if (typeof data === 'string' ) {
+                if (typeof data === 'string' && p===0) {
                     res[defKey]=data;
                 }
                 else {
@@ -118,7 +124,8 @@ function FinishGrid() {
         fullData.push(res);
     }
     headers.splice(0, 0, "Nr");
-    var hs = headers.map(it => { return { title: it, field: goodNameForKey(it),  headerFilter: false} });
+    allHeaders.splice(0, 0, "Nr");
+    var hs = allHeaders.map(it => { return { title: it, field: goodNameForKey(it),  headerFilter: true} });
     //window.alert(JSON.stringify(hs));
     //window.alert(JSON.stringify(fullData));
     hot.setColumns(hs);
