@@ -4,10 +4,42 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15212284..1.1.2020.15487931
+git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15487931..1.1.2020.15546036
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
+
+## 1.1.2020.15546036 vibrant-ride-20200628222036
+
+ #### [tabulator instead of grid.js] 
+ Author ignatandrei on 2020-06-29 01:18:55 +0300      
+
+ hash 4cd3815 4cd381596fc519d26cddff2e0980f14d8b2c97a5
+
+ #### [csv , clipboard] 
+ Author ignatandrei on 2020-06-29 01:12:54 +0300      
+
+ hash 3b9a15f 3b9a15f1f13fe7cc6b49f190c5473690aad20d55
+
+ #### [filter] 
+ Author ignatandrei on 2020-06-29 00:51:34 +0300 
+
+ hash bf975ad bf975ad314b51a94fcadd98dfdcde8fe4c0d9438
+
+ #### [tabulator not supports .]
+ Author ignatandrei on 2020-06-29 00:32:22 +0300
+
+ hash 04faaf0 04faaf0b31778febce4dc31e31e003f201adbd55
+
+ #### [filter]
+ Author ignatandrei on 2020-06-29 00:26:06 +0300
+
+ hash 19b49df 19b49df73c7980355c66402e5937140d937807b3
+
+ #### [tabulator]
+ Author ignatandrei on 2020-06-29 00:10:43 +0300
+
+ hash f0223c4 f0223c4613544591273aff4e906b6d13ae064c85
 
 ## 1.1.2020.15487931 wizened-seahorse-20200628061211 [documentation and filter] 
 
