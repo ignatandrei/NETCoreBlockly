@@ -175,16 +175,16 @@
         window.addEventListener('resize', resizeBlocklyArea, false);
         resizeBlocklyArea();
     </script>
-    <div>
-        <a href="javascript:copyClip()">Copy Clipboard</a>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="javascript:copyCSV()">CSV</a>
-    </div>
     <div id="steps" style="display: inline-block; width: 96%;"></div>
     <script>
         var gridElement = document.getElementById('steps');
         initGrid(gridElement);
     </script>
+    <div>
+        <a href="javascript:copyClip()">Copy Clipboard</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="javascript:copyCSV()">CSV</a>
+    </div>
 
     <!--doNotCopyToFinal-->
     <div>Saved blocks</div>
@@ -735,9 +735,9 @@
                     <block type="getproperty"></block>
                     <block type="object_create"></block>
                     <!--<block type="object_from_json"></block>
-            <block type="object_to_json"></block>
-            <block type="object_get"></block>
-            <block type="object_set"></block>-->
+                    <block type="object_to_json"></block>
+                    <block type="object_get"></block>
+                    <block type="object_set"></block>-->
                 </category>
                 <category name="DateTime" id="DateTime">
                     <block type="fromUnixTimeToDate">
@@ -787,7 +787,7 @@
                     </value>
                 </block>
             </category>
-        
+
             <category id="XHR" name="Request">
                 <block type="headersbeforehttp">
                     <value name="HttpDomain">
@@ -1146,7 +1146,7 @@
         html = html.replace('<category name="OtherGraphQL"></category>', xmlStringGraphQL);
 
         var customBlocksText = '';
-        
+
         if ('customBlocks' in window) {
             customBlocksText = customBlocks;
         }
@@ -1316,11 +1316,11 @@
                     arrHeaders = heads[hostname];
                 }
                 var withCreds = false;
-                
+
                 if (hostname in creds) {
                     withCreds = creds[hostname];
                 }
-                                
+
                 return doGet(href, callback, arrHeaders, withCreds);
             }
             interpreter.setProperty(globalObject, 'getXhr',
@@ -1343,7 +1343,7 @@
                     if (hostname in creds) {
                         withCreds = creds[hostname];
                     }
-                    doPost(href, objectToPost, callback, arrHeaders,withCreds);
+                    doPost(href, objectToPost, callback, arrHeaders, withCreds);
                 }
                 catch (e) {
                     alert("is an error" + e);
@@ -1369,7 +1369,7 @@
                     if (hostname in creds) {
                         withCreds = creds[hostname];
                     }
-                    doPut(href, objectToPost, callback,arrHeaders,withCreds);
+                    doPut(href, objectToPost, callback, arrHeaders, withCreds);
                 }
                 catch (e) {
                     alert("is an error" + e);
@@ -1396,7 +1396,7 @@
                     if (hostname in creds) {
                         withCreds = creds[hostname];
                     }
-                    doPatch(href, objectToPost, callback,arrHeaders, withCreds);
+                    doPatch(href, objectToPost, callback, arrHeaders, withCreds);
                 }
                 catch (e) {
                     alert("is an error" + e);
@@ -1424,7 +1424,7 @@
                         withCreds = creds[hostname];
                     }
 
-                    doDelete(href, callback,arrHeaders,withCreds);
+                    doDelete(href, callback, arrHeaders, withCreds);
                 }
                 catch (e) {
                     alert("is an error" + e);
