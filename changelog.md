@@ -4,11 +4,34 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15098133..1.1.2020.15212284
+git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15212284..1.1.2020.15487931
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
 
+## 1.1.2020.15487931 wizened-seahorse-20200628061211 [documentation and filter] 
+
+ #### [documentation and filter] 
+ Author ignatandrei on 2020-06-28 09:10:15 +0300      
+
+ hash c5cdbc0 c5cdbc0f930e535ce9844b551826cfede1d94c15
+
+ #### [added filter list]
+ Author ignatandrei on 2020-06-25 09:52:20 +0300
+
+ hash 2f5bf48 2f5bf482a1af2de642b0dec8a3675193be03b7c9
+
+ #### [adding first version of filter of list]
+ Author ignatandrei on 2020-06-25 09:04:51 +0300
+
+ hash 50cc067 50cc067989126490523ef117d38419e4e0591224
+
+ #### [alphabeticall order]
+ Author ignatandrei on 2020-06-25 08:01:49 +0300
+
+ hash 54c39aa 54c39aa415506b40d789a4250e7b92cf87bae0ea
+
+ 
 ## 1.1.2020.15212284 amber-deer-20200625013803
 
  #### [improved display grid  and json for header]    
