@@ -9,13 +9,26 @@ function initGrid(gridElement) {
         layout: "fitColumns",   
         dataTree: false,
         dataTreeStartExpanded: false,
-        movableRows: true,
+        movableRows: false,
         movableColumns: true,
-        selectable: true,
+        selectable: false,
         selectableRangeMode: "click",
         clipboard: "copy",
+        footerElement: `<div>
+        <a href="javascript:copyClip()">Copy Clipboard</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="javascript:copyCSV()">CSV</a>
+    </div>`,
+        placeholder: "please press execute button", 
+        tooltips: function (cell) {
+            //cell - cell component
+
+            //function should return a string for the tooltip of false to hide the tooltip
+            return cell.getColumn().getField() + " - " + cell.getValue(); //return cells "field - value";
+        },
+
     });
-    var data = [{ id: 'next steps!' }]
+    var data = []
     hot.replaceData(data);
     hot.redraw(true);
 }
@@ -64,7 +77,7 @@ function ClearDataGrid() {
     if (hot != null) {
         
         hot.setColumns([{ title: 'Step', field: 'id' }, { title: 'Value', field: 'val' }]);
-        hot.replaceData([{id:'1', val: 'next steps here' }]);
+        hot.replaceData([]);
         hot.redraw(true);           
 
         
@@ -129,7 +142,15 @@ function FinishGrid() {
     }
     headers.splice(0, 0, "Nr");
     allHeaders.splice(0, 0, "Nr");
-    var hs = allHeaders.map(it => { return { title: it, field: goodNameForKey(it),  headerFilter: true} });
+    var hs = allHeaders.map(it => {
+        return {
+
+            cellClick: function (e, cell) {
+                alert("The cell has a value of:" + cell.getValue()); //display the cells value
+            },
+            title: it, field: goodNameForKey(it), headerFilter: true
+        }
+    });
     //hs.splice(0, 0, { formatter: "rowSelection", titleFormatter: "rowSelection", align: "center", headerSort: false });
     //window.alert(JSON.stringify(hs));
     //window.alert(JSON.stringify(fullData));
