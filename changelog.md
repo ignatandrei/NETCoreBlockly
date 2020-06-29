@@ -4,12 +4,41 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15487931..1.1.2020.15546036
+git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15546036..1.1.2020.15554773
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
 
-## 1.1.2020.15546036 vibrant-ride-20200628222036
+
+## 1.1.2020.15554773  dinky-swan-20200629004613 improvements at display with tabulator
+
+ #### [deploy tabulator with tooltips for multiple cases of data] 
+ Author ignatandrei on 2020-06-29 03:44:33 +0300 
+
+ hash 189baa1 189baa177f31ddbed5775d337d77fa5a040e748c
+
+ #### [more and more flexible] 
+ Author ignatandrei on 2020-06-29 03:43:31 +0300 
+
+ hash a4a1cdc a4a1cdcbaaa56fb4ded337d85c000cafe6ce4c31
+
+ #### [with custom alert] 
+ Author ignatandrei on 2020-06-29 03:08:48 +0300 
+
+ hash 21e84e7 21e84e78f93743930b0f39384170a0787ec9f1f1
+
+ #### [tooltip]
+ Author ignatandrei on 2020-06-29 02:55:48 +0300
+
+ hash 5750dfd 5750dfd0c6784a2447bc3eafac7a0273963eb225
+
+ #### [copy csv down]
+ Author ignatandrei on 2020-06-29 01:49:12 +0300
+
+ hash 9ac054a 9ac054abfcee1ba6cfb825ba0a46496de50393b4
+
+
+## 1.1.2020.15546036 vibrant-ride-20200628222036 added tabulator to replace gridjs
 
  #### [tabulator instead of grid.js] 
  Author ignatandrei on 2020-06-29 01:18:55 +0300      
