@@ -111,6 +111,19 @@ See link 1  from https://netcoreblockly.herokuapp.com/
 
 See link 6,7,8,9,   from https://netcoreblockly.herokuapp.com/ 
 
+### Adding your blocks
+
+Please see how I add  CustomBlocksForUI below
+
+```csharp
+app.UseBlocklyUI(new BlocklyUIOptions()
+            {
+                StartBlocks = StartBlocksForUI,
+                HeaderName = "Demo test for .NET Core WebAPI To Blockly ( demo site with Blockly +  swaggers + odata loaded + graphql)",
+                CustomBlocks = CustomBlocksForUI
+            });
+```
+
 ## More information
 
 Download the source code, run the TestBlocklyHtml project ( in the test folder ).
