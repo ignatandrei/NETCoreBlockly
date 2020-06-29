@@ -35,7 +35,7 @@ namespace NetCore2Blockly
         internal IApplicationBuilder app;
 
         #region swaggers
-        private Dictionary<string, BlocklyFileGenerator> swaggers;
+        internal Dictionary<string, BlocklyFileGenerator> swaggers;
         private string _SwaggerBlocklyToolBoxFunctionDefinition;
         private string _SwaggerBlocklyAPIFunctions;
         private string _SwaggerBlocklyToolBoxValueDefinition;
@@ -683,6 +683,8 @@ namespace NetCore2Blockly
         private readonly IApiDescriptionGroupCollectionProvider api;
         private readonly ActionDescriptorCollectionProvider cp;
 
+        internal BlocklyFileGenerator blocklyFileGeneratorWebAPI;
+
         internal void registerCallback()
         {
             cp.GetChangeToken().RegisterChangeCallback(a =>
@@ -725,11 +727,11 @@ namespace NetCore2Blockly
 
             var e = new EnumerateWebAPI(api);
             var actionList = e.CreateActionList();
-            var blocklyFileGenerator = new BlocklyFileGenerator(actionList);
-            BlocklyTypesDefinition = blocklyFileGenerator.GenerateNewBlocklyTypesDefinition();
-            BlocklyAPIFunctions = blocklyFileGenerator.GenerateBlocklyAPIFunctions();
-            BlocklyToolBoxValueDefinition = blocklyFileGenerator.GenerateBlocklyToolBoxValueDefinitionFile();
-            BlocklyToolBoxFunctionDefinition = blocklyFileGenerator.GenerateBlocklyToolBoxFunctionDefinitionFile();
+            blocklyFileGeneratorWebAPI = new BlocklyFileGenerator(actionList);
+            BlocklyTypesDefinition = blocklyFileGeneratorWebAPI.GenerateNewBlocklyTypesDefinition();
+            BlocklyAPIFunctions = blocklyFileGeneratorWebAPI.GenerateBlocklyAPIFunctions();
+            BlocklyToolBoxValueDefinition = blocklyFileGeneratorWebAPI.GenerateBlocklyToolBoxValueDefinitionFile();
+            BlocklyToolBoxFunctionDefinition = blocklyFileGeneratorWebAPI.GenerateBlocklyToolBoxFunctionDefinitionFile();
             if (app == null)
                 return;
             var serverAddresses = app.ServerFeatures.Get<IServerAddressesFeature>();

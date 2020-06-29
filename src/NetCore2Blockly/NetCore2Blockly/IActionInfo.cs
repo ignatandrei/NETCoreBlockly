@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace NetCore2Blockly
 {
+    [DebuggerDisplay("{Verb} {RelativeRequestUrl}")]
     /// <summary>
     /// generic action info
     /// </summary>

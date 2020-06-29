@@ -86,7 +86,7 @@ namespace NetCore2Blockly
         {
             serviceCollection.AddSingleton<GenerateBlocklyFilesHostedService>();
             serviceCollection.AddHostedService(p => p.GetService<GenerateBlocklyFilesHostedService>());
-
+            //serviceCollection.AddTransient<BlocklyRegisterMiddleware>();
             return serviceCollection;
         }
         /// <summary>
@@ -175,6 +175,13 @@ ApplicationServices
              });
             return app;
         }
+        //public static IApplicationBuilder UseBlocklyRegisterMiddleware(this IApplicationBuilder  builder)
+        //{
+        //    var service = builder.ApplicationServices.GetService<GenerateBlocklyFilesHostedService>();
+
+        //    //builder.UseMiddleware<BlocklyRegisterMiddleware>();
+        //    return builder;
+        //}
         /// <summary>
         /// add GraphQL endpoints
         /// </summary>

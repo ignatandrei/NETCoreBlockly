@@ -12,7 +12,7 @@ namespace NetCore2Blockly
     public class BlocklyFileGenerator 
     {
         JavascriptGenerator _jsGenerator;
-        List<ActionInfo> _actionList;
+        internal List<ActionInfo> _actionList;
 
 
         /// <summary>

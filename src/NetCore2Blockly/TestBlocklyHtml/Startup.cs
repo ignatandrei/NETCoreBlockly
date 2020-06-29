@@ -66,7 +66,11 @@ namespace TestBlocklyHtml
                                   });
             });
             services.AddOData();
-            services.AddControllers().AddJsonOptions(options =>
+            services.AddControllers(
+                config => config.Filters.Add<BlocklyActionRegisterFilter>()
+                )
+                
+                .AddJsonOptions(options =>
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
             #region for odata
             services.AddMvcCore(options =>
@@ -247,9 +251,10 @@ namespace TestBlocklyHtml
 
             app.UseAuthentication();
             app.UseAuthorization();
+
             app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
             app.UseGraphQL<DepartmentSchema>();
-
+            //app.UseBlocklyRegisterMiddleware();
             app.UseEndpoints(endpoints =>
             {
                 //if (edmModel != null)

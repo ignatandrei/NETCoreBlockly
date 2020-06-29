@@ -152,6 +152,11 @@ namespace TestBlocklyHtml.Controllers
                 "http://msprogrammer.serviciipeweb.ro/"
             };
         }
+        [HttpGet()]
+        public string boolTest(bool data)
+        {
+            return "you give " + data;
+        }
 
-    }
+        }
 }

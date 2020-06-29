@@ -425,11 +425,6 @@
             Gets the OGT name. ie DepartmentOGT
             </summary>
         </member>
-        <member name="T:NetCore2Blockly.ActionInfo">
-            <summary>
-            generic action info
-            </summary>
-        </member>
         <member name="M:NetCore2Blockly.ActionInfo.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:NetCore2Blockly.ActionInfo"/> class.
