@@ -146,7 +146,9 @@ function FinishGrid() {
         return {
 
             cellClick: function (e, cell) {
-                alert("The cell has a value of:" + cell.getValue()); //display the cells value
+                var row = cell.getRow().getData().Nr;
+                var col = cell.getColumn().getField();
+                alert(`The row at : ${row} , col: ${row} has value :\n ` + cell.getValue()); //display the cells value
             },
             title: it, field: goodNameForKey(it), headerFilter: true
         }
