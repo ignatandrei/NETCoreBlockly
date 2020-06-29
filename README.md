@@ -17,7 +17,7 @@ NETCore2Blockly generates [Blockly](https://developers.google.com/blockly) block
 
 Sample Project is TestBlocklyHtml from this repository
 
-*Contributors welcome!* - please send email to <img src='email.png' height='10px' title = "please write email from image" alt='email'></img>
+*Contributors welcome!* - please send email to <img src='email.png' height='10px' title = "please write email from image" alt='email'></img> or see issues tab.
 
 # How to install NETCore2Blockly in a .NET Core 3.1  WebAPI / MVC application in 3 steps + run application
 
@@ -139,7 +139,7 @@ and
 
 and follow the code.
 
-All other code is just boilerplate for Swagger, OData,GraphQL that are mandataory for demo'ing the application, not for Blockly2NetCore itself.
+All other code is just boilerplate for Swagger, OData,GraphQL that are mandatory for demo'ing the application, not for Blockly2NetCore itself.
 
 
 ## Contributors ✨
