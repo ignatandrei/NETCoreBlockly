@@ -9,6 +9,7 @@ namespace TestBlocklyHtml.GraphQL
         public DepartmentSchema(IDependencyResolver resolver) : base(resolver)
         {
             Query = resolver.Resolve<GetAllQuery>();
+            Mutation = resolver.Resolve<Mutations>();
         }
     }
 }

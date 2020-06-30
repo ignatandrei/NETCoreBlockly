@@ -8,6 +8,9 @@ using TestBlocklyHtml.DB;
 
 namespace TestBlocklyHtml.GraphQL
 {
+    /// <summary>
+    /// Repository for DB interaction for GraphQL
+    /// </summary>
     public class DepartmentRepository
     {
         private readonly testsContext _context;
@@ -26,7 +29,16 @@ namespace TestBlocklyHtml.GraphQL
 
         public async Task<Department> GetOneDepartment(int id)
         {
-            return await _context.Department.AsQueryable().FirstOrDefaultAsync(dep => dep.Iddepartment == id);
+            return await _context.Department
+                .AsQueryable()
+                .FirstOrDefaultAsync(dep => dep.Iddepartment == id);
+        }
+
+        //Shoud return maybe the success or failure of operation
+        public async Task<int> AddDepartment(Department department)
+        {
+            _context.Department.Add(department);
+            return await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Employee>> GetEmployees()
