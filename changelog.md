@@ -4,10 +4,37 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15546036..1.1.2020.15554773
+git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15554773..1.1.2020.15651236
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
+
+## 1.1.2020.15651236 winsome-fly-20200630033355
+
+ #### [documentation and default for false] 
+ Author ignatandrei on 2020-06-30 06:31:39 +0300      
+
+ hash 3b93809 3b93809a754db5728a52d6e6cc03108514f6ee3f
+
+ #### [default false and try #124] 
+ Author ignatandrei on 2020-06-29 22:07:08 +0300 
+
+ hash e16c3c9 e16c3c9d2f949bd1c8c2c5117be669159d5177df
+
+ #### [minor spelling and contributors] 
+ Author ignatandrei on 2020-06-29 07:49:15 +0300 
+
+ hash 3f24508 3f24508e4b9ebabd5c606236c0385aec6c8cef05
+
+ #### [improved docs for  CustomBlocksForUI]
+ Author ignatandrei on 2020-06-29 07:31:36 +0300
+
+ hash 8fb7868 8fb7868f5b44ebe7e3fd1d92b57f0dde24659934
+
+ #### [separating]
+ Author ignatandrei on 2020-06-29 07:26:25 +0300
+
+ hash ce86972 ce8697222a58553ca8d74d4b535a867a7ce93fd8
 
 
 ## 1.1.2020.15554773  dinky-swan-20200629004613 improvements at display with tabulator
