@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
+using NetCore2Blockly.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,6 +14,7 @@ namespace NetCore2Blockly
 {
     public class BlocklyActionRegisterFilter : IActionFilter
     {
+        
         private readonly GenerateBlocklyFilesHostedService hosted;
 
         public BlocklyActionRegisterFilter(GenerateBlocklyFilesHostedService hosted)
@@ -26,32 +28,33 @@ namespace NetCore2Blockly
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
+            return;
             var req = context.HttpContext.Request;
             var url = req.Path.Value;
             var m = req.Method.ToUpper();
             var ad = context.ActionDescriptor as ControllerActionDescriptor;
 
             var rv = context.ActionArguments;
-            
+
             var possibleCandidatesMethod =
                 hosted
                 .blocklyFileGeneratorWebAPI?
                 ._actionList
                 .Where(it => it.Verb?.ToUpper() == m)
-                .Select(it=>it as ActionInfoFromNetAPI)
+                .Select(it => it as ActionInfoFromNetAPI)
                 .Where(it => ad.ControllerName.ToUpper() == it.ControllerName.ToUpper())
                 .ToArray();
             if (url.StartsWith("/"))
                 url = url.Substring(1);
             ActionInfo ai = null;
-            foreach(var item in possibleCandidatesMethod)
+            foreach (var item in possibleCandidatesMethod)
             {
                 var urlFromRoute = item.RelativeRequestUrl;
-                foreach(var kv in rv)
+                foreach (var kv in rv)
                 {
                     urlFromRoute = urlFromRoute.Replace("{" + kv.Key + "}", kv.Value.ToString());
                 }
-                if(urlFromRoute.StartsWith("/"))
+                if (urlFromRoute.StartsWith("/"))
                     url = url.Substring(1);
                 if (url.ToLower() == urlFromRoute.ToLower())
                 {
@@ -59,10 +62,27 @@ namespace NetCore2Blockly
                     break;
                 }
             }
-            // Generate blocks from ai
-            //string x = possibleCandidatesMethod.Length.ToString();
-            
-
+            if (ai == null)
+            {
+                //log not found action in swagger
+                return;
+            }
+            var blockName = ai.GenerateCommandName();
+            var block = new StringBuilder($"<block type='{blockName}'>");
+            if (ai.HasParams)
+                foreach (var param in ai.Params)
+                {
+                    if (!rv.ContainsKey(param.Key))
+                        continue;
+                    //make the same for other blocks - this works with Get from example 7
+                    block.Append($"<value name='val_{param.Key}'>" );
+                    block.Append("<shadow type='math_number'>");
+                    block.Append($"<field name='NUM'>{rv[param.Key]}</field>");
+                    block.Append("</shadow>");
+                    block.Append($"</value>");
+                }
+            block.Append("</block>");
+            Console.WriteLine(block);
         }
     }
     //class BlocklyRegisterMiddleware : IMiddleware

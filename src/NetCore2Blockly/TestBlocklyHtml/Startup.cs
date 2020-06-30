@@ -66,10 +66,13 @@ namespace TestBlocklyHtml
                                   });
             });
             services.AddOData();
+            
             services.AddControllers(
+                #region blockly optional
                 config => config.Filters.Add<BlocklyActionRegisterFilter>()
+                #endregion
                 )
-                
+
                 .AddJsonOptions(options =>
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
             #region for odata
