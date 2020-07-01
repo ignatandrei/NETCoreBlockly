@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -46,6 +47,6 @@ namespace NetCore2Blockly
         /// <value>
         /// The run time blocks.
         /// </value>
-        public Func<string> RunTimeString { get; set; }
+        public Func<IServiceProvider, string> RunTimeString { get; set; }
     }
 }

@@ -221,7 +221,13 @@ namespace TestBlocklyHtml
                 StartBlocks = StartBlocksForUI,
                 HeaderName = "Demo test for .NET Core WebAPI To Blockly ( demo site with Blockly +  swaggers + odata loaded + graphql)",
                 CustomBlocks = CustomBlocksForUI,
-                RunTimeString = () => $"console.log('this is from runtime blocks {DateTime.Now.Ticks}');"
+                RunTimeString = c =>
+                {
+                    var str=$"console.log('this is from runtime blocks {DateTime.Now.Ticks}');";
+                    var val = c.GetRequiredService<IConfiguration>().GetSection("myCustomValue").Value;
+                    str += val;
+                    return str;
+                }
             }); 
 
             app.UseBlocklyLocalStorage();

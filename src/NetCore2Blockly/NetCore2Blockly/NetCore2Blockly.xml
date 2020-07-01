@@ -166,7 +166,7 @@
             The custom blocks.
             </value>
         </member>
-        <member name="P:NetCore2Blockly.BlocklyUIOptions.RunTimeBlocks">
+        <member name="P:NetCore2Blockly.BlocklyUIOptions.RunTimeString">
             <summary>
             Gets or sets the run time blocks.
             </summary>
