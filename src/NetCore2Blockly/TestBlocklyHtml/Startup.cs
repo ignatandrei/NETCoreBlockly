@@ -220,8 +220,9 @@ namespace TestBlocklyHtml
             {
                 StartBlocks = StartBlocksForUI,
                 HeaderName = "Demo test for .NET Core WebAPI To Blockly ( demo site with Blockly +  swaggers + odata loaded + graphql)",
-                CustomBlocks = CustomBlocksForUI
-            });
+                CustomBlocks = CustomBlocksForUI,
+                RunTimeString = () => $"console.log('this is from runtime blocks {DateTime.Now.Ticks}');"
+            }); 
 
             app.UseBlocklyLocalStorage();
             //app.UseBlocklySqliteStorage();

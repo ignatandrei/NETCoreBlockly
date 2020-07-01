@@ -283,7 +283,7 @@ new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
                     data= options.CustomBlocks?.Replace("`", @"\`");
                     str += $"{Environment.NewLine}var customBlocks = `{data}`;";
 
-
+                    str += $"{Environment.NewLine}{options.RunTimeString?.Invoke()};";
                     var result = Encoding.UTF8.GetBytes(str);
                     var m = new Memory<byte>(result);
                     await cnt.Response.BodyWriter.WriteAsync(m);

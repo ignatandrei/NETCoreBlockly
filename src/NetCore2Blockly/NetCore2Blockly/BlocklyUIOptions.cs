@@ -39,5 +39,13 @@ namespace NetCore2Blockly
         /// The custom blocks.
         /// </value>
         public string CustomBlocks { get; set; }
+
+        /// <summary>
+        /// Gets or sets the run time blocks.
+        /// </summary>
+        /// <value>
+        /// The run time blocks.
+        /// </value>
+        public Func<string> RunTimeString { get; set; }
     }
 }

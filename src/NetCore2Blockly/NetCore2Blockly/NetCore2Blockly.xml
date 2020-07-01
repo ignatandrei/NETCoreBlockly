@@ -166,6 +166,14 @@
             The custom blocks.
             </value>
         </member>
+        <member name="P:NetCore2Blockly.BlocklyUIOptions.RunTimeBlocks">
+            <summary>
+            Gets or sets the run time blocks.
+            </summary>
+            <value>
+            The run time blocks.
+            </value>
+        </member>
         <member name="T:NetCore2Blockly.EnumerateWebAPI">
             <summary>
             enumerate and generate
