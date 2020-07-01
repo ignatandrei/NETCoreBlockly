@@ -30,6 +30,7 @@ function initGrid(gridElement) {
     });
     var data = []
     hot.replaceData(data);
+    hot.clearFilter(true);
     hot.redraw(true);
 }
 function AddStringToGrid(value) {
@@ -78,6 +79,7 @@ function ClearDataGrid() {
         
         hot.setColumns([{ title: 'Step', field: 'id' }, { title: 'Value', field: 'val' }]);
         hot.replaceData([]);
+        hot.clearFilter(true);
         hot.redraw(true);           
 
         
@@ -201,6 +203,7 @@ function FinishGrid() {
     //window.alert(JSON.stringify(fullData));
     hot.setColumns(hs);
     hot.replaceData(fullData);
+    hot.clearFilter(true);
     hot.redraw(true);           
 }
 
