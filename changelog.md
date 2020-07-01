@@ -4,10 +4,38 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15554773..1.1.2020.15651236
+git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15651236..1.1.2020.15742396
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
+
+## 1.1.2020.15742396 elated-wilson-20200701045316 eliminate bug on filter when loading new data
+
+ #### [clear filter in tabulator when putting new data] 
+ Author ignatandrei on 2020-07-01 07:51:29 +0300        
+
+ hash 8e58941 8e5894127b6058894835491d877c708bf0c46e8d  
+
+ #### [show how to use nullable parameter] 
+ Author ignatandrei on 2020-07-01 07:46:31 +0300 
+
+ hash 075f4e8 075f4e88ace5d7cdc1771ed3e2f9fdcedbedbcc6
+
+ #### [change default text] 
+ Author ignatandrei on 2020-07-01 07:33:03 +0300 
+
+ hash 0bb5857 0bb58570d4d08318cbc07848f5e1abe4056f9532
+
+ #### [more work at #124]
+ Author ignatandrei on 2020-06-30 22:55:47 +0300
+
+ hash 1874ed1 1874ed1d5eb1a990680f7732319401d88121312b
+
+ #### [Added create mutation]
+ Author Cosmin Popescu on 2020-06-30 09:22:57 +0300
+
+ hash 35bcdc9 35bcdc96d04e76645a3635adda6c18532e9bfc93
+
 
 ## 1.1.2020.15651236 winsome-fly-20200630033355
 
