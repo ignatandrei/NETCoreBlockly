@@ -1,5 +1,6 @@
 ﻿//if you want to copy those blocks, make sure you replace \` with `
-var testBlocks = [
+var testBlocks =
+    [
     {
         name: 'save image',
         data: `<xml xmlns="https://developers.google.com/blockly/xml">
@@ -2297,7 +2298,52 @@ var testBlocks = [
   </block>
 </xml>
 `
-    }
+        },
+        {
+            name: 'test null passing',
+            data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="hO\`?kR*XbVn|uJq:?jJ_">n</variable>
+  </variables>
+  <block type="variables_set" inline="true" x="20" y="20">
+    <field name="VAR" id="hO\`?kR*XbVn|uJq:?jJ_">n</field>
+    <value name="VALUE">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="api_VariousTests_TestNullPassing__id__GET">
+            <value name="val_id">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="variables_get">
+                <field name="VAR" id="hO\`?kR*XbVn|uJq:?jJ_">n</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="api_VariousTests_TestNullPassing__id__GET">
+                <value name="val_id">
+                  <shadow type="math_number">
+                    <field name="NUM">0</field>
+                  </shadow>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>`
+        }
 ]
 
 

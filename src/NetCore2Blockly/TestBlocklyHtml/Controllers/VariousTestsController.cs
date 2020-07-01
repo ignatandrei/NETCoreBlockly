@@ -49,6 +49,11 @@ namespace TestBlocklyHtml.Controllers
             return (id == null) ? "from GET no parameter" : $"from GET parameter {id}";
         }
 
+        [HttpGet("{id?}")]
+        public string TestNullPassing(int? id)
+        {
+            return (id == null) ? "OK RESULT" : throw new Exception($"should not have {id}");
+        }
         [HttpPatch("{id?}")]
         public string ActionWithNullParameterPATCH(int? id)
         {
