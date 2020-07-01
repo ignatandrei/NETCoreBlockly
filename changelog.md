@@ -4,10 +4,23 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15651236..1.1.2020.15742396
+git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15742396..1.1.2020.15795594
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
+
+## 1.1.2020.15795594 interesting-raman-20200701193954 more configuration via runtime string
+
+ #### [more configuration via runtimestring] 
+ Author ignatandrei on 2020-07-01 22:37:56 +0300 
+
+ hash 35585e1 35585e1a8a46d4ec55255633fa1c733d5104331a
+
+ #### [added runtime blocks] 
+ Author ignatandrei on 2020-07-01 09:13:25 +0300 
+
+ hash 646010f 646010f1278ce7b7f2a5b4c8083d0e6806f8cb6f
+
 
 ## 1.1.2020.15742396 elated-wilson-20200701045316 eliminate bug on filter when loading new data
 
