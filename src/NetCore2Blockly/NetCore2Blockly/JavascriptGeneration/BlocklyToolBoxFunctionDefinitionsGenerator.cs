@@ -115,7 +115,7 @@ namespace NetCore2Blockly.JavascriptGeneration
 
                 case "text":
 
-                    return $@"<field name=""TEXT"">This is a text</field>";
+                    return $@"<field name=""TEXT"">please enter data</field>";
 
                 case "logic_boolean":
                     
