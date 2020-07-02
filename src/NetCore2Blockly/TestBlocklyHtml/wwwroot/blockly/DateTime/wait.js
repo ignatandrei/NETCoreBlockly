@@ -3,7 +3,7 @@ Blockly.Blocks['wait'] = {
       this.appendDummyInput()
           .appendField("delay")
           .appendField(new Blockly.FieldNumber(10, 0), "wait")
-          .appendField("in secs");
+          .appendField("secs");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       //this.setColour();
