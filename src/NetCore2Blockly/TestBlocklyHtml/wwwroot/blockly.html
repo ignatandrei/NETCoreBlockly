@@ -1515,7 +1515,14 @@
 
                     // Begin execution
                     highlightPause = false;
-                    myInterpreter = new Interpreter(latestCode, initApi);
+                    try {
+                        myInterpreter = new Interpreter(latestCode, initApi);
+                    }
+                    catch (e) {
+                        ShowInnerWorkings();
+                        window.alert('please copy the left output and report there is an error at ' + JSON.stringify(e));
+                        
+                    }
                     runner = function () {
                         if (myInterpreter) {
                             var hasMore = myInterpreter.run();

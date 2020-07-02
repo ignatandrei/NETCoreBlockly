@@ -791,7 +791,7 @@ var testBlocks =
     }
     ,
     {
-        name: 'https://github.com/ignatandrei/NETCoreBlockly/issues/12',
+        name: 'error in  javascript generated',
         data: `<xml xmlns="https://developers.google.com/blockly/xml">
     <variables>
         <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
