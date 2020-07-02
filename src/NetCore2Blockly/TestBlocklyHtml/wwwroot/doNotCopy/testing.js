@@ -2343,6 +2343,32 @@ var testBlocks =
     </next>
   </block>
 </xml>`
+        },
+        {
+            name: 'testing wait',
+            data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" x="62" y="139">
+    <value name="TEXT">
+      <block type="displayCurrentDate">
+        <field name="dateFormat">iso</field>
+      </block>
+    </value>
+    <next>
+      <block type="wait">
+        <field name="wait">10</field>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="displayCurrentDate">
+                <field name="dateFormat">iso</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>`
         }
 ]
 

@@ -33,6 +33,7 @@
     <script src="blockly/exporters/exportFile.js?v=version"></script>
     <script src="blockly/DateTime/DateTime.js?v=version"></script>
     <script src="blockly/DateTime/CurrentDateBlock.js?v=version"></script>
+    <script src="blockly/DateTime/wait.js?v=version"></script>
     <script src="/blockly/Http/blocklyXHR.js?v=version"></script>
     <script src="/blockly/Http/blocklyHeader.js?v=version"></script>
     <script src="/blockly/Http/blocklyCreds.js?v=version"></script>
@@ -746,6 +747,8 @@
                     </block>
                     <block type="displayCurrentDate">
                     </block>
+                    <block type="wait"></block>
+
                 </category>
 
             </category>
@@ -1322,6 +1325,14 @@
             }
             interpreter.setProperty(globalObject, 'getXhr',
                 interpreter.createAsyncFunction(wrapper));
+
+            var wrapper = (nr, callback) => {
+                console.log(`waiting seconds ${nr}`);
+                setTimeout(callback, nr * 1000);
+            };
+            interpreter.setProperty(globalObject, 'waitTime',
+                interpreter.createAsyncFunction(wrapper));
+
 
             var wrapper = (href, objectToPost, callback) => {
                 try {
