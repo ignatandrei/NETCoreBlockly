@@ -4,11 +4,52 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15742396..1.1.2020.15795594
+git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15795594..1.1.2020.15920923
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
 
+## 1.1.2020.15920923 orderly-squid-20200703062843 fix errors in interpreter, wait and create date
+
+ #### [wait blocks] 
+ Author ignatandrei on 2020-07-03 09:26:51 +0300      
+
+ hash a6b6354 a6b6354e51de51c097a1669fbbbdae8e8eaa0018
+
+ #### [show complicated wait] 
+ Author ignatandrei on 2020-07-03 09:10:11 +0300      
+
+ hash 6b0439b 6b0439bad99b5bf472db5e3e827ec8ae927c2c55
+
+ #### [modified wait to accept dates] 
+ Author ignatandrei on 2020-07-03 08:19:56 +0300      
+
+ hash ff6365d ff6365daa376d61bb34c0440643e508b19a43452
+
+ #### [putting in correct blocks]
+ Author ignatandrei on 2020-07-03 07:48:51 +0300
+
+ hash 66c6a50 66c6a503372afb8e0c8162f8155d942ad52acdb6
+
+ #### [added date from string]
+ Author ignatandrei on 2020-07-03 07:42:34 +0300
+
+ hash adf095b adf095b6bbd5162e7ae1b412961f0d38fa0f49c0
+
+ #### [no in]
+ Author ignatandrei on 2020-07-02 20:26:32 +0300
+
+ hash a90aaf1 a90aaf1744e839de000a8199822bf67731c380b3
+
+ #### [adding wait block]
+ Author ignatandrei on 2020-07-02 19:52:02 +0300
+
+ hash 55f279f 55f279f578c43049dd2cd07579de91f7685b03ff
+
+ #### [fix #12]
+ Author ignatandrei on 2020-07-02 19:12:58 +0300
+
+ hash 1f46695 1f4669587795c7f7059253a3d630dafd301ae83c
 ## 1.1.2020.15795594 interesting-raman-20200701193954 more configuration via runtime string
 
  #### [more configuration via runtimestring] 
