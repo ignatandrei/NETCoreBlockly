@@ -2557,6 +2557,73 @@ var testBlocks =
     </next>
   </block>
 </xml>`
+        },
+        {
+            name: 'test get property',
+            data: `<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="hO\`?kR*XbVn|uJq:?jJ_">n</variable>
+  </variables>
+  <block type="variables_set" x="72" y="76">
+    <field name="VAR" id="hO\`?kR*XbVn|uJq:?jJ_">n</field>
+    <value name="VALUE">
+      <block type="getproperty">
+        <field name="objectName">object</field>
+        <field name="prop">property</field>
+        <value name="ObjectToChange">
+          <block type="WeatherForecast_GET"></block>
+        </value>
+        <value name="PropertyName">
+          <shadow type="text">
+            <field name="TEXT">length</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="variables_get">
+            <field name="VAR" id="hO\`?kR*XbVn|uJq:?jJ_">n</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set">
+            <field name="VAR" id="hO\`?kR*XbVn|uJq:?jJ_">n</field>
+            <value name="VALUE">
+              <block type="getproperty">
+                <field name="objectName">object</field>
+                <field name="prop">property</field>
+                <value name="ObjectToChange">
+                  <block type="converttojson">
+                    <value name="ValueToConvert">
+                      <block type="WeatherForecast_GET"></block>
+                    </value>
+                  </block>
+                </value>
+                <value name="PropertyName">
+                  <shadow type="text">
+                    <field name="TEXT">length</field>
+                  </shadow>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="text_print">
+                <value name="TEXT">
+                  <block type="variables_get">
+                    <field name="VAR" id="hO\`?kR*XbVn|uJq:?jJ_">n</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>`
+
         }
 ]
 

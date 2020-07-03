@@ -49,10 +49,13 @@ Blockly.Blocks['modifyproperty'] = {
         };
         Blockly.JavaScript['getproperty'] = function (block) {
             var value_objecttochange = Blockly.JavaScript.valueToCode(block, 'ObjectToChange', Blockly.JavaScript.ORDER_ATOMIC);
-            var value_propertyname = Blockly.JavaScript.valueToCode(block, 'PropertyName', Blockly.JavaScript.ORDER_ATOMIC);
+            
+			
+			
+			var value_propertyname = Blockly.JavaScript.valueToCode(block, 'PropertyName', Blockly.JavaScript.ORDER_ATOMIC);
 
-            var code = value_objecttochange + "[" + value_propertyname + ']';
-            // TODO: Change ORDER_NONE to the correct strength.
+            var code = '(function(t){ if (typeof t === "string") return JSON.parse(t);  return t;}('+value_objecttochange+"))[" + value_propertyname + ']';
+            
             return [code, Blockly.JavaScript.ORDER_NONE];
         };
 
