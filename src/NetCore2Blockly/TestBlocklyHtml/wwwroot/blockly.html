@@ -608,7 +608,7 @@
         <sep></sep>
         <category name="advanced">
             <category id="catArray" name="Array">
-                <block type="filterlist">
+                <block type="filterList">
                     <value name="LIST">
                         <block type="variables_get">
                             <field name="VAR">list</field>
@@ -616,10 +616,23 @@
                     </value>
                     <value name="Logic">
                         <shadow type="text">
-                            <field name="TEXT">item.? == ?</field>
+                            <field name="TEXT">item.property == "value"</field>
                         </shadow>
                     </value>
                 </block>
+                <block type="mapList">
+                    <value name="LIST">
+                        <block type="variables_get">
+                            <field name="VAR">list</field>
+                        </block>
+                    </value>
+                    <value name="Logic">
+                        <shadow type="text">
+                            <field name="TEXT">item.property</field>
+                        </shadow>
+                    </value>
+                </block>
+
             </category>
             <category id="catAuthentication" name="Authentication">
                 <block type="credsforhttp">
