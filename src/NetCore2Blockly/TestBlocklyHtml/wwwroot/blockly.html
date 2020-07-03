@@ -756,7 +756,15 @@
                         </value>
                     </block>
 
-                    <block type="wait"></block>
+                    <block type="wait">
+
+                        <value name="VALUE">
+                            <shadow type="math_number">
+                                <field name="NUM">10</field>
+                            </shadow>
+                        </value>
+
+                    </block>
 
                 </category>
 
@@ -772,7 +780,9 @@
             </category>
 
             <category id="catHelpers" colour="160" name="Helpers">
-                <block type="wait_seconds"></block>
+                <block type="wait_seconds">
+                    
+                </block>
                 <block type="text_print">
                     <value name="TEXT">
                         <shadow type="text">
