@@ -15,8 +15,7 @@ Blockly.Blocks['wait'] = {
   };
 
   Blockly.JavaScript['wait'] = function(block) {
-    var number_wait = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ATOMIC)|| '';
-    delays = Number(number_wait);
-    var code= 'waitTime('+ 	delays+');';
+    var number_wait = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ATOMIC)|| '';    
+    var code= 'waitTime('+ 	number_wait+');';
 	return code;
   };

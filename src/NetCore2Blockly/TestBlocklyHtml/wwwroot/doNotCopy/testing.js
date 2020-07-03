@@ -2408,6 +2408,121 @@ var testBlocks =
     </next>
   </block>
 </xml>`
+        },
+        {
+            name: 'complicated wait',
+            data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="r%BRT7Cx]L1ow]Cgt#(.">DateToDiff</variable>
+    <variable id="bC%RDoP/K2A86d|6H}Bl">x</variable>
+  </variables>
+  <block type="procedures_defreturn" x="-3" y="-108">
+    <mutation>
+      <arg name="DateToDiff" varid="r%BRT7Cx]L1ow]Cgt#(."></arg>
+    </mutation>
+    <field name="NAME">SecondsDiffToNow</field>
+    <comment pinned="false" h="80" w="160">SecondsDiff</comment>
+    <statement name="STACK">
+      <block type="variables_set">
+        <field name="VAR" id="bC%RDoP/K2A86d|6H}Bl">x</field>
+        <value name="VALUE">
+          <block type="math_arithmetic">
+            <field name="OP">MINUS</field>
+            <value name="A">
+              <shadow type="math_number">
+                <field name="NUM">1</field>
+              </shadow>
+              <block type="variables_get">
+                <field name="VAR" id="r%BRT7Cx]L1ow]Cgt#(.">DateToDiff</field>
+              </block>
+            </value>
+            <value name="B">
+              <shadow type="math_number">
+                <field name="NUM">1</field>
+              </shadow>
+              <block type="displayCurrentDate">
+                <field name="dateFormat">unix</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set">
+            <field name="VAR" id="bC%RDoP/K2A86d|6H}Bl">x</field>
+            <value name="VALUE">
+              <block type="math_arithmetic">
+                <field name="OP">DIVIDE</field>
+                <value name="A">
+                  <shadow type="math_number">
+                    <field name="NUM">1</field>
+                  </shadow>
+                  <block type="variables_get">
+                    <field name="VAR" id="bC%RDoP/K2A86d|6H}Bl">x</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <shadow type="math_number">
+                    <field name="NUM">1000</field>
+                  </shadow>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="RETURN">
+      <block type="variables_get">
+        <field name="VAR" id="bC%RDoP/K2A86d|6H}Bl">x</field>
+      </block>
+    </value>
+  </block>
+  <block type="text_print" x="-49" y="78">
+    <value name="TEXT">
+      <shadow type="text">
+        <field name="TEXT">abc</field>
+      </shadow>
+      <block type="displayCurrentDate">
+        <field name="dateFormat">iso</field>
+      </block>
+    </value>
+    <next>
+      <block type="wait">
+        <value name="VALUE">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+          <block type="procedures_callreturn">
+            <mutation name="SecondsDiffToNow">
+              <arg name="DateToDiff"></arg>
+            </mutation>
+            <value name="ARG0">
+              <block type="DateFromText">
+                <value name="VALUE">
+                  <shadow type="text">
+                    <field name="TEXT">wait10Seconds</field>
+                  </shadow>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <shadow type="text">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="displayCurrentDate">
+                <field name="dateFormat">iso</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>`
         }
 ]
 

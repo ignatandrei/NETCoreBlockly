@@ -241,13 +241,15 @@
         function Loadtesting(id) {
             demoWorkspace.clear();
             var content = testBlocks[id].data;
+            var currentDate = new Date(new Date().getTime() + 10 * 1000).toISOString();
+            content = content.replace('wait10Seconds', currentDate);
             var dom = Blockly.Xml.textToDom(content);
             Blockly.Xml.domToWorkspace(dom, demoWorkspace);
             resetStepUi();
             runCode();
         }
         /*doNotCopyToFinal*/
-        var results = document.getElementById("results");
+        var results = document.getElementById("results");        
         results.innerHTML = tmpl("data_tmpl", { data: testBlocks });
         var nrToExecute;
         var runnerAll = function () {
