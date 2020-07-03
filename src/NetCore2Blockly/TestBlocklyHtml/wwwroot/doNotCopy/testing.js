@@ -2369,6 +2369,41 @@ var testBlocks =
     </next>
   </block>
 </xml>`
+        },
+        {
+            name: 'testing dates',
+            data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" x="140" y="69">
+    <value name="TEXT">
+      <shadow type="text">
+        <field name="TEXT">abc</field>
+      </shadow>
+      <block type="DateFromText">
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT">1970-04-16</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+          <block type="DateFromText">
+            <value name="VALUE">
+              <shadow type="text">
+                <field name="TEXT">1970-04-16T02:00:00</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>`
         }
 ]
 
