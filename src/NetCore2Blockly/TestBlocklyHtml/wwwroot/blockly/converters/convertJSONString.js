@@ -1,7 +1,7 @@
 ﻿        Blockly.Blocks['converttojson'] = {
             init: function () {
                 this.appendDummyInput()
-                    .appendField("ConvertToJSON");
+                    .appendField("json=>object");
                 this.appendValueInput("ValueToConvert")
                     .setCheck(null);
                 this.setInputsInline(true);

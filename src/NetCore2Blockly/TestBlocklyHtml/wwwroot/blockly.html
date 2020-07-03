@@ -732,8 +732,21 @@
             <category id="catJSBLocks" name="JSBlocks">
                 <!--<block type="wait_seconds"></block>-->
                 <category name="Objects" id="Objects">
-                    <block type="modifyproperty"></block>
-                    <block type="getproperty"></block>
+                    <block type="modifyproperty">
+                        <value name="PropertyName">
+                            <shadow type="text">
+                                <field name="TEXT">enter property name</field>
+                            </shadow>
+                        </value>
+                    </block>
+                    <block type="getproperty">
+                        <value name="PropertyName">
+                            <shadow type="text">
+                                <field name="TEXT">enter property name</field>
+                            </shadow>
+                        </value>
+
+                    </block>
                     <block type="object_create"></block>
                     <!--<block type="object_from_json"></block>
                     <block type="object_to_json"></block>
