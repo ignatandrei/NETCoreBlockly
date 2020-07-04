@@ -147,7 +147,12 @@ function AddObjectToFinishGrid() {
     }
     headers.splice(0, 0, "Nr");
     allHeaders.splice(0, 0, "Nr");
-    var hs = allHeaders.map(it => {
+    var hs = Headers(allHeaders); 
+    hot.setColumns(hs);
+    hot.replaceData(fullData);
+}
+function Headers(allHeaders) {
+    return allHeaders.map(it => {
         return {
 
             cellClick: function (e, cell) {
@@ -201,11 +206,6 @@ function AddObjectToFinishGrid() {
             }
         }
     });
-    //hs.splice(0, 0, { formatter: "rowSelection", titleFormatter: "rowSelection", align: "center", headerSort: false });
-    //window.alert(JSON.stringify(hs));
-    //window.alert(JSON.stringify(fullData));
-    hot.setColumns(hs);
-    hot.replaceData(fullData);
 }
 function AddStringToFinishGrid() {
 
@@ -215,60 +215,7 @@ function AddStringToFinishGrid() {
     }
     //window.alert(fullData.length);
     var allHeaders = ["Nr", "Text"];
-    var hs = allHeaders.map(it => {
-        return {
-
-            cellClick: function (e, cell) {
-                var row = cell.getRow().getData().Nr;
-                var col = cell.getColumn().getField();
-                alert(`The row at : ${row} , col: ${row} has value :\n ` + cell.getValue()); //display the cells value
-            },
-            title: it,
-            field: goodNameForKey(it),
-            headerFilter: true,
-            formatter: function (cell, formatterParams, onRendered) {
-                //cell - the cell component
-                //formatterParams - parameters set for the column
-                //onRendered - function to call when the formatter has been rendered
-                try {
-                    var value = cell.getValue().toString();
-                    //return value;
-                    if (value.length < 2)
-                        return value;
-                    if (value.startsWith("[") && value.endsWith("]")) {
-                        try {
-                            var arr = JSON.parse(value);
-                            var row = cell.getRow().getData().Nr;
-                            var col = cell.getColumn().getField();
-                            var id = col + "_" + row;
-                            onRendered(function () {
-                                //window.alert('test');
-                                var table = new Tabulator("#" + id, {
-                                    data: arr,
-                                    autoColumns: true,
-                                    layout: "fitDataFill",
-                                    headerSort: false,
-                                    tooltips: function (cell) {
-                                        return cell.getColumn().getField() + " - " + JSON.stringify(cell.getValue()); //return cells "field - value";
-                                    }
-                                });
-                            });
-                            return "<div id='" + id + "'>" + value + "</div>";
-
-                        }
-                        catch (err) {
-                            return value;
-                        }
-
-                    };
-                }
-                catch (e) {
-                    return value;
-                }
-                return cell.getValue();
-            }
-        }
-    });
+    var hs =Headers(allHeaders); 
     hot.setColumns(hs);
     hot.replaceData(fullData);
 
