@@ -73,7 +73,7 @@ console.log('start');
     
     await page.screenshot({ path: `${filename }-${browserType}.png` });
     if(!error){
-
+      return;
       const img1 = PNG.sync.read(fs.readFileSync(`${filename }-${browserType}.png`));
       const img2 = PNG.sync.read(fs.readFileSync(`oldImages\\${filename }-${browserType}.png`));
       const {width, height} = img1;
@@ -81,7 +81,7 @@ console.log('start');
 
       const difference = pixelmatch(img1.data, img2.data, diff.data, width, height, {threshold: 0.1});
       const compatibility = 100 - difference * 100 / (width * height);
-      if(compatibility <= 98.5)
+      if(compatibility <= 8.5)
         fs.writeFileSync(`diff_${compatibility}_${filename }-${browserType}.png`, PNG.sync.write(diff));
       else
         fs.unlinkSync(`${filename }-${browserType}.png`);
