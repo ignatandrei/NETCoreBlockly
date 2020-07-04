@@ -1,4 +1,8 @@
 const playwright = require('playwright');
+const fs = require('fs');
+const PNG = require('pngjs').PNG;
+const pixelmatch = require('pixelmatch');
+
 console.log('start');
 (async () => {
     var url='https://netcoreblockly.herokuapp.com';
@@ -60,14 +64,28 @@ console.log('start');
     var x=await handle.getProperty("value");
     var  text = (await x.jsonValue());
     var filename = name.replace(/[^a-z0-9]/gi, '_').toLowerCase();
-
+    var error = false;
     if(shouldComplete && (!text.includes("Program complete"))){
       console.log('possible error !! ');
       filename='error'+filename;
+      error =true;
     }
     
     await page.screenshot({ path: `${filename }-${browserType}.png` });
+    if(!error){
 
+      const img1 = PNG.sync.read(fs.readFileSync(`${filename }-${browserType}.png`));
+      const img2 = PNG.sync.read(fs.readFileSync(`oldImages\\${filename }-${browserType}.png`));
+      const {width, height} = img1;
+      const diff = new PNG({width, height});
+
+      const difference = pixelmatch(img1.data, img2.data, diff.data, width, height, {threshold: 0.1});
+      const compatibility = 100 - difference * 100 / (width * height);
+      if(compatibility <= 98.5)
+        fs.writeFileSync(`diff_${compatibility}_${filename }-${browserType}.png`, PNG.sync.write(diff));
+      else
+        fs.unlinkSync(`${filename }-${browserType}.png`);
+    }
   }
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
