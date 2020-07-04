@@ -241,8 +241,8 @@
         function Loadtesting(id) {
             demoWorkspace.clear();
             var content = testBlocks[id].data;
-            var currentDate = new Date(new Date().getTime() + 10 * 1000).toISOString();
-            content = content.replace('wait10Seconds', currentDate);
+            var currentDate = new Date(new Date().getTime() + 2 * 1000).toISOString();
+            content = content.replace('wait2Seconds', currentDate);
             var dom = Blockly.Xml.textToDom(content);
             Blockly.Xml.domToWorkspace(dom, demoWorkspace);
             resetStepUi();

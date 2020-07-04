@@ -2357,7 +2357,7 @@ var testBlocks =
       <block type="wait">
         <value name="VALUE">
       <shadow type="math_number">
-        <field name="NUM">10</field>
+        <field name="NUM">2</field>
       </shadow>
     </value>
         <next>
@@ -2500,7 +2500,7 @@ var testBlocks =
               <block type="DateFromText">
                 <value name="VALUE">
                   <shadow type="text">
-                    <field name="TEXT">wait10Seconds</field>
+                    <field name="TEXT">wait2Seconds</field>
                   </shadow>
                 </value>
               </block>
@@ -2539,7 +2539,7 @@ var testBlocks =
           <block type="DateFromText">
             <value name="VALUE">
               <shadow type="text">
-                <field name="TEXT">wait10Seconds</field>
+                <field name="TEXT">wait2Seconds</field>
               </shadow>
             </value>
           </block>

@@ -141,6 +141,13 @@ and follow the code.
 
 All other code is just boilerplate for Swagger, OData,GraphQL that are mandatory for demo'ing the application, not for Blockly2NetCore itself.
 
+## Testing
+
+There is a integration testing at \IntegrationTesting that tests the UI.
+Generates images and verifies " program complete " textbox.
+
+There are 42 tests that you can also click the demo at https://netcoreblockly.herokuapp.com/
+( see links on the bottom of the page)
 
 ## Contributors ✨
 
