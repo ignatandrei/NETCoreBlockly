@@ -4,10 +4,78 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15795594..1.1.2020.15920923
+git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15920923..1.1.2020.16046013
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
+
+## 1.1.2020.16046013 funny-shockley-20200704171332 - blocks: map , wait, getobject improved , tests Gui
+
+ #### [blocks: map , wait, getobject, tests] 
+ Author ignatandrei on 2020-07-04 20:11:40 +0300      
+
+ hash dac2488 dac2488bee904c0f9d68fc35d90a73c9b0d01927
+
+ #### [renounce the idea of comparing] 
+ Author ignatandrei on 2020-07-04 20:07:47 +0300        
+
+ hash 8de778e 8de778e703e2a2d63412f180204bc85f192dd278  
+
+ #### [Merge pull request #125 from ignatandrei/imgbot] 
+ Author Andrei Ignat on 2020-07-04 19:41:37 +0300       
+
+ hash 8fec833 8fec83323a44cf9db3270850cbfb2f01ba6d7693  
+
+ #### [[ImgBot] Optimize images]
+ Author ImgBotApp on 2020-07-04 16:39:26 +0000
+
+ hash a9f20b2 a9f20b2676c7e670193b4a67a1c2ae8512e4509d
+
+ #### [adding tests]
+ Author ignatandrei on 2020-07-04 19:38:22 +0300
+
+ hash ded8c7e ded8c7ef9bdbcc70611e8bc9019c0769da47a215
+
+ #### [refactor]
+ Author ignatandrei on 2020-07-04 18:46:07 +0300
+
+ hash 35dbf34 35dbf34057a0d7a8d92267b24b0d6407f9ffb603
+
+ #### [display text in grid]
+ Author ignatandrei on 2020-07-04 09:10:14 +0300
+
+ hash 184882c 184882cb464741508044ad518729ea163ae4cea8
+
+ #### [tests]
+ Author ignatandrei on 2020-07-04 08:33:42 +0300
+
+ hash 4b7e8ce 4b7e8ce5914871b12e51f0ab664a360b1cf9f617
+
+ #### [adding tests]
+ Author ignatandrei on 2020-07-04 07:26:40 +0300
+
+ hash b02b6a9 b02b6a95e31569e82eb0891e493f0d32020f1a71
+
+ #### [adding integration testing]
+ Author ignatandrei on 2020-07-03 22:50:01 +0300
+
+ hash 02da202 02da202ca8aea5c60ebf6cd209b775faab038c72
+
+ #### [map]
+ Author ignatandrei on 2020-07-03 21:06:39 +0300
+
+ hash 35653dd 35653dd64fabcc9244a245d8a0f269d1e6d6c7df
+
+ #### [ger rpoperty]
+ Author ignatandrei on 2020-07-03 20:30:32 +0300
+
+ hash f58d01a f58d01aba22bb09eeb24b76c5b1e393542ac5cab
+
+ #### [added shadow]
+ Author ignatandrei on 2020-07-03 19:34:54 +0300
+
+ hash 5772036 577203659b7844037a17fc6a4e0483544ca858b6
+
 
 ## 1.1.2020.15920923 orderly-squid-20200703062843 fix errors in interpreter, wait and create date
 
