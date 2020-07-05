@@ -2,6 +2,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fignatandrei%2FNETCoreBlockly.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fignatandrei%2FNETCoreBlockly?ref=badge_shield)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Build Status](https://dev.azure.com/ignatandrei0674/NETCoreBlockly/_apis/build/status/ignatandrei.NETCoreBlockly?branchName=master)](https://dev.azure.com/ignatandrei0674/NETCoreBlockly/_build?definitionId=9)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ignatandrei/NetCore2Blockly/blob/master/LICENSE)
@@ -173,3 +174,7 @@ If you want to contribute, that is plenty of work to be done -see issues tab .
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fignatandrei%2FNETCoreBlockly.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fignatandrei%2FNETCoreBlockly?ref=badge_large)
