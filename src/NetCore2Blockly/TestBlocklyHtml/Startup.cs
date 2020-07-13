@@ -34,6 +34,10 @@ using TestBlocklyHtml.GraphQL;
 using GraphQL;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using GraphQL.Server.Ui.Playground;
+using System.Reflection;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using HCVersion;
 
 namespace TestBlocklyHtml
 {
@@ -51,7 +55,20 @@ namespace TestBlocklyHtml
         {
             services.AddSingleton<IActionDescriptorChangeProvider>(MyActionDescriptorChangeProvider.Instance);
             services.AddSingleton(MyActionDescriptorChangeProvider.Instance);
-
+            #region health check
+            string name = Assembly.GetExecutingAssembly().GetName().Name;
+            services.AddHealthChecks()
+                .AddCheck<HealthCheckVersion>(name)
+                ;
+            services
+                .AddHealthChecksUI(setup =>
+                {
+                    setup.AddHealthCheckEndpoint("All", $"/hc");
+                })
+                .AddInMemoryStorage()
+                ;
+            //navigate to healthchecks-ui
+            #endregion
             services.AddProblemDetails();
             services.AddCors(options =>
             {
@@ -274,6 +291,14 @@ namespace TestBlocklyHtml
                 //    endpoints.MapODataRoute("odata", "odata", edmModel);
                 //}
                 endpoints.MapControllers();
+                #region healthcheck
+                endpoints.MapHealthChecks("/hc", new HealthCheckOptions()
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
+                endpoints.MapHealthChecksUI();
+                #endregion
             });
             #region blockly optional
             if (edmModel != null)
