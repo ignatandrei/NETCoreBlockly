@@ -1,7 +1,7 @@
 const playwright = require('playwright');
 const fs = require('fs');
-const PNG = require('pngjs').PNG;
-const pixelmatch = require('pixelmatch');
+//const PNG = require('pngjs').PNG;
+//const pixelmatch = require('pixelmatch');
 
 console.log('start');
 (async () => {
@@ -72,20 +72,20 @@ console.log('start');
     }
     
     await page.screenshot({ path: `${filename }-${browserType}.png` });
-    if(!error){
-      return;
-      const img1 = PNG.sync.read(fs.readFileSync(`${filename }-${browserType}.png`));
-      const img2 = PNG.sync.read(fs.readFileSync(`oldImages\\${filename }-${browserType}.png`));
-      const {width, height} = img1;
-      const diff = new PNG({width, height});
+    //if(!error){
+    //  return;
+      //const img1 = PNG.sync.read(fs.readFileSync(`${filename }-${browserType}.png`));
+      //const img2 = PNG.sync.read(fs.readFileSync(`oldImages\\${filename }-${browserType}.png`));
+      //const {width, height} = img1;
+      //const diff = new PNG({width, height});
 
-      const difference = pixelmatch(img1.data, img2.data, diff.data, width, height, {threshold: 0.1});
-      const compatibility = 100 - difference * 100 / (width * height);
-      if(compatibility <= 8.5)
-        fs.writeFileSync(`diff_${compatibility}_${filename }-${browserType}.png`, PNG.sync.write(diff));
-      else
-        fs.unlinkSync(`${filename }-${browserType}.png`);
-    }
+      //const difference = pixelmatch(img1.data, img2.data, diff.data, width, height, {threshold: 0.1});
+      //const compatibility = 100 - difference * 100 / (width * height);
+      //if(compatibility <= 8.5)
+      //  fs.writeFileSync(`diff_${compatibility}_${filename }-${browserType}.png`, PNG.sync.write(diff));
+      //else
+      //  fs.unlinkSync(`${filename }-${browserType}.png`);
+    //}
   }
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
