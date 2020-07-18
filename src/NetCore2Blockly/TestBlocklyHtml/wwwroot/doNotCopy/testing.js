@@ -9,7 +9,7 @@ var testBlocks =
         <variable id="f~YJqnSTlX^GoI/nN*h~">nameFile</variable>
         <variable id=",QS2XTKZ]7gJZ_KB#gQ_">imgContent</variable>
     </variables>
-    <block type="variables_set" y="46" x="-535" inline="true">
+    <block type="variables_set" y="20" x="20" inline="true">
         <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
         <value name="VALUE">
             <block type="api_TestImage_GetImageSprite_GET"></block>
@@ -105,7 +105,7 @@ var testBlocks =
     <variables>
         <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
     </variables>
-    <block type="variables_set" y="52" x="-71" inline="true">
+    <block type="variables_set" y="20" x="20" inline="true">
         <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
         <value name="VALUE">
             <block type="WeatherForecast_GET"></block>
@@ -216,7 +216,7 @@ var testBlocks =
         <variable id="}N:3#8}TL(iEuP8oCY6A">n</variable>
         <variable id="Ro;$Xw+OPUiM_p0j!8oQ">var_Math2Values</variable>
     </variables>
-    <block type="variables_set" y="68" x="55" inline="true">
+    <block type="variables_set" y="20" x="20" inline="true">
         <field id="}N:3#8}TL(iEuP8oCY6A" name="VAR">n</field>
         <value name="VALUE">
             <block type="math_number">
@@ -480,7 +480,7 @@ var testBlocks =
         <variable >var_Math2Values</variable>
         <variable  type="TestBlocklyHtml_Math2Values">var_Math2Values</variable>
     </variables>
-    <block id="set_n_initial" type="variables_set" y="-425" x="-598" inline="true">
+    <block id="set_n_initial" type="variables_set" y="20" x="20" inline="true">
         <field  name="VAR">n</field>
         <value name="VALUE">
             <block  type="math_number">
@@ -611,7 +611,7 @@ var testBlocks =
     <variables>
         <variable id="P{SqEl7dFn[MB{MvR:H:">n</variable>
     </variables>
-    <block type="variables_set" y="-452" x="-732" inline="true">
+    <block type="variables_set" y="20" x="20" inline="true">
         <field id="P{SqEl7dFn[MB{MvR:H:" name="VAR">n</field>
         <value name="VALUE">
             <block type="text_prompt_ext">
@@ -719,7 +719,7 @@ var testBlocks =
     <variables>
         <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
     </variables>
-    <block type="variables_set" y="35" x="47" inline="true">
+    <block type="variables_set" y="20" x="20" inline="true">
         <field id="^HqtU]3:/R^Xs!?,#:]m" name="VAR">n</field>
         <value name="VALUE">
             <block type="math_number">
@@ -851,7 +851,7 @@ var testBlocks =
         <variable id="5;47gpsWUe91G}.~H]Om">var_Int64</variable>
         <variable id="nIdI=p;YaqO~NJ428@8h">var_Department</variable>
     </variables>
-    <block type="variables_set" y="-195" x="-315" inline="true">
+    <block type="variables_set" y="20" x="20" inline="true">
         <field id="P|b0sa?k$1vcEdVj!+fn" name="VAR">n</field>
         <value name="VALUE">
             <block type="text_prompt_ext">
@@ -980,7 +980,7 @@ var testBlocks =
         <variable id="Fy|}ia7w!]Uz},vn[LJc">message</variable>
         <variable id="0C5Rz_j*A1X!Eq24e[3h">newDepName</variable>
     </variables>
-    <block type="variables_set" y="19" x="-252" inline="true">
+    <block type="variables_set" y="20" x="20" inline="true">
         <field id="$l{IZ#6T!0KWuO$YamR8" name="VAR">var_Int64</field>
         <value name="VALUE">
             <block type="math_number">
@@ -1153,7 +1153,7 @@ var testBlocks =
         <variable id="5;47gpsWUe91G}.~H]Om">var_Int64</variable>
         <variable id="nIdI=p;YaqO~NJ428@8h">var_Department</variable>
     </variables>
-    <block type="text_print" y="-389" x="-394">
+    <block type="text_print" y="20" x="20">
         <value name="TEXT">
             <shadow type="text">
                 <field name="TEXT">abc</field>
@@ -1280,7 +1280,7 @@ var testBlocks =
     {
         name: 'save new department',
         data: `<xml xmlns="https://developers.google.com/blockly/xml">
-    <block type="text_print" y="-389" x="-404">
+    <block type="text_print" y="20" x="20">
         <value name="TEXT">
             <shadow type="text">
                 <field name="TEXT">abc</field>
@@ -1412,7 +1412,7 @@ var testBlocks =
     {
         'name': 'simple query string',
         'data':`<xml xmlns="https://developers.google.com/blockly/xml">
-    <block type="text_print" y="22" x="39">
+    <block type="text_print" y="22" x="20">
         <value name="TEXT">
             <block type="api_RestWithArgs_PostWithArgs_value_POST">
                 <value name="val_value">
@@ -1432,7 +1432,7 @@ var testBlocks =
         <variable id="sDL./h^zT]uA,gn%uSp^">urlName</variable>
         <variable id="d#~hn(B|Lt|O=M~N]n]Y">answer</variable>
     </variables>
-    <block type="variables_set" y="37" x="-334">
+    <block type="variables_set" y="20" x="20">
         <field id="sDL./h^zT]uA,gn%uSp^" name="VAR">urlName</field>
         <value name="VALUE">
             <block type="text">
@@ -1487,7 +1487,7 @@ var testBlocks =
     {
         name: 'JWT Bearer',
         data:`<xml xmlns="https://developers.google.com/blockly/xml">
-  <block type="headersbeforehttp" y="105" x="60">
+  <block type="headersbeforehttp" y="20" x="20">
     <value name="HttpDomain">
       <shadow type="text">
         <field name="TEXT">(localSite)</field>
@@ -1537,7 +1537,7 @@ var testBlocks =
     <variable id="sDL./h^zT]uA,gn%uSp^">urlName</variable>
     <variable id="d#~hn(B|Lt|O=M~N]n]Y">answer</variable>
   </variables>
-  <block type="variables_set" y="37" x="-334">
+  <block type="variables_set" y="20" x="20">
     <field id="sDL./h^zT]uA,gn%uSp^" name="VAR">urlName</field>
     <value name="VALUE">
       <block type="text">
@@ -1639,7 +1639,7 @@ var testBlocks =
     {
         name: 'date',
         data:`<xml xmlns="https://developers.google.com/blockly/xml">
-  <block type="text_print" y="55" x="56">
+  <block type="text_print" y="20" x="20">
     <value name="TEXT">
       <block type="displayCurrentDate">
         <field name="dateFormat">iso</field>
@@ -1654,7 +1654,7 @@ var testBlocks =
     <variables>
         <variable id=\"hO\`?kR*XbVn|uJq:?jJ_\">n</variable>  
     </variables>  
-    <block type=\"variables_set\" inline=\"true\" x=\"-363\" y=\"12\">
+    <block type=\"variables_set\" inline=\"true\" x=\"20\" y=\"20\">
         <field name=\"VAR\" id=\"hO\`?kR*XbVn|uJq:?jJ_\">n</field>    
         <value name=\"VALUE\">
             <block type=\"petstore_swagger_io_v2__pet_post\">
@@ -1757,7 +1757,7 @@ var testBlocks =
     {
         name: 'odata airport',
         data:`<xml xmlns="https://developers.google.com/blockly/xml">
-  <block type="text_print" y="117" x="62">
+  <block type="text_print" y="20" x="20">
     <value name="TEXT">
       <block type="services_odata_org_TripPinRESTierService__Airports_____IcaoCode______GET">
         <value name="val_IcaoCode">
@@ -1773,7 +1773,7 @@ var testBlocks =
     {
         name: 'odata top skip select ',
         data:`<xml xmlns="https://developers.google.com/blockly/xml">
-  <block type="text_print" y="50" x="65">
+  <block type="text_print" y="20" x="20">
     <value name="TEXT">
       <block type="services_odata_org_TripPinRESTierService__Airports__count__top__skip__select_GET">
         <value name="val_$count">
@@ -1804,7 +1804,7 @@ var testBlocks =
     {
         name: 'odata v3',
         data:`<xml xmlns="https://developers.google.com/blockly/xml">
-  <block type="headersbeforehttp" y="-55" x="99">
+  <block type="headersbeforehttp" y="20" x="20">
     <value name="HttpDomain">
       <shadow type="text">
         <field name="TEXT">services.odata.org</field>
@@ -1861,7 +1861,7 @@ var testBlocks =
     <variable id="hO\`?kR*XbVn|uJq:?jJ_">n</variable>
     <variable id="J=uTKf528=Ou5g1ROhh-">var_OdataToEntity_EfCore_DynamicDataContext_Types_DynamicType1</variable>
   </variables>
-  <block type="variables_set" inline="true" x="-400" y="-138">
+  <block type="variables_set" inline="true" x="20" y="20">
     <field name="VAR" id="hO\`?kR*XbVn|uJq:?jJ_">n</field>
     <value name="VALUE">
       <block type="math_number">
@@ -2019,7 +2019,7 @@ var testBlocks =
   <variables>
     <variable id="RRZ-(HL..n:DbSi7KPbv">token</variable>
   </variables>
-  <block type="variables_set" x="61" y="13">
+  <block type="variables_set" x="20" y="20">
     <field name="VAR" id="RRZ-(HL..n:DbSi7KPbv">token</field>
     <value name="VALUE">
       <block type="httprequest">
@@ -2131,7 +2131,7 @@ var testBlocks =
     {
         name: 'IDictionary C#',
         data:`<xml xmlns="https://developers.google.com/blockly/xml">
-  <block type="text_print" x="59" y="116">
+  <block type="text_print" x="20" y="20">
     <value name="TEXT">
       <block type="api_VariousTests_ActionWithDictionary_POST">
         <value name="val_id">
@@ -2165,7 +2165,7 @@ var testBlocks =
     {
         name: 'GraphQL Department',
         data:`<xml xmlns="https://developers.google.com/blockly/xml">
-  <block type="text_print" x="121" y="52">
+  <block type="text_print" x="20" y="20">
     <value name="TEXT">
       <block type="_graphql_query__departmentQuery_iddepartment name___GET"></block>
     </value>
@@ -2188,7 +2188,7 @@ var testBlocks =
     {
         name: 'graphql 2 arg string',
         data:`<xml xmlns="https://developers.google.com/blockly/xml">
-  <block type="text_print" x="95" y="213">
+  <block type="text_print" x="20" y="20">
     <value name="TEXT">
       <block type="_graphql_query__getEmployeeAfterName_employeeName___employeeName__,departmentName___departmentName____idemployee name___employeeName_departmentName_GET">
         <value name="val_employeeName">
@@ -2209,7 +2209,7 @@ var testBlocks =
     {
         name: 'test grid',
         data:`<xml xmlns="https://developers.google.com/blockly/xml">
-  <block type="text_print" x="104" y="97">
+  <block type="text_print" x="20" y="20">
     <value name="TEXT">
       <block type="api_VariousTests_ReturnArrayStringForGrid_GET"></block>
     </value>
@@ -2229,7 +2229,7 @@ var testBlocks =
   <variables>
     <variable id="cn8tD}b,qY^62JyI+IFE">list</variable>
   </variables>
-  <block type="variables_set" inline="true" x="-203" y="73">
+  <block type="variables_set" inline="true" x="20" y="20">
     <field name="VAR" id="cn8tD}b,qY^62JyI+IFE">list</field>
     <value name="VALUE">
       <block type="WeatherForecast_GET"></block>
@@ -2347,7 +2347,7 @@ var testBlocks =
         {
             name: 'testing wait',
             data:`<xml xmlns="https://developers.google.com/blockly/xml">
-  <block type="text_print" x="62" y="139">
+  <block type="text_print" x="20" y="20">
     <value name="TEXT">
       <block type="displayCurrentDate">
         <field name="dateFormat">iso</field>
@@ -2377,7 +2377,7 @@ var testBlocks =
         {
             name: 'testing dates',
             data:`<xml xmlns="https://developers.google.com/blockly/xml">
-  <block type="text_print" x="140" y="69">
+  <block type="text_print" x="20" y="20">
     <value name="TEXT">
       <shadow type="text">
         <field name="TEXT">abc</field>
@@ -2416,7 +2416,7 @@ var testBlocks =
     <variable id="r%BRT7Cx]L1ow]Cgt#(.">DateToDiff</variable>
     <variable id="bC%RDoP/K2A86d|6H}Bl">x</variable>
   </variables>
-  <block type="procedures_defreturn" x="-3" y="-108">
+  <block type="procedures_defreturn" x="20" y="20">
     <mutation>
       <arg name="DateToDiff" varid="r%BRT7Cx]L1ow]Cgt#(."></arg>
     </mutation>
@@ -2527,7 +2527,7 @@ var testBlocks =
         {
             name: 'simple wait date',
             data: `<xml xmlns="https://developers.google.com/blockly/xml">
-  <block type="text_print" x="62" y="139">
+  <block type="text_print" x="20" y="20">
     <value name="TEXT">
       <block type="displayCurrentDate">
         <field name="dateFormat">iso</field>
@@ -2564,7 +2564,7 @@ var testBlocks =
   <variables>
     <variable id="hO\`?kR*XbVn|uJq:?jJ_">n</variable>
   </variables>
-  <block type="variables_set" x="72" y="76">
+  <block type="variables_set" x="20" y="20">
     <field name="VAR" id="hO\`?kR*XbVn|uJq:?jJ_">n</field>
     <value name="VALUE">
       <block type="getproperty">
@@ -2631,7 +2631,7 @@ var testBlocks =
   <variables>
     <variable id="cn8tD}b,qY^62JyI+IFE">list</variable>
   </variables>
-  <block type="variables_set" inline="true" x="-203" y="73">
+  <block type="variables_set" inline="true" x="20" y="20">
     <field name="VAR" id="cn8tD}b,qY^62JyI+IFE">list</field>
     <value name="VALUE">
       <block type="WeatherForecast_GET"></block>
