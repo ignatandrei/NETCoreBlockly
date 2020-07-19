@@ -83,7 +83,7 @@ namespace TestBlocklyHtml
                                   });
             });
             services.AddOData();
-            
+            services.AddSingleton<VisualizeDot>();
             services.AddControllers(
                 #region blockly optional
                 config => config.Filters.Add<BlocklyActionRegisterFilter>()
@@ -299,6 +299,8 @@ namespace TestBlocklyHtml
                 });
                 endpoints.MapHealthChecksUI();
                 #endregion
+
+                endpoints.MapGraph("/graph");
             });
             #region blockly optional
             if (edmModel != null)
