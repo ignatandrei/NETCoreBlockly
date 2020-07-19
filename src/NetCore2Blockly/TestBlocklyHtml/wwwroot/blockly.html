@@ -123,16 +123,16 @@
         <a href="javascript:ShowInnerWorkings()">Show blocks</a>
     </p>
 
-    <div style="width: 100%">
+    <div style="width: 100%; display: flex; flex-direction: row;">
         <div id="blocklyArea"
-             style="border: 1px solid #4CAF50; display: inline-block; height: 480px; width: 68%"></div>
+             style="border: 1px solid #4CAF50; display: inline-block; height: 480px;"></div>
         <textarea id="output"
                   style="display: inline-block; height: 480px; width: 18%;">
         </textarea>
 
     </div>
     <div id="blocklyDiv"
-         style="position: absolute;display: inline-block; height: 480px; width: 68%"></div>
+         style="position: absolute;display: inline-block;"></div>
 
 
     <script>
@@ -149,7 +149,7 @@
                 onDrag: resizeBlocklyArea,
             });
         }
-        //initializeSplit();
+        initializeSplit();
         function resizeBlocklyArea() {
 
             // Compute the absolute coordinates and dimensions of blocklyArea.
@@ -175,7 +175,7 @@
 
         }
         window.addEventListener('resize', resizeBlocklyArea, false);
-        resizeBlocklyArea();
+        window.setTimeout(resizeBlocklyArea, 3);
     </script>
     <div>&nbsp;</div>
     <div id="steps" style="display: inline-block; width: 96%;"></div>
