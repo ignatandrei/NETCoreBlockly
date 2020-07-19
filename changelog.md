@@ -4,10 +4,42 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.15920923..1.1.2020.16046013
+git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.16046013..1.1.2020.17302329
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
+
+## 1.1.2020.17302329 gallant-nightingale-20200719061208 [resizer] 
+ 
+ #### [resizer push nuget] 
+ Author ignatandrei on 2020-07-19 09:10:16 +0300      
+
+ hash a15c2cb a15c2cba9eba1a3ef9b90f82e9077d09b30d761b
+
+ #### [Fix and enable  resizable splitting functionality]
+ Author NoahAndrews on 2020-07-18 19:06:58 -0500
+
+ hash 2e0973b 2e0973b628f96edff6f5c5b15f9178a4dfdb1cfd
+
+ #### [all to 20]
+ Author ignatandrei on 2020-07-18 21:14:22 +0300
+
+ hash ea3284b ea3284b200bb9a85877670d8008a6633f5cf59c3
+
+ #### [adding package]
+ Author ignatandrei on 2020-07-18 18:23:28 +0300
+
+ hash ff71295 ff712952091c00d5a8b48d4451f25ccf2b39daa7
+
+ #### [added package json for integration testing]
+ Author ignatandrei on 2020-07-18 17:33:05 +0300
+
+ hash 53b62aa 53b62aaa380fb76961fae9b2ca19b951a792490e
+
+ #### [added health checks]
+ Author ignatandrei on 2020-07-13 08:42:38 +0300
+
+ hash 4ea6cf6 4ea6cf64a9b001e2c384cdbdf0ec8a618cc7413b
 
 ## 1.1.2020.16046013 funny-shockley-20200704171332 - blocks: map , wait, getobject improved , tests Gui
 
