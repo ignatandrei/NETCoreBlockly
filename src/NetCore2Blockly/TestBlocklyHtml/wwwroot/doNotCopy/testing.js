@@ -2673,6 +2673,27 @@ var testBlocks =
     </next>
   </block>
 </xml>`
+        },
+        {
+            name: 'comments',
+            data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="comment" x="20" y="30">
+    <field name="NAME"></field>
+    <value name="TEXT">
+      <block type="WeatherForecast_GET"></block>
+    </value>
+    <next>
+      <block type="comment">
+        <field name="NAME"></field>
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>`
         }
 ]
 
