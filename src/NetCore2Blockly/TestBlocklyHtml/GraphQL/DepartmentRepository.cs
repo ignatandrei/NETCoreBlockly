@@ -37,8 +37,21 @@ namespace TestBlocklyHtml.GraphQL
         //Shoud return maybe the success or failure of operation
         public async Task<int> AddDepartment(Department department)
         {
-            _context.Department.Add(department);
-            return await _context.SaveChangesAsync();
+            using (var transaction = _context.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    _context.Department.Add(department);
+                    await _context.SaveChangesAsync();
+                    await transaction.Result.CommitAsync();
+                }
+                catch (Exception ex)
+                {
+                    await transaction.Result.RollbackAsync();
+                    throw ex;
+                }
+            }
+            return -1;// never do that. :)
         }
 
         public async Task<IEnumerable<Employee>> GetEmployees()

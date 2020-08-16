@@ -9,6 +9,9 @@ namespace TestBlocklyHtml.GraphQL
 {
     public class Mutations : ObjectGraphType
     {
+        /*
+         * A mutation in GrpahQL means that we are adgin data or modifying it.
+         */
         public Mutations(DepartmentRepository departmentRepository)
         {
             //Use the same OGT
