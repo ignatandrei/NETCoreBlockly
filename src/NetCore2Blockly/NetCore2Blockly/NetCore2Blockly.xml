@@ -256,11 +256,12 @@
             <param name="links">The links.</param>
             <returns></returns>
         </member>
-        <member name="M:NetCore2Blockly.CLIExtension.AddBlockly(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:NetCore2Blockly.CLIExtension.AddBlockly(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
             <summary>
             Adds the blockly to startup
             </summary>
             <param name="serviceCollection">The service collection.</param>
+            <param name="fullWebSiteUrl"></param>
             <returns></returns>
         </member>
         <member name="M:NetCore2Blockly.CLIExtension.UseBlocklyOData(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String,System.String)">

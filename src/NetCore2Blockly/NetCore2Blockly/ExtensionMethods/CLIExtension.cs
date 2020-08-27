@@ -81,9 +81,11 @@ namespace NetCore2Blockly
         /// Adds the blockly to startup
         /// </summary>
         /// <param name="serviceCollection">The service collection.</param>
+        /// <param name="fullWebSiteUrl"></param>
         /// <returns></returns>
-        public static IServiceCollection AddBlockly(this IServiceCollection serviceCollection)
+        public static IServiceCollection AddBlockly(this IServiceCollection serviceCollection, string fullWebSiteUrl = null)
         {
+            GenerateBlocklyFilesHostedService.InternalSiteUrl = fullWebSiteUrl;
             serviceCollection.AddSingleton<GenerateBlocklyFilesHostedService>();
             serviceCollection.AddHostedService(p => p.GetService<GenerateBlocklyFilesHostedService>());
             //serviceCollection.AddTransient<BlocklyRegisterMiddleware>();

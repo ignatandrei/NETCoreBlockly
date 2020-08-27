@@ -70,6 +70,7 @@ namespace NetCore2Blockly.JavascriptGeneration
             string[] verbHasImage =new string[] { "patch","get", "post", "put", "delete" };
             bool hasImage = verbHasImage.Contains(actionInfo.Verb.ToLower());
             var blockColor = BlocklyStringToColor.ConvertToHue(actionHash);
+            string site = string.IsNullOrWhiteSpace(GenerateBlocklyFilesHostedService.InternalSiteUrl) ? "" : GenerateBlocklyFilesHostedService.InternalSiteUrl;
             return $@"
                 Blockly.Blocks['{actionInfo.GenerateCommandName()}'] = {{
                           init: function() {{
@@ -77,7 +78,7 @@ namespace NetCore2Blockly.JavascriptGeneration
                             this.appendDummyInput()" +
 
                             (hasImage?
-                                $".appendField(new Blockly.FieldImage('/images/{actionInfo.Verb.ToLower()}.png', 90, 20, {{ alt: '{actionInfo.Verb}', flipRtl: 'FALSE' }}))"
+                                $".appendField(new Blockly.FieldImage('{site}images/{actionInfo.Verb.ToLower()}.png', 90, 20, {{ alt: '{actionInfo.Verb}', flipRtl: 'FALSE' }}))"
                                 :"")+
                                 $".appendField('{actionInfo.CommandDisplayName(!hasImage)}');"                                
                                 +Environment.NewLine

@@ -31,6 +31,7 @@ namespace NetCore2Blockly
     /// <seealso cref="Microsoft.Extensions.Hosting.IHostedService" />
     public class GenerateBlocklyFilesHostedService : IHostedService
     {
+        public static string InternalSiteUrl=null;
 
         internal IApplicationBuilder app;
 
@@ -727,6 +728,9 @@ namespace NetCore2Blockly
 
             var e = new EnumerateWebAPI(api);
             var actionList = e.CreateActionList();
+            if (!string.IsNullOrWhiteSpace(InternalSiteUrl))
+                actionList.ForEach(it => it.Site = InternalSiteUrl);
+
             blocklyFileGeneratorWebAPI = new BlocklyFileGenerator(actionList);
             BlocklyTypesDefinition = blocklyFileGeneratorWebAPI.GenerateNewBlocklyTypesDefinition();
             BlocklyAPIFunctions = blocklyFileGeneratorWebAPI.GenerateBlocklyAPIFunctions();

@@ -1268,8 +1268,12 @@
             if ('startBlocksStr' in window && startBlocksStr.length > 0) {
                 startBlocks = Blockly.Xml.textToDom(startBlocksStr);
             }
-
-            Blockly.Xml.domToWorkspace(startBlocks, demoWorkspace);
+            try {
+                Blockly.Xml.domToWorkspace(startBlocks, demoWorkspace);
+            }
+            catch (e) {
+                console.log(`start blocks error : ${startBlocks}`, e);
+            }
         }
         //end start blocks to display
         //start blockly customize
