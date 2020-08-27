@@ -4,10 +4,51 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.16046013..1.1.2020.17302329
+git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.17302329..1.1.2020.20667251
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
+
+## 1.1.2020.20667251 adding optional site
+
+#### [add optional site]
+ Author ignatandrei on 2020-08-27 07:52:15 +0300
+
+ hash 3a5c5ad 3a5c5ad6bc25004bcc08b81cfcb9b47a809cfb6f
+
+ #### [update relative paths]
+ Author ignatandrei on 2020-08-26 18:59:30 +0300
+
+ hash 5b3ad00 5b3ad0036cbf9b5747b83ee8a63ff6adfd93cf38
+
+ #### [relative path]
+ Author ignatandrei on 2020-08-26 18:54:01 +0300
+
+ hash 6d507cb 6d507cb937c6c1c5522c7a24c8e7aadd23cbc8e4
+
+ #### [Added a few comments Wrapped Adding of a department in a transaction]
+ Author Cosmin Popescu on 2020-08-16 08:48:37 +0300
+
+ hash 7aa3228 7aa3228793998f35df2b8ed921a057fbe25212a6
+
+ #### [start azure token]
+ Author ignatandrei on 2020-07-24 07:49:07 +0300
+
+ hash 20c23fd 20c23fdd85059700f294018502029cdfe6e4ef7d
+
+
+ hash 68856ef 68856efef200bf0cc2d4635cb3e1b4145f36e9bc
+
+ #### [bearer]
+ Author ignatandrei on 2020-07-24 07:02:25 +0300
+
+ hash e0b72e1 e0b72e1fb999357cd3697ec3795a113363c682ff
+
+ #### [added graph viz endpoint]
+ Author ignatandrei on 2020-07-19 15:50:44 +0300
+
+ hash 28cfbd1 28cfbd1cdd823b7bc938f592e964a4faa7d77a4f
+
 
 ## 1.1.2020.17302329 gallant-nightingale-20200719061208 [resizer] 
  
