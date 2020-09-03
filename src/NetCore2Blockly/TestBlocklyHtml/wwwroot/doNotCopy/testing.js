@@ -2694,6 +2694,110 @@ var testBlocks =
     </next>
   </block>
 </xml>`
+        },
+        {
+            name: 'arduino',
+            data:`<xml xmlns='https://developers.google.com/blockly/xml'>
+  <variables>
+    <variable id='hO\`?kR*XbVn|uJq:?jJ_'>n</variable>
+  </variables>
+  <block type='variables_set' inline='true' x='29' y='41'>
+    <field name='VAR' id='hO\`?kR*XbVn|uJq:?jJ_'>n</field>
+    <value name='VALUE'>
+      <block type='math_number'>
+        <field name='NUM'>1</field>
+      </block>
+    </value>
+    <next>
+      <block type='controls_repeat_ext' inline='true'>
+        <value name='TIMES'>
+          <block type='math_number'>
+            <field name='NUM'>3</field>
+          </block>
+        </value>
+        <statement name='DO'>
+          <block type='variables_set' inline='true'>
+            <field name='VAR' id='hO\`?kR*XbVn|uJq:?jJ_'>n</field>
+            <value name='VALUE'>
+              <block type='math_arithmetic'>
+                <field name='OP'>MULTIPLY</field>
+                <value name='A'>
+                  <block type='variables_get'>
+                    <field name='VAR' id='hO\`?kR*XbVn|uJq:?jJ_'>n</field>
+                  </block>
+                </value>
+                <value name='B'>
+                  <block type='math_number'>
+                    <field name='NUM'>2</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type='text_print'>
+                <value name='TEXT'>
+                  <block type='api_Arduino_ONLed__led__GET'>
+                    <value name='val_led'>
+                      <shadow type='math_number'>
+                        <field name='NUM'>0</field>
+                      </shadow>
+                      <block type='variables_get'>
+                        <field name='VAR' id='hO\`?kR*XbVn|uJq:?jJ_'>n</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type='text_print'>
+                    <value name='TEXT'>
+                      <block type='api_Arduino_Sleep__minutes__GET'>
+                        <value name='val_minutes'>
+                          <shadow type='math_number'>
+                            <field name='NUM'>0</field>
+                          </shadow>
+                          <block type='math_arithmetic'>
+                            <field name='OP'>MULTIPLY</field>
+                            <value name='A'>
+                              <block type='variables_get'>
+                                <field name='VAR' id='hO\`?kR*XbVn|uJq:?jJ_'>n</field>
+                              </block>
+                            </value>
+                            <value name='B'>
+                              <block type='math_number'>
+                                <field name='NUM'>2</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type='text_print'>
+                        <value name='TEXT'>
+                          <block type='api_Arduino_OFFLed__led__GET'>
+                            <value name='val_led'>
+                              <shadow type='math_number'>
+                                <field name='NUM'>0</field>
+                              </shadow>
+                              <block type='variables_get'>
+                                <field name='VAR' id='hO\`?kR*XbVn|uJq:?jJ_'>n</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>
+`
         }
 ]
 
