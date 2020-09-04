@@ -1,0 +1,1731 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title id="title">Blockly .NET Core demo</title>
+    <script src="others/intro.min.js?v=version"></script>
+    <script src="others/blocklyIntro.js?v=version"></script>
+
+    <script src="blockly/acorn_interpreter.js?v=version"></script>
+
+    <!--<script src="blockly/acorn.js"></script>
+    <script src="blockly/interpreter.js"></script>-->
+
+    <script src="blockly/blockly_compressed.js?v=version"></script>
+    <script src="blockly/blocks_compressed.js?v=version"></script>
+    <script src="blockly/javascript_compressed.js?v=version"></script>
+    <script src="blockly/en.js?v=version"></script>
+    <script src="blockly/wait_block.js?v=version"></script>
+    <script src="blockly/window/open.js?v=version"></script>
+    <script src="blockly/Http/ifxhr.js?v=version"></script>
+    <script src="blockly/blocklyControls.js?v=version"></script>
+    <script src="others/jszip.min.js?v=version"></script>
+    <script src="others/FileSaver.js?v=version"></script>
+    <script src="others/split.min.js?v=version"></script>
+
+    <!--<script src="others/gridjs.production.min.js?v=version"></script>-->
+    <script src="others/tabulator.min.js?v=version"></script>
+    <script src="blockly/Http/BlocklyXHRWrapper.js?v=version"></script>
+    <script src="blockly/list/filterList.js?v=version"></script>
+    <script src="blockly/converters/convertCSV.js?v=version"></script>
+    <script src="blockly/converters/convertJSONString.js?v=version"></script>
+    <script src="blockly/converters/printconverter.js?v=version"></script>
+    <script src="blockly/helpers/comment.js?v=version"></script>
+    <script src="blockly/exporters/exportFile.js?v=version"></script>
+    <script src="blockly/DateTime/DateTime.js?v=version"></script>
+    <script src="blockly/DateTime/CurrentDateBlock.js?v=version"></script>
+    <script src="blockly/DateTime/FromString.js?v=version"></script>
+    <script src="blockly/DateTime/wait.js?v=version"></script>
+    <script src="blockly/Http/blocklyXHR.js?v=version"></script>
+    <script src="blockly/Http/blocklyHeader.js?v=version"></script>
+    <script src="blockly/Http/blocklyCreds.js?v=version"></script>
+    <script src="blockly/objects/createObject.js?v=version"></script>
+    <script src="blockly/objects/propJS.js?v=version"></script>
+    <script src="blockly/auth0/auth0blocks.js?v=version"></script>
+    <script src="extensions/resultsGrid.js?v=version"></script>
+    <!--this is generated at runtime by blockly storage nuget : local storage, sqlite...-->
+    <script src="blocklyStorage?v=version"></script>
+
+    <script src="blockly/workspaceSearch.js?v=version"></script>
+    <script src="blockly/search/toolboxSearch.js?v=version"></script>
+    <link rel="stylesheet" type="text/css" href="others/introjs.min.css?v=version" />
+    <link rel="stylesheet" type="text/css" href="others/tabulator.min.css?v=version" />
+
+    <!--doNotCopyToFinal-->
+    <script src="doNotCopy/testing.js?v=version"></script>
+    <script src="doNotCopy/JRTemplating.js?v=version"></script>
+    <!--enddoNotCopyToFinal-->
+    <style>
+        body {
+            background-color: #fff;
+            font-family: sans-serif;
+        }
+
+        h1 {
+            font-weight: normal;
+            font-size: 140%;
+        }
+        /*doNotCopyToFinal*/
+        ul li {
+            display: inline-block;
+        }
+        /*enddoNotCopyToFinal*/
+        .gutter.gutter-horizontal {
+            cursor: col-resize;
+            background-color: #909090; /* Same color as content_border */
+            margin: 0 2px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="headerName">
+        Blockly Swagger
+    </h1>
+    <!--doNotCopyToFinal-->
+    <p>
+        <a href='https://github.com/ignatandrei/NETCoreBlockly' target='_blank'>Source code</a>
+        <a href='https://www.youtube.com/watch?v=GptkNWjmCzk' target='_blank'>Demo Video</a>
+    </p>
+    <!--enddoNotCopyToFinal-->
+
+    <script src="blocklyDefinitions?v=version"></script>
+    <script src="BlocklyToolBoxValueDefinitions?v=version"></script>
+    <script src="blocklyAPIFunctions?v=version"></script>
+    <script src="BlocklyToolBoxFunctionDefinitions?v=version"></script>
+
+    <script src="BlocklySwaggers?v=version"></script>
+    <script src="blocklyDefinitionsSwagger?v=version"></script>
+    <script src="BlocklyToolBoxValueDefinitionsSwagger?v=version"></script>
+    <script src="blocklyAPIFunctionsSwagger?v=version"></script>
+    <script src="BlocklyToolBoxFunctionDefinitionsSwagger?v=version"></script>
+
+    <script src="BlocklyODatas?v=version"></script>
+    <script src="blocklyDefinitionsOData?v=version"></script>
+    <script src="BlocklyToolBoxValueDefinitionsOData?v=version"></script>
+    <script src="blocklyAPIFunctionsOData?v=version"></script>
+    <script src="BlocklyToolBoxFunctionDefinitionsOData?v=version"></script>
+
+
+    <script src="BlocklyGraphQLs?v=version"></script>
+    <script src="blocklyDefinitionsGraphQL?v=version"></script>
+    <script src="BlocklyToolBoxValueDefinitionsGraphQL?v=version"></script>
+    <script src="blocklyAPIFunctionsGraphQL?v=version"></script>
+    <script src="BlocklyToolBoxFunctionDefinitionsGraphQL?v=version"></script>
+
+
+    <script src="BlocklyOptions?v=version"></script>
+
+
+    <p>
+        <button onclick="runCode()" id="runButton" style="width:300px">E X E C U T E !</button>
+
+        <!--<a href="javascript:downloadZip()">Download Results</a>-->
+        <a href="javascript:SaveBlocks()" id="saveBlocks">Save Blocks</a>
+        <a href="javascript:ShowInnerWorkings()">Show blocks</a>
+    </p>
+
+    <div style="width: 100%; display: flex; flex-direction: row;">
+        <div id="blocklyArea"
+             style="border: 1px solid #4CAF50; display: inline-block; height: 480px;"></div>
+        <textarea id="output"
+                  style="display: inline-block; height: 480px; width: 18%;">
+        </textarea>
+
+    </div>
+    <div id="blocklyDiv"
+         style="position: absolute;display: inline-block;"></div>
+
+
+    <script>
+        var blocklyArea = document.getElementById('blocklyArea');
+        var blocklyDivx = document.getElementById('blocklyDiv');
+        var output = document.getElementById('output');
+        function initializeSplit() {
+            split = window.Split([blocklyArea, output], {
+                direction: 'horizontal',
+                sizes: [75, 25],
+                minSize: [200, 100],
+                gutterSize: 4,
+                snapOffset: 0,
+                onDrag: resizeBlocklyArea,
+            });
+        }
+        initializeSplit();
+        function resizeBlocklyArea() {
+
+            // Compute the absolute coordinates and dimensions of blocklyArea.
+            var x = 0;
+            var y = 0;
+            var w = blocklyArea.offsetWidth;
+            var h = blocklyArea.offsetHeight;
+            var element = blocklyArea;
+            do {
+                x += element.offsetLeft;
+                y += element.offsetTop;
+                element = element.offsetParent;
+            } while (element);
+            // Position blocklyDiv over blocklyArea.
+
+            blocklyDivx.style.left = x + "px";
+            blocklyDivx.style.top = y + "px";
+            blocklyDivx.style.width = w + "px";
+            blocklyDivx.style.height = h + "px";
+            blocklyDivx.style.position = "absolute";
+            if ('demoWorkspace' in window)
+                Blockly.svgResize(demoWorkspace);
+
+        }
+        window.addEventListener('resize', resizeBlocklyArea, false);
+        window.setTimeout(resizeBlocklyArea, 3);
+    </script>
+    <div>&nbsp;</div>
+    <div id="steps" style="display: none; width: 96%;"></div>
+    <script>
+        var gridElement = document.getElementById('steps');
+        //initGrid(gridElement);
+
+    </script>
+    
+
+    <!--doNotCopyToFinal-->
+    <div>Saved blocks</div>
+    <ul id="localStorageSaved">
+    </ul>
+
+    <script type="text/html" id="storage_tmpl">
+        <% for ( var i = 0; i < data.length; i++ ) { %>
+        <li><%=(i+1)%>) <a href="javascript:LoadFromStorage('<%=i%>')"> <%=data[i].name%> </a></li>
+        <% } %>
+
+    </script>
+
+
+    <div id="doNotCopy" style="display:none">
+        Testing blocks:
+        <ul id="results">
+        </ul>
+
+        <script type="text/html" id="data_tmpl">
+            <% for ( var i = 0; i < data.length; i++ ) { %>
+            <li><%=(i+1)%>) <a href="javascript:Loadtesting('<%=i%>')"><%= data[i].name %></a></li>
+            <% } %>
+
+        </script>
+        <button onclick="javascript:executeAll()" id="executeAll">Execute all testing</button>
+        ( classic way <a href="/swagger">Swagger</a>, <a href="/ui/playground">GraphQL</a> )
+    </div>
+    <!--enddoNotCopyToFinal-->
+    <script type="text/javascript">
+
+
+        var _lsh = null;
+        function lsh() {
+            if (_lsh) {
+                return _lsh;
+            }
+            _lsh = new StorageHandler();
+            console.log(_lsh.name);
+            document.getElementById("saveBlocks").title = `storage : ${_lsh.name}`;
+            return _lsh;
+        }
+        function LoadFromStorage(i) {
+            //window.alert(arrSavedStorage[i]);
+            var ls = getBlocksFromstorage();
+            demoWorkspace.clear();
+            var content = ls[i].val;
+            //window.alert(content);
+            var dom = Blockly.Xml.textToDom(content);
+            Blockly.Xml.domToWorkspace(dom, demoWorkspace);
+            resetStepUi();
+
+        }
+
+        function Loadtesting(id) {
+            demoWorkspace.clear();
+            var content = testBlocks[id].data;
+            var currentDate = new Date(new Date().getTime() + 2 * 1000).toISOString();
+            content = content.replace('wait2Seconds', currentDate);
+            var dom = Blockly.Xml.textToDom(content);
+            Blockly.Xml.domToWorkspace(dom, demoWorkspace);
+            resetStepUi();
+            runCode();
+        }
+        /*doNotCopyToFinal*/
+        var results = document.getElementById("results");        
+        results.innerHTML = tmpl("data_tmpl", { data: testBlocks });
+        var nrToExecute;
+        var runnerAll = function () {
+
+            nrToExecute = nrToExecute + 1;
+            console.log(nrToExecute);
+            var waitSecs = 1;
+            if (window.confirm(`execute ${testBlocks[nrToExecute].name}  step ${nrToExecute + 1}  from ${testBlocks.length}?`)) {
+                waitSecs = waitSecs * 5;
+                Loadtesting(nrToExecute);
+            }
+
+            waitSecs = waitSecs * 1000;
+            if (nrToExecute < testBlocks.length)
+                setTimeout(runnerAll, waitSecs);
+            else
+                document.getElementById('executeAll').disabled = '';
+        }
+
+        function executeAll() {
+            nrToExecute = -1;
+            document.getElementById('executeAll').disabled = 'disabled';
+            console.log('before');
+            runnerAll();
+
+
+        }
+        /*enddoNotCopyToFinal*/
+
+    </script>
+    <xml id="toolbox" style="display: none">
+        <category name="LocalSite" expanded="true" id="localSite">
+            <category id="LocalSiteFunctions" name="LocalSiteFunctions" expanded="false">
+            </category>
+            <category custom="LocalSiteValues" name="LocalSiteValues">
+            </category>
+
+
+        </category>
+        <sep></sep>
+        <!--<category name="OtherSwaggers"></category>
+        <category name="OtherOData"></category>
+        <category name="OtherGraphQL"></category>-->
+
+        <category custom="savedBlocks" name="Saved Blocks">
+
+        </category>
+        <category id="CustomBlocks" name="Custom Blocks"></category>
+
+        <category custom="SearchBlocks" name="Search"></category>
+
+
+        <category name="BlocklyCore">
+
+            <category id="catLogic" colour="210" name="Logic">
+                <block type="controls_if"></block>
+                <block type="logic_compare"></block>
+                <block type="logic_operation"></block>
+                <block type="logic_negate"></block>
+                <block type="logic_boolean"></block>
+                <block type="logic_null"></block>
+                <block type="logic_ternary"></block>
+            </category>
+            <category id="catLoops" colour="120" name="Loops">
+                <block type="controls_repeat_ext">
+                    <value name="TIMES">
+                        <shadow type="math_number">
+                            <field name="NUM">10</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="controls_whileUntil"></block>
+                <block type="controls_for">
+                    <value name="FROM">
+                        <shadow type="math_number">
+                            <field name="NUM">1</field>
+                        </shadow>
+                    </value>
+                    <value name="TO">
+                        <shadow type="math_number">
+                            <field name="NUM">10</field>
+                        </shadow>
+                    </value>
+                    <value name="BY">
+                        <shadow type="math_number">
+                            <field name="NUM">1</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="controls_forEach"></block>
+                <block type="controls_flow_statements"></block>
+            </category>
+            <category id="catMath" colour="230" name="Math">
+                <block type="math_number"></block>
+                <block type="math_arithmetic">
+                    <value name="A">
+                        <shadow type="math_number">
+                            <field name="NUM">1</field>
+                        </shadow>
+                    </value>
+                    <value name="B">
+                        <shadow type="math_number">
+                            <field name="NUM">1</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="math_single">
+                    <value name="NUM">
+                        <shadow type="math_number">
+                            <field name="NUM">9</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="math_trig">
+                    <value name="NUM">
+                        <shadow type="math_number">
+                            <field name="NUM">45</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="math_constant"></block>
+                <block type="math_number_property">
+                    <value name="NUMBER_TO_CHECK">
+                        <shadow type="math_number">
+                            <field name="NUM">0</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="math_change">
+                    <value name="DELTA">
+                        <shadow type="math_number">
+                            <field name="NUM">1</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="math_round">
+                    <value name="NUM">
+                        <shadow type="math_number">
+                            <field name="NUM">3.1</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="math_on_list"></block>
+                <block type="math_modulo">
+                    <value name="DIVIDEND">
+                        <shadow type="math_number">
+                            <field name="NUM">64</field>
+                        </shadow>
+                    </value>
+                    <value name="DIVISOR">
+                        <shadow type="math_number">
+                            <field name="NUM">10</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="math_constrain">
+                    <value name="VALUE">
+                        <shadow type="math_number">
+                            <field name="NUM">50</field>
+                        </shadow>
+                    </value>
+                    <value name="LOW">
+                        <shadow type="math_number">
+                            <field name="NUM">1</field>
+                        </shadow>
+                    </value>
+                    <value name="HIGH">
+                        <shadow type="math_number">
+                            <field name="NUM">100</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="math_random_int">
+                    <value name="FROM">
+                        <shadow type="math_number">
+                            <field name="NUM">1</field>
+                        </shadow>
+                    </value>
+                    <value name="TO">
+                        <shadow type="math_number">
+                            <field name="NUM">100</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="math_random_float"></block>
+            </category>
+            <category id="catText" colour="160" name="Text">
+                <block type="text"></block>
+                <block type="text_join"></block>
+                <block type="text_append">
+                    <value name="TEXT">
+                        <shadow type="text"></shadow>
+                    </value>
+                </block>
+                <block type="text_length">
+                    <value name="VALUE">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="text_isEmpty">
+                    <value name="VALUE">
+                        <shadow type="text">
+                            <field name="TEXT"></field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="text_indexOf">
+                    <value name="VALUE">
+                        <block type="variables_get">
+                            <field name="VAR">text</field>
+                        </block>
+                    </value>
+                    <value name="FIND">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="text_charAt">
+                    <value name="VALUE">
+                        <block type="variables_get">
+                            <field name="VAR">text</field>
+                        </block>
+                    </value>
+                </block>
+                <block type="text_getSubstring">
+                    <value name="STRING">
+                        <block type="variables_get">
+                            <field name="VAR">text</field>
+                        </block>
+                    </value>
+                </block>
+                <block type="text_changeCase">
+                    <value name="TEXT">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="text_trim">
+                    <value name="TEXT">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="text_print">
+                    <value name="TEXT">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="text_prompt_ext">
+                    <value name="TEXT">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                </block>
+            </category>
+            <category id="catLists" colour="260" name="Lists">
+                <block type="lists_create_with">
+                    <mutation items="0"></mutation>
+                </block>
+                <block type="lists_create_with"></block>
+                <block type="lists_repeat">
+                    <value name="NUM">
+                        <shadow type="math_number">
+                            <field name="NUM">5</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="lists_length"></block>
+                <block type="lists_isEmpty"></block>
+                <block type="lists_indexOf">
+                    <value name="VALUE">
+                        <block type="variables_get">
+                            <field name="VAR">list</field>
+                        </block>
+                    </value>
+                </block>
+                <block type="lists_getIndex">
+                    <value name="VALUE">
+                        <block type="variables_get">
+                            <field name="VAR">list</field>
+                        </block>
+                    </value>
+                </block>
+                <block type="lists_setIndex">
+                    <value name="LIST">
+                        <block type="variables_get">
+                            <field name="VAR">list</field>
+                        </block>
+                    </value>
+                </block>
+                <block type="lists_getSublist">
+                    <value name="LIST">
+                        <block type="variables_get">
+                            <field name="VAR">list</field>
+                        </block>
+                    </value>
+                </block>
+                <block type="lists_split">
+                    <value name="DELIM">
+                        <shadow type="text">
+                            <field name="TEXT">,</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="lists_sort"></block>
+            </category>
+            <category id="catColour" colour="20" name="Color">
+                <block type="colour_picker"></block>
+                <block type="colour_random"></block>
+                <block type="colour_rgb">
+                    <value name="RED">
+                        <shadow type="math_number">
+                            <field name="NUM">100</field>
+                        </shadow>
+                    </value>
+                    <value name="GREEN">
+                        <shadow type="math_number">
+                            <field name="NUM">50</field>
+                        </shadow>
+                    </value>
+                    <value name="BLUE">
+                        <shadow type="math_number">
+                            <field name="NUM">0</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="colour_blend">
+                    <value name="COLOUR1">
+                        <shadow type="colour_picker">
+                            <field name="COLOUR">#ff0000</field>
+                        </shadow>
+                    </value>
+                    <value name="COLOUR2">
+                        <shadow type="colour_picker">
+                            <field name="COLOUR">#3333ff</field>
+                        </shadow>
+                    </value>
+                    <value name="RATIO">
+                        <shadow type="math_number">
+                            <field name="NUM">0.5</field>
+                        </shadow>
+                    </value>
+                </block>
+            </category>
+            <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
+            <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
+        </category>
+        <sep></sep>
+        <category name="advanced">
+            <category id="catArray" name="Array">
+                <block type="filterList">
+                    <value name="LIST">
+                        <block type="variables_get">
+                            <field name="VAR">list</field>
+                        </block>
+                    </value>
+                    <value name="Logic">
+                        <shadow type="text">
+                            <field name="TEXT">item.property == "value"</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="mapList">
+                    <value name="LIST">
+                        <block type="variables_get">
+                            <field name="VAR">list</field>
+                        </block>
+                    </value>
+                    <value name="Logic">
+                        <shadow type="text">
+                            <field name="TEXT">item.property</field>
+                        </shadow>
+                    </value>
+                </block>
+
+            </category>
+            <category id="catAuthentication" name="Authentication">
+                <block type="credsforhttp">
+                    <value name="HttpDomain">
+                        <shadow type="text">
+                            <field name="TEXT">(localSite)</field>
+                        </shadow>
+                    </value>
+                    <value name="WithCreds">
+                        <shadow type="logic_boolean">
+                            <field name="BOOL">FALSE</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="headersbeforehttp" x="60" y="105">
+                    <value name="HttpDomain">
+                        <shadow type="text">
+                            <field name="TEXT">(localSite)</field>
+                        </shadow>
+                    </value>
+                    <value name="HeaderName">
+                        <shadow type="text">
+                            <field name="TEXT">Authorization</field>
+                        </shadow>
+                    </value>
+                    <value name="HeaderValue">
+                        <shadow type="text">
+                            <field name="TEXT"></field>
+                        </shadow>
+                        <block type="text_join">
+                            <mutation items="2"></mutation>
+                            <value name="ADD0">
+                                <block type="text">
+                                    <field name="TEXT">Bearer </field>
+                                </block>
+                            </value>
+                            <value name="ADD1">
+                                <block type="text">
+                                    <field name="TEXT">Add hear JWT token or obtain from a http call </field>
+                                </block>
+                            </value>
+                        </block>
+                    </value>
+
+                </block>
+                <block type="auth0webapidata">
+                    <value name="client_id">
+                        <shadow type="text">
+                            <field name="TEXT">client_id?</field>
+                        </shadow>
+
+                    </value>
+                    <value name="client_secret">
+                        <shadow type="text">
+                            <field name="TEXT">client_secret?</field>
+                        </shadow>
+
+                    </value>
+                    <value name="audience">
+                        <shadow type="text">
+                            <field name="TEXT">audience</field>
+                        </shadow>
+
+                    </value>
+                    <value name="grant_type">
+                        <shadow type="text">
+                            <field name="TEXT">grant_type?</field>
+                        </shadow>
+
+                    </value>
+                </block>
+            </category>
+
+            <category id="catExporter" colour="160" name="Exporter">
+                <!--                <button text="A button" callbackKey="crae"></button>-->
+                <block type="exportfile">
+                    <value name="fileName">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                    <value name="convertToByte">
+                        <shadow type="logic_boolean">
+                            <field name="BOOL">FALSE</field>
+                        </shadow>
+                    </value>
+
+
+
+                </block>
+
+            </category>
+
+            <category id="catGUI" name="GUI">
+                <block type="window_open"></block>
+                <block type="valuefromtext">
+                    <value name="IdOfText">
+                        <shadow type="text">
+                            <field name="TEXT">output</field>
+                        </shadow>
+                    </value>
+                    <value name="ValueToObtain">
+                        <shadow type="text">
+                            <field name="TEXT">value</field>
+                        </shadow>
+                    </value>
+                </block>
+            </category>
+
+            <category id="catJSBLocks" name="JSBlocks">
+                <!--<block type="wait_seconds"></block>-->
+                <category name="Objects" id="Objects">
+                    <block type="modifyproperty">
+                        <value name="PropertyName">
+                            <shadow type="text">
+                                <field name="TEXT">enter property name</field>
+                            </shadow>
+                        </value>
+                    </block>
+                    <block type="getproperty">
+                        <value name="PropertyName">
+                            <shadow type="text">
+                                <field name="TEXT">enter property name</field>
+                            </shadow>
+                        </value>
+
+                    </block>
+                    <block type="object_create"></block>
+                    <!--<block type="object_from_json"></block>
+                    <block type="object_to_json"></block>
+                    <block type="object_get"></block>
+                    <block type="object_set"></block>-->
+                </category>
+                <category name="DateTime" id="DateTime">
+                    <block type="fromUnixTimeToDate">
+                        <value name="VALUE">
+                            <shadow type="math_number">
+                                <field name="NUM">9072000</field>
+                            </shadow>
+                        </value>
+                    </block>
+                    <block type="displayCurrentDate">
+                    </block>
+                    <block type="DateFromText">
+                        <value name="VALUE">
+                            <shadow type="text">
+                                <field name="TEXT">1970-04-16T02:00:00</field>
+                            </shadow>
+                        </value>
+                    </block>
+
+                    <block type="wait">
+
+                        <value name="VALUE">
+                            <shadow type="math_number">
+                                <field name="NUM">10</field>
+                            </shadow>
+                        </value>
+
+                    </block>
+                    <block type="wait_until">
+                    
+                    </block>
+                </category>
+
+            </category>
+
+            <category id="catJSON" colour="160" name="Converters">
+                <!--                <button text="A button" callbackKey="crae"></button>-->
+                <block type="converttojson"></block>
+                <block type="converttostring"></block>
+                <block type="convertcsv">
+
+                </block>
+            </category>
+
+            <category id="catHelpers" colour="160" name="Helpers">
+                <block type="wait_seconds">
+
+                </block>
+                <block type="comment">
+                    <value name="TEXT">
+                        <shadow type="text">
+                            <field name="TEXT">Put here comments</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="text_print">
+                    <value name="TEXT">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="text_print_return">
+                    <value name="TEXT">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                </block>
+
+                <block type="text_prompt_ext">
+                    <value name="TEXT">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                </block>
+            </category>
+
+            <category id="XHR" name="Request">
+                <block type="headersbeforehttp">
+                    <value name="HttpDomain">
+                        <shadow type="text">
+                            <field name="TEXT">(localSite)</field>
+                        </shadow>
+                    </value>
+                    <value name="HeaderName">
+                        <shadow type="text">
+                            <field name="TEXT">Authorization</field>
+                        </shadow>
+                    </value>
+                    <value name="HeaderValue">
+                        <shadow type="text_join">
+
+                        </shadow>
+                    </value>
+                </block>
+                <block type="credsforhttp">
+                    <value name="HttpDomain">
+                        <shadow type="text">
+                            <field name="TEXT">(localSite)</field>
+                        </shadow>
+                    </value>
+                    <value name="WithCreds">
+                        <shadow type="logic_boolean">
+                            <field name="BOOL">FALSE</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="blockxhrresult"></block>
+                <block type="httprequest">
+                    <value name="TheUrl">
+                        <shadow type="text">
+                            <field name="TEXT">https://api.chucknorris.io/jokes/random</field>
+                        </shadow>
+                    </value>
+                </block>
+            </category>
+
+
+        </category>
+
+    </xml>
+
+    <xml xmlns="https://developers.google.com/blockly/xml" id="startBlocks" style="display: none">
+        <variables>
+            <variable id="hO`?kR*XbVn|uJq:?jJ_">n</variable>
+        </variables>
+        <block type="variables_set" inline="true" x="29" y="41">
+            <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
+            <value name="VALUE">
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+            <next>
+                <block type="controls_repeat_ext" inline="true">
+                    <value name="TIMES">
+                        <block type="math_number">
+                            <field name="NUM">3</field>
+                        </block>
+                    </value>
+                    <statement name="DO">
+                        <block type="variables_set" inline="true">
+                            <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
+                            <value name="VALUE">
+                                <block type="math_arithmetic">
+                                    <field name="OP">MULTIPLY</field>
+                                    <value name="A">
+                                        <block type="variables_get">
+                                            <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
+                                        </block>
+                                    </value>
+                                    <value name="B">
+                                        <block type="math_number">
+                                            <field name="NUM">2</field>
+                                        </block>
+                                    </value>
+                                </block>
+                            </value>
+                            <next>
+                                <block type="text_print">
+                                    <value name="TEXT">
+                                        <block type="api_ZArduino_ONLed__led__GET">
+                                            <value name="val_led">
+                                                <shadow type="math_number">
+                                                    <field name="NUM">0</field>
+                                                </shadow>
+                                                <block type="variables_get">
+                                                    <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
+                                                </block>
+                                            </value>
+                                        </block>
+                                    </value>
+                                    <next>
+                                        <block type="text_print">
+                                            <value name="TEXT">
+                                                <block type="api_ZArduino_Sleep__minutes__GET">
+                                                    <value name="val_minutes">
+                                                        <shadow type="math_number">
+                                                            <field name="NUM">0</field>
+                                                        </shadow>
+                                                        <block type="math_arithmetic">
+                                                            <field name="OP">MULTIPLY</field>
+                                                            <value name="A">
+                                                                <block type="variables_get">
+                                                                    <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
+                                                                </block>
+                                                            </value>
+                                                            <value name="B">
+                                                                <block type="math_number">
+                                                                    <field name="NUM">2</field>
+                                                                </block>
+                                                            </value>
+                                                        </block>
+                                                    </value>
+                                                </block>
+                                            </value>
+                                            <next>
+                                                <block type="text_print">
+                                                    <value name="TEXT">
+                                                        <block type="api_ZArduino_OFFLed__led__GET">
+                                                            <value name="val_led">
+                                                                <shadow type="math_number">
+                                                                    <field name="NUM">0</field>
+                                                                </shadow>
+                                                                <block type="variables_get">
+                                                                    <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
+                                                                </block>
+                                                            </value>
+                                                        </block>
+                                                    </value>
+                                                </block>
+                                            </next>
+                                        </block>
+                                    </next>
+                                </block>
+                            </next>
+                        </block>
+                    </statement>
+                </block>
+            </next>
+        </block>
+
+
+    </xml>
+    <!--doNotCopyToFinal-->
+    <xml id="testSite" style="display: none">
+         <variables>
+    <variable id="hO`?kR*XbVn|uJq:?jJ_">n</variable>
+  </variables>
+  <block type="variables_set" inline="true" x="29" y="41">
+    <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
+    <value name="VALUE">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>
+    <next>
+      <block type="controls_repeat_ext" inline="true">
+        <value name="TIMES">
+          <block type="math_number">
+            <field name="NUM">3</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="variables_set" inline="true">
+            <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
+            <value name="VALUE">
+              <block type="math_arithmetic">
+                <field name="OP">MULTIPLY</field>
+                <value name="A">
+                  <block type="variables_get">
+                    <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="math_number">
+                    <field name="NUM">2</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="text_print">
+                <value name="TEXT">
+                  <block type="api_ZArduino_ONLed__led__GET">
+                    <value name="val_led">
+                      <shadow type="math_number">
+                        <field name="NUM">0</field>
+                      </shadow>
+                      <block type="variables_get">
+                        <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print">
+                    <value name="TEXT">
+                      <block type="api_ZArduino_Sleep__minutes__GET">
+                        <value name="val_minutes">
+                          <shadow type="math_number">
+                            <field name="NUM">0</field>
+                          </shadow>
+                          <block type="math_arithmetic">
+                            <field name="OP">MULTIPLY</field>
+                            <value name="A">
+                              <block type="variables_get">
+                                <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="math_number">
+                                <field name="NUM">2</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="text_print">
+                        <value name="TEXT">
+                          <block type="api_ZArduino_OFFLed__led__GET">
+                            <value name="val_led">
+                              <shadow type="math_number">
+                                <field name="NUM">0</field>
+                              </shadow>
+                              <block type="variables_get">
+                                <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+    </xml>
+    <!--enddoNotCopyToFinal-->
+
+    <script>
+
+        if (typeof blockTextLocalSiteFunctions === 'undefined') {
+            window.alert('  the blockly  functions are not generated yet. Please refresh the page ');
+        }
+
+        function registerSavedBlocks() {
+            var xmlList = [];
+            var fromStorage = getBlocksFromstorage();
+            for (var i = 0; i < fromStorage.length; i++) {
+                var storage = fromStorage[i];
+                try {
+                    var data = storage.val;
+                    data = data.replace("</xml>", "");
+                    data = data.replace('<xml xmlns="https://developers.google.com/blockly/xml">', '');
+                    const vars = "</variables>";
+                    var indexVar = data.indexOf(vars);
+                    if (indexVar > 0) {
+                        data = data.substr(indexVar + vars.length);
+                    }
+                    data = Blockly.Xml.textToDom(data);
+                    xmlList.push(data);
+                    //console.log(data);
+                }
+                catch (e) {
+                    console.log("start error");
+                    console.log(e);
+                    console.log(storage);
+                    console.log("end error");
+                }
+                //window.alert(xmlList.length);
+            }
+
+            return xmlList;
+        }
+
+        var localSiteDom = document.getElementById("LocalSiteFunctions");
+        localSiteDom.innerHTML = blockTextLocalSiteFunctions;
+
+
+
+
+        //start swagger
+
+        //window.alert(JSON.stringify(dictSwagger));
+        function addScript(src) {
+            var s = document.createElement('script');
+            s.setAttribute('src', src);
+            document.body.appendChild(s);
+        }
+        var toolbox = document.getElementById('toolbox');
+        var xmlStringSwagger = '';
+        for (var i = 0; i < dictSwagger.length; i++) {
+            var nameSwagger = dictSwagger[i].key;
+            var name = `blockTextLocalSiteFunctions${nameSwagger}`;
+            xmlStringSwagger += `<category name="${nameSwagger}" expanded="false">`;
+            xmlStringSwagger += `<category name="${nameSwagger} Functions" id="${nameSwagger}Functions" expanded="true">`;
+            xmlStringSwagger += window[name];
+            xmlStringSwagger += `</category>`;
+            xmlStringSwagger += `<category name="${nameSwagger} Values" custom="SiteValues${nameSwagger}"></category>`;
+            xmlStringSwagger += "</category>";
+        }
+        function existglbVar(key) {
+            var name = `glbVar${key}`;
+            //console.log('loaded glbvar:' + key);
+            window[name](demoWorkspace);
+            demoWorkspace.registerToolboxCategoryCallback(`SiteValues${key}`, window[`registerValues${key}`]);
+        }
+        if (xmlStringSwagger.length > 0) {
+            xmlStringSwagger = '<category name="Swaggers">' + xmlStringSwagger + '</category>';
+        }
+
+
+        var xmlStringOdata = '';
+        for (var i = 0; i < dictOData.length; i++) {
+            var nameSwagger = dictOData[i].key;
+            var name = `blockTextLocalSiteFunctions${nameSwagger}`;
+            xmlStringOdata += `<category name="${nameSwagger}" expanded="false">`;
+            xmlStringOdata += `<category name="${nameSwagger} Functions" id="${nameSwagger}Functions" expanded="true">`;
+            xmlStringOdata += window[name];
+            xmlStringOdata += `</category>`;
+            xmlStringOdata += `<category name="${nameSwagger} Values" custom="SiteValues${nameSwagger}"></category>`;
+            xmlStringOdata += "</category>";
+        }
+        if (xmlStringOdata.length > 0) {
+            xmlStringOdata = '<category name="OData">' + xmlStringOdata + '</category>';
+        }
+
+        var xmlStringGraphQL = '';
+        for (var i = 0; i < dictGraphQL.length; i++) {
+            var nameSwagger = dictGraphQL[i].key;
+            var name = `blockTextLocalSiteFunctions${nameSwagger}`;
+            xmlStringGraphQL += `<category name="${nameSwagger}" expanded="false">`;
+            xmlStringGraphQL += `<category name="${nameSwagger} Functions" id="${nameSwagger}Functions" expanded="true">`;
+            xmlStringGraphQL += window[name];
+            xmlStringGraphQL += `</category>`;
+            xmlStringGraphQL += `<category name="${nameSwagger} Values" custom="SiteValues${nameSwagger}"></category>`;
+            xmlStringGraphQL += "</category>";
+        }
+        if (xmlStringGraphQL.length > 0) {
+            xmlStringGraphQL = '<category name="GraphQL">' + xmlStringGraphQL + '</category>';
+        }
+
+        var html = toolbox.innerHTML.replace('<category name="OtherSwaggers"></category>', xmlStringSwagger);
+
+        html = html.replace('<category name="OtherOData"></category>', xmlStringOdata);
+
+        html = html.replace('<category name="OtherGraphQL"></category>', xmlStringGraphQL);
+
+        var customBlocksText = '';
+
+        if ('customBlocks' in window) {
+            customBlocksText = customBlocks;
+        }
+        html = html.replace('<category id="CustomBlocks" name="Custom Blocks"></category>', customBlocksText)
+
+        //toolbox.innerHTML = html;
+
+        //end swagger
+
+
+        demoWorkspace = Blockly.inject('blocklyDiv',
+            {
+                media: 'media/',
+                toolbox: document.getElementById('toolbox')
+            });
+        if (glbVar)
+            glbVar(demoWorkspace);
+        //demoWorkspace.createVariable('var_SumArgs', 'TestWebAPISite_Controllers_SumArgs');
+        demoWorkspace.registerToolboxCategoryCallback('LocalSiteValues', registerValues);
+        demoWorkspace.registerToolboxCategoryCallback('savedBlocks', registerSavedBlocks);
+        demoWorkspace.registerButtonCallback('crae',
+            function (button) { Blockly.Variables.createVariable(button.getTargetWorkspace(), null, 'TestWebAPISite_Controllers_SumArgs'); }
+        );
+        const workspaceSearch = new WorkspaceSearch(demoWorkspace);
+        workspaceSearch.init();
+        workspaceSearch.open();
+        registerSearch(demoWorkspace);
+
+        //start swagger
+
+        //window.alert(JSON.stringify(dictSwagger));
+        for (var i = 0; i < dictSwagger.length; i++) {
+            var nameSwagger = dictSwagger[i].key;
+            existglbVar(nameSwagger);
+        }
+
+        for (var i = 0; i < dictOData.length; i++) {
+            var nameSwagger = dictOData[i].key;
+            existglbVar(nameSwagger);
+        }
+
+        //end swagger
+        //region start blocks to display
+        var urlParams = window.location.search.split('dom=');
+
+        if (urlParams.length == 2) {
+            var str = urlParams[1];
+            var name = "savedBlockly_" + str;
+            var xmlContent = lsh().get(name);
+
+            //xmlContent = JSON.parse(xmlContent);
+            xmlContent = xmlContent.val;
+            if ((xmlContent || '').length > 0) {
+                var dom = Blockly.Xml.textToDom(xmlContent);
+                Blockly.Xml.domToWorkspace(dom, demoWorkspace);
+            }
+        }
+        else {
+
+            var startBlocks = document.getElementById('startBlocks');
+
+            if ('startBlocksStr' in window && startBlocksStr.length > 0) {
+                //startBlocks = Blockly.Xml.textToDom(startBlocksStr);
+            }
+            try {
+                Blockly.Xml.domToWorkspace(startBlocks, demoWorkspace);
+            }
+            catch (e) {
+                console.log(`start blocks error : ${startBlocks}`, e);
+            }
+        }
+        //end start blocks to display
+        //start blockly customize
+        if ('optHeaderName' in window && optHeaderName.length > 0) {
+            document.getElementById('headerName').innerHTML = optHeaderName;
+            document.getElementById('title').innerHTML = optHeaderName;
+        }
+        //end blockly customize
+
+        // Exit is used to signal the end of a script.
+        Blockly.JavaScript.addReservedWords('exit');
+
+        var outputArea = document.getElementById('output');
+        var runButton = document.getElementById('runButton');
+        var myInterpreter = null;
+        var runner;
+
+        function initApi(interpreter, globalObject) {
+
+            var headersForDomain = interpreter.nativeToPseudo({ '(localSite)': [] });
+            interpreter.setProperty(globalObject, 'headersForDomain', headersForDomain);
+
+            var withCredsForDomain = interpreter.nativeToPseudo({ '(localSite)': false });
+            interpreter.setProperty(globalObject, 'withCredsForDomain', withCredsForDomain);
+
+
+            // Add an API function for the alert() block, generated for "text_print" blocks.
+            var wrapper = function (text) {
+                console.log(text);
+                text = text ? text.toString() : '';
+                step++;
+
+                console.log(`step ${step}`);
+                zip.file(`result ${step}) ${text}`);
+                outputArea.value = outputArea.value + '\n step' + step + ':' + text;
+                AddDataToGrid(text, gridElement);
+            };
+
+
+
+
+
+            interpreter.setProperty(globalObject, 'alert',
+                interpreter.createNativeFunction(wrapper));
+
+            var wrapper = function (text) {
+                window.open(text);
+            };
+            interpreter.setProperty(globalObject, 'open',
+                interpreter.createNativeFunction(wrapper));
+
+            // Add an API function for the prompt() block.
+            var wrapper = function (text) {
+                text = text ? text.toString() : '';
+                return interpreter.createPrimitive(prompt(text));
+            };
+            interpreter.setProperty(globalObject, 'prompt',
+                interpreter.createNativeFunction(wrapper));
+
+            var wrapper = function (id, property) {
+
+                return document.getElementById(id)[property];
+            };
+            interpreter.setProperty(globalObject, 'getIDProp',
+                interpreter.createNativeFunction(wrapper));
+
+            var wrapper = (item) => {
+                outputArea.value += '\n error --' + '\n' + item + '\n error --';
+            };
+
+            interpreter.setProperty(globalObject, 'errHandler',
+                interpreter.createNativeFunction(wrapper));
+
+
+            var wrapper = (item) => convertCSV(item);
+            interpreter.setProperty(globalObject, 'convertToCSV',
+                interpreter.createNativeFunction(wrapper));
+
+            var wrapper = (it, content, toByte) => exportToFile(it, content, toByte);
+            interpreter.setProperty(globalObject, 'exportToFile',
+                interpreter.createNativeFunction(wrapper));
+
+            var wrapper = item => convertToDate(item);
+            interpreter.setProperty(globalObject, 'convertToDate',
+                interpreter.createNativeFunction(wrapper));
+
+            var wrapper = (item) => displayDateFormatted(item);
+            interpreter.setProperty(globalObject, 'displayDateFormatted',
+                interpreter.createNativeFunction(wrapper));
+
+            var wrapper = (href, callback) => {
+                var creds = interpreter.pseudoToNative(withCredsForDomain);
+
+                var heads = interpreter.pseudoToNative(headersForDomain);
+                var hostname = '(localSite)';
+                if (href.startsWith('http://') || href.startsWith('https://')) {
+                    hostname = (new URL(href)).hostname;
+                }
+                var arrHeaders = [];
+                if (hostname in heads) {
+                    arrHeaders = heads[hostname];
+                }
+                var withCreds = false;
+
+                if (hostname in creds) {
+                    withCreds = creds[hostname];
+                }
+
+                return doGet(href, callback, arrHeaders, withCreds);
+            }
+            interpreter.setProperty(globalObject, 'getXhr',
+                interpreter.createAsyncFunction(wrapper));
+
+            var wrapper = (nr, callback) => {
+                console.log(`waiting seconds ${nr}`);
+                setTimeout(callback, nr * 1000);
+            };
+            interpreter.setProperty(globalObject, 'waitTime',
+                interpreter.createAsyncFunction(wrapper));
+
+
+            var wrapper = (href, objectToPost, callback) => {
+                try {
+                    var creds = interpreter.pseudoToNative(withCredsForDomain);
+                    var heads = interpreter.pseudoToNative(headersForDomain);
+                    var hostname = '(localSite)';
+                    if (href.startsWith('http://') || href.startsWith('https://')) {
+                        hostname = (new URL(href)).hostname;
+                    }
+                    var arrHeaders = [];
+                    if (hostname in heads) {
+                        arrHeaders = heads[hostname];
+                    }
+                    var withCreds = false;
+
+                    if (hostname in creds) {
+                        withCreds = creds[hostname];
+                    }
+                    doPost(href, objectToPost, callback, arrHeaders, withCreds);
+                }
+                catch (e) {
+                    alert("is an error" + e);
+                }
+            };
+            interpreter.setProperty(globalObject, 'postXhr',
+                interpreter.createAsyncFunction(wrapper));
+
+            var wrapper = (href, objectToPost, callback) => {
+                try {
+                    var creds = interpreter.pseudoToNative(withCredsForDomain);
+                    var heads = interpreter.pseudoToNative(headersForDomain);
+                    var hostname = '(localSite)';
+                    if (href.startsWith('http://') || href.startsWith('https://')) {
+                        hostname = (new URL(href)).hostname;
+                    }
+                    var arrHeaders = [];
+                    if (hostname in heads) {
+                        arrHeaders = heads[hostname];
+                    }
+                    var withCreds = false;
+
+                    if (hostname in creds) {
+                        withCreds = creds[hostname];
+                    }
+                    doPut(href, objectToPost, callback, arrHeaders, withCreds);
+                }
+                catch (e) {
+                    alert("is an error" + e);
+                }
+            };
+            interpreter.setProperty(globalObject, 'putXhr',
+                interpreter.createAsyncFunction(wrapper));
+
+
+            var wrapper = (href, objectToPost, callback) => {
+                try {
+                    var creds = interpreter.pseudoToNative(withCredsForDomain);
+                    var heads = interpreter.pseudoToNative(headersForDomain);
+                    var hostname = '(localSite)';
+                    if (href.startsWith('http://') || href.startsWith('https://')) {
+                        hostname = (new URL(href)).hostname;
+                    }
+                    var arrHeaders = [];
+                    if (hostname in heads) {
+                        arrHeaders = heads[hostname];
+                    }
+                    var withCreds = false;
+
+                    if (hostname in creds) {
+                        withCreds = creds[hostname];
+                    }
+                    doPatch(href, objectToPost, callback, arrHeaders, withCreds);
+                }
+                catch (e) {
+                    alert("is an error" + e);
+                }
+            };
+            interpreter.setProperty(globalObject, 'patchXhr',
+                interpreter.createAsyncFunction(wrapper));
+
+
+            var wrapper = (href, callback) => {
+                try {
+                    var creds = interpreter.pseudoToNative(withCredsForDomain);
+                    var heads = interpreter.pseudoToNative(headersForDomain);
+                    var hostname = '(localSite)';
+                    if (href.startsWith('http://') || href.startsWith('https://')) {
+                        hostname = (new URL(href)).hostname;
+                    }
+                    var arrHeaders = [];
+                    if (hostname in heads) {
+                        arrHeaders = heads[hostname];
+                    }
+                    var withCreds = false;
+
+                    if (hostname in creds) {
+                        withCreds = creds[hostname];
+                    }
+
+                    doDelete(href, callback, arrHeaders, withCreds);
+                }
+                catch (e) {
+                    alert("is an error" + e);
+                }
+            };
+
+
+
+            interpreter.setProperty(globalObject, 'deleteXhr',
+                interpreter.createAsyncFunction(wrapper));
+
+
+            // Add an API for the wait block.  See wait_block.js
+            initInterpreterWaitForSeconds(interpreter, globalObject);
+
+            // Add an API function for highlighting blocks.
+            var wrapper = function (id) {
+                id = id ? id.toString() : '';
+                return interpreter.createPrimitive(highlightBlock(id));
+            };
+            interpreter.setProperty(globalObject, 'highlightBlock',
+                interpreter.createNativeFunction(wrapper));
+        }
+
+        var highlightPause = false;
+        var latestCode = '';
+        var step = 0;
+        var zip = new JSZip();
+        function highlightBlock(id) {
+
+            demoWorkspace.highlightBlock(id);
+            highlightPause = true;
+            if(false)//TODO: make a checkbox to activate this debugger for every instruction
+                debugger;
+        }
+
+        function resetStepUi(clearOutput) {
+            step = 0;
+
+            demoWorkspace.highlightBlock(null);
+            highlightPause = false;
+            runButton.disabled = '';
+
+            if (clearOutput) {
+                zip = new JSZip();
+                outputArea.value = 'Program output:\n=================';
+                ClearDataGrid();
+            }
+        }
+        function ShowInnerWorkings() {
+
+            var xml = Blockly.Xml.workspaceToDom(demoWorkspace, true);
+            var xml_text = Blockly.Xml.domToPrettyText(xml);
+            outputArea.value = "========\n";
+            outputArea.value += xml_text;
+            outputArea.value += "\n========\n";
+            outputArea.value += latestCode;
+
+        }
+        function generateCodeAndLoadIntoInterpreter() {
+            // Generate JavaScript code and parse it.
+            Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
+            Blockly.JavaScript.addReservedWords('highlightBlock');
+            latestCode = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+
+            resetStepUi(true);
+
+
+        }
+
+        function resetInterpreter() {
+            myInterpreter = null;
+            if (runner) {
+                clearTimeout(runner);
+                runner = null;
+            }
+        }
+
+        function runCode() {
+            if (!myInterpreter) {
+                // First statement of this code.
+                // Clear the program output.
+                resetStepUi(true);
+                runButton.disabled = 'disabled';
+
+                // And then show generated code in an alert.
+                // In a timeout to allow the outputArea.value to reset first.
+                setTimeout(function () {
+                    console.log(latestCode);
+                    //alert('Ready to execute the following code\n' +
+                    //    '===================================\n' +
+                    //    latestCode);
+
+                    // Begin execution
+                    highlightPause = false;
+                    try {
+                        myInterpreter = new Interpreter(latestCode, initApi);
+                    }
+                    catch (e) {
+                        ShowInnerWorkings();
+                        window.alert('please copy the left output and report there is an error at ' + JSON.stringify(e));
+                        
+                    }
+                    runner = function () {
+                        if (myInterpreter) {
+                            var hasMore = myInterpreter.run();
+                            if (hasMore) {
+                                // Execution is currently blocked by some async call.
+                                // Try again later.
+                                setTimeout(runner, 10);
+                            } else {
+                                // Program is complete.
+                                outputArea.value += '\n\n<< Program complete >>';
+                                FinishGrid();
+                                resetInterpreter();
+                                resetStepUi(false);
+                            }
+                        }
+                    };
+                    runner();
+                }, 1);
+                return;
+            }
+        }
+
+        // Load the interpreter now, and upon future changes.
+        generateCodeAndLoadIntoInterpreter();
+        demoWorkspace.addChangeListener(function (event) {
+            if (!(event instanceof Blockly.Events.Ui)) {
+                // Something changed. Parser needs to be reloaded.
+
+                resetInterpreter();
+                generateCodeAndLoadIntoInterpreter();
+
+                if (event.type == Blockly.Events.BLOCK_CREATE) {
+
+                    //console.log();
+                    var obj = event.getEventWorkspace_().getBlockById(event.blockId);
+
+                    if (obj.type == "text_print")
+                        return;
+
+                }
+            }
+
+        });
+
+        function downloadZip() {
+            zip.generateAsync({ type: "blob" }).then(function (blob) { // 1) generate the zip file
+                saveAs(blob, "hello.zip");                          // 2) trigger the download
+            });
+        }
+        function SaveBlocks() {
+            var xml = Blockly.Xml.workspaceToDom(demoWorkspace, true);
+            var xml_text = Blockly.Xml.domToPrettyText(xml);
+            var n = formatDate(new Date());
+            window.history.pushState({ dom: n }, xml_text, "?dom=" + n);
+
+            lsh().set("savedBlockly_" + n, ({ name: "savedBlockly_" + n, val: xml_text }));
+            window.alert("copy the url from the browser");
+        }
+        function getBlocksFromstorage() {
+            var arrSavedStorage = [];
+            var nrItems = lsh().length;
+
+            for (var iStor = 0; iStor < nrItems; iStor++) {
+                var key = lsh().key(iStor);
+                //window.alert(key);
+                if (key.indexOf("savedBlockly_") != 0)
+                    continue;
+                arrSavedStorage.push(lsh().get(key));
+
+            }
+            //window.alert(arrSavedStorage.length);
+            return arrSavedStorage;
+        }
+        function displayLinksSavedStorage() {
+
+            var ls = document.getElementById("localStorageSaved");
+            ls.innerHTML = tmpl("storage_tmpl", { data: getBlocksFromstorage() });
+
+            //window.alert(arrSavedStorage.length);
+        }
+        function formatInt(number) {
+            return number < 10 ? '0' + number : number;
+        }
+        function formatDate(date) {
+
+            return `${formatInt(date.getFullYear())}${formatInt((date.getMonth() + 1))}${formatInt(date.getDate())}` +
+                `${formatInt(date.getHours())}${formatInt(date.getMinutes())}${formatInt(date.getSeconds())}`;
+
+        }
+        /*doNotCopyToFinal*/
+        displayLinksSavedStorage();
+
+        /*enddoNotCopyToFinal*/
+        function displayVersion() {
+
+            let req = new XMLHttpRequest();
+
+            req.open('GET', '/NetCore2BlocklyVersion', true);
+
+            req.onreadystatechange = function () {
+                if (req.readyState == 4) {
+                    if (req.status >= 200 && req.status < 300) {
+                        var version = req.responseText;
+                        //window.alert(answer);
+                        document.getElementById("version").innerHTML = version;
+                        if ('optHeaderName' in window && optHeaderName.length > 0) {
+                            startIntro(optHeaderName);
+                        }
+                        else {
+                            startIntro(version);
+                        }
+
+                    };
+                }
+            }
+            req.send(null);
+        };
+
+
+    </script>
+    <footer>
+        <small> <a href="https://github.com/ignatandrei/netcoreblockly">GitHub</a></small>
+        <small><span id="version">version</span></small>
+    </footer>
+    <script>
+        displayVersion();
+    </script>
+</body>
+</html>
