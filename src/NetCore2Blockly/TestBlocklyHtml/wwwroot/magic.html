@@ -325,8 +325,8 @@
 
 
     <!--doNotCopyToFinal-->
-    <div>Saved blocks</div>
-    <ul id="localStorageSaved">
+    <div style="display:none">Saved blocks</div>
+    <ul style="display:none" id="localStorageSaved">
     </ul>
 
     <script type="text/html" id="storage_tmpl">
@@ -1069,7 +1069,7 @@
                                     <value name="TEXT">
                                         <block type="api_ZArduino_ONLed__led__GET">
                                             <value name="val_led">
-                                                <shadow type="math_number">
+                                                <shadow xmlns="http://www.w3.org/1999/xhtml" type="math_number">
                                                     <field name="NUM">0</field>
                                                 </shadow>
                                                 <block type="variables_get">
@@ -1081,8 +1081,8 @@
                                     <next>
                                         <block type="text_print">
                                             <value name="TEXT">
-                                                <block type="api_ZArduino_Sleep__minutes__GET">
-                                                    <value name="val_minutes">
+                                                <block type="api_ZArduino_Wait__seconds__GET">
+                                                    <value name="val_seconds">
                                                         <shadow type="math_number">
                                                             <field name="NUM">0</field>
                                                         </shadow>
@@ -1107,7 +1107,7 @@
                                                     <value name="TEXT">
                                                         <block type="api_ZArduino_OFFLed__led__GET">
                                                             <value name="val_led">
-                                                                <shadow type="math_number">
+                                                                <shadow xmlns="http://www.w3.org/1999/xhtml" type="math_number">
                                                                     <field name="NUM">0</field>
                                                                 </shadow>
                                                                 <block type="variables_get">
@@ -1127,7 +1127,6 @@
                 </block>
             </next>
         </block>
-
 
     </xml>
     <!--doNotCopyToFinal-->
@@ -1843,10 +1842,10 @@
                         //window.alert(answer);
                         document.getElementById("version").innerHTML = version;
                         if ('optHeaderName' in window && optHeaderName.length > 0) {
-                            startIntro(optHeaderName);
+                            //startIntro(optHeaderName);
                         }
                         else {
-                            startIntro(version);
+                            //startIntro(version);
                         }
 
                     };
