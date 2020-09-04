@@ -39,13 +39,15 @@ namespace TestBlocklyHtml.Controllers
             return "Off(" + led + ")";
         }
         [HttpGet("{seconds}")]
-        public string Wait(int seconds)
+        public async Task<string>  Wait(int seconds)
         {
+            await Task.Delay(1000 * seconds);
             return "WAIT(" + seconds+ ")";
         }
         [HttpGet("{minutes}")]
-        public string Sleep(int minutes)
+        public async Task<string> Sleep(int minutes)
         {
+            await Task.Delay(1000 *60 * minutes);
             return "SLEEP(" + minutes + ")";
         }
         [HttpGet()]
