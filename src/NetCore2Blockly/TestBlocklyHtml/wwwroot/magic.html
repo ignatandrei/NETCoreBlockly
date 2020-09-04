@@ -76,6 +76,129 @@
             margin: 0 2px;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var ON = true;
+        var OFF = false;
+
+        function led(idx, state) {
+            var ledHTMLContainerID = "#jewel-led" + idx;
+            var led = $(ledHTMLContainerID);
+
+            if (state) {
+                if (led.hasClass("jewel-led-off")) led.removeClass("jewel-led-off");
+                led.addClass("jewel-led-on");
+                //led.show();
+            }
+            else {
+                if (led.hasClass("jewel-led-on")) led.removeClass("jewel-led-on");
+                led.addClass("jewel-led-off");
+                ///                led.hide();
+            }
+        }
+
+        async function blink(idx) {
+            led(idx, ON);
+            await sleep(300);
+            led(idx, OFF);
+            await sleep(300);
+        }
+
+        async function blinkAll() {
+            for (var idx = 1; idx <= 12; idx++) {
+                $("#counter").text("secunda" + idx);
+                await blink(idx);
+            }
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+
+    </script>
+    <style>
+        #jewel-container {
+            position: relative;
+            width: 300px;
+            height: 177px;
+            background-image: url('butterfly.png');
+        }
+
+        .jewel-led {
+            position: absolute;
+            width: 46px;
+            height: 45px;
+        }
+
+        .jewel-led-on {
+            background-image: url('butterfly-led.png');
+        }
+
+        .jewel-led-off {
+            background-image: none;
+        }
+
+        #jewel-led1 {
+            top: 10px;
+            left: 17px;
+        }
+
+        #jewel-led2 {
+            top: 46px;
+            left: 37px;
+        }
+
+        #jewel-led3 {
+            top: 90px;
+            left: 45px;
+        }
+
+        #jewel-led4 {
+            top: 120px;
+            left: 75px;
+        }
+
+        #jewel-led5 {
+            top: 72px;
+            left: 71px;
+        }
+
+        #jewel-led6 {
+            top: 22px;
+            left: 70px;
+        }
+
+        #jewel-led7 {
+            top: 119px;
+            left: 189px;
+        }
+
+        #jewel-led8 {
+            top: 87px;
+            left: 222px;
+        }
+
+        #jewel-led9 {
+            top: 43px;
+            left: 228px;
+        }
+
+        #jewel-led10 {
+            top: 1px;
+            left: 245px;
+        }
+
+        #jewel-led11 {
+            top: 16px;
+            left: 186px;
+        }
+
+        #jewel-led12 {
+            top: 70px;
+            left: 191px;
+        }
+    </style>
 </head>
 <body>
     <h1 id="headerName">
@@ -180,12 +303,26 @@
     </script>
     <div>&nbsp;</div>
     <div id="steps" style="display: none; width: 96%;"></div>
+    <div id="jewel-container" onclick="blinkAll();">
+        <div id="jewel-led1" class="jewel-led jewel-led-off"></div>
+        <div id="jewel-led2" class="jewel-led jewel-led-off"></div>
+        <div id="jewel-led3" class="jewel-led jewel-led-off"></div>
+        <div id="jewel-led4" class="jewel-led jewel-led-off"></div>
+        <div id="jewel-led5" class="jewel-led jewel-led-off"></div>
+        <div id="jewel-led6" class="jewel-led jewel-led-off"></div>
+        <div id="jewel-led7" class="jewel-led jewel-led-off"></div>
+        <div id="jewel-led8" class="jewel-led jewel-led-off"></div>
+        <div id="jewel-led9" class="jewel-led jewel-led-off"></div>
+        <div id="jewel-led10" class="jewel-led jewel-led-off"></div>
+        <div id="jewel-led11" class="jewel-led jewel-led-off"></div>
+        <div id="jewel-led12" class="jewel-led jewel-led-off"></div>
+    </div>
     <script>
         var gridElement = document.getElementById('steps');
         //initGrid(gridElement);
 
     </script>
-    
+
 
     <!--doNotCopyToFinal-->
     <div>Saved blocks</div>
@@ -251,7 +388,7 @@
             runCode();
         }
         /*doNotCopyToFinal*/
-        var results = document.getElementById("results");        
+        var results = document.getElementById("results");
         results.innerHTML = tmpl("data_tmpl", { data: testBlocks });
         var nrToExecute;
         var runnerAll = function () {
@@ -796,7 +933,7 @@
 
                     </block>
                     <block type="wait_until">
-                    
+
                     </block>
                 </category>
 
@@ -995,104 +1132,104 @@
     </xml>
     <!--doNotCopyToFinal-->
     <xml id="testSite" style="display: none">
-         <variables>
-    <variable id="hO`?kR*XbVn|uJq:?jJ_">n</variable>
-  </variables>
-  <block type="variables_set" inline="true" x="29" y="41">
-    <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
-    <value name="VALUE">
-      <block type="math_number">
-        <field name="NUM">1</field>
-      </block>
-    </value>
-    <next>
-      <block type="controls_repeat_ext" inline="true">
-        <value name="TIMES">
-          <block type="math_number">
-            <field name="NUM">3</field>
-          </block>
-        </value>
-        <statement name="DO">
-          <block type="variables_set" inline="true">
+        <variables>
+            <variable id="hO`?kR*XbVn|uJq:?jJ_">n</variable>
+        </variables>
+        <block type="variables_set" inline="true" x="29" y="41">
             <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
             <value name="VALUE">
-              <block type="math_arithmetic">
-                <field name="OP">MULTIPLY</field>
-                <value name="A">
-                  <block type="variables_get">
-                    <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
-                  </block>
-                </value>
-                <value name="B">
-                  <block type="math_number">
-                    <field name="NUM">2</field>
-                  </block>
-                </value>
-              </block>
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
             </value>
             <next>
-              <block type="text_print">
-                <value name="TEXT">
-                  <block type="api_ZArduino_ONLed__led__GET">
-                    <value name="val_led">
-                      <shadow type="math_number">
-                        <field name="NUM">0</field>
-                      </shadow>
-                      <block type="variables_get">
-                        <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
-                      </block>
+                <block type="controls_repeat_ext" inline="true">
+                    <value name="TIMES">
+                        <block type="math_number">
+                            <field name="NUM">3</field>
+                        </block>
                     </value>
-                  </block>
-                </value>
-                <next>
-                  <block type="text_print">
-                    <value name="TEXT">
-                      <block type="api_ZArduino_Sleep__minutes__GET">
-                        <value name="val_minutes">
-                          <shadow type="math_number">
-                            <field name="NUM">0</field>
-                          </shadow>
-                          <block type="math_arithmetic">
-                            <field name="OP">MULTIPLY</field>
-                            <value name="A">
-                              <block type="variables_get">
-                                <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
-                              </block>
+                    <statement name="DO">
+                        <block type="variables_set" inline="true">
+                            <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
+                            <value name="VALUE">
+                                <block type="math_arithmetic">
+                                    <field name="OP">MULTIPLY</field>
+                                    <value name="A">
+                                        <block type="variables_get">
+                                            <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
+                                        </block>
+                                    </value>
+                                    <value name="B">
+                                        <block type="math_number">
+                                            <field name="NUM">2</field>
+                                        </block>
+                                    </value>
+                                </block>
                             </value>
-                            <value name="B">
-                              <block type="math_number">
-                                <field name="NUM">2</field>
-                              </block>
-                            </value>
-                          </block>
-                        </value>
-                      </block>
-                    </value>
-                    <next>
-                      <block type="text_print">
-                        <value name="TEXT">
-                          <block type="api_ZArduino_OFFLed__led__GET">
-                            <value name="val_led">
-                              <shadow type="math_number">
-                                <field name="NUM">0</field>
-                              </shadow>
-                              <block type="variables_get">
-                                <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
-                              </block>
-                            </value>
-                          </block>
-                        </value>
-                      </block>
-                    </next>
-                  </block>
-                </next>
-              </block>
+                            <next>
+                                <block type="text_print">
+                                    <value name="TEXT">
+                                        <block type="api_ZArduino_ONLed__led__GET">
+                                            <value name="val_led">
+                                                <shadow type="math_number">
+                                                    <field name="NUM">0</field>
+                                                </shadow>
+                                                <block type="variables_get">
+                                                    <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
+                                                </block>
+                                            </value>
+                                        </block>
+                                    </value>
+                                    <next>
+                                        <block type="text_print">
+                                            <value name="TEXT">
+                                                <block type="api_ZArduino_Sleep__minutes__GET">
+                                                    <value name="val_minutes">
+                                                        <shadow type="math_number">
+                                                            <field name="NUM">0</field>
+                                                        </shadow>
+                                                        <block type="math_arithmetic">
+                                                            <field name="OP">MULTIPLY</field>
+                                                            <value name="A">
+                                                                <block type="variables_get">
+                                                                    <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
+                                                                </block>
+                                                            </value>
+                                                            <value name="B">
+                                                                <block type="math_number">
+                                                                    <field name="NUM">2</field>
+                                                                </block>
+                                                            </value>
+                                                        </block>
+                                                    </value>
+                                                </block>
+                                            </value>
+                                            <next>
+                                                <block type="text_print">
+                                                    <value name="TEXT">
+                                                        <block type="api_ZArduino_OFFLed__led__GET">
+                                                            <value name="val_led">
+                                                                <shadow type="math_number">
+                                                                    <field name="NUM">0</field>
+                                                                </shadow>
+                                                                <block type="variables_get">
+                                                                    <field name="VAR" id="hO`?kR*XbVn|uJq:?jJ_">n</field>
+                                                                </block>
+                                                            </value>
+                                                        </block>
+                                                    </value>
+                                                </block>
+                                            </next>
+                                        </block>
+                                    </next>
+                                </block>
+                            </next>
+                        </block>
+                    </statement>
+                </block>
             </next>
-          </block>
-        </statement>
-      </block>
-    </next>
-  </block>
+        </block>
     </xml>
     <!--enddoNotCopyToFinal-->
 
@@ -1529,7 +1666,7 @@
 
             demoWorkspace.highlightBlock(id);
             highlightPause = true;
-            if(false)//TODO: make a checkbox to activate this debugger for every instruction
+            if (false)//TODO: make a checkbox to activate this debugger for every instruction
                 debugger;
         }
 
@@ -1598,7 +1735,7 @@
                     catch (e) {
                         ShowInnerWorkings();
                         window.alert('please copy the left output and report there is an error at ' + JSON.stringify(e));
-                        
+
                     }
                     runner = function () {
                         if (myInterpreter) {
