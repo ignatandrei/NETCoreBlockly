@@ -8,7 +8,7 @@ namespace TestBlocklyHtml.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ArduinoController : ControllerBase
+    public class ZArduinoController : ControllerBase
     {
         string ON(string led)
         {

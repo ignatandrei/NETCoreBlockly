@@ -2696,7 +2696,7 @@ var testBlocks =
 </xml>`
         },
         {
-            name: 'arduino',
+            name: 'ZArduino',
             data:`<xml xmlns='https://developers.google.com/blockly/xml'>
   <variables>
     <variable id='hO\`?kR*XbVn|uJq:?jJ_'>n</variable>
@@ -2736,7 +2736,7 @@ var testBlocks =
             <next>
               <block type='text_print'>
                 <value name='TEXT'>
-                  <block type='api_Arduino_ONLed__led__GET'>
+                  <block type='api_ZArduino_ONLed__led__GET'>
                     <value name='val_led'>
                       <shadow type='math_number'>
                         <field name='NUM'>0</field>
@@ -2750,7 +2750,7 @@ var testBlocks =
                 <next>
                   <block type='text_print'>
                     <value name='TEXT'>
-                      <block type='api_Arduino_Sleep__minutes__GET'>
+                      <block type='api_ZArduino_Sleep__minutes__GET'>
                         <value name='val_minutes'>
                           <shadow type='math_number'>
                             <field name='NUM'>0</field>
@@ -2774,7 +2774,7 @@ var testBlocks =
                     <next>
                       <block type='text_print'>
                         <value name='TEXT'>
-                          <block type='api_Arduino_OFFLed__led__GET'>
+                          <block type='api_ZArduino_OFFLed__led__GET'>
                             <value name='val_led'>
                               <shadow type='math_number'>
                                 <field name='NUM'>0</field>
