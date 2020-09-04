@@ -12,7 +12,7 @@ namespace TestBlocklyHtml.Controllers
     {
         string ON(int led)
         {
-            return "led("+led+",true)";
+            return "led("+led+",ON)";
         }
         private void verifyLed(int led)
         {
@@ -36,7 +36,7 @@ namespace TestBlocklyHtml.Controllers
         }
         string OFF(int led)
         {
-            return "led(" + led + ",false)";
+            return "led(" + led + ",OFF)";
         }
         [HttpGet("{seconds}")]
         public async Task<string>  Wait(int seconds)
