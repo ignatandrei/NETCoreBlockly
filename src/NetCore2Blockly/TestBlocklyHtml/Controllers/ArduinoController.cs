@@ -10,9 +10,9 @@ namespace TestBlocklyHtml.Controllers
     [ApiController]
     public class ZArduinoController : ControllerBase
     {
-        string ON(string led)
+        string ON(int led)
         {
-            return "On("+led+")";
+            return "led("+led+",true)";
         }
         private void verifyLed(int led)
         {
@@ -25,18 +25,18 @@ namespace TestBlocklyHtml.Controllers
         public string ONLed(int led)
         {
             verifyLed(led);
-            return ON("LED"+led);
+            return ON(led);
         }
 
         [HttpGet("{led}")]
         public string OFFLed(int led)
         {
             verifyLed(led);
-            return OFF("LED" + led);
+            return OFF(led);
         }
-        string OFF(string led)
+        string OFF(int led)
         {
-            return "Off(" + led + ")";
+            return "led(" + led + ",false)";
         }
         [HttpGet("{seconds}")]
         public async Task<string>  Wait(int seconds)

@@ -1448,7 +1448,12 @@
                 console.log(`step ${step}`);
                 zip.file(`result ${step}) ${text}`);
                 outputArea.value = outputArea.value + '\n step' + step + ':' + text;
-                AddDataToGrid(text, gridElement);
+
+                if (text.startsWith('led')) {
+                    //window.alert('a');
+                    eval(text);
+                }
+                //AddDataToGrid(text, gridElement);
             };
 
 
@@ -1746,7 +1751,7 @@
                             } else {
                                 // Program is complete.
                                 outputArea.value += '\n\n<< Program complete >>';
-                                FinishGrid();
+                                //FinishGrid();
                                 resetInterpreter();
                                 resetStepUi(false);
                             }
