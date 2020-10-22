@@ -4,10 +4,21 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.17302329..1.1.2020.20667251
+git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.20667251..1.1.2020.25553965
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
+
+## 1.1.2020.25553965 locking and relative paths
+
+#### [lock file] 
+ Author ignatandrei on 2020-10-22 21:09:12 +0300 
+ hash 4eb7004 4eb700471484b591ebf58b2b44b9b2137c240707
+
+
+ #### [wait sleep] 
+ Author ignatandrei on 2020-09-04 21:00:21 +0300 
+ hash 5819da0 5819da09af2c852e7d1e1872cb6384594d78aa90
 
 ## 1.1.2020.20667251 adding optional site
 
