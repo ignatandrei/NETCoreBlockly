@@ -691,10 +691,14 @@ namespace NetCore2Blockly
             cp.GetChangeToken().RegisterChangeCallback(a =>
             {
 
-
                 var s = a as GenerateBlocklyFilesHostedService;
-                s.DoWork(null);
-                s.registerCallback();
+                if (s == null)
+                    return;
+                lock (s)
+                {
+                    s.DoWork(null);
+                    s.registerCallback();
+                }
             }, this);
 
         }
