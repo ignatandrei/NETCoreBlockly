@@ -122,6 +122,10 @@
         <!--<a href="javascript:downloadZip()">Download Results</a>-->
         <a href="javascript:SaveBlocks()" id="saveBlocks">Save Blocks</a>
         <a href="javascript:ShowInnerWorkings()">Show blocks</a>
+        <span style="float: right">
+            <input type="checkbox" style="vertical-align: middle;" id="debuggerChk" name="debuggerChk">
+            <label for="debuggerChk" style="vertical-align: middle;">Activate Debugger</label>
+        </span>
     </p>
 
     <div style="width: 100%; display: flex; flex-direction: row;">
@@ -1522,11 +1526,16 @@
         var latestCode = '';
         var step = 0;
         var zip = new JSZip();
+
+        let debuggerChk = document.getElementById('debuggerChk');
+        let isDebuggerActive;
+        debuggerChk.addEventListener("click", ()=>{isDebuggerActive = debuggerChk.checked});
+
         function highlightBlock(id) {
 
             demoWorkspace.highlightBlock(id);
             highlightPause = true;
-            if(false)//TODO: make a checkbox to activate this debugger for every instruction
+            if(isDebuggerActive)
                 debugger;
         }
 
