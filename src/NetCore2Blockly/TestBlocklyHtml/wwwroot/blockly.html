@@ -77,7 +77,7 @@
         }
     </style>
 </head>
-<body>
+<body onload="init()">
     <h1 id="headerName">
         Blockly Swagger
     </h1>
@@ -121,7 +121,13 @@
 
         <!--<a href="javascript:downloadZip()">Download Results</a>-->
         <a href="javascript:SaveBlocks()" id="saveBlocks">Save Blocks</a>
+
+
         <a href="javascript:ShowInnerWorkings()">Show blocks</a>
+
+        <a href="javascript:DownloadBlocks()" id="downloadBlocks">Download Blocks</a>
+        
+        <input id="fileInput" type="file" name="file" />
         <span style="float: right">
             <input type="checkbox" style="vertical-align: middle;" id="debuggerChk" name="debuggerChk">
             <label for="debuggerChk" style="vertical-align: middle;">Activate Debugger</label>
@@ -1654,6 +1660,42 @@
             zip.generateAsync({ type: "blob" }).then(function (blob) { // 1) generate the zip file
                 saveAs(blob, "hello.zip");                          // 2) trigger the download
             });
+        }
+        function init() {
+            var fileInput = document.getElementById('fileInput');
+            if (window.FileReader) {
+                fileInput.addEventListener('change', handleFileSelect, false);
+
+            }
+            else {
+                fileInput.style.display = "none";
+            }
+        }
+        function handleFileSelect(event) {
+            
+            const reader = new FileReader();
+            reader.onload = handleFileLoad;
+            reader.readAsText(event.target.files[0])
+        }
+
+        function handleFileLoad(event) {
+            
+            var content=(event.target.result);
+            demoWorkspace.clear();
+            //window.alert(content);
+            
+            var dom = Blockly.Xml.textToDom(content);
+            Blockly.Xml.domToWorkspace(dom, demoWorkspace);
+            resetStepUi();
+
+        }
+        function DownloadBlocks() {
+            var xml = Blockly.Xml.workspaceToDom(demoWorkspace, true);
+            var xml_text = Blockly.Xml.domToPrettyText(xml);
+            var n = formatDate(new Date());
+            //window.alert(xml_text);
+            var blob = new Blob([xml_text], { type: "text/plain;charset=utf-16" });
+            saveAs(blob, n + ".txt");
         }
         function SaveBlocks() {
             var xml = Blockly.Xml.workspaceToDom(demoWorkspace, true);
