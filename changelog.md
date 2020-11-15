@@ -4,11 +4,35 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.20667251..1.1.2020.25553965
+git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.25553965..1.1.2020.27535073
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
 
+## 1.1.2020.27535073 debugger + download/upload blocks definitions
+
+ #### [download files on local] 
+ Author ignatandrei on 2020-11-14 18:35:57 +0200 
+
+ hash 2bb046d 2bb046d83c107a0a2673cbcc837260f6fbcb9c39
+
+ #### [delete lock] 
+ Author ignatandrei on 2020-10-25 06:51:38 +0200 
+
+ hash 5675c16 5675c16e457eb7667580ecb261b3697b0a70ae72
+
+ 
+ #### [Merge pull request #139 from es-rene99/issue_132] 
+ Author Andrei Ignat on 2020-10-25 06:32:11 +0200 
+
+ hash a4ffc46 a4ffc46561b5817acf9ea96b7e7527cc60a30731
+
+ #### [fix #132 checkbox to activate debugger] 
+ Author es-rene99 on 2020-10-24 14:50:52 -0600 
+
+ hash 9640efe 9640efea9a5bcc605a22d8477364247a682893b2
+
+ 
 ## 1.1.2020.25553965 locking and relative paths
 
 #### [lock file] 
