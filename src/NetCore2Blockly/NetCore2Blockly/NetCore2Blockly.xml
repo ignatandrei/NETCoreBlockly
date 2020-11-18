@@ -228,7 +228,7 @@
             extension to generate types
             </summary>
         </member>
-        <member name="M:NetCore2Blockly.ActionListExtensions.GetAllTypesWithNullBlocklyType(System.Collections.Generic.List{NetCore2Blockly.ActionInfo})">
+        <member name="M:NetCore2Blockly.ActionListExtensions.GetAllTypesWithNullBlocklyType(NetCore2Blockly.ActionInfo[])">
             <summary>
             Gets the type with null blockly default types.
             </summary>
@@ -582,7 +582,7 @@
             generates items to toolbox
             </summary>
         </member>
-        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxFunctionDefinitionsGenerator.GenerateBlocklyToolBoxFunctionDefinitions(System.Collections.Generic.List{NetCore2Blockly.ActionInfo},System.String)">
+        <member name="M:NetCore2Blockly.JavascriptGeneration.BlocklyToolBoxFunctionDefinitionsGenerator.GenerateBlocklyToolBoxFunctionDefinitions(NetCore2Blockly.ActionInfo[],System.String)">
             <summary>
             Generates the blockly tool box function definitions.
             </summary>
@@ -638,7 +638,7 @@
             <param name="key">site key</param>
             <returns></returns>
         </member>
-        <member name="M:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator.GenerateBlocklyToolBoxFunctionDefinitions(System.Collections.Generic.List{NetCore2Blockly.ActionInfo},System.String)">
+        <member name="M:NetCore2Blockly.JavascriptGeneration.JavascriptGenerator.GenerateBlocklyToolBoxFunctionDefinitions(NetCore2Blockly.ActionInfo[],System.String)">
             <summary>
             Generates the blockly tool box function definitions.
             </summary>

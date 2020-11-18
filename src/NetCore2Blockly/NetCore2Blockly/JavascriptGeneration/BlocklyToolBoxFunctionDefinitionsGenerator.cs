@@ -17,7 +17,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// <param name="actionList">The action list.</param>
         /// <param name="key">The action list.</param>
         /// <returns></returns>
-        public string GenerateBlocklyToolBoxFunctionDefinitions(List<ActionInfo> actionList,string key)
+        public string GenerateBlocklyToolBoxFunctionDefinitions(ActionInfo[] actionList,string key)
         {
             var dictOrder = new Dictionary<string,int>()
             {
@@ -28,7 +28,8 @@ namespace NetCore2Blockly.JavascriptGeneration
                 {"others",5 }
 
             };
-            actionList.Sort((a, b) => {
+            var a = actionList.ToList();
+            a.Sort((a, b) => {
                 var res = a.ControllerName.CompareTo(b.ControllerName);
                 if (res != 0)
                     return res;
@@ -43,7 +44,9 @@ namespace NetCore2Blockly.JavascriptGeneration
 
                 return a.ActionName.CompareTo(b.ActionName);
 
-                });
+                })
+                ;
+            actionList = a.ToArray();
             string blockText = $"var blockTextLocalSiteFunctions{key}='';";
             foreach (var actionsGroupedByController in actionList.GroupBy(it => it.ControllerName))
             {
@@ -76,7 +79,7 @@ namespace NetCore2Blockly.JavascriptGeneration
                             }
                             else
                             {
-                                var typeWithoutBlocklyType = actionList.GetAllTypesWithNullBlocklyType().FirstOrDefault(x => x == type);
+                                var typeWithoutBlocklyType = actionList.ToArray().GetAllTypesWithNullBlocklyType().FirstOrDefault(x => x == type);
                                 if (typeWithoutBlocklyType != null)
                                 {
                                     var blockShadowType = type.TranslateToNewTypeName();

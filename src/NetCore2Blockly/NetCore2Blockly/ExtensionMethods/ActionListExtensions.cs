@@ -11,13 +11,32 @@ namespace NetCore2Blockly
     static class ActionListExtensions
     {
 
+        private static TypeArgumentBase[] recursive(TypeArgumentBase[] types)
+        {
+            var ids = types.Select(it => it.id).Distinct().ToArray();
 
+            var propsExtra =
+                 types.SelectMany(it => it.GetProperties())
+                .Where(it => it != null && it.PropertyType != null)
+                .Where(it => it.PropertyType.TranslateToBlocklyType() == null)
+                .Where(type => type.PropertyType.id != null)
+                .Select(it => it.PropertyType)
+                .Where(type => !ids.Contains(type.id))
+                .ToArray();
+
+            if (propsExtra.Length == 0)
+                return types;
+
+            propsExtra = propsExtra.Union(types).ToArray();
+            var newValues = recursive(propsExtra);
+            return types.Union(newValues).ToArray();
+        }
         /// <summary>
         /// Gets the type with null blockly default types.
         /// </summary>
         /// <param name="list">The list.</param>
         /// <returns></returns>
-        internal static TypeArgumentBase[] GetAllTypesWithNullBlocklyType(this List<ActionInfo> list)
+        internal static TypeArgumentBase[] GetAllTypesWithNullBlocklyType(this ActionInfo[] list)
         {
             var types= list
 
@@ -29,21 +48,9 @@ namespace NetCore2Blockly
                 .ToArray();
 
 
-            var ids = types.Select(it => it.id).ToArray();
-            // see the inner properties if contains another types
-            var propsExtra =
-                 types.SelectMany(it => it.GetProperties())
-                .Where(it => it != null && it.PropertyType != null)
-                .Where(it => it.PropertyType.TranslateToBlocklyType() == null)
-                .Where(type => type.PropertyType.id != null)
-                .Select(it => it.PropertyType)
-                .ToArray();
-
-            var remaining = propsExtra.Where(it => !ids.Contains(it.id)).ToArray();
-            if (remaining.Length > 0)
-                types = types.Union(remaining).ToArray();
-
-
+            types = recursive(types);
+            var ids = types.Select(it => it.id).Distinct().ToArray();
+            types = types.GroupBy(it => it.id).Select(it => it.First()).ToArray();
             var returnTypes = list
 
                 .Select(it => it.ReturnType)
@@ -52,11 +59,6 @@ namespace NetCore2Blockly
                 .Where(type => type.TranslateToBlocklyType() == null)
                 .Where(type => type.id != null)
                 .ToArray();
-
-            remaining = returnTypes.Where(it => !ids.Contains(it.id)).ToArray();
-            if (remaining.Length > 0)
-                types = types.Union(remaining).ToArray();
-
 
             
             return types;

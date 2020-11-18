@@ -12,9 +12,12 @@ namespace NetCore2Blockly
     public class BlocklyFileGenerator 
     {
         JavascriptGenerator _jsGenerator;
-        internal List<ActionInfo> _actionList;
+        private List<ActionInfo> _actionList;
 
-
+        internal ActionInfo[] ActionList()
+        {
+            return _actionList.ToArray();
+        }
         /// <summary>
         /// Initializes a new instance of the <see cref="BlocklyFileGenerator"/> class.
         /// </summary>
@@ -31,7 +34,7 @@ namespace NetCore2Blockly
         /// <returns></returns>
         public string GenerateNewBlocklyTypesDefinition()
         {
-            var newBlocklyTypes = _actionList.GetAllTypesWithNullBlocklyType()                
+            var newBlocklyTypes = ActionList().GetAllTypesWithNullBlocklyType()                
                 .Select(x => _jsGenerator.GenerateBlocklyDefinition(x))
                 .ToArray();
 
@@ -48,9 +51,21 @@ namespace NetCore2Blockly
         public string GenerateBlocklyToolBoxValueDefinitionFile(string key="")
         {
             
-            var types = _actionList.GetAllTypesWithNullBlocklyType()
+            var types = ActionList().GetAllTypesWithNullBlocklyType()
                                
                 .ToArray();
+
+            var allTypes = types
+                .SelectMany(it => it.GetProperties())
+                .Where(it => it != null)
+                .Select(it => it.PropertyType)
+                .Where(it => it != null)
+                .Where(it => !it.ConvertibleToBlocklyType())
+                .ToArray();
+            ;
+            if (allTypes.Length > 0)
+                types = types.Union(allTypes).ToArray();
+
             var blocklyToolboxValue =  _jsGenerator.GenerateBlocklyToolBoxValue(types,key);
 
             return blocklyToolboxValue;
@@ -78,7 +93,7 @@ namespace NetCore2Blockly
                 return a.ActionName.CompareTo(b.ActionName);
 
             });
-            foreach (var action in _actionList)
+            foreach (var action in ActionList())
             {
 
                 allDefs += Environment.NewLine + _jsGenerator.GenerateFunctionDefinition(action, key);
@@ -89,7 +104,7 @@ namespace NetCore2Blockly
        
         internal string GenerateBlocklyToolBoxFunctionDefinitionFile(string key="")
         {
-            var blocklyToolBoxFuncDef = _jsGenerator.GenerateBlocklyToolBoxFunctionDefinitions(_actionList, key);
+            var blocklyToolBoxFuncDef = _jsGenerator.GenerateBlocklyToolBoxFunctionDefinitions(ActionList(), key);
        
             return blocklyToolBoxFuncDef;
 

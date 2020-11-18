@@ -39,7 +39,7 @@ namespace NetCore2Blockly
             var possibleCandidatesMethod =
                 hosted
                 .blocklyFileGeneratorWebAPI?
-                ._actionList
+                .ActionList()
                 .Where(it => it.Verb?.ToUpper() == m)
                 .Select(it => it as ActionInfoFromNetAPI)
                 .Where(it => ad.ControllerName.ToUpper() == it.ControllerName.ToUpper())

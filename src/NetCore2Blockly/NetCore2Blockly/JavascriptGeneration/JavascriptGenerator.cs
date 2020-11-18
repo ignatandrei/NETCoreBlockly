@@ -52,7 +52,7 @@ namespace NetCore2Blockly.JavascriptGeneration
         /// <param name="actionList">The action list.</param>
         /// <param name="key">The action list.</param>
         /// <returns></returns>
-        public string GenerateBlocklyToolBoxFunctionDefinitions(List<ActionInfo> actionList,string key)
+        public string GenerateBlocklyToolBoxFunctionDefinitions(ActionInfo[] actionList,string key)
         {
             return _toolBoxFunctionDefinitionGenerator.GenerateBlocklyToolBoxFunctionDefinitions(actionList,key);
         }

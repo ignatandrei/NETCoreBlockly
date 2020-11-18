@@ -18,6 +18,7 @@ using TestBlocklyHtml.resolveAtRuntime;
 
 namespace TestBlocklyHtml.Controllers
 {
+
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class VariousTestsController : ControllerBase
@@ -26,6 +27,18 @@ namespace TestBlocklyHtml.Controllers
         public VariousTestsController()
         {
         }
+
+        [HttpPost]
+        public string TestInsideVariable(WithInsideClass id)
+        {
+            return "this is " + id.t.Ind + "=>" + id.t.a;
+        }
+        [HttpPost]
+        public string TestInsideVariable1(WithInsideClass id)
+        {
+            return "this is " + id.t.Ind + "=>" + id.t.a;
+        }
+
         [HttpGet("{name}")]
         public async Task<ActionResult<Department>> GetDepartment([FromServices] testsContext context, string name)
         {

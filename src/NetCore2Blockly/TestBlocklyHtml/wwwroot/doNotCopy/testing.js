@@ -2798,6 +2798,71 @@ var testBlocks =
   </block>
 </xml>
 `
+        },
+        {
+            name: 'testClassEnumInsideClass',
+            data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="L4n0rEg4Nu/A2g*qJqV(">var_AnEnum</variable>
+    <variable id="xLjy%04Y+RuI2K\`Ax8{K">var_Test</variable>
+    <variable id=",Bknbj[;TK=[P,-XtwGx">var_WithInsideClass</variable>
+  </variables>
+  <block type="variables_set" x="81" y="50">
+    <field name="VAR" id="L4n0rEg4Nu/A2g*qJqV(">var_AnEnum</field>
+    <value name="VALUE">
+      <block type="TestBlocklyHtml_Controllers_AnEnum">
+        <field name="val_AnEnum">0</field>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="xLjy%04Y+RuI2K\`Ax8{K">var_Test</field>
+        <value name="VALUE">
+          <block type="TestBlocklyHtml_Controllers_Test">
+            <value name="val_Ind">
+              <shadow type="text">
+                <field name="TEXT">Andrei</field>
+              </shadow>
+            </value>
+            <value name="val_a">
+              <block type="variables_get">
+                <field name="VAR" id="L4n0rEg4Nu/A2g*qJqV(">var_AnEnum</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set">
+            <field name="VAR" id=",Bknbj[;TK=[P,-XtwGx">var_WithInsideClass</field>
+            <value name="VALUE">
+              <block type="TestBlocklyHtml_Controllers_WithInsideClass">
+                <value name="val_t">
+                  <block type="variables_get">
+                    <field name="VAR" id="xLjy%04Y+RuI2K\`Ax8{K">var_Test</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="text_print">
+                <value name="TEXT">
+                  <block type="api_VariousTests_TestInsideVariable_POST">
+                    <value name="val_id">
+                      <shadow type="TestBlocklyHtml_Controllers_WithInsideClass"></shadow>
+                      <block type="variables_get">
+                        <field name="VAR" id=",Bknbj[;TK=[P,-XtwGx">var_WithInsideClass</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>`
         }
 ]
 
