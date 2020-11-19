@@ -18,6 +18,11 @@ using TestBlocklyHtml.resolveAtRuntime;
 
 namespace TestBlocklyHtml.Controllers
 {
+    public class GenericsTest<T>
+    {
+        public T t { get; set; }
+    }
+
 
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -28,15 +33,16 @@ namespace TestBlocklyHtml.Controllers
         {
         }
 
+
         [HttpPost]
         public string TestInsideVariable(WithInsideClass id)
         {
             return "this is " + id.t.Ind + "=>" + id.t.a;
         }
         [HttpPost]
-        public string TestInsideVariable1(WithInsideClass id)
+        public string TestGeneric(GenericsTest<Test> id)
         {
-            return "this is " + id.t.Ind + "=>" + id.t.a;
+            return "this is " + id.t.Ind+ "=>" + id.t.a;
         }
 
         [HttpGet("{name}")]

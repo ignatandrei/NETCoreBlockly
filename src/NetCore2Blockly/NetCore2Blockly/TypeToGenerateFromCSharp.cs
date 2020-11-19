@@ -83,7 +83,12 @@ namespace NetCore2Blockly
             {
 
                 var type = Nullable.GetUnderlyingType(t) ?? t;
-                return type.Name;
+                string typeName = type.Name;
+                if (type.IsGenericType)
+                {
+                    typeName = typeName.Replace("`", "_");
+                }
+                return typeName;
             }
         }
 

@@ -4,10 +4,15 @@ All notable changes to this project will be documented in this file. Dates are d
 
 Generated with 
 
-git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.25553965..1.1.2020.27535073
+git --no-pager log --pretty=format:"%n #### [%s] %n Author %an on %ai %n%n hash %h %H" 1.1.2020.27535073..1.1.2020.27897354 
 
 More details at 
 http://msprogrammer.serviciipeweb.ro/2020/06/15/poor-software-developer-simple-changelog-for-cd/
+
+##  1.1.2020.27897354  - generate from inside class
+
+ #### [generating values inside class]
+ Author ignatandrei on 2020-11-18 23:13:59 +0200  
 
 ## 1.1.2020.27535073 debugger + download/upload blocks definitions
 

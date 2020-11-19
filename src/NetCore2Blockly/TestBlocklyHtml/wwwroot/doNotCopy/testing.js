@@ -2863,6 +2863,71 @@ var testBlocks =
     </next>
   </block>
 </xml>`
+        },
+        {
+            name: "generic",
+            data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="Q|gzJurns)WU=N)C0oZ}">var_AnEnum</variable>
+    <variable id="qt^W83W?Bn+2_%*A*V+l">var_Test</variable>
+    <variable id="N]NaQUz7^al6M0L[DzFK">var_GenericsTest_1</variable>
+  </variables>
+  <block type="variables_set" x="68" y="102">
+    <field name="VAR" id="Q|gzJurns)WU=N)C0oZ}">var_AnEnum</field>
+    <value name="VALUE">
+      <block type="TestBlocklyHtml_Controllers_AnEnum">
+        <field name="val_AnEnum">1</field>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="qt^W83W?Bn+2_%*A*V+l">var_Test</field>
+        <value name="VALUE">
+          <block type="TestBlocklyHtml_Controllers_Test">
+            <value name="val_Ind">
+              <shadow type="text">
+                <field name="TEXT">asdads</field>
+              </shadow>
+            </value>
+            <value name="val_a">
+              <block type="variables_get">
+                <field name="VAR" id="Q|gzJurns)WU=N)C0oZ}">var_AnEnum</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set">
+            <field name="VAR" id="N]NaQUz7^al6M0L[DzFK">var_GenericsTest_1</field>
+            <value name="VALUE">
+              <block type="TestBlocklyHtml_Controllers_GenericsTest\`1[[TestBlocklyHtml_Controllers_Test, TestBlocklyHtml, Version=1_0_0_0, Culture=neutral, PublicKeyToken=null]]">
+                <value name="val_t">
+                  <block type="variables_get">
+                    <field name="VAR" id="qt^W83W?Bn+2_%*A*V+l">var_Test</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="text_print">
+                <value name="TEXT">
+                  <block type="api_VariousTests_TestGeneric_POST">
+                    <value name="val_id">
+                      <shadow type="TestBlocklyHtml_Controllers_GenericsTest\`1[[TestBlocklyHtml_Controllers_Test, TestBlocklyHtml, Version=1_0_0_0, Culture=neutral, PublicKeyToken=null]]"></shadow>
+                      <block type="variables_get">
+                        <field name="VAR" id="N]NaQUz7^al6M0L[DzFK">var_GenericsTest_1</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>`
         }
 ]
 
