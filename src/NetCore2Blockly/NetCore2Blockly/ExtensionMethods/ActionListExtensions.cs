@@ -15,15 +15,34 @@ namespace NetCore2Blockly
         {
             var ids = types.Select(it => it.id).Distinct().ToArray();
 
-            var propsExtra =
+            var allProps =
                  types.SelectMany(it => it.GetProperties())
                 .Where(it => it != null && it.PropertyType != null)
-                .Where(it => it.PropertyType.TranslateToBlocklyType() == null)
                 .Where(type => type.PropertyType.id != null)
+                .ToArray();
+            // find arrays;
+            var propsExtra = allProps
+                .Where(it => it.PropertyType.TranslateToBlocklyType() == null)
                 .Select(it => it.PropertyType)
                 .Where(type => !ids.Contains(type.id))
                 .ToArray();
 
+            var arrayProps = allProps
+                .Where(it => it.IsArray)
+                .Where(it => (it as PropertyCSharp) != null)
+                .Select(it => it as PropertyCSharp)
+                .Select(it=>it.PropertyType as TypeToGenerateFromCSharp)
+                .Where(it =>it != null)
+                .Select(it=> it.GetUnderlyingArrayType())
+                .Where(it => it != null)
+                .Where(it => it.TranslateToBlocklyType() == null)
+                .Where(type => !ids.Contains(type.id))
+                .ToArray();
+
+            if (arrayProps.Length > 0)
+            {
+                propsExtra = propsExtra.Union(arrayProps).ToArray();
+            }
             if (propsExtra.Length == 0)
                 return types;
 

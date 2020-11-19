@@ -95,6 +95,14 @@ namespace NetCore2Blockly
         public override string FullName => t.FullName;
 
         public override bool IsValueType => t.IsValueType;
+
+        public TypeToGenerateFromCSharp GetUnderlyingArrayType()
+        {
+            if (!t.IsArray)
+                return null;
+            return new TypeToGenerateFromCSharp( t.GetElementType());
+
+        }
     }
 
 }

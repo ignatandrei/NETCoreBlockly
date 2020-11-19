@@ -33,6 +33,11 @@ namespace TestBlocklyHtml.Controllers
         {
         }
 
+        [HttpPost]
+        public string TestArray(DepartmentX id)
+        {
+            return $"this is {id?.Name} employees:" + id?.Employees?.Length;
+        }
 
         [HttpPost]
         public string TestInsideVariable(WithInsideClass id)

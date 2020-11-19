@@ -2928,6 +2928,68 @@ var testBlocks =
     </next>
   </block>
 </xml>`
+        },
+        {
+            name: 'array inside class',
+            data:`<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="$sp!v9t+BX;Ji(aw:=kP">var_EmployeeX</variable>
+    <variable id="pqiw3n@o%q}kBq,\`bLO~">var_DepartmentX</variable>
+  </variables>
+  <block type="variables_set" x="261" y="290">
+    <field name="VAR" id="$sp!v9t+BX;Ji(aw:=kP">var_EmployeeX</field>
+    <value name="VALUE">
+      <block type="TestBlocklyHtml_Controllers_EmployeeX">
+        <value name="val_Name">
+          <shadow type="text">
+            <field name="TEXT">NameEmployee</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="pqiw3n@o%q}kBq,\`bLO~">var_DepartmentX</field>
+        <value name="VALUE">
+          <block type="TestBlocklyHtml_Controllers_DepartmentX">
+            <value name="val_Name">
+              <shadow type="text">
+                <field name="TEXT">NameDepartment</field>
+              </shadow>
+            </value>
+            <value name="val_Employees">
+              <shadow type="lists_create_with">
+                <mutation items="3"></mutation>
+              </shadow>
+              <block type="lists_create_with">
+                <mutation items="1"></mutation>
+                <value name="ADD0">
+                  <block type="variables_get">
+                    <field name="VAR" id="$sp!v9t+BX;Ji(aw:=kP">var_EmployeeX</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="api_VariousTests_TestArray_POST">
+                <value name="val_id">
+                  <shadow type="TestBlocklyHtml_Controllers_DepartmentX"></shadow>
+                  <block type="variables_get">
+                    <field name="VAR" id="pqiw3n@o%q}kBq,\`bLO~">var_DepartmentX</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>`
         }
 ]
 
