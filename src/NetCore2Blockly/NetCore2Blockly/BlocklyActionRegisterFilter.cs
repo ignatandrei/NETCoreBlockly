@@ -82,7 +82,7 @@ namespace NetCore2Blockly
                     block.Append($"</value>");
                 }
             block.Append("</block>");
-            Console.WriteLine(block);
+            //Console.WriteLine(block);
         }
     }
     //class BlocklyRegisterMiddleware : IMiddleware
