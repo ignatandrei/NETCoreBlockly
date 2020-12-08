@@ -103,7 +103,7 @@ namespace NetCore2Blockly.GraphQL
                 JsonElement root = doc.RootElement;
                 JsonElement info = root;
 
-                Console.WriteLine(info.GetProperty("_typeMap").GetProperty("DepartmentOGT"));
+                //Console.WriteLine(info.GetProperty("_typeMap").GetProperty("DepartmentOGT"));
                 desc.Add("queyType", (null, BindingSourceDefinition.Query)); //not correct
             }
             return null;

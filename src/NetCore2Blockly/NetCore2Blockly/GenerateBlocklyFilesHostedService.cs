@@ -66,7 +66,7 @@ namespace NetCore2Blockly
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"adding swagger {endpoint} throws error {ex?.Message}");
+                //Console.WriteLine($"adding swagger {endpoint} throws error {ex?.Message}");
                 //swallowing error - should run even if the endpoint is not available
 
             }
@@ -286,7 +286,7 @@ namespace NetCore2Blockly
                         }
                         if (act.Params.ContainsKey(name))
                         {
-                            Console.WriteLine($"DUPLICATE PARAM {name} FOR {act.RelativeRequestUrl}");
+                            //Console.WriteLine($"DUPLICATE PARAM {name} FOR {act.RelativeRequestUrl}");
 
                         }
                         else
@@ -493,7 +493,7 @@ namespace NetCore2Blockly
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"adding swagger {endpoint} throws error {ex?.Message}");
+                //Console.WriteLine($"adding swagger {endpoint} throws error {ex?.Message}");
                 //swallowing error - should run even if the endpoint is not available
 
             }

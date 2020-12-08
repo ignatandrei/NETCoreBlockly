@@ -36,8 +36,15 @@ namespace NetCore2Blockly
             return $"{nameBlockly} version:{assName.Version.ToString()}";
         }
         static CLIExtension()
-        {          
-            Console.WriteLine(nameBlockly());
+        {
+            try
+            {
+                Console.WriteLine(nameBlockly());
+            }
+            catch
+            {
+                //if cannot write to console, what can be done ? ;-)
+            }
         }
         /// <summary>
         /// Uses the blockly links from config

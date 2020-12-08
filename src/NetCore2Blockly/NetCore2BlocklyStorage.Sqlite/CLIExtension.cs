@@ -30,8 +30,14 @@ namespace NetCore2Blockly
                 .OfType<AssemblyTitleAttribute>()
                 .FirstOrDefault();
             var nameMoniker = (desc == null) ? "" : desc.Title;
-            Console.WriteLine($"{assName.Name} {nameMoniker} version:{assName.Version.ToString()}");
-
+            try
+            {
+                Console.WriteLine($"{assName.Name} {nameMoniker} version:{assName.Version.ToString()}");
+            }
+            catch
+            {
+                //do nothing if cannot write to console...
+            }
         }
 
 
