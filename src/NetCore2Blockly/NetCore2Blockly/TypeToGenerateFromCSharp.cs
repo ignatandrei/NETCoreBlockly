@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -9,18 +10,33 @@ namespace NetCore2Blockly
 
     class TypeToGenerateFromCSharp: TypeArgumentBase
     {
+        static ConcurrentDictionary<string, TypeToGenerateFromCSharp> allData = new ConcurrentDictionary<string, TypeToGenerateFromCSharp>();
         internal readonly Type t;
         private PropertyBase[] props;
         public TypeToGenerateFromCSharp(Type t) : base(t.FullName)
         {
+            string fullName = t.FullName;
             this.t = t;
+            if(!allData.ContainsKey(fullName))
+                allData.TryAdd(fullName, this);
+
             props =
-                t.GetProperties().Where(prop => prop.GetSetMethod() != null)
-                .Select(it => new PropertyCSharp() {
-                    Name = it.Name, 
-                    
-                    PropertyType = new TypeToGenerateFromCSharp(it.PropertyType)
-                }).ToArray();
+                t
+                .GetProperties()
+                .Where(prop => prop.GetSetMethod() != null)
+                .Select(it => {
+                    var f = it.PropertyType.FullName;
+                    if (!allData.ContainsKey(f))
+                    {
+                        allData.TryAdd(f, new TypeToGenerateFromCSharp(it.PropertyType));
+                    }
+                    return new PropertyCSharp()
+                    {
+                        Name = it.Name,
+                        PropertyType = allData[f]
+                    };
+                })
+                .ToArray();
                 ;
 
         }
