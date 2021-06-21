@@ -94,7 +94,23 @@ namespace NetCore2Blockly
             ActionName = name;
             Verb = apiDescription.HttpMethod ?? "GET";
             RelativeRequestUrl = apiDescription.RelativePath;
-            Params = GetParameters(apiDescription.ParameterDescriptions.ToArray());
+            var parmsDescriptions = apiDescription.ParameterDescriptions.ToArray();
+            var version = parmsDescriptions.FirstOrDefault(it => it.ParameterDescriptor?.ParameterType == null);
+            if(version != null)
+            {
+                var versionAttr = apiDescription
+                    .ActionDescriptor
+                    .EndpointMetadata
+                    .Select(x => x as ApiVersionAttribute)
+                    .Where(it => it != null)
+                    .FirstOrDefault(it=>!it.Deprecated)
+                    ;
+                var v = versionAttr.Versions.Max();
+                RelativeRequestUrl = RelativeRequestUrl.Replace("{version}", v.ToString());
+
+                parmsDescriptions = parmsDescriptions.Where(it => it.ParameterDescriptor?.ParameterType != null).ToArray();
+            }
+            Params = GetParameters(parmsDescriptions);
             var actionDescriptor = apiDescription.ActionDescriptor as ControllerActionDescriptor;
             var ret= ( actionDescriptor?.MethodInfo?.ReturnType);
 
