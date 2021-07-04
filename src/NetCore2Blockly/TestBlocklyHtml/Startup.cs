@@ -38,6 +38,7 @@ using System.Reflection;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HCVersion;
+using AMSWebAPI;
 
 namespace TestBlocklyHtml
 {
@@ -299,7 +300,7 @@ namespace TestBlocklyHtml
                 });
                 endpoints.MapHealthChecksUI();
                 #endregion
-
+                endpoints.UseAMS();
                 endpoints.MapGraph("/graph");
             });
             #region blockly optional
