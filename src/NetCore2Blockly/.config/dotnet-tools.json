@@ -56,16 +56,16 @@
         "dotnet-depends"
       ]
     },
-    "dotnet-outdated": {
-      "version": "2.11.0",
-      "commands": [
-        "dotnet-outdated"
-      ]
-    },
     "moniker.cli": {
       "version": "1.0.0",
       "commands": [
         "moniker"
+      ]
+    },
+    "dotnet-outdated-tool": {
+      "version": "3.2.0",
+      "commands": [
+        "dotnet-outdated"
       ]
     }
   }
