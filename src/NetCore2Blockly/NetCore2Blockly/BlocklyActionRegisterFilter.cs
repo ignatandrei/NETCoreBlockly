@@ -12,11 +12,17 @@ using System.Threading.Tasks;
 
 namespace NetCore2Blockly
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class BlocklyActionRegisterFilter : IActionFilter
     {
         
         private readonly GenerateBlocklyFilesHostedService hosted;
-
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="hosted"></param>
         public BlocklyActionRegisterFilter(GenerateBlocklyFilesHostedService hosted)
         {
             this.hosted = hosted;

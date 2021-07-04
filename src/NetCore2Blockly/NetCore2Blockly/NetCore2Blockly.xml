@@ -76,6 +76,17 @@
             See BindingSource
             </summary>
         </member>
+        <member name="T:NetCore2Blockly.BlocklyActionRegisterFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.BlocklyActionRegisterFilter.#ctor(NetCore2Blockly.GenerateBlocklyFilesHostedService)">
+            <summary>
+            ctor
+            </summary>
+            <param name="hosted"></param>
+        </member>
         <member name="T:NetCore2Blockly.BlocklyFileGenerator">
             <summary>
             all blockly that should be generated
@@ -429,9 +440,59 @@
             </summary>
             <param name="cancellationToken">Indicates that the shutdown process should no longer be graceful.</param>
         </member>
+        <member name="T:NetCore2Blockly.GraphQL.Root">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NetCore2Blockly.GraphQL.Root.Kind">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NetCore2Blockly.GraphQL.Root.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NetCore2Blockly.GraphQL.Root.Description">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NetCore2Blockly.GraphQL.Root.Fields">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NetCore2Blockly.GraphQL.Root.InputFields">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NetCore2Blockly.GraphQL.Root.Interfaces">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NetCore2Blockly.GraphQL.Root.EnumValues">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NetCore2Blockly.GraphQL.Root.PossibleTypes">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:NetCore2Blockly.GraphQL.GraphQLTypeArgument.FullName">
             <summary>
             Gets the OGT name. ie DepartmentOGT
+            </summary>
+        </member>
+        <member name="T:NetCore2Blockly.ActionInfo">
+            <summary>
+            generic action info
             </summary>
         </member>
         <member name="M:NetCore2Blockly.ActionInfo.#ctor">
@@ -803,6 +864,23 @@
             <value>
               <c>true</c> if this instance is value type; otherwise, <c>false</c>.
             </value>
+        </member>
+        <member name="T:NetCore2Blockly.XAboutMySoftware_78102118701151191075774117121110119121135">
+            <summary>
+            this is the About My Software for 78102118701151191075774117121110119121135
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.XAboutMySoftware_78102118701151191075774117121110119121135.Add_AboutMySoftware_78102118701151191075774117121110119121135">
+            <summary>
+            starts when this module is loaded and 
+            add the AMS tot the 
+            </summary>
+        </member>
+        <member name="M:NetCore2Blockly.XAboutMySoftware_78102118701151191075774117121110119121135.#ctor">
+            <summary>
+            constructor
+            for AMS 78102118701151191075774117121110119121135
+            </summary>
         </member>
     </members>
 </doc>

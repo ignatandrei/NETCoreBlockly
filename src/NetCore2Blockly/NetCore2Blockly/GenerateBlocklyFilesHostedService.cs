@@ -64,7 +64,7 @@ namespace NetCore2Blockly
 
                 swaggers.Add(key, new BlocklyFileGenerator(data));
             }
-            catch (Exception ex)
+            catch 
             {
                 //Console.WriteLine($"adding swagger {endpoint} throws error {ex?.Message}");
                 //swallowing error - should run even if the endpoint is not available

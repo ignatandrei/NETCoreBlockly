@@ -4,10 +4,10 @@ using System.Diagnostics;
 
 namespace NetCore2Blockly
 {
-    [DebuggerDisplay("{Verb} {RelativeRequestUrl}")]
     /// <summary>
     /// generic action info
     /// </summary>
+    [DebuggerDisplay("{Verb} {RelativeRequestUrl}")]
     public abstract class ActionInfo
     {
         /// <summary>

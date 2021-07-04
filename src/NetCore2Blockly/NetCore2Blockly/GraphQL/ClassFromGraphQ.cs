@@ -7,15 +7,42 @@ using System.Text;
 
 namespace NetCore2Blockly.GraphQL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     partial class Root
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string Kind { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public object Description { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public List<Field> Fields { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public object InputFields { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public List<object> Interfaces { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public object EnumValues { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public object PossibleTypes { get; set; }
     }
 
