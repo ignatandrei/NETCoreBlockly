@@ -41,9 +41,9 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="System.IO.Pipelines" Version="4.7.2" />
-    <PackageReference Include="AMSWebAPI" Version="2021.7.3.1623" />
-    <PackageReference Include="AMS_Base" Version="2021.7.3.1623" />
-    <PackageReference Include="RSCG_AMS" Version="2021.7.3.1623" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
+    <PackageReference Include="AMSWebAPI" Version="2021.7.5.353" />
+    <PackageReference Include="AMS_Base" Version="2021.7.5.353" />
+    <PackageReference Include="RSCG_AMS" Version="2021.7.5.353" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
 
 
   </ItemGroup>
