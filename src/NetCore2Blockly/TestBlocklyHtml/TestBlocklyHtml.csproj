@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -39,9 +39,9 @@
     <PackageReference Include="AspNetCore.HealthChecks.UI" Version="3.1.1" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="3.1.1" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="3.1.1" />
-    <PackageReference Include="AMSWebAPI" Version="2021.7.5.422" />
-    <PackageReference Include="AMS_Base" Version="2021.7.5.422" />
-    <PackageReference Include="RSCG_AMS" Version="2021.7.5.422" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
+    <PackageReference Include="AMSWebAPI" Version="2021.7.5.748" />
+    <PackageReference Include="AMS_Base" Version="2021.7.5.748" />
+    <PackageReference Include="RSCG_AMS" Version="2021.7.5.748" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
 
   </ItemGroup>
 
