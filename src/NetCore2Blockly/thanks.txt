@@ -25,12 +25,12 @@ Page:https://github.com/graphql-dotnet/server
 Pekka Heikura
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:GraphQL.Client.Abstractions
+Package:GraphQL.Primitives
 Page:https://github.com/graphql-dotnet/graphql-client
 Deinok,Alexander Rose,graphql-dotnet
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:GraphQL.Primitives
+Package:GraphQL.Client.Abstractions
 Page:https://github.com/graphql-dotnet/graphql-client
 Deinok,Alexander Rose,graphql-dotnet
 ---------------------------------------------------------------
@@ -40,12 +40,12 @@ Page:https://github.com/graphql-dotnet/graphql-client
 Deinok,Alexander Rose,graphql-dotnet
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:GraphQL.Server.Ui.Playground
+Package:GraphQL.Server.Transports.AspNetCore
 Page:https://github.com/graphql-dotnet/server
 Pekka Heikura
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:GraphQL.Server.Transports.AspNetCore
+Package:GraphQL.Server.Ui.Playground
 Page:https://github.com/graphql-dotnet/server
 Pekka Heikura
 ---------------------------------------------------------------
@@ -80,11 +80,6 @@ Page:https://github.com/graphql-dotnet/server
 Pekka Heikura
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:GraphQL.Client.Serializer.SystemTextJson
-Page:https://github.com/graphql-dotnet/graphql-client
-Deinok,Alexander Rose,graphql-dotnet
----------------------------------------------------------------
----------------------------------------------------------------
 Package:GraphQL.Server.Ui.GraphiQL
 Page:https://github.com/graphql-dotnet/server
 Pekka Heikura
@@ -93,6 +88,11 @@ Pekka Heikura
 Package:GraphQL.Server.Transports.WebSockets
 Page:https://github.com/graphql-dotnet/server
 Pekka Heikura
+---------------------------------------------------------------
+---------------------------------------------------------------
+Package:GraphQL.Client.Serializer.SystemTextJson
+Page:https://github.com/graphql-dotnet/graphql-client
+Deinok,Alexander Rose,graphql-dotnet
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 Package:GraphQL.EntityFramework
@@ -135,12 +135,12 @@ Page:https://docs.microsoft.com/ef/core/
 Microsoft
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:Microsoft.EntityFrameworkCore.Abstractions
+Package:Microsoft.EntityFrameworkCore.Analyzers
 Page:https://docs.microsoft.com/ef/core/
 Microsoft
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:Microsoft.EntityFrameworkCore.Analyzers
+Package:Microsoft.EntityFrameworkCore.Abstractions
 Page:https://docs.microsoft.com/ef/core/
 Microsoft
 ---------------------------------------------------------------
@@ -195,13 +195,13 @@ Page:https://asp.net/
 Microsoft
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore
-Page:https://github.com/dotnet/Scaffolding
+Package:Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+Page:https://asp.net/
 Microsoft
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
-Page:https://asp.net/
+Package:Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore
+Page:https://github.com/dotnet/Scaffolding
 Microsoft
 ---------------------------------------------------------------
 ---------------------------------------------------------------
@@ -300,14 +300,14 @@ Page:http://www.asp.net/
 Microsoft
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:Z.EntityFramework.Extensions.EFCore
-Page:https://entityframework-extensions.net/
-ZZZ Projects
----------------------------------------------------------------
----------------------------------------------------------------
 Package:Microsoft.EntityFrameworkCore.Sqlite.NetTopologySuite
 Page:https://docs.microsoft.com/ef/core/
 Microsoft
+---------------------------------------------------------------
+---------------------------------------------------------------
+Package:Z.EntityFramework.Extensions.EFCore
+Page:https://entityframework-extensions.net/
+ZZZ Projects
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 Package:ThinkGeo.Dependency.SQLite
@@ -550,9 +550,9 @@ Page:https://github.com/imperugo/StackExchange.Redis.Extensions
 Ugo Lattanzi
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:RestSharp.Serializers.NewtonsoftJson
-Page:http://restsharp.org/
-John Sheehan, Andrew Young, Alexey Zimarev and RestSharp community
+Package:GraphQL.NewtonsoftJson
+Page:https://github.com/graphql-dotnet/graphql-dotnet
+GraphQL.NewtonsoftJson
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 Package:Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson
@@ -560,9 +560,9 @@ Page:https://asp.net/
 Microsoft
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:GraphQL.NewtonsoftJson
-Page:https://github.com/graphql-dotnet/graphql-dotnet
-GraphQL.NewtonsoftJson
+Package:RestSharp.Serializers.NewtonsoftJson
+Page:http://restsharp.org/
+John Sheehan, Andrew Young, Alexey Zimarev and RestSharp community
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 Package:Newtonsoft.Json.FSharp
@@ -570,19 +570,9 @@ Page:
 Henrik Feldt,  Logibit AB
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:FluentAssertions.Json
-Page:https://www.fluentassertions.com/
-Marcel Körtgen
----------------------------------------------------------------
----------------------------------------------------------------
 Package:WampSharp.NewtonsoftJson
 Page:
 CodeSharp
----------------------------------------------------------------
----------------------------------------------------------------
-Package:App.Metrics.Health.Formatters.Json
-Page:https://app-metrics.io/
-Allan Hardy and Contributors
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 Package:Newtonsoft.Json.Encryption
@@ -590,14 +580,24 @@ Page:https://github.com/NServiceBusExtensions/Newtonsoft.Json.Encryption
 https://github.com/NServiceBusExtensions/Newtonsoft.Json.Encryption/graphs/contributors
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:Newtonsoft.JsonResult
-Page:
-Rafe Kemmis,  Asger Hallas
+Package:App.Metrics.Health.Formatters.Json
+Page:https://app-metrics.io/
+Allan Hardy and Contributors
+---------------------------------------------------------------
+---------------------------------------------------------------
+Package:FluentAssertions.Json
+Page:https://www.fluentassertions.com/
+Marcel Körtgen
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 Package:GraphQL.Client.Serializer.Newtonsoft
 Page:https://github.com/graphql-dotnet/graphql-client
 Deinok,Alexander Rose,graphql-dotnet
+---------------------------------------------------------------
+---------------------------------------------------------------
+Package:Newtonsoft.JsonResult
+Page:
+Rafe Kemmis,  Asger Hallas
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 Package:Open.Serialization.Json.Newtonsoft
@@ -1070,14 +1070,14 @@ Page:https://github.com/AArnott/Xunit.SkippableFact
 Andrew Arnott
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:AutoFixture.Xunit2
-Page:https://github.com/AutoFixture/AutoFixture
-Mark Seemann,AutoFixture
----------------------------------------------------------------
----------------------------------------------------------------
 Package:FluentAssertions
 Page:https://www.fluentassertions.com/
 Dennis Doomen, Jonas Nyrup
+---------------------------------------------------------------
+---------------------------------------------------------------
+Package:AutoFixture.Xunit2
+Page:https://github.com/AutoFixture/AutoFixture
+Mark Seemann,AutoFixture
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 Package:Serilog.Sinks.XUnit
@@ -1120,12 +1120,12 @@ Page:https://github.com/xunit/xunit
 James Newkirk, Brad Wilson
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:more.xunit.core
+Package:more.xunit.extensibility.execution
 Page:https://github.com/xunit/xunit
 James Newkirk, Brad Wilson
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:more.xunit.extensibility.execution
+Package:more.xunit.core
 Page:https://github.com/xunit/xunit
 James Newkirk, Brad Wilson
 ---------------------------------------------------------------
@@ -1135,12 +1135,12 @@ Page:https://github.com/xunit/xunit
 James Newkirk, Brad Wilson
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:more.xunit.runner.reporters
+Package:more.xunit
 Page:https://github.com/xunit/xunit
 James Newkirk, Brad Wilson
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:more.xunit
+Package:more.xunit.runner.reporters
 Page:https://github.com/xunit/xunit
 James Newkirk, Brad Wilson
 ---------------------------------------------------------------
@@ -1610,13 +1610,13 @@ Page:https://github.com/Giorgi/EntityFramework.Exceptions
 Giorgi Dalakishvili
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:Devart.Data.MySql.Linq
-Page:http://www.devart.com/linqconnect
+Package:Devart.Data.MySql.EFCore.Design
+Page:http://www.devart.com/dotconnect/mysql
 Devart
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:Devart.Data.MySql.EFCore.Design
-Page:http://www.devart.com/dotconnect/mysql
+Package:Devart.Data.MySql.Linq
+Page:http://www.devart.com/linqconnect
 Devart
 ---------------------------------------------------------------
 ---------------------------------------------------------------
@@ -1640,14 +1640,14 @@ Page:https://git.citms.cn/opensource/dotnet/Pomelo.EntityFrameworkCore.MySql.git
 Pomelo.EntityFrameworkCore.MySql
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:Piranha.Data.EF.MySql
-Page:https://github.com/piranhacms/piranha.core
-Piranha CMS
----------------------------------------------------------------
----------------------------------------------------------------
 Package:Devart.Data.MySql.EF6
 Page:http://www.devart.com/dotconnect/mysql
 Devart
+---------------------------------------------------------------
+---------------------------------------------------------------
+Package:Piranha.Data.EF.MySql
+Page:https://github.com/piranhacms/piranha.core
+Piranha CMS
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 Package:Cosmos.EntityFrameworkCore.MySql
@@ -1870,14 +1870,14 @@ Page:https://github.com/voronov-maxim/OdataToEntity
 Maxim Voronov
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:OdataToEntity.EfCore.DynamicDataContext
-Page:
-Maxim Voronov
----------------------------------------------------------------
----------------------------------------------------------------
 Package:Simple.OData.V4.Client
 Page:https://github.com/object/Simple.OData.Client
 Vagif Abilov
+---------------------------------------------------------------
+---------------------------------------------------------------
+Package:OdataToEntity.EfCore.DynamicDataContext
+Page:
+Maxim Voronov
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 Package:Simple.OData.V3.Client
@@ -1990,11 +1990,6 @@ Page:https://github.com/Morasiu/Swashbuckle.AspNetCore.JsonMultipartFormDataSupp
 Morasiu
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:MicroElements.Swashbuckle.NodaTime
-Page:https://github.com/micro-elements/MicroElements.Swashbuckle.NodaTime
-micro-elements
----------------------------------------------------------------
----------------------------------------------------------------
 Package:SwashbuckleAspNetVersioningShim
 Page:https://github.com/rh072005/SwashbuckleAspNetVersioningShim
 Ryan Hird
@@ -2003,6 +1998,11 @@ Ryan Hird
 Package:Swashbuckle.AspNetCore.SwaggerGen.ConventionalRouting
 Page:
 Christos Sakellarios
+---------------------------------------------------------------
+---------------------------------------------------------------
+Package:ErazerBrecht.Swashbuckle.AspNetCore.Swagger
+Page:https://github.com/ErazerBrecht/Swashbuckle.AspNetCore
+Swashbuckle.AspNetCore.Swagger
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 Package:System.CodeDom
@@ -2070,19 +2070,14 @@ Page:https://github.com/aumcode/nfx
 ITAdapter Corp. Inc.
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:ABCpdf
-Page:https://www.websupergoo.com/abcpdf-1.htm
-ABCpdf Team
----------------------------------------------------------------
----------------------------------------------------------------
 Package:CS-Script.lib.Roslyn
 Page:https://github.com/oleg-shilo/cs-script/
 Oleg Shilo
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:NFX.Web
-Page:https://github.com/aumcode/nfx
-IT Adapter Corp. Inc.
+Package:ABCpdf
+Page:https://www.websupergoo.com/abcpdf-1.htm
+ABCpdf Team
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 Package:NFX.MySQL
@@ -2090,7 +2085,12 @@ Page:https://github.com/aumcode/nfx
 IT Adapter Corp. Inc.
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:NFX.WinForms
+Package:NFX.Web
+Page:https://github.com/aumcode/nfx
+IT Adapter Corp. Inc.
+---------------------------------------------------------------
+---------------------------------------------------------------
+Package:NFX.MongoDB
 Page:https://github.com/aumcode/nfx
 IT Adapter Corp. Inc.
 ---------------------------------------------------------------
@@ -2100,7 +2100,7 @@ Page:https://github.com/aumcode/nfx
 IT Adapter Corp. Inc.
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-Package:NFX.Erlang
+Package:NFX.Azure
 Page:https://github.com/aumcode/nfx
 IT Adapter Corp. Inc.
 ---------------------------------------------------------------
