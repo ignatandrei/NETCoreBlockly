@@ -39,9 +39,9 @@
     <PackageReference Include="AspNetCore.HealthChecks.UI" Version="3.1.1" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="3.1.1" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="3.1.1" />
-    <PackageReference Include="AMSWebAPI" Version="2021.7.5.1025" />
-    <PackageReference Include="AMS_Base" Version="2021.7.5.1025" />
-    <PackageReference Include="RSCG_AMS" Version="2021.7.5.1025" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
+    <PackageReference Include="AMSWebAPI" Version="2021.7.6.628" />
+    <PackageReference Include="AMS_Base" Version="2021.7.6.628" />
+    <PackageReference Include="RSCG_AMS" Version="2021.7.6.628" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
 
   </ItemGroup>
 
