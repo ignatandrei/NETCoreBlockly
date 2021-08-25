@@ -17,7 +17,7 @@
     <PackageReference Include="GraphQL.Server.Ui.Playground" Version="3.4.0" />
     <PackageReference Include="HealthCheckVersion" Version="3.1.2020.16776727" />
     <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="5.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.18" />
     <PackageReference Include="Microsoft.AspNetCore.OData" Version="7.4.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.8.0" />    
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.3" />
