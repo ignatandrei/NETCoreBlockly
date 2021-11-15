@@ -55,6 +55,7 @@ namespace TestBlocklyHtml.Controllers
     {
 
         //TODO: solve how the GUI is displayed for team
+        [HttpGet]
         public async Task<People[]> Managers()
         {
             
