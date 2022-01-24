@@ -1,0 +1,74 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
+    <variable id="43omA)lH5]@xKx#LjSes">var_Math2Values</variable>
+  </variables>
+  <block type="variables_set" inline="true" x="-190" y="61">
+    <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+    <value name="VALUE">
+      <block type="math_number">
+        <field name="NUM">90</field>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="43omA)lH5]@xKx#LjSes">var_Math2Values</field>
+        <value name="VALUE">
+          <block type="converttojson">
+            <value name="ValueToConvert">
+              <block type="get__api_MathDivideRest___id">
+                <value name="val_id">
+                  <block type="variables_get">
+                    <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <shadow type="text">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="converttostring">
+                <value name="ValueToConvert">
+                  <block type="variables_get">
+                    <field name="VAR" id="43omA)lH5]@xKx#LjSes">var_Math2Values</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" inline="true">
+                <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+                <value name="VALUE">
+                  <block type="post__api_MathDivideRest">
+                    <value name="val_values">
+                      <block type="variables_get">
+                        <field name="VAR" id="43omA)lH5]@xKx#LjSes">var_Math2Values</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print">
+                    <value name="TEXT">
+                      <shadow type="text">
+                        <field name="TEXT">abc</field>
+                      </shadow>
+                      <block type="variables_get">
+                        <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

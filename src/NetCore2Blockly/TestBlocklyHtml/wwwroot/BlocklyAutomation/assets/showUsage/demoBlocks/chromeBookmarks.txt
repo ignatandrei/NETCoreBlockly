@@ -1,0 +1,257 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="Fa^U@_f@#TZ0)3+R{Xvi">book2021</variable>
+    <variable id="nuS+0IRi8CZeN+ORpC*a">text</variable>
+    <variable id="WRa![t7pO]7-`QJyxr)M">j</variable>
+    <variable id="x9hB0!Wb:2Y8zkhpKox/">curBook</variable>
+  </variables>
+  <block type="variables_set" x="55" y="-318">
+    <field name="VAR" id="Fa^U@_f@#TZ0)3+R{Xvi">book2021</field>
+    <value name="VALUE">
+      <block type="converttojson">
+        <value name="ValueToConvert">
+          <block type="post__api_v1_Chrome_GetUrlsYear">
+            <value name="val_year">
+              <block type="math_number">
+                <field name="NUM">2021</field>
+              </block>
+            </value>
+            <value name="override_Host">
+              <block type="text">
+                <field name="TEXT">localhost</field>
+              </block>
+            </value>
+            <value name="override_Port">
+              <block type="math_number">
+                <field name="NUM">37283</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="text_length">
+            <value name="VALUE">
+              <shadow type="text">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="variables_get">
+                <field name="VAR" id="Fa^U@_f@#TZ0)3+R{Xvi">book2021</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set">
+            <field name="VAR" id="nuS+0IRi8CZeN+ORpC*a">text</field>
+            <value name="VALUE">
+              <block type="HTMLheaders">
+                <field name="NAME">H1</field>
+                <value name="NAME">
+                  <shadow type="text">
+                    <field name="TEXT"></field>
+                  </shadow>
+                  <block type="text">
+                    <field name="TEXT">Bookmarks</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="text_append">
+                <field name="VAR" id="nuS+0IRi8CZeN+ORpC*a">text</field>
+                <value name="TEXT">
+                  <shadow type="text">
+                    <field name="TEXT"></field>
+                  </shadow>
+                  <block type="HTMLliStart">
+                    <field name="NAME">OL</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_for">
+                    <field name="VAR" id="WRa![t7pO]7-`QJyxr)M">j</field>
+                    <value name="FROM">
+                      <shadow type="math_number">
+                        <field name="NUM">1</field>
+                      </shadow>
+                    </value>
+                    <value name="TO">
+                      <shadow type="math_number">
+                        <field name="NUM">10</field>
+                      </shadow>
+                      <block type="text_length">
+                        <value name="VALUE">
+                          <shadow type="text">
+                            <field name="TEXT">abc</field>
+                          </shadow>
+                          <block type="variables_get">
+                            <field name="VAR" id="Fa^U@_f@#TZ0)3+R{Xvi">book2021</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="BY">
+                      <shadow type="math_number">
+                        <field name="NUM">1</field>
+                      </shadow>
+                    </value>
+                    <statement name="DO">
+                      <block type="variables_set">
+                        <field name="VAR" id="x9hB0!Wb:2Y8zkhpKox/">curBook</field>
+                        <value name="VALUE">
+                          <block type="lists_getIndex">
+                            <mutation statement="false" at="true"></mutation>
+                            <field name="MODE">GET</field>
+                            <field name="WHERE">FROM_START</field>
+                            <value name="VALUE">
+                              <block type="variables_get">
+                                <field name="VAR" id="Fa^U@_f@#TZ0)3+R{Xvi">book2021</field>
+                              </block>
+                            </value>
+                            <value name="AT">
+                              <block type="variables_get">
+                                <field name="VAR" id="WRa![t7pO]7-`QJyxr)M">j</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="text_print" disabled="true">
+                            <value name="TEXT">
+                              <block type="converttostring">
+                                <value name="ValueToConvert">
+                                  <block type="variables_get">
+                                    <field name="VAR" id="x9hB0!Wb:2Y8zkhpKox/">curBook</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="text_append">
+                                <field name="VAR" id="nuS+0IRi8CZeN+ORpC*a">text</field>
+                                <value name="TEXT">
+                                  <shadow type="text">
+                                    <field name="TEXT"></field>
+                                  </shadow>
+                                  <block type="HTMLli">
+                                    <value name="NAME">
+                                      <shadow type="text">
+                                        <field name="TEXT"></field>
+                                      </shadow>
+                                      <block type="HTMLlink">
+                                        <field name="targetDrop">_blank</field>
+                                        <value name="HREF">
+                                          <block type="getproperty">
+                                            <field name="objectName">object</field>
+                                            <field name="prop">property</field>
+                                            <value name="ObjectToChange">
+                                              <block type="variables_get">
+                                                <field name="VAR" id="x9hB0!Wb:2Y8zkhpKox/">curBook</field>
+                                              </block>
+                                            </value>
+                                            <value name="PropertyName">
+                                              <block type="text">
+                                                <field name="TEXT">url</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="text">
+                                          <block type="getproperty">
+                                            <field name="objectName">object</field>
+                                            <field name="prop">property</field>
+                                            <value name="ObjectToChange">
+                                              <block type="variables_get">
+                                                <field name="VAR" id="x9hB0!Wb:2Y8zkhpKox/">curBook</field>
+                                              </block>
+                                            </value>
+                                            <value name="PropertyName">
+                                              <block type="text">
+                                                <field name="TEXT">name</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="controls_flow_statements" disabled="true">
+                                    <field name="FLOW">BREAK</field>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="text_append">
+                        <field name="VAR" id="nuS+0IRi8CZeN+ORpC*a">text</field>
+                        <value name="TEXT">
+                          <shadow type="text">
+                            <field name="TEXT"></field>
+                          </shadow>
+                          <block type="HTMLliStop">
+                            <field name="NAME">OL</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="text_print">
+                            <value name="TEXT">
+                              <block type="variables_get">
+                                <field name="VAR" id="nuS+0IRi8CZeN+ORpC*a">text</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="text_print">
+                                <value name="TEXT">
+                                  <block type="post__api_v1_File_WriteAllText1">
+                                    <value name="val_values">
+                                      <block type="recFileController_WriteAllText1_184363713">
+                                        <value name="val_path">
+                                          <block type="text">
+                                            <field name="TEXT">E:\a.html</field>
+                                          </block>
+                                        </value>
+                                        <value name="val_contents">
+                                          <block type="variables_get">
+                                            <field name="VAR" id="nuS+0IRi8CZeN+ORpC*a">text</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <value name="override_Host">
+                                      <block type="text">
+                                        <field name="TEXT">localhost</field>
+                                      </block>
+                                    </value>
+                                    <value name="override_Port">
+                                      <block type="math_number">
+                                        <field name="NUM">37283</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

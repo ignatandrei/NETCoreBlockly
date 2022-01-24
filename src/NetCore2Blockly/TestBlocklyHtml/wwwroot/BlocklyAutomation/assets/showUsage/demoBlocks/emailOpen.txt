@@ -1,0 +1,83 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="Uo`icyxXp6dYx$f8~4M;">email</variable>
+  </variables>
+  <block type="variables_set" x="86" y="-206">
+    <field name="VAR" id="Uo`icyxXp6dYx$f8~4M;">email</field>
+    <value name="VALUE">
+      <block type="blockemail">
+        <field name="NAME">Html</field>
+        <value name="from">
+          <shadow type="text">
+            <field name="TEXT">test@test.com</field>
+          </shadow>
+        </value>
+        <value name="to">
+          <shadow type="text">
+            <field name="TEXT">ignatandrei@yahoo.com</field>
+          </shadow>
+        </value>
+        <value name="cc">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+        <value name="bcc">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+        <value name="subject">
+          <shadow type="text">
+            <field name="TEXT">My test email</field>
+          </shadow>
+        </value>
+        <value name="body">
+          <shadow type="text">
+            <field name="TEXT">This is the body</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="converttostring">
+            <value name="ValueToConvert">
+              <block type="variables_get">
+                <field name="VAR" id="Uo`icyxXp6dYx$f8~4M;">email</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="window_open">
+            <value name="TEXT">
+              <block type="text">
+                <field name="TEXT">http://www.google.com</field>
+              </block>
+            </value>
+            <next>
+              <block type="window_open">
+                <value name="TEXT">
+                  <block type="variables_get">
+                    <field name="VAR" id="Uo`icyxXp6dYx$f8~4M;">email</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="window_open">
+                    <value name="TEXT">
+                      <block type="text">
+                        <field name="TEXT">http://www.yahoo.com</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

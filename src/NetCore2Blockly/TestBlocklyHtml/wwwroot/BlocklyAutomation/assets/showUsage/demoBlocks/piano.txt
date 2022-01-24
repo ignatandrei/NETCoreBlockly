@@ -1,0 +1,83 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="hRI?{t+520dtx|3$g7%h">i</variable>
+  </variables>
+  <block type="pianoBlock" x="113" y="-456">
+    <value name="Note">
+      <shadow type="text">
+        <field name="TEXT">C</field>
+      </shadow>
+    </value>
+    <value name="Sharp">
+      <shadow type="logic_boolean">
+        <field name="BOOL">FALSE</field>
+      </shadow>
+    </value>
+    <value name="Octave">
+      <shadow type="math_number">
+        <field name="NUM">4</field>
+      </shadow>
+    </value>
+    <value name="Duration">
+      <shadow type="math_number">
+        <field name="NUM">2</field>
+      </shadow>
+    </value>
+    <next>
+      <block type="controls_forEach">
+        <field name="VAR" id="hRI?{t+520dtx|3$g7%h">i</field>
+        <value name="LIST">
+          <block type="cmajor"></block>
+        </value>
+        <statement name="DO">
+          <block type="text_print">
+            <value name="TEXT">
+              <shadow type="text">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="variables_get">
+                <field name="VAR" id="hRI?{t+520dtx|3$g7%h">i</field>
+              </block>
+            </value>
+            <next>
+              <block type="pianoBlock">
+                <value name="Note">
+                  <shadow type="text">
+                    <field name="TEXT">C</field>
+                  </shadow>
+                  <block type="variables_get">
+                    <field name="VAR" id="hRI?{t+520dtx|3$g7%h">i</field>
+                  </block>
+                </value>
+                <value name="Sharp">
+                  <shadow type="logic_boolean">
+                    <field name="BOOL">FALSE</field>
+                  </shadow>
+                </value>
+                <value name="Octave">
+                  <shadow type="math_number">
+                    <field name="NUM">4</field>
+                  </shadow>
+                </value>
+                <value name="Duration">
+                  <shadow type="math_number">
+                    <field name="NUM">2</field>
+                  </shadow>
+                </value>
+                <next>
+                  <block type="wait">
+                    <value name="VALUE">
+                      <shadow type="math_number">
+                        <field name="NUM">3</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

@@ -1,0 +1,133 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="Uo`icyxXp6dYx$f8~4M;">email</variable>
+  </variables>
+  <block type="variables_set" x="86" y="-206">
+    <field name="VAR" id="Uo`icyxXp6dYx$f8~4M;">email</field>
+    <value name="VALUE">
+      <block type="blockemail">
+        <field name="NAME">Html</field>
+        <value name="from">
+          <shadow type="text">
+            <field name="TEXT">test@test.com</field>
+          </shadow>
+        </value>
+        <value name="to">
+          <shadow type="text">
+            <field name="TEXT">ignatandrei@yahoo.com</field>
+          </shadow>
+        </value>
+        <value name="cc">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+        <value name="bcc">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+        <value name="subject">
+          <shadow type="text">
+            <field name="TEXT">My test email</field>
+          </shadow>
+        </value>
+        <value name="body">
+          <shadow type="text">
+            <field name="TEXT">This is the body</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print" disabled="true">
+        <value name="TEXT">
+          <block type="converttostring">
+            <value name="ValueToConvert">
+              <block type="variables_get">
+                <field name="VAR" id="Uo`icyxXp6dYx$f8~4M;">email</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="sendinblue">
+                <value name="APIKey">
+                  <shadow type="text">
+                    <field name="TEXT">Please enter APIKey</field>
+                  </shadow>
+                </value>
+                <value name="email">
+                  <shadow type="blockemail">
+                    <field name="NAME">Html</field>
+                  </shadow>
+                  <block type="variables_get">
+                    <field name="VAR" id="Uo`icyxXp6dYx$f8~4M;">email</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="headersbeforehttp" disabled="true">
+                <value name="HttpDomain">
+                  <shadow type="text">
+                    <field name="TEXT">*</field>
+                  </shadow>
+                </value>
+                <value name="HeaderName">
+                  <shadow type="text">
+                    <field name="TEXT">api-key</field>
+                  </shadow>
+                </value>
+                <value name="HeaderValue">
+                  <shadow type="text">
+                    <field name="TEXT"></field>
+                  </shadow>
+                  <block type="text">
+                    <field name="TEXT">Please EnterAPIKey</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print" disabled="true">
+                    <value name="TEXT">
+                      <block type="httprequest">
+                        <field name="TypeOutput">Text</field>
+                        <field name="TypeRequest">POST</field>
+                        <value name="TheUrl">
+                          <shadow type="text">
+                            <field name="TEXT">https://api.sendinblue.com/v3/smtp/email</field>
+                          </shadow>
+                        </value>
+                        <value name="Data">
+                          <block type="converttojson">
+                            <value name="ValueToConvert">
+                              <block type="variables_get">
+                                <field name="VAR" id="Uo`icyxXp6dYx$f8~4M;">email</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set" disabled="true">
+                        <field name="VAR" id="Uo`icyxXp6dYx$f8~4M;">email</field>
+                        <value name="VALUE">
+                          <block type="text">
+                            <field name="TEXT">{      "sender":{         "name":"Sender Alex",       "email":"ignatandrei@example.com"    },    "to":[         {            "email":"ignatandrei@yahoo.com",          "name":"John Doe"       }    ],    "subject":"Hello world",    "htmlContent":"&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Hello,&lt;/p&gt;This is my first transactional email sent from Sendinblue.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;" }</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

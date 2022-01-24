@@ -1,0 +1,9 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="ttsBlock" x="105" y="-170">
+    <value name="NAME">
+      <shadow type="text">
+        <field name="TEXT">Welcome to Automate Blockly!</field>
+      </shadow>
+    </value>
+  </block>
+</xml>

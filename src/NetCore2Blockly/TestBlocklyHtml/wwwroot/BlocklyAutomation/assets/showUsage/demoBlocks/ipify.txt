@@ -1,0 +1,36 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" x="25" y="-695">
+    <value name="TEXT">
+      <shadow type="text">
+        <field name="TEXT">abc</field>
+      </shadow>
+      <block type="httprequest">
+        <field name="TypeOutput">Text</field>
+        <field name="TypeRequest">GET</field>
+        <value name="TheUrl">
+          <shadow type="text">
+            <field name="TEXT">//api.ipify.org</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+          <block type="httprequest">
+            <field name="TypeOutput">Text</field>
+            <field name="TypeRequest">GET</field>
+            <value name="TheUrl">
+              <shadow type="text">
+                <field name="TEXT">//ipify.org</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

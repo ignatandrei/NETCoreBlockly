@@ -1,0 +1,151 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="qMAYctr.q+Z#uZ|-/;}H">n</variable>
+    <variable id="rFL(}XoA/QaF2-Os02`2">myValues</variable>
+  </variables>
+  <block type="variables_set" x="45" y="49">
+    <field name="VAR" id="qMAYctr.q+Z#uZ|-/;}H">n</field>
+    <value name="VALUE">
+      <block type="math_number">
+        <field name="NUM">90</field>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="rFL(}XoA/QaF2-Os02`2">myValues</field>
+        <value name="VALUE">
+          <block type="Math2Values">
+            <value name="val_x">
+              <block type="variables_get">
+                <field name="VAR" id="qMAYctr.q+Z#uZ|-/;}H">n</field>
+              </block>
+            </value>
+            <value name="val_y">
+              <block type="math_number">
+                <field name="NUM">10</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <shadow type="text">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="converttostring">
+                <value name="ValueToConvert">
+                  <block type="variables_get">
+                    <field name="VAR" id="rFL(}XoA/QaF2-Os02`2">myValues</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set">
+                <field name="VAR" id="qMAYctr.q+Z#uZ|-/;}H">n</field>
+                <value name="VALUE">
+                  <block type="post__api_MathDivideRest">
+                    <value name="val_values">
+                      <block type="variables_get">
+                        <field name="VAR" id="rFL(}XoA/QaF2-Os02`2">myValues</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print">
+                    <value name="TEXT">
+                      <shadow type="text">
+                        <field name="TEXT">abc</field>
+                      </shadow>
+                      <block type="variables_get">
+                        <field name="VAR" id="qMAYctr.q+Z#uZ|-/;}H">n</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set">
+                        <field name="VAR" id="rFL(}XoA/QaF2-Os02`2">myValues</field>
+                        <value name="VALUE">
+                          <block type="put__api_MathDivideRest___id">
+                            <value name="val_id">
+                              <block type="math_number">
+                                <field name="NUM">10</field>
+                              </block>
+                            </value>
+                            <value name="val_values">
+                              <block type="variables_get">
+                                <field name="VAR" id="rFL(}XoA/QaF2-Os02`2">myValues</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="text_print">
+                            <value name="TEXT">
+                              <shadow type="text">
+                                <field name="TEXT">abc</field>
+                              </shadow>
+                              <block type="variables_get">
+                                <field name="VAR" id="rFL(}XoA/QaF2-Os02`2">myValues</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="variables_set">
+                                <field name="VAR" id="rFL(}XoA/QaF2-Os02`2">myValues</field>
+                                <value name="VALUE">
+                                  <block type="converttojson">
+                                    <value name="ValueToConvert">
+                                      <block type="variables_get">
+                                        <field name="VAR" id="rFL(}XoA/QaF2-Os02`2">myValues</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="variables_set">
+                                    <field name="VAR" id="rFL(}XoA/QaF2-Os02`2">myValues</field>
+                                    <value name="VALUE">
+                                      <block type="put__api_MathDivideRest___id">
+                                        <value name="val_id">
+                                          <block type="math_number">
+                                            <field name="NUM">10</field>
+                                          </block>
+                                        </value>
+                                        <value name="val_values">
+                                          <block type="variables_get">
+                                            <field name="VAR" id="rFL(}XoA/QaF2-Os02`2">myValues</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="text_print">
+                                        <value name="TEXT">
+                                          <shadow type="text">
+                                            <field name="TEXT">abc</field>
+                                          </shadow>
+                                          <block type="variables_get">
+                                            <field name="VAR" id="rFL(}XoA/QaF2-Os02`2">myValues</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

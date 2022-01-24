@@ -1,0 +1,48 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="O`.BZZ!oEpMmp,awb%m7">n</variable>
+  </variables>
+  <block type="variables_set" inline="true" x="157" y="-207">
+    <field name="VAR" id="O`.BZZ!oEpMmp,awb%m7">n</field>
+    <value name="VALUE">
+      <block type="Operation">
+        <field name="val_Operation">3</field>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+          <block type="post__api_MathOperations_Operation___id___x">
+            <value name="val_id">
+              <block type="variables_get">
+                <field name="VAR" id="O`.BZZ!oEpMmp,awb%m7">n</field>
+              </block>
+            </value>
+            <value name="val_x">
+              <block type="math_number">
+                <field name="NUM">10</field>
+              </block>
+            </value>
+            <value name="val_values">
+              <block type="Math2Values">
+                <value name="val_x">
+                  <block type="math_number">
+                    <field name="NUM">5</field>
+                  </block>
+                </value>
+                <value name="val_y">
+                  <block type="math_number">
+                    <field name="NUM">6</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

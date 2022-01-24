@@ -1,0 +1,87 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
+  </variables>
+  <block type="variables_set" inline="true" x="-263" y="86">
+    <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+    <value name="VALUE">
+      <block type="httprequest">
+        <field name="TypeOutput">JSON</field>
+        <field name="TypeRequest">GET</field>
+        <value name="TheUrl">
+          <shadow type="text">
+            <field name="TEXT">assets/showUsage/demoBlocks/all.txt</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+          <block type="converttostring">
+            <value name="ValueToConvert">
+              <block type="variables_get">
+                <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set">
+            <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+            <value name="VALUE">
+              <block type="convertcsv">
+                <value name="ArrayToConvert">
+                  <block type="converttostring">
+                    <value name="ValueToConvert">
+                      <block type="variables_get">
+                        <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="text_print">
+                <value name="TEXT">
+                  <shadow type="text">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="variables_get">
+                    <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="exportfile">
+                    <value name="fileName">
+                      <shadow type="text">
+                        <field name="TEXT">abc.csv</field>
+                      </shadow>
+                    </value>
+                    <value name="contentFile">
+                      <block type="variables_get">
+                        <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+                      </block>
+                    </value>
+                    <value name="convertToByte">
+                      <shadow type="logic_boolean">
+                        <field name="BOOL">FALSE</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="variables_get" x="-185" y="215">
+    <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+  </block>
+</xml>

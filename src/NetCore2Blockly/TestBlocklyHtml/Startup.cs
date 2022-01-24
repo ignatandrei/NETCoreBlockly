@@ -39,6 +39,7 @@ using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HCVersion;
 using AMSWebAPI;
+using NetCore2BlocklyNew;
 
 namespace TestBlocklyHtml
 {
@@ -58,16 +59,16 @@ namespace TestBlocklyHtml
             services.AddSingleton(MyActionDescriptorChangeProvider.Instance);
             #region health check
             string name = Assembly.GetExecutingAssembly().GetName().Name;
-            services.AddHealthChecks()
-                .AddCheck<HealthCheckVersion>(name)
-                ;
-            services
-                .AddHealthChecksUI(setup =>
-                {
-                    setup.AddHealthCheckEndpoint("All", $"/hc");
-                })
-                .AddInMemoryStorage()
-                ;
+            //services.AddHealthChecks()
+            //    .AddCheck<HealthCheckVersion>(name)
+            //    ;
+            //services
+            //    .AddHealthChecksUI(setup =>
+            //    {
+            //        setup.AddHealthCheckEndpoint("All", $"/hc");
+            //    })
+            //    .AddInMemoryStorage()
+            //    ;
             //navigate to healthchecks-ui
             #endregion
             services.AddProblemDetails();
@@ -229,6 +230,8 @@ namespace TestBlocklyHtml
          
             }
             app.UseCors("AllowAll");
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseFileServer(enableDirectoryBrowsing: true);
             #region blockly needed
             //you can use simply this
@@ -293,14 +296,15 @@ namespace TestBlocklyHtml
                 //}
                 endpoints.MapControllers();
                 #region healthcheck
-                endpoints.MapHealthChecks("/hc", new HealthCheckOptions()
-                {
-                    Predicate = _ => true,
-                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-                });
-                endpoints.MapHealthChecksUI();
+                //endpoints.MapHealthChecks("/hc", new HealthCheckOptions()
+                //{
+                //    Predicate = _ => true,
+                //    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                //});
+                //endpoints.MapHealthChecksUI();
                 #endregion
                 endpoints.UseAMS();
+                endpoints.UseBlocklyAutomation();
                 endpoints.MapGraph("/graph");
             });
             #region blockly optional

@@ -1,0 +1,18 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" x="64" y="-288">
+    <value name="TEXT">
+      <shadow type="text">
+        <field name="TEXT">abc</field>
+      </shadow>
+      <block type="httprequest">
+        <field name="TypeOutput">Text</field>
+        <field name="TypeRequest">GET</field>
+        <value name="TheUrl">
+          <shadow type="text">
+            <field name="TEXT">http://ipecho.net/plain</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+  </block>
+</xml>

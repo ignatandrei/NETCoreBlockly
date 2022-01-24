@@ -1,0 +1,34 @@
+<category name='CategoriesLoaded'>
+      <variables>
+      <variable id="andreiTedt">nrDep</variable>
+    </variables>
+    <block  collapsed="true" type="procedures_defreturn">
+      <field name="NAME">NumberDepartments1</field>
+      <comment pinned="false" h="80" w="160">Describe this function...</comment>
+      <statement name="STACK">
+        <block type="variables_set">
+          <field name="VAR" id="andreiTedt">nrDep</field>
+          <value name="VALUE">
+            <block type="text_length">
+              <value name="VALUE">
+                <shadow type="text">
+                  <field name="TEXT">abc</field>
+                </shadow>
+                <block type="converttojson">
+                  <value name="ValueToConvert">
+                    <block type="get__api_DB_Departments"></block>
+                  </value>
+                </block>
+              </value>
+            </block>
+          </value>
+        </block>
+      </statement>
+      <value name="RETURN">
+        <block type="variables_get">
+          <field name="VAR" id="andreiTedt">nrDep</field>
+        </block>
+      </value>
+    </block>
+      </category>   
+      

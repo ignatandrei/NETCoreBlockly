@@ -1,0 +1,79 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="*n^H$b7MwVpU3OUbOeOe">message</variable>
+  </variables>
+  <block type="variables_set" x="32" y="-88">
+    <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">message</field>
+    <value name="VALUE">
+      <block type="text">
+        <field name="TEXT">Getting Chuck Norris joke</field>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">message</field>
+        <value name="VALUE">
+          <block type="getproperty" inline="false">
+            <field name="objectName">object</field>
+            <field name="prop">property</field>
+            <value name="ObjectToChange">
+              <block type="httprequest">
+                <field name="TypeOutput">JSON</field>
+                <field name="TypeRequest">GET</field>
+                <value name="TheUrl">
+                  <shadow type="text">
+                    <field name="TEXT">https://api.chucknorris.io/jokes/random</field>
+                  </shadow>
+                </value>
+              </block>
+            </value>
+            <value name="PropertyName">
+              <block type="text">
+                <field name="TEXT">value</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="text">
+                <field name="TEXT">Sources at https://github.com/ignatandrei/BlocklyAutomation</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print">
+                <value name="TEXT">
+                  <block type="variables_get">
+                    <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">message</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="ttsBlock">
+                    <value name="NAME">
+                      <shadow type="text">
+                        <field name="TEXT">Program is done!</field>
+                      </shadow>
+                      <block type="variables_get">
+                        <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">message</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="ttsBlock">
+                        <value name="NAME">
+                          <shadow type="text">
+                            <field name="TEXT">Program is done!</field>
+                          </shadow>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

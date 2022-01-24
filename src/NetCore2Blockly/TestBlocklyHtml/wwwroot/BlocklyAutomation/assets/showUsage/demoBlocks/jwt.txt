@@ -1,0 +1,58 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="headersbeforehttp" x="82" y="33">
+    <value name="HttpDomain">
+      <shadow type="text">
+        <field name="TEXT">netcoreblockly.herokuapp.com</field>
+      </shadow>
+    </value>
+    <value name="HeaderName">
+      <shadow type="text">
+        <field name="TEXT">Authorization</field>
+      </shadow>
+    </value>
+    <value name="HeaderValue">
+      <shadow type="text">
+        <field name="TEXT"></field>
+      </shadow>
+      <block type="text_join">
+        <mutation items="2"></mutation>
+        <value name="ADD0">
+          <block type="text">
+            <field name="TEXT">CustomBearer </field>
+          </block>
+        </value>
+        <value name="ADD1">
+          <block type="httprequest">
+            <field name="TypeOutput">Text</field>
+            <field name="TypeRequest">POST</field>
+            <value name="TheUrl">
+              <shadow type="text">
+                <field name="TEXT">https://netcoreblockly.herokuapp.com/api/Registration</field>
+              </shadow>
+            </value>
+            <value name="Data">
+              <block type="text">
+                <field name="TEXT">blockly</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="httprequest">
+            <field name="TypeOutput">Text</field>
+            <field name="TypeRequest">GET</field>
+            <value name="TheUrl">
+              <shadow type="text">
+                <field name="TEXT">https://netcoreblockly.herokuapp.com/api/RestrictedAccess/CustomJWT</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

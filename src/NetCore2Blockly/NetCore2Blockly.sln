@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore2BlocklyUnitTests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore2BlocklyStorage.Sqlite", "NetCore2BlocklyStorage.Sqlite\NetCore2BlocklyStorage.Sqlite.csproj", "{DC8D0F30-C574-4B22-9357-3A42F651E9C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore2BlocklyNew", "NetCore2BlocklyNew\NetCore2BlocklyNew.csproj", "{8DE4C48C-9CF7-487F-8854-B34FA818EB23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{DC8D0F30-C574-4B22-9357-3A42F651E9C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC8D0F30-C574-4B22-9357-3A42F651E9C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC8D0F30-C574-4B22-9357-3A42F651E9C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DE4C48C-9CF7-487F-8854-B34FA818EB23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DE4C48C-9CF7-487F-8854-B34FA818EB23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DE4C48C-9CF7-487F-8854-B34FA818EB23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DE4C48C-9CF7-487F-8854-B34FA818EB23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

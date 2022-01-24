@@ -1,0 +1,209 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="9exV|4T4P6X=3~Em6AcC">name</variable>
+    <variable id="P|b0sa?k$1vcEdVj!+fn">n</variable>
+    <variable id="zD[{ge_o;W*1-dV~Me5l">nr</variable>
+    <variable id="5;47gpsWUe91G}.~H]Om">var_Int64</variable>
+    <variable id="nIdI=p;YaqO~NJ428@8h">var_Department</variable>
+  </variables>
+  <block type="procedures_callnoreturn" x="159" y="-194">
+    <mutation name="FindNumberDepartments"></mutation>
+    <next>
+      <block type="variables_set" inline="true">
+        <field name="VAR" id="P|b0sa?k$1vcEdVj!+fn">n</field>
+        <value name="VALUE">
+          <block type="text_prompt_ext">
+            <mutation type="TEXT"></mutation>
+            <field name="TYPE">TEXT</field>
+            <value name="TEXT">
+              <shadow type="text">
+                <field name="TEXT">Please give name of the new Department</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <shadow type="text">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text_join">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text">
+                    <field name="TEXT">The id of the new department is : </field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="procedures_callreturn">
+                    <mutation name="CreateDepartment">
+                      <arg name="name"></arg>
+                    </mutation>
+                    <value name="ARG0">
+                      <block type="variables_get">
+                        <field name="VAR" id="P|b0sa?k$1vcEdVj!+fn">n</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="procedures_callnoreturn">
+                <mutation name="FindNumberDepartments"></mutation>
+                <next>
+                  <block type="text_print">
+                    <value name="TEXT">
+                      <shadow type="text">
+                        <field name="TEXT">abc</field>
+                      </shadow>
+                      <block type="delete__api_DB_Departments___id">
+                        <value name="val_id">
+                          <block type="variables_get">
+                            <field name="VAR" id="5;47gpsWUe91G}.~H]Om">var_Int64</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="procedures_callnoreturn">
+                        <mutation name="FindNumberDepartments"></mutation>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="procedures_defnoreturn" x="116" y="118">
+    <field name="NAME">FindNumberDepartments</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="variables_set">
+        <field name="VAR" id="zD[{ge_o;W*1-dV~Me5l">nr</field>
+        <value name="VALUE">
+          <block type="text_length">
+            <value name="VALUE">
+              <shadow type="text">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="converttojson">
+                <value name="ValueToConvert">
+                  <block type="get__api_DB_Departments"></block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <shadow type="text">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text_join">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text">
+                    <field name="TEXT">The number of departments is : </field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="variables_get">
+                    <field name="VAR" id="zD[{ge_o;W*1-dV~Me5l">nr</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defreturn" x="101" y="291">
+    <mutation>
+      <arg name="name" varid="9exV|4T4P6X=3~Em6AcC"></arg>
+    </mutation>
+    <field name="NAME">CreateDepartment</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="variables_set">
+        <field name="VAR" id="5;47gpsWUe91G}.~H]Om">var_Int64</field>
+        <value name="VALUE">
+          <block type="math_number">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set">
+            <field name="VAR" id="nIdI=p;YaqO~NJ428@8h">var_Department</field>
+            <value name="VALUE">
+              <block type="Department" inline="true">
+                <value name="val_iddepartment">
+                  <block type="variables_get">
+                    <field name="VAR" id="5;47gpsWUe91G}.~H]Om">var_Int64</field>
+                  </block>
+                </value>
+                <value name="val_name">
+                  <block type="variables_get">
+                    <field name="VAR" id="9exV|4T4P6X=3~Em6AcC">name</field>
+                  </block>
+                </value>
+                <value name="val_employee">
+                  <block type="lists_create_with">
+                    <mutation items="0"></mutation>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" inline="true">
+                <field name="VAR" id="P|b0sa?k$1vcEdVj!+fn">n</field>
+                <value name="VALUE">
+                  <block type="post__api_DB_Departments" inline="true">
+                    <value name="val_values">
+                      <block type="variables_get">
+                        <field name="VAR" id="nIdI=p;YaqO~NJ428@8h">var_Department</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" inline="true">
+                    <field name="VAR" id="5;47gpsWUe91G}.~H]Om">var_Int64</field>
+                    <value name="VALUE">
+                      <block type="getproperty">
+                        <field name="objectName">object</field>
+                        <field name="prop">property</field>
+                        <value name="ObjectToChange">
+                          <block type="variables_get">
+                            <field name="VAR" id="P|b0sa?k$1vcEdVj!+fn">n</field>
+                          </block>
+                        </value>
+                        <value name="PropertyName">
+                          <shadow type="text">
+                            <field name="TEXT">iddepartment</field>
+                          </shadow>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="RETURN">
+      <block type="variables_get">
+        <field name="VAR" id="5;47gpsWUe91G}.~H]Om">var_Int64</field>
+      </block>
+    </value>
+  </block>
+</xml>

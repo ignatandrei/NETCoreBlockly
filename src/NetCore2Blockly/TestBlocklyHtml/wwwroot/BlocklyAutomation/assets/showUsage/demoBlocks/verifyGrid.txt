@@ -1,0 +1,38 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" x="37" y="56">
+    <value name="TEXT">
+      <block type="converttostring">
+        <value name="ValueToConvert">
+          <block type="httprequest">
+            <field name="TypeOutput">JSON</field>
+            <field name="TypeRequest">GET</field>
+            <value name="TheUrl">
+              <shadow type="text">
+                <field name="TEXT">https://netcoreblockly.herokuapp.com/api/VariousTests/ReturnArrayStringForGrid</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="converttostring">
+            <value name="ValueToConvert">
+              <block type="httprequest">
+                <field name="TypeOutput">JSON</field>
+                <field name="TypeRequest">GET</field>
+                <value name="TheUrl">
+                  <shadow type="text">
+                    <field name="TEXT">https://netcoreblockly.herokuapp.com/WeatherForecast</field>
+                  </shadow>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

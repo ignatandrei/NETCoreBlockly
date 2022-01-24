@@ -1,0 +1,127 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
+    <variable id="f~YJqnSTlX^GoI/nN*h~">nameFile</variable>
+    <variable id=",QS2XTKZ]7gJZ_KB#gQ_">imgContent</variable>
+  </variables>
+  <block type="variables_set" inline="true" x="-263" y="86">
+    <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+    <value name="VALUE">
+      <block type="httprequest">
+        <field name="TypeOutput">JSON</field>
+        <field name="TypeRequest">GET</field>
+        <value name="TheUrl">
+          <shadow type="text">
+            <field name="TEXT">https://netcoreblockly.herokuapp.com/api/TestImage/GetImageSprite</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+        <value name="VALUE">
+          <block type="converttojson">
+            <value name="ValueToConvert">
+              <block type="converttostring">
+                <value name="ValueToConvert">
+                  <block type="variables_get">
+                    <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set">
+            <field name="VAR" id="f~YJqnSTlX^GoI/nN*h~">nameFile</field>
+            <value name="VALUE">
+              <block type="getproperty">
+                <field name="objectName">object</field>
+                <field name="prop">property</field>
+                <value name="ObjectToChange">
+                  <block type="variables_get">
+                    <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+                  </block>
+                </value>
+                <value name="PropertyName">
+                  <block type="text">
+                    <field name="TEXT">name</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set">
+                <field name="VAR" id=",QS2XTKZ]7gJZ_KB#gQ_">imgContent</field>
+                <value name="VALUE">
+                  <block type="getproperty">
+                    <field name="objectName">object</field>
+                    <field name="prop">property</field>
+                    <value name="ObjectToChange">
+                      <block type="variables_get">
+                        <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+                      </block>
+                    </value>
+                    <value name="PropertyName">
+                      <block type="text">
+                        <field name="TEXT">image</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print">
+                    <value name="TEXT">
+                      <shadow type="text">
+                        <field name="TEXT">abc</field>
+                      </shadow>
+                      <block type="variables_get">
+                        <field name="VAR" id="f~YJqnSTlX^GoI/nN*h~">nameFile</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="text_print">
+                        <value name="TEXT">
+                          <shadow type="text">
+                            <field name="TEXT">abc</field>
+                          </shadow>
+                          <block type="variables_get">
+                            <field name="VAR" id=",QS2XTKZ]7gJZ_KB#gQ_">imgContent</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="exportfile">
+                            <value name="fileName">
+                              <shadow type="text">
+                                <field name="TEXT">abc</field>
+                              </shadow>
+                              <block type="variables_get">
+                                <field name="VAR" id="f~YJqnSTlX^GoI/nN*h~">nameFile</field>
+                              </block>
+                            </value>
+                            <value name="contentFile">
+                              <block type="variables_get">
+                                <field name="VAR" id=",QS2XTKZ]7gJZ_KB#gQ_">imgContent</field>
+                              </block>
+                            </value>
+                            <value name="convertToByte">
+                              <shadow type="logic_boolean">
+                                <field name="BOOL">TRUE</field>
+                              </shadow>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
