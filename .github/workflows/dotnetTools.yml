@@ -53,3 +53,10 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: pack
+      run: |
+        cd src
+        cd NetCore2Blockly
+        cd NetCore2BlocklyNew
+        dotnet pack --include-source -o netcoreb
+        
