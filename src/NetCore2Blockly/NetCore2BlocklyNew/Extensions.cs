@@ -24,7 +24,7 @@ namespace NetCore2BlocklyNew
             var physicalProvider = environment.ContentRootFileProvider;
             var compositeProvider =
                 new CompositeFileProvider(physicalProvider, manifestEmbeddedProvider);
-            mapFile("blocklyAutomation", manifestEmbeddedProvider, appBuilder);
+            mapFile("blocklyAutomation", compositeProvider, appBuilder);
         }
         static string contentFromExtension(string file)
         {
