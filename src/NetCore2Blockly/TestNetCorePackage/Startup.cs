@@ -11,8 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using NetCore2Blockly;
-
+using NetCore2BlocklyNew;
 namespace TestNetCorePackage
 {
     public class Startup
@@ -29,7 +28,7 @@ namespace TestNetCorePackage
         {
             services.AddControllers();
             
-            services.AddBlockly();
+            //services.AddBlockly();
             services.AddDbContext<TestNetCorePackage.DB.testsContext>(options => options
 
              .UseInMemoryDatabase(databaseName: "MyDB"));
@@ -48,9 +47,10 @@ namespace TestNetCorePackage
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseSwagger();
-            app.UseBlocklyUI();
+            app.UseBlocklyUI(env);
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
@@ -64,10 +64,11 @@ namespace TestNetCorePackage
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.UseBlocklyAutomation();
             });
-            app.UseBlocklyLocalStorage();
-            app.UseBlocklySwagger("heroku", "https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json");
-            app.UseBlockly();
+            //app.UseBlocklyLocalStorage();
+            //app.UseBlocklySwagger("heroku", "https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json");
+            //app.UseBlockly();
         }
     }
 }

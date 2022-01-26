@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.FileProviders;
+using MimeTypes;
 using System;
 using System.IO;
 using System.Reflection;
@@ -23,9 +24,30 @@ namespace NetCore2BlocklyNew
             var physicalProvider = environment.ContentRootFileProvider;
             var compositeProvider =
                 new CompositeFileProvider(physicalProvider, manifestEmbeddedProvider);
-            mapFile("blocklyAutomation", compositeProvider, appBuilder);
+            mapFile("blocklyAutomation", manifestEmbeddedProvider, appBuilder);
         }
+        static string contentFromExtension(string file)
+        {
+            var dot = file.IndexOf(".");
+            if (dot < 1)
+                return "text/html";
 
+            var ext = file.Substring(dot+1).ToLowerInvariant();
+            return MimeTypeMap.GetMimeType(ext);
+            //switch (ext)
+            //{
+            //    case "htm":
+            //        return "text/html";
+
+            //    case "html":
+            //        return "text/html";
+
+
+            //    default:
+            //        throw new ArgumentException("cannot handle " + file);
+            //}
+
+        }
         private static void mapFile(string dirName, IFileProvider provider, IApplicationBuilder appBuilder)
         {
             var folder = provider.GetDirectoryContents(dirName);
@@ -36,8 +58,9 @@ namespace NetCore2BlocklyNew
                     mapFile(dirName + "/" + item.Name, provider, appBuilder);
                     continue;
                 }
-                string map = (dirName + "/" + item.Name).Substring(dirName.Length);
-                
+                string map = (dirName + "/" + item.Name);//.Substring(dirName.Length);
+                map = "/" + map;
+                var s = map;
                 appBuilder.Map(map, app =>
                 {
                     var f = item;
@@ -45,7 +68,8 @@ namespace NetCore2BlocklyNew
                     app.Run(async cnt =>
                     {
                         //TODO: find from extension
-                        //cnt.Response.ContentType = "text/html";
+
+                        cnt.Response.ContentType = contentFromExtension(map);
                         using var stream = new MemoryStream();
                         using var cs = f.CreateReadStream();
                         byte[] buffer = new byte[2048]; // read in chunks of 2KB
