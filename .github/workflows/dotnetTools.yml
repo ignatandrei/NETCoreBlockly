@@ -62,4 +62,11 @@ jobs:
         cd NetCore2Blockly
         cd NetCore2BlocklyNew
         dotnet pack --include-source -o netcoreb
-        
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: AllReleases
+        path: |
+            NetCore2Blockly/NetCore2BlocklyNew/
+        retention-days: 1
