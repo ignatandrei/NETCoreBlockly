@@ -4,8 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <PropertyGroup>
-	  <PackageId>NetCoreBlockly</PackageId>
-	  <Version>2022.1.27.829</Version>
+	  <PackageId>NetCore2Blockly</PackageId>
+	  <Version>5.2022.127.2029</Version>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Copyright>MIT</Copyright>
