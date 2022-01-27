@@ -28,35 +28,34 @@ jobs:
         cd NetCore2Blockly
         dotnet restore
         echo 'done restore'
-        dotnet tool restore --add-source https://myget.org/F/natemcmaster/api/v3/index.json
-        dotnet dotnet-project-licenses  -j  -i .
+        #dotnet tool restore --add-source https://myget.org/F/natemcmaster/api/v3/index.json
+        #dotnet dotnet-project-licenses  -j  -i .
         echo 'done project licences'
-        dotnet dotnet-thx > thanks.txt
+        #dotnet dotnet-thx > thanks.txt
         echo 'done thanks'
-        dotnet dotnet-outdated -o outdated.csv -of csv
-        # dotnet dotnet-outdated -u
-        dotnet list package --outdated  --include-transitive
+        #dotnet dotnet-outdated -o outdated.csv -of csv
+        #dotnet list package --outdated  --include-transitive
         echo 'done outdated'
-        dotnet pwsh copyToRoot.ps1
+        #dotnet pwsh copyToRoot.ps1
         cd ..
         cd ..
         echo 'back to source dir'
     - name: test
       run: echo done
 
-    - name: run commit
-      run: |         
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add --all
-        git status
-        git commit -m "generate thanks, outdate, licences" -a --allow-empty
-      shell: cmd
+    # - name: run commit
+      # run: |         
+        # git config --local user.email "action@github.com"
+        # git config --local user.name "GitHub Action"
+        # git add --all
+        # git status
+        # git commit -m "generate thanks, outdate, licences" -a --allow-empty
+      # shell: cmd
            
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Push changes
+      # uses: ad-m/github-push-action@master
+      # with:
+        # github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: pack
       run: |
         cd src
