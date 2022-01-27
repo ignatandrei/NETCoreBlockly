@@ -68,5 +68,5 @@ jobs:
       with:
         name: AllReleases
         path: |
-            NetCore2Blockly/NetCore2BlocklyNew/
+            NetCore2Blockly/NetCore2BlocklyNew/netcoreb
         retention-days: 1
