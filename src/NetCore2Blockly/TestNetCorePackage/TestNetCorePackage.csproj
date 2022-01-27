@@ -8,13 +8,13 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
-    <!--<PackageReference Include="NetCore2Blockly" Version="1.1.2020.14500387" />-->
+    <PackageReference Include="NetCore2Blockly" Version="5.2022.127.2029" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
   </ItemGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <ProjectReference Include="..\NetCore2BlocklyNew\NetCore2BlocklyNew.csproj" />
-  </ItemGroup>
+  </ItemGroup>-->
 
 
 </Project>
