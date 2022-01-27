@@ -61,6 +61,7 @@ jobs:
         cd src
         cd NetCore2Blockly
         cd NetCore2BlocklyNew
+        xcopy ..\TestBlocklyHtml\wwwroot\BlocklyAutomation\*.* BlocklyAutomation\ /E /F /I /Y /R
         dotnet pack --include-source -o netcoreb
         
     - name: Archive production artifacts
