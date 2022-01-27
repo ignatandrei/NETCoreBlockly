@@ -5,6 +5,7 @@
   </PropertyGroup>
   <PropertyGroup>
 	  <PackageId>NetCoreBlockly</PackageId>
+	  <Version>2022.1.27.829</Version>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Copyright>MIT</Copyright>
