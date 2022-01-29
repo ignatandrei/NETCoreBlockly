@@ -85,19 +85,20 @@ Also, it works with Active Directory enabled - see Authentication category.
 
 ### For adding headers to Http requests
  
-See links 22 for JWT from https://netcoreblockly.herokuapp.com/ 
+See https://netcoreblockly.herokuapp.com/BlocklyAutomation/automation/loadexample/jwt
 
 ### For exporting data as CSV
 
-See link 2  from https://netcoreblockly.herokuapp.com/ 
+See https://netcoreblockly.herokuapp.com/BlocklyAutomation/automation/loadexample/NetCoreBlockly_SaveCSV
 
 ### For exporting data as image
 
-See link 1  from https://netcoreblockly.herokuapp.com/ 
+See https://netcoreblockly.herokuapp.com/BlocklyAutomation/automation/loadexample/saveImage
 
 ### Making a simple CRUD ( create ,read, update , delete ) application
 
-See link 6,7,8,9,   from https://netcoreblockly.herokuapp.com/ 
+See https://netcoreblockly.herokuapp.com/BlocklyAutomation/automation/loadexample/NetCoreBlockly_DeleteDepartment
+or search for department in demos
 
 ### Adding your blocks
 
