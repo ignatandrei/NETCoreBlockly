@@ -1,9 +1,26 @@
-[{
-		"id":"LocalSite",
-		"link":"/swagger/v1/swagger.json"
-},
-{
-	"id":"_MyPC",
-	"link":"http://localhost:37283/swagger/v1/swagger.json"
-}
+[
+	{
+		"id": "LocalSite",
+		"link": "/swagger/v1/swagger.json"
+	},
+	{
+		"id": "_MyPC",
+		"link": "http://localhost:37283/swagger/v1/swagger.json"
+	},
+	{
+		"id": "petStore",
+		"link": "https://petstore.swagger.io/v2/swagger.json"
+	},
+	{
+		"id": "xkcd",
+		"link": "https://raw.githubusercontent.com/APIs-guru/openapi-directory/main/APIs/xkcd.com/1.0.0/openapi.yaml"
+	},
+	{
+		"id": "apiGuru",
+		"link": "https://api.apis.guru/v2/openapi.yaml"
+	},
+	{
+		"id": "apiGuru",
+		"link": "https://api.apis.guru/v2/openapi.yaml"
+	}
 ]
