@@ -5,7 +5,7 @@
   </PropertyGroup>
   <PropertyGroup>
 	  <PackageId>NetCore2Blockly</PackageId>
-	  <Version>5.2022.127.2029</Version>
+	  <Version>5.2022.129.1019</Version>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Copyright>MIT</Copyright>
@@ -33,8 +33,8 @@
   <ItemGroup>
     <!--<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />-->
     <!--<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />-->
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="3.1.3" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="5.0.13" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     <PackageReference Include="MimeTypeMapOfficial" Version="1.0.17" />
     <!--<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />-->
     <!--<PackageReference Include="System.IO.Pipelines" Version="4.7.2" />-->
