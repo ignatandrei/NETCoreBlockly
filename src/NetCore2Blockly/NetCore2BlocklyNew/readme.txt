@@ -8,7 +8,8 @@ Demo at https://netcoreblockly.herokuapp.com/blockly.html ( play with the links 
 
 Demo Video at https://www.youtube.com/watch?v=GptkNWjmCzk
 
-How to install NETCore2Blockly in a .NET Core 3.1 WebAPI / MVC application
+How to install NETCore2Blockly in a .NET Core 5 WebAPI / MVC application
+
 Step 1:
 Install https://www.nuget.org/packages/NetCore2Blockly/ by running the following command in the Package Manager Console:
 
@@ -16,43 +17,42 @@ Install-Package NetCore2Blockly
 
 Step 2:
 Modify Startup.cs by adding
-
-public void ConfigureServices(IServiceCollection services)
-        {
-            //last line
-            services.AddBlockly();
-        }
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
-        //if you plan to use as html, do not forget app.UseStaticFiles
-        //last line
-        app.UseBlockly(); 
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    app.UseDefaultFiles();
+    app.UseStaticFiles();
+    //your code ...
 }
+
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
+//should have swagger
+app.UseSwagger();
+
+
+app.UseBlocklyUI(env);
+app.UseEndpoints(endpoints =>
+{
+}
+endpoints.UseBlocklyAutomation();
+}
+
+
+
+# How to install NETCore2Blockly in a .NET Core 6  WebAPI / MVC application in 2 steps + run application
+
+## Step 1:
+Install https://www.nuget.org/packages/NetCore2Blockly/ by running the following command in the Package Manager Console:
+> Install-Package NetCore2Blockly
+
+## Step 2:
+
+app.UseBlocklyUI(app.Environment);
+//after app.MapControllers();
+app.UseBlocklyAutomation();
+
+
 Step 3:
+Run the application and browse to /blocklyautomation or /blocklyautomation/index.html
 
-To see the UI , please add
-
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
-       
-       app.UseBlocklyUI();
-}
-
-
-Step 4:
-Run the application and browse to /blockly.html
-
-For WebAPI (local):
-app.UseBlocklyUI();
-
-For Swagger ( local or remote )
-app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json")
-
-For ODATA ( local or remote)
-app.UseBlocklyOData("OdataV4", "https://services.odata.org/TripPinRESTierService/");
-
-For GraphQL
-app.UseBlocklyGraphQL("localGraphql", "/graphql");
-
-For authentication
-See links 22 for JWT and 31 for Auth0 from https://netcoreblockly.herokuapp.com/
 
 That's all!

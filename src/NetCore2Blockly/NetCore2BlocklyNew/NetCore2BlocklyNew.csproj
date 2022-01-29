@@ -3,6 +3,11 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
+	 <ItemGroup>
+        
+        <None Include="..\..\..\README.md" Pack="true" PackagePath="\"/>
+        
+    </ItemGroup>
   <PropertyGroup>
 	  <PackageId>NetCore2Blockly</PackageId>
 	  <Version>5.2022.129.1019</Version>
@@ -14,8 +19,9 @@
     <Authors>Andrei Ignat</Authors>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>WebAPI;ASP.NET Core;.NET Core;Blockly;OData;GraphQL;Swagger;OpenAPI</PackageTags>
-    <Description>
-      This program will generate ASP.NET Core WebAPI+ ODATA+GraphQL blockly blocks. And from other swagger files.
+    
+	  <Description>
+      This program will generate ASP.NET Core WebAPI blockly blocks. And from other swagger files.
       Can be usefull for just making a demo, interacting or others.
       Please see https://github.com/ignatandrei/NETCoreBlockly for details
     </Description>

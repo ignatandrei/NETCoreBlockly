@@ -11,7 +11,7 @@
 # What it does
 NETCore2Blockly generates [Blockly](https://developers.google.com/blockly) blocks for each of your controller actions. 
 
-*Demo* at https://netcoreblockly.herokuapp.com/ ( play with the links from the bottom)
+*Demo* at https://netcoreblockly.herokuapp.com/ 
 
 *Demo* Video at https://www.youtube.com/watch?v=GptkNWjmCzk
 
@@ -19,7 +19,7 @@ Sample Project is TestBlocklyHtml from this repository
 
 *Contributors welcome!* - please send email to <img src='email.png' height='10px' title = "please write email from image" alt='email'></img> or see issues tab.
 
-# How to install NETCore2Blockly in a .NET Core 5  WebAPI / MVC application in 3 steps + run application
+# How to install NETCore2Blockly in a .NET Core 5  WebAPI / MVC application in 2 steps + run application
 
 ## Step 1:
 Install https://www.nuget.org/packages/NetCore2Blockly/ by running the following command in the Package Manager Console:
@@ -46,14 +46,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   app.UseStaticFiles();
   app.UseSwagger();
   app.UseBlocklyUI(env);
-  app.UseSwaggerUI(c =>
-  {
-      c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-  });
-  app.UseRouting();
-
-  app.UseAuthorization();
-
+//code
   app.UseEndpoints(endpoints =>
   {
       endpoints.MapControllers();
@@ -62,11 +55,27 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 
+# How to install NETCore2Blockly in a .NET Core 6  WebAPI / MVC application in 2 steps + run application
+
+## Step 1:
+Install https://www.nuget.org/packages/NetCore2Blockly/ by running the following command in the Package Manager Console:
+> Install-Package NetCore2Blockly
+
+## Step 2:
+```csharp
+
+app.UseBlocklyUI(app.Environment);
+//after app.MapControllers();
+app.UseBlocklyAutomation();
+
+```
+
+
 ## Run application
 
 Run the application from VS and browse to  /BlocklyAutomation/ or /BlocklyAutomation/index.html
 
-## That's all !( 3 steps + run )
+## That's all !( 2 steps + run )
 
 
 ## Advanced usage remote data

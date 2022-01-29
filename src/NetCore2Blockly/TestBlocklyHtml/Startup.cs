@@ -282,7 +282,7 @@ namespace TestBlocklyHtml
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseBlocklyUI(env);
             app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
             app.UseGraphQL<DepartmentSchema>();
             //app.UseBlocklyRegisterMiddleware();

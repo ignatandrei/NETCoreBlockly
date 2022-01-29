@@ -1,11 +1,15 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.FileProviders;
 using MimeTypes;
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace NetCore2BlocklyNew
 {
@@ -13,18 +17,39 @@ namespace NetCore2BlocklyNew
     {
         public static IEndpointRouteBuilder UseBlocklyAutomation(this IEndpointRouteBuilder endpoints)
         {
-            endpoints.MapFallbackToFile("BlocklyAutomation/{*:nonfilename}", "BlocklyAutomation/index.html");
+            //endpoints.MapFallbackToFile("BlocklyAutomation/{**:nonfile}", "BlocklyAutomation/index.html");
+            endpoints.Map("BlocklyAutomation/{**:nonfile}", async ctx =>
+            {
+                 var dir = FileProvider.GetDirectoryContents("BlocklyAutomation").ToArray();
+                var file = dir.Where(it => it?.Name?.ToLower() == "index.html").FirstOrDefault();
+                 var response = ctx.Response;
+                response.ContentType = contentFromExtension(file.Name);
+                 //in net 6 use sendfileasync
+                 using (var fileContent = file.CreateReadStream())
+                 {                     
+                     await StreamCopyOperation.CopyToAsync(fileContent, response.Body,file.Length, CancellationToken.None);
+                 }
+            });
             return endpoints;
         }
+        public static IFileProvider FileProvider { get; set; }
         public static void UseBlocklyUI(this IApplicationBuilder appBuilder, IWebHostEnvironment environment)
         {
-            var manifestEmbeddedProvider =
-                    new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
-            var service = appBuilder.ApplicationServices;
-            var physicalProvider = environment.ContentRootFileProvider;
-            var compositeProvider =
-                new CompositeFileProvider(physicalProvider, manifestEmbeddedProvider);
-            mapFile("blocklyAutomation", compositeProvider, appBuilder);
+            if (FileProvider == null)
+            {
+                var manifestEmbeddedProvider =
+                        new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
+                var service = appBuilder.ApplicationServices;
+                FileProvider = manifestEmbeddedProvider;
+                if (environment != null)
+                {
+                    var physicalProvider = environment.ContentRootFileProvider;
+                    if (physicalProvider != null)
+                        FileProvider =
+                            new CompositeFileProvider(physicalProvider, manifestEmbeddedProvider);
+                }
+            }
+            mapFile("BlocklyAutomation", FileProvider, appBuilder);
         }
         static string contentFromExtension(string file)
         {
