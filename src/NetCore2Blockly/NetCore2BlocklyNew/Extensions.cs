@@ -70,9 +70,13 @@ namespace NetCore2BlocklyNew
                         //TODO: find from extension
 
                         cnt.Response.ContentType = contentFromExtension(map);
+                        if (f.Length < 1)
+                            throw new ArgumentException($"file {f.Name} does not exists");
+
+                        var chunks = Math.Max(2048, f.Length / 3);
+                        byte[] buffer = new byte[chunks]; // read in chunks of 2KB
                         using var stream = new MemoryStream();
                         using var cs = f.CreateReadStream();
-                        byte[] buffer = new byte[2048]; // read in chunks of 2KB
                         int bytesRead;
                         while ((bytesRead = cs.Read(buffer, 0, buffer.Length)) > 0)
                         {
