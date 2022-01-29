@@ -10,7 +10,7 @@
     </ItemGroup>
   <PropertyGroup>
 	  <PackageId>NetCore2Blockly</PackageId>
-	  <Version>5.2022.129.1019</Version>
+	  <Version>5.2022.130.110</Version>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Copyright>MIT</Copyright>
