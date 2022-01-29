@@ -9,106 +9,7 @@
   
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
-    <None Include="wwwroot\BlocklyAutomation\3rdpartylicenses.txt" />
-    <None Include="wwwroot\BlocklyAutomation\404.html" />
-    <None Include="wwwroot\BlocklyAutomation\assets\acorn_interpreter.js" />
-    <None Include="wwwroot\BlocklyAutomation\assets\httpImages\delete.png" />
-    <None Include="wwwroot\BlocklyAutomation\assets\httpImages\get.png" />
-    <None Include="wwwroot\BlocklyAutomation\assets\httpImages\patch.png" />
-    <None Include="wwwroot\BlocklyAutomation\assets\httpImages\post.png" />
-    <None Include="wwwroot\BlocklyAutomation\assets\httpImages\put.png" />
-    <None Include="wwwroot\BlocklyAutomation\assets\loadAtStartup\customCategories.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\all.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\auth0.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\chart.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\chromeBookmarks.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\chuckStart.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\chucktry.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\chuck_norris.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\comments.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\CSV.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\currentDate.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\data_io.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\dateFrom.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\dockerImagesList.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\emailOpen.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\err38.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\EurRon.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\filterList.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\findBlocks.ps1" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\FridayLinks.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\header.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\identme.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\ipaddy.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\ipecho.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\ipify.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\joy.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\jwt.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\map.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\MyPCExtensions.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\nasa.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_ConvertCSV.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_CreateDept.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_DeleteDepartment.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_DemoImage.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_Divide0.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_dynamicDelete.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_FirstLastInArray.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_Functions.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_GetDepartment.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_GETPOST.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_ModifyName.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_ModifyProp.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_Multiply.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_PlayWithEnum.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_PUTPOST.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_SaveCSV.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_SaveNewDepartment.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_SimpleQueryStringPOST.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_ThrowError.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\NetCoreBlockly_WeatherSimple.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\ObjModif.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\parser.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\petstore.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\piano.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\reduce.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\saveImage.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\sendinblue.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\testWait.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\TTS.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\verifyGrid.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\voice.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\wait.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\waitForDate.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\waitForDateSimple.txt" />
-    <None Include="wwwroot\BlocklyAutomation\assets\showUsage\demoBlocks\weatherChart.txt" />
-    <None Include="wwwroot\BlocklyAutomation\favicon.ico" />
-    <None Include="wwwroot\BlocklyAutomation\index.html" />
-    <None Include="wwwroot\BlocklyAutomation\main.3abb0c2933f2ba2f.js" />
-    <None Include="wwwroot\BlocklyAutomation\media\1x1.gif" />
-    <None Include="wwwroot\BlocklyAutomation\media\click.mp3" />
-    <None Include="wwwroot\BlocklyAutomation\media\click.ogg" />
-    <None Include="wwwroot\BlocklyAutomation\media\click.wav" />
-    <None Include="wwwroot\BlocklyAutomation\media\delete.mp3" />
-    <None Include="wwwroot\BlocklyAutomation\media\delete.ogg" />
-    <None Include="wwwroot\BlocklyAutomation\media\delete.wav" />
-    <None Include="wwwroot\BlocklyAutomation\media\disconnect.mp3" />
-    <None Include="wwwroot\BlocklyAutomation\media\disconnect.ogg" />
-    <None Include="wwwroot\BlocklyAutomation\media\disconnect.wav" />
-    <None Include="wwwroot\BlocklyAutomation\media\dropdown-arrow.svg" />
-    <None Include="wwwroot\BlocklyAutomation\media\handclosed.cur" />
-    <None Include="wwwroot\BlocklyAutomation\media\handdelete.cur" />
-    <None Include="wwwroot\BlocklyAutomation\media\handopen.cur" />
-    <None Include="wwwroot\BlocklyAutomation\media\pilcrow.png" />
-    <None Include="wwwroot\BlocklyAutomation\media\quote0.png" />
-    <None Include="wwwroot\BlocklyAutomation\media\quote1.png" />
-    <None Include="wwwroot\BlocklyAutomation\media\sprites.png" />
-    <None Include="wwwroot\BlocklyAutomation\media\sprites.svg" />
-    <None Include="wwwroot\BlocklyAutomation\polyfills.364682d9b8fcaba3.js" />
-    <None Include="wwwroot\BlocklyAutomation\runtime.91703d64a8c657f8.js" />
-    <None Include="wwwroot\BlocklyAutomation\scripts.292b4d0c30a40557.js" />
-    <None Include="wwwroot\BlocklyAutomation\styles.7d1072d10d4434b4.css" />
-  </ItemGroup>
+    </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="GraphQL" Version="2.4.0" />
@@ -146,13 +47,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NetCore2BlocklyNew\NetCore2BlocklyNew.csproj" />
-    <ProjectReference Include="..\NetCore2BlocklyStorage.Sqlite\NetCore2BlocklyStorage.Sqlite.csproj" />
-    <ProjectReference Include="..\NetCore2Blockly\NetCore2Blockly.csproj" />
+    <!--<ProjectReference Include="..\NetCore2BlocklyStorage.Sqlite\NetCore2BlocklyStorage.Sqlite.csproj" />-->
+    <!--<ProjectReference Include="..\NetCore2Blockly\NetCore2Blockly.csproj" />-->
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\BlocklyAutomation\" />
-  </ItemGroup>
-
-
+  
 </Project>

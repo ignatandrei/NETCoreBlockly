@@ -19,7 +19,7 @@ Sample Project is TestBlocklyHtml from this repository
 
 *Contributors welcome!* - please send email to <img src='email.png' height='10px' title = "please write email from image" alt='email'></img> or see issues tab.
 
-# How to install NETCore2Blockly in a .NET Core 3.1  WebAPI / MVC application in 3 steps + run application
+# How to install NETCore2Blockly in a .NET Core 5  WebAPI / MVC application in 3 steps + run application
 
 ## Step 1:
 Install https://www.nuget.org/packages/NetCore2Blockly/ by running the following command in the Package Manager Console:
@@ -29,35 +29,42 @@ Install https://www.nuget.org/packages/NetCore2Blockly/ by running the following
 Modify Startup.cs by adding
 ```csharp
 public void ConfigureServices(IServiceCollection services)
-        {
-            //last line
-            services.AddBlockly();
-        }
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
-        //if you plan to use as html, do not forget app.UseStaticFiles
-        //last line
-        app.UseBlockly(); 
+{
+  //somewhere generate the swagger
+  services.AddSwaggerGen(c =>
+  {
+      c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+  });
+
+
+}
+
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+  //last line
+  app.UseDefaultFiles();
+  app.UseStaticFiles();
+  app.UseSwagger();
+  app.UseBlocklyUI(env);
+  app.UseSwaggerUI(c =>
+  {
+      c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+  });
+  app.UseRouting();
+
+  app.UseAuthorization();
+
+  app.UseEndpoints(endpoints =>
+  {
+      endpoints.MapControllers();
+      endpoints.UseBlocklyAutomation();
+  });
 }
 ```
-
-## Step 3:
-
-To see the UI , please add
-```csharp
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
-       
-       app.UseBlocklyUI(); // you can customize (with BlocklyUIOptions argument )header name, start blocks, others... 
-       //you can add  storage like local storage or sqlite 
-       //app.UseBlocklyLocalStorage();
-       //app.UseBlocklySqliteStorage() ; // other nuget package
-       app.UseBlockly();
-}
-```
-
 
 ## Run application
 
-Run the application from VS and browse to  /blockly.html
+Run the application from VS and browse to  /BlocklyAutomation/ or /BlocklyAutomation/index.html
 
 ## That's all !( 3 steps + run )
 
@@ -67,31 +74,12 @@ Run the application from VS and browse to  /blockly.html
 
 ### For Remote Swagger ( CORS activated )
 
-app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json")
+TBC: create BlocklyAutomation/assets/loadAtStartup/swaggers.json 
 
-You can see demo at https://netcoreblockly.herokuapp.com/ ,colapse category local function, expand category Swagger.
-
-See link 25 from https://netcoreblockly.herokuapp.com/ 
-
-
-### For ODATA ( local or remote - CORS activated if remote)
-
-app.UseBlocklyOData("OdataV4", "https://services.odata.org/TripPinRESTierService/");
-
-You can see demo at https://netcoreblockly.herokuapp.com/ ,colapse category local function, expand category OData.
-
-
-### For GraphQL (local or remote - CORS activated if remote)- Work In progress
-
-app.UseBlocklyGraphQL("localGraphql", "/graphql");
-
-You can see demo at https://netcoreblockly.herokuapp.com/ ,colapse category local function, expand category GraphQL.
-
-See link 32,33 from https://netcoreblockly.herokuapp.com/ 
 
 ### For authentication  - JSON Web Tokens
  
-See links 22 for JWT and 31 for Auth0  from https://netcoreblockly.herokuapp.com/ 
+See Demos from https://netcoreblockly.herokuapp.com/ 
 
 Also, it works with Active Directory enabled - see Authentication category.
 
@@ -113,41 +101,15 @@ See link 6,7,8,9,   from https://netcoreblockly.herokuapp.com/
 
 ### Adding your blocks
 
-Please see how I add  CustomBlocksForUI below
-
-```csharp
-app.UseBlocklyUI(new BlocklyUIOptions()
-            {
-                StartBlocks = StartBlocksForUI,
-                HeaderName = "Demo test for .NET Core WebAPI To Blockly ( demo site with Blockly +  swaggers + odata loaded + graphql)",
-                CustomBlocks = CustomBlocksForUI
-            });
-```
+Create BlocklyAutomation\assets\loadAtStartup\customCategories.txt
 
 ## More information
 
-Download the source code, run the TestBlocklyHtml project ( in the test folder ).
+Download the source code, run the TestNetCorePackage project ( in the test folder ).
 
-See there 
-
- region blockly needed
-
-and
-
- region blockly optional 
-
-
-and follow the code.
-
-All other code is just boilerplate for Swagger, OData,GraphQL that are mandatory for demo'ing the application, not for Blockly2NetCore itself.
 
 ## Testing
 
-There is a integration testing at \IntegrationTesting that tests the UI.
-Generates images and verifies " program complete " textbox.
-
-There are 42 tests that you can also click the demo at https://netcoreblockly.herokuapp.com/
-( see links on the bottom of the page)
 
 ## Contributors ✨
 

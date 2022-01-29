@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using NetCore2Blockly;
+//using NetCore2Blockly;
 using TestBlocklyHtml.DB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -55,8 +55,8 @@ namespace TestBlocklyHtml
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IActionDescriptorChangeProvider>(MyActionDescriptorChangeProvider.Instance);
-            services.AddSingleton(MyActionDescriptorChangeProvider.Instance);
+            //services.AddSingleton<IActionDescriptorChangeProvider>(MyActionDescriptorChangeProvider.Instance);
+            //services.AddSingleton(MyActionDescriptorChangeProvider.Instance);
             #region health check
             string name = Assembly.GetExecutingAssembly().GetName().Name;
             //services.AddHealthChecks()
@@ -88,7 +88,7 @@ namespace TestBlocklyHtml
             services.AddSingleton<VisualizeDot>();
             services.AddControllers(
                 #region blockly optional
-                config => config.Filters.Add<BlocklyActionRegisterFilter>()
+                //config => config.Filters.Add<BlocklyActionRegisterFilter>()
                 #endregion
                 )
 
@@ -108,7 +108,7 @@ namespace TestBlocklyHtml
             });
             #endregion
             #region blockly needed
-            services.AddBlockly();
+            //services.AddBlockly();
             #endregion
             #region for graphql
             services.Configure<KestrelServerOptions>(options =>
@@ -237,25 +237,25 @@ namespace TestBlocklyHtml
             //you can use simply this
             //app.UseBlocklyUI();
             //or you can use a start blocks
-            app.UseBlocklyUI(new BlocklyUIOptions()
-            {
-                StartBlocks = StartBlocksForUI,
-                HeaderName = "Demo test for .NET Core WebAPI To Blockly ( demo site with Blockly +  swaggers + odata loaded + graphql)",
-                CustomBlocks = CustomBlocksForUI,
-                RunTimeString = c =>
-                {
-                    var str=$"console.log('this is from runtime blocks {DateTime.Now.Ticks}');";
-                    var val = c.GetRequiredService<IConfiguration>().GetSection("myCustomValue").Value;
-                    str += val;
-                    return str;
-                }
-            }); 
+            //app.UseBlocklyUI(new BlocklyUIOptions()
+            //{
+            //    StartBlocks = StartBlocksForUI,
+            //    HeaderName = "Demo test for .NET Core WebAPI To Blockly ( demo site with Blockly +  swaggers + odata loaded + graphql)",
+            //    CustomBlocks = CustomBlocksForUI,
+            //    RunTimeString = c =>
+            //    {
+            //        var str=$"console.log('this is from runtime blocks {DateTime.Now.Ticks}');";
+            //        var val = c.GetRequiredService<IConfiguration>().GetSection("myCustomValue").Value;
+            //        str += val;
+            //        return str;
+            //    }
+            //}); 
 
-            app.UseBlocklyLocalStorage();
+            //app.UseBlocklyLocalStorage();
             //app.UseBlocklySqliteStorage();
             #endregion
             #region blockly optional
-            app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json");
+            //app.UseBlocklySwagger("petstore", "https://petstore.swagger.io/v2/swagger.json");
             //Cors, http, https issues and latest / solving
             //app.UseBlocklySwagger("xkcd", "https://raw.githubusercontent.com/APIs-guru/openapi-directory/master/APIs/xkcd.com/1.0.0/openapi.yaml");
             //app.UseBlocklySwagger("apiGuru", "https://api.apis.guru/v2/swagger.yaml");
@@ -263,11 +263,11 @@ namespace TestBlocklyHtml
             //TODO: find if figshare respects swagger or not
             //app.UseBlocklySwagger("figShare", "https://docs.figshare.com/swagger.json");
             //app.UseBlocklyOData("localodata", "/odata");
-            app.UseBlocklyOData("OdataV4", "https://services.odata.org/TripPinRESTierService/");
+            //app.UseBlocklyOData("OdataV4", "https://services.odata.org/TripPinRESTierService/");
             //app.UseBlocklyOData("heroku", "https://netcoreblockly.herokuapp.com/odata");
             //app.UseBlocklyOData("OdataV3", "https://services.odata.org/V3/OData/OData.svc");
             //app.UseBatchBlocklyLinks(this.Configuration.GetSection("NetCoreBlockly:OtherLinks").Get<BLocklyOtherLinks>());
-            app.UseBlocklyLinksFromConfig(this.Configuration);
+            //app.UseBlocklyLinksFromConfig(this.Configuration);
             #endregion
             //this is not necessary to be added
             app.UseSwagger();
@@ -311,12 +311,12 @@ namespace TestBlocklyHtml
             if (edmModel != null)
             {
                 app.UseOdataToEntityMiddleware<OePageMiddleware>("/odataDB", edmModel);
-                app.UseBlocklyOData("/odataDB","/odataDB");
+                //app.UseBlocklyOData("/odataDB","/odataDB");
             }
-            app.UseBlocklyGraphQL("localGraphql", "/graphql");
+            //app.UseBlocklyGraphQL("localGraphql", "/graphql");
             #endregion
             #region blockly needed
-            app.UseBlockly();
+            //app.UseBlockly();
             #endregion
             using var scope = app.ApplicationServices.CreateScope();
             using var context = scope.ServiceProvider.GetService<testsContext>();
@@ -347,7 +347,7 @@ namespace TestBlocklyHtml
                 #endregion 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //Console.WriteLine($" exception {ex.Message}");
                 return null;

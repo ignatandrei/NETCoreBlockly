@@ -58,8 +58,8 @@ namespace TestBlocklyHtml.Controllers
         [HttpGet]
         public async Task<People[]> Managers()
         {
-            
-            
+
+            await Task.Delay(1000);    
             var p = new People();
             p.Manager = new dboAssVA(6);
             p.Team = new People[3];
