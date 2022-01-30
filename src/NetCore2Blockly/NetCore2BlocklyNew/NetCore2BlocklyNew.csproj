@@ -19,7 +19,7 @@
 	<PropertyGroup>
 		<PackageId>NetCore2Blockly</PackageId>
 		<Version>5.2022.130.854</Version>
-		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<Copyright>MIT</Copyright>
