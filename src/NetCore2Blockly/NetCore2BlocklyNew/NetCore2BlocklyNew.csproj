@@ -1,69 +1,79 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
-	 <ItemGroup>
-        
-        <None Include="..\..\..\README.md" Pack="true" PackagePath="\"/>
-        
-    </ItemGroup>
-  <PropertyGroup>
-	  <PackageId>NetCore2Blockly</PackageId>
-	  <Version>5.2022.130.110</Version>
-    <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Copyright>MIT</Copyright>
-    <RepositoryUrl>https://github.com/ignatandrei/NETCoreBlockly</RepositoryUrl>
-    <RepositoryType>GIT</RepositoryType>
-    <Authors>Andrei Ignat</Authors>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageTags>WebAPI;ASP.NET Core;.NET Core;Blockly;OData;GraphQL;Swagger;OpenAPI</PackageTags>
-    
-	  <Description>
-      This program will generate ASP.NET Core WebAPI blockly blocks. And from other swagger files.
-      Can be usefull for just making a demo, interacting or others.
-      Please see https://github.com/ignatandrei/NETCoreBlockly for details
-    </Description>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="BlocklyAutomation\index.html" />
-  </ItemGroup>
+	<PropertyGroup>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="BlocklyAutomation\**\*">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <!--<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />-->
-    <!--<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />-->
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="5.0.13" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-    <PackageReference Include="MimeTypeMapOfficial" Version="1.0.17" />
-    <!--<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />-->
-    <!--<PackageReference Include="System.IO.Pipelines" Version="4.7.2" />-->
-    <PackageReference Include="AMSWebAPI" Version="2021.7.6.628" />
-    <PackageReference Include="AMS_Base" Version="2021.7.6.628" />
-    <PackageReference Include="RSCG_AMS" Version="2021.7.6.628" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="readme.txt">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
 
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BlocklyAutomation\" />
-  </ItemGroup>
+		<None Include="..\..\..\README.md" Pack="true" PackagePath="\"/>
+
+	</ItemGroup>
+	<PropertyGroup>
+		<PackageId>NetCore2Blockly</PackageId>
+		<Version>5.2022.130.854</Version>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<Copyright>MIT</Copyright>
+		<RepositoryUrl>https://github.com/ignatandrei/NETCoreBlockly</RepositoryUrl>
+		<RepositoryType>GIT</RepositoryType>
+		<Authors>Andrei Ignat</Authors>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageTags>WebAPI;ASP.NET Core;.NET Core;Blockly;OData;GraphQL;Swagger;OpenAPI</PackageTags>
+
+		<Description>
+			This program will generate ASP.NET Core WebAPI blockly blocks. And from other swagger files.
+			Can be usefull for just making a demo, interacting or others.
+			Please see https://github.com/ignatandrei/NETCoreBlockly for details
+		</Description>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="BlocklyAutomation\index.html" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="BlocklyAutomation\**\*">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<!--<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />-->
+		<!--<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />-->
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="5.0.13" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+		<PackageReference Include="MimeTypeMapOfficial" Version="1.0.17" />
+		<!--<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />-->
+		<!--<PackageReference Include="System.IO.Pipelines" Version="4.7.2" />-->
+		<PackageReference Include="AMSWebAPI" Version="2021.7.6.628" />
+		<PackageReference Include="AMS_Base" Version="2021.7.6.628" />
+		<PackageReference Include="RSCG_AMS" Version="2021.7.6.628" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="readme.txt">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="BlocklyAutomation\" />
+	</ItemGroup>
 
 </Project>

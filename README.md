@@ -63,9 +63,8 @@ Install https://www.nuget.org/packages/NetCore2Blockly/ by running the following
 
 ## Step 2:
 ```csharp
-
-app.UseBlocklyUI(app.Environment);
 //after app.MapControllers();
+app.UseBlocklyUI(app.Environment);
 app.UseBlocklyAutomation();
 
 ```
@@ -78,50 +77,50 @@ Run the application from VS and browse to  /BlocklyAutomation/ or /BlocklyAutoma
 ## That's all !( 2 steps + run )
 
 
-## Advanced usage remote data
+# Advanced usage remote data
 
 
-### For Remote Swagger ( CORS activated )
+## For Remote Swagger ( CORS activated )
 
 TBC: create BlocklyAutomation/assets/loadAtStartup/swaggers.json 
 
 
-### For authentication  - JSON Web Tokens
+## For authentication  - JSON Web Tokens
  
 See Demos from https://netcoreblockly.herokuapp.com/ 
 
 Also, it works with Active Directory enabled - see Authentication category.
 
-### For adding headers to Http requests
+## For adding headers to Http requests
  
 See https://netcoreblockly.herokuapp.com/BlocklyAutomation/automation/loadexample/jwt
 
-### For exporting data as CSV
+## For exporting data as CSV
 
 See https://netcoreblockly.herokuapp.com/BlocklyAutomation/automation/loadexample/NetCoreBlockly_SaveCSV
 
-### For exporting data as image
+## For exporting data as image
 
 See https://netcoreblockly.herokuapp.com/BlocklyAutomation/automation/loadexample/saveImage
 
-### Making a simple CRUD ( create ,read, update , delete ) application
+## Making a simple CRUD ( create ,read, update , delete ) application
 
 See https://netcoreblockly.herokuapp.com/BlocklyAutomation/automation/loadexample/NetCoreBlockly_DeleteDepartment
 or search for department in demos
 
-### Adding your blocks
+## Adding your blocks
 
 Create BlocklyAutomation\assets\loadAtStartup\customCategories.txt
 
-## More information
+# More information
 
 Download the source code, run the TestNetCorePackage project ( in the test folder ).
 
 
-## Testing
+# Testing
 
 
-## Contributors ✨
+# Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
