@@ -56,3 +56,15 @@ For authentication
 See links 22 for JWT and 31 for Auth0 from https://netcoreblockly.herokuapp.com/
 
 That's all!
+
+
+## Migrating from 1 
+ 
+Replace
+
+using NetCore2Blockly; => using NetCore2BlocklyNew;
+app.UseBlocklyUI(); =>   app.UseBlocklyUI(env);
+Delete app.UseBlockly(); =>
+Add => endpoints.UseBlocklyAutomation();
+
+Navigate to /blocklyAutomation

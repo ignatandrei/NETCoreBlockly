@@ -77,6 +77,17 @@ Run the application from VS and browse to  /BlocklyAutomation/ or /BlocklyAutoma
 ## That's all !( 2 steps + run )
 
 
+## Migrating from 1 
+ 
+Replace
+
+using NetCore2Blockly; => using NetCore2BlocklyNew;
+app.UseBlocklyUI(); =>   app.UseBlocklyUI(env);
+Delete app.UseBlockly(); =>
+Add => endpoints.UseBlocklyAutomation();
+
+Navigate to /blocklyAutomation
+
 # Advanced usage remote data
 
 
