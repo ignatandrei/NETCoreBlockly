@@ -1,0 +1,47 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
+  </variables>
+  <block type="variables_set" inline="true" x="20" y="20">
+    <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+    <value name="VALUE">
+      <block type="get__WeatherForecast"></block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+          <block type="variables_get">
+            <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" inline="true">
+            <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+            <value name="VALUE">
+              <block type="convertHtml">
+                <value name="ArrayToConvert">
+                  <block type="get__WeatherForecast"></block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="text_print">
+                <value name="TEXT">
+                  <shadow type="text">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="variables_get">
+                    <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

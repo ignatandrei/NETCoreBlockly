@@ -1,5 +1,23 @@
 ﻿[
     {
+        "id":  "wikirandom",
+        "description":  "wikipedia random article",
+        "categories":  "httprequest",
+        "blocks":  "window_open;text"
+    },
+    {
+        "id":  "htmlConverter",
+        "description":  "html converter",
+        "categories":  "html;httprequest",
+        "blocks":  "get__WeatherForecast;text_print;convertHtml"
+    },
+    {
+        "id":  "trello",
+        "description":  "see trello cards",
+        "categories":  "trello;httprequest",
+        "blocks":  "httprequest;HTMLlist;controls_forEach;text_print;HTMLli;HTMLlinkFromObject;converttostring"
+    },
+    {
         "id":  "MyPCExtensions",
         "description":  "Extensions",
         "categories":  "vscode;chrome;powershell;",

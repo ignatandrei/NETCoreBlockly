@@ -1,4 +1,5 @@
 cls
+cd demoBlocks
 $content = Get-Content -Path All.txt | ConvertFrom-Json 
 
 foreach($val in $content  ) {
