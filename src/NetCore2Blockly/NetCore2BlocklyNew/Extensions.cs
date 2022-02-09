@@ -43,10 +43,21 @@ namespace NetCore2BlocklyNew
                 FileProvider = manifestEmbeddedProvider;
                 if (environment != null)
                 {
-                    var physicalProvider = environment.ContentRootFileProvider;
-                    if (physicalProvider != null)
+                    var originalProvider = environment.ContentRootFileProvider;
+                    var pRoot = originalProvider as PhysicalFileProvider;
+                    if (pRoot != null)
+                    {
+                        //try to add wwwroot for standalone
+                        pRoot = new PhysicalFileProvider(Path.Combine(pRoot.Root, "wwwroot"));
                         FileProvider =
-                            new CompositeFileProvider(physicalProvider, manifestEmbeddedProvider);
+                            new CompositeFileProvider(pRoot,originalProvider, manifestEmbeddedProvider);
+                    }
+                    else if(originalProvider != null)
+                    {
+                        FileProvider =
+                            new CompositeFileProvider(originalProvider, manifestEmbeddedProvider);
+
+                    }
                 }
             }
             mapFile("BlocklyAutomation", FileProvider, appBuilder);
