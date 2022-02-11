@@ -17,6 +17,9 @@ Install-Package NetCore2Blockly
 
 Step 2:
 Modify Startup.cs by adding
+
+using NetCore2BlocklyNew;
+
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
     app.UseDefaultFiles();
@@ -32,10 +35,10 @@ app.UseSwagger();
 app.UseBlocklyUI(env);
 app.UseEndpoints(endpoints =>
 {
-}
+//last line
 endpoints.UseBlocklyAutomation();
 }
-
+}
 
 
 # How to install NETCore2Blockly in a .NET Core 6  WebAPI / MVC application in 2 steps + run application

@@ -48,9 +48,11 @@ namespace NetCore2BlocklyNew
                     if (pRoot != null)
                     {
                         //try to add wwwroot for standalone
-                        pRoot = new PhysicalFileProvider(Path.Combine(pRoot.Root, "wwwroot"));
+                        string wwwrootFolder = Path.Combine(pRoot.Root, "wwwroot");
+                        if (Directory.Exists(wwwrootFolder))
+                            pRoot = new PhysicalFileProvider(wwwrootFolder);
                         FileProvider =
-                            new CompositeFileProvider(pRoot,originalProvider, manifestEmbeddedProvider);
+                            new CompositeFileProvider(pRoot, manifestEmbeddedProvider);
                     }
                     else if(originalProvider != null)
                     {
