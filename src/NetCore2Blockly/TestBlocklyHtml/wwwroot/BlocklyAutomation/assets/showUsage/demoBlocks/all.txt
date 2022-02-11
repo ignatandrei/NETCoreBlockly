@@ -1,5 +1,11 @@
 ﻿[
     {
+        "id":  "javascript",
+        "description":  "javascript errors",
+        "categories":  "javascript",
+        "blocks":  "window_open;text"
+    },
+    {
         "id":  "wikirandom",
         "description":  "wikipedia random article",
         "categories":  "httprequest",

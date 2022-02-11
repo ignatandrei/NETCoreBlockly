@@ -1,20 +1,8 @@
-[{
-		"id":"Demo_MSPC",
-		"link":"https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json"
-},
+[
 {
-		"id":"Demo_Blocks",
-		"link":"https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json"
-}
-,{
-		"id":"Demo_PetStore",
-		"link":"https://petstore.swagger.io/v2/swagger.json"
+	"id":"MySite",
+	"link":"/swagger/v1/swagger.json"
 },
-{
-	"id":"Docker 1.41",
-	"link":"https://docs.docker.com/engine/api/v1.41.yaml"
-}
-,
 {
 	"id":"_MyPC",
 	"link":"http://localhost:37283/swagger/v1/swagger.json"
