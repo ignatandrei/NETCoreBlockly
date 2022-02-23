@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -18,7 +18,7 @@
 	</ItemGroup>
 	<PropertyGroup>
 		<PackageId>NetCore2Blockly</PackageId>
-		<Version>5.2022.210.2007</Version>
+		<Version>3.2022.223.2358</Version>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -49,14 +49,14 @@
 	<ItemGroup>
 		<!--<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />-->
 		<!--<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />-->
-		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="5.0.13" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="3.0.0" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
 		<PackageReference Include="MimeTypeMapOfficial" Version="1.0.17" />
 		<!--<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />-->
 		<!--<PackageReference Include="System.IO.Pipelines" Version="4.7.2" />-->
-		<PackageReference Include="AMSWebAPI" Version="2021.7.6.628" />
-		<PackageReference Include="AMS_Base" Version="2021.7.6.628" />
-		<PackageReference Include="RSCG_AMS" Version="2021.7.6.628" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
+		<!--<PackageReference Include="AMSWebAPI" Version="2021.7.6.628" />-->
+		<!--<PackageReference Include="AMS_Base" Version="2021.7.6.628" />-->
+		<!--<PackageReference Include="RSCG_AMS" Version="2021.7.6.628" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />-->
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\..\..\LICENSE">
