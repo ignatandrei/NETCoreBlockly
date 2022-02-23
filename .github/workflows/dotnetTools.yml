@@ -64,7 +64,7 @@ jobs:
         xcopy ..\TestBlocklyHtml\wwwroot\BlocklyAutomation\*.* BlocklyAutomation\ /E /F /I /Y /R
 
         echo 'done copy'
-        dir /s swaggers*.json
+        
 
         del BlocklyAutomation\assets\loadAtStartup\swaggers.json
         ren BlocklyAutomation\assets\loadAtStartup\swaggersForLocalAPI.json swaggers.json
