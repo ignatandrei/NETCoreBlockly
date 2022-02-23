@@ -19,11 +19,17 @@ Sample Project is TestBlocklyHtml from this repository
 
 *Contributors welcome!* - please send email to <img src='email.png' height='10px' title = "please write email from image" alt='email'></img> or see issues tab.
 
+# How to install NETCore2Blockly in a .NET Core 3.1  WebAPI / MVC application in 2 steps + run application
+
+Use the package with version 3.* . More instructions ASAP
+
 # How to install NETCore2Blockly in a .NET Core 5  WebAPI / MVC application in 2 steps + run application
 
 ## Step 1:
+
 Install https://www.nuget.org/packages/NetCore2Blockly/ by running the following command in the Package Manager Console:
 > Install-Package NetCore2Blockly
+
 
 ## Step 2:
 Modify Startup.cs by adding
