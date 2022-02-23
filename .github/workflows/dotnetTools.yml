@@ -62,12 +62,15 @@ jobs:
         cd NetCore2Blockly
         cd NetCore2BlocklyNew
         xcopy ..\TestBlocklyHtml\wwwroot\BlocklyAutomation\*.* BlocklyAutomation\ /E /F /I /Y /R
-        
+
+        echo 'done copy'
+        dir /s swaggers*.json
+
         del BlocklyAutomation\assets\loadAtStartup\swaggers.json
         ren BlocklyAutomation\assets\loadAtStartup\swaggersForLocalAPI.json swaggers.json
 
-        del BlocklyAutomation\assets\loadAtStartup\settings.json
-        ren BlocklyAutomation\assets\loadAtStartup\settingsForLocalAPI.json settings.json
+        del BlocklyAutomation\assets\settings.json
+        ren BlocklyAutomation\assets\settingsForLocalAPI.json settings.json
 
         dotnet pack --include-source -o netcoreb
         
