@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TargetFramework>net5.0</TargetFramework>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -18,7 +18,7 @@
 	</ItemGroup>
 	<PropertyGroup>
 		<PackageId>NetCore2Blockly</PackageId>
-		<Version>3.2022.224.16</Version>
+		<Version>5.2022.730.2029</Version>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>

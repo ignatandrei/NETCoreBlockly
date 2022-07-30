@@ -19,30 +19,28 @@ Sample Project is TestBlocklyHtml from this repository
 
 *Contributors welcome!* - please send email to <img src='email.png' height='10px' title = "please write email from image" alt='email'></img> or see issues tab.
 
-# How to install NETCore2Blockly in a .NET Core 3.1  WebAPI / MVC application in 2 steps + run application
 
-##  Step 1
-Install-Package Swashbuckle.AspNetCore -Version 5.6.3
-Install-Package NetCore2Blockly -Version 3.2022.224.16
+# How to install NETCore2Blockly in a .NET Core 6  WebAPI / MVC application in 2 steps + run application
 
-## Step 2
+## Step 1:
+Install https://www.nuget.org/packages/NetCore2Blockly/ by running the following command in the Package Manager Console:
+> Install-Package NetCore2Blockly
 
+## Step 2:
 ```csharp
- app.UseDefaultFiles();
- app.UseStaticFiles();
- app.UseSwagger();
- //code
- app.UseBlocklyUI(env);
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.UseBlocklyAutomation();
-});
+//after app.MapControllers();
+app.UseBlocklyUI(app.Environment);
+app.UseBlocklyAutomation();
+
 ```
- 
+
+
 ## Run application
 
 Run the application from VS and browse to  /BlocklyAutomation/ or /BlocklyAutomation/index.html
+
+## That's all !( 2 steps + run )
+
 
 # How to install NETCore2Blockly in a .NET Core 5  WebAPI / MVC application in 2 steps + run application
 
@@ -86,27 +84,33 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 Run the application from VS and browse to  /BlocklyAutomation/ or /BlocklyAutomation/index.html
 
-# How to install NETCore2Blockly in a .NET Core 6  WebAPI / MVC application in 2 steps + run application
 
-## Step 1:
-Install https://www.nuget.org/packages/NetCore2Blockly/ by running the following command in the Package Manager Console:
-> Install-Package NetCore2Blockly
 
-## Step 2:
+
+# How to install NETCore2Blockly in a .NET Core 3.1  WebAPI / MVC application in 2 steps + run application
+
+##  Step 1
+Install-Package Swashbuckle.AspNetCore -Version 5.6.3
+Install-Package NetCore2Blockly -Version 3.2022.224.16
+
+## Step 2
+
 ```csharp
-//after app.MapControllers();
-app.UseBlocklyUI(app.Environment);
-app.UseBlocklyAutomation();
-
+ app.UseDefaultFiles();
+ app.UseStaticFiles();
+ app.UseSwagger();
+ //code
+ app.UseBlocklyUI(env);
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.UseBlocklyAutomation();
+});
 ```
-
-
+ 
 ## Run application
 
 Run the application from VS and browse to  /BlocklyAutomation/ or /BlocklyAutomation/index.html
-
-## That's all !( 2 steps + run )
-
 
 ## Migrating from 1 
  
