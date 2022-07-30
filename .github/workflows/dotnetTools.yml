@@ -67,7 +67,7 @@ jobs:
         
 
         del BlocklyAutomation\assets\loadAtStartup\swaggers.json
-        ren BlocklyAutomation\assets\loadAtStartup\swaggersForLocalAPI.json swaggers.json
+        ren BlocklyAutomation\assets\loadAtStartup\swaggersForLocalAPINetCore.json swaggers.json
 
         del BlocklyAutomation\assets\settings.json
         ren BlocklyAutomation\assets\settingsForLocalAPI.json settings.json
