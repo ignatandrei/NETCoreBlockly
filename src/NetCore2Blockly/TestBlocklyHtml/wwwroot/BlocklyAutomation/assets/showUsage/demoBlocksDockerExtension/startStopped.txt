@@ -1,0 +1,134 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="y(;gdM%fmHFp9-aS=b2[">containerList</variable>
+    <variable id="/?#kf%Ed1]@,hl{2aYY*">container</variable>
+    <variable id="PHh2C#|-`bX,YB/ssp~-">i</variable>
+  </variables>
+  <block type="variables_set" x="41" y="-18">
+    <field name="VAR" id="y(;gdM%fmHFp9-aS=b2[">containerList</field>
+    <value name="VALUE">
+      <block type="dockerContainersList">
+        <value name="all">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+        </value>
+        <value name="filter">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+        <value name="size">
+          <shadow type="logic_boolean">
+            <field name="BOOL">FALSE</field>
+          </shadow>
+        </value>
+        <value name="transform">
+          <shadow type="text">
+            <field name="TEXT">"{{json .}}"</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="controls_forEach">
+        <field name="VAR" id="/?#kf%Ed1]@,hl{2aYY*">container</field>
+        <value name="LIST">
+          <block type="converttojson">
+            <value name="ValueToConvert">
+              <block type="variables_get">
+                <field name="VAR" id="y(;gdM%fmHFp9-aS=b2[">containerList</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="variables_set">
+            <field name="VAR" id="PHh2C#|-`bX,YB/ssp~-">i</field>
+            <value name="VALUE">
+              <block type="getproperty">
+                <field name="objectName">object</field>
+                <field name="prop">property</field>
+                <value name="ObjectToChange">
+                  <block type="variables_get">
+                    <field name="VAR" id="/?#kf%Ed1]@,hl{2aYY*">container</field>
+                  </block>
+                </value>
+                <value name="PropertyName">
+                  <shadow type="text">
+                    <field name="TEXT">ID</field>
+                  </shadow>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="text_print">
+                <value name="TEXT">
+                  <block type="dockercommandv1">
+                    <field name="commands">'start'</field>
+                    <field name="outputJson">FALSE</field>
+                    <value name="commandArgs">
+                      <block type="lists_create_with">
+                        <mutation items="1"></mutation>
+                        <value name="ADD0">
+                          <block type="variables_get">
+                            <field name="VAR" id="PHh2C#|-`bX,YB/ssp~-">i</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="variables_set">
+            <field name="VAR" id="y(;gdM%fmHFp9-aS=b2[">containerList</field>
+            <value name="VALUE">
+              <block type="dockerContainersList">
+                <value name="all">
+                  <shadow type="logic_boolean">
+                    <field name="BOOL">TRUE</field>
+                  </shadow>
+                </value>
+                <value name="filter">
+                  <shadow type="text">
+                    <field name="TEXT"></field>
+                  </shadow>
+                </value>
+                <value name="size">
+                  <shadow type="logic_boolean">
+                    <field name="BOOL">FALSE</field>
+                  </shadow>
+                </value>
+                <value name="transform">
+                  <shadow type="text">
+                    <field name="TEXT">"{{json .}}"</field>
+                  </shadow>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="text_print">
+                <value name="TEXT">
+                  <shadow type="text">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="convertToTable">
+                    <value name="ArrayToConvert">
+                      <block type="variables_get">
+                        <field name="VAR" id="y(;gdM%fmHFp9-aS=b2[">containerList</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

@@ -1,0 +1,18 @@
+[
+{
+	"id":"MySiteNest",
+	"link":"/api-json"
+},
+{
+	"id":"MySiteExpress",
+	"link":"/docs-json"
+},
+{
+	"id":"MySiteKoa",
+	"link":"/swagger-json"
+},
+{
+	"id":"_MyPC",
+	"link":"http://localhost:37283/swagger/v1/swagger.json"
+}
+]

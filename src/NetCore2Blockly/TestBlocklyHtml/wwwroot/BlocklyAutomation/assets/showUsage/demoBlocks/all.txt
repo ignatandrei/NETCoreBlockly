@@ -1,9 +1,27 @@
 ﻿[
     {
+        "id":  "githubRepoForUser",
+        "description":  "github repo for user",
+        "categories":  "github;api;user",
+        "blocks":  "procedures_defreturn;get__rate_limit;text;math_number;text_print;getproperty;text_join;controls_if;logic_compare;procedures_callreturn;convertToTable;get__users___username_repos"
+    },
+    {
+        "id":  "apiHtml",
+        "description":  "html api",
+        "categories":  "meta;api",
+        "blocks":  "meta_swagger_controllers_actions_Demo_Blocks;text_print;converttostring;HTMLheaders;getproperty;controls_forEach;text_join;text;HTMLlist;HTMLli"
+    },
+    {
+        "id":  "api",
+        "description":  "show help for api",
+        "categories":  "javascript",
+        "blocks":  "text_print;text_message;text"
+    },
+    {
         "id":  "javascript",
         "description":  "javascript errors",
         "categories":  "javascript",
-        "blocks":  "window_open;text"
+        "blocks":  "text;text_print;math_arithmetic"
     },
     {
         "id":  "wikirandom",
@@ -15,7 +33,7 @@
         "id":  "htmlConverter",
         "description":  "html converter",
         "categories":  "html;httprequest",
-        "blocks":  "get__WeatherForecast;text_print;convertHtml"
+        "blocks":  "get__WeatherForecast;text_print;convertToTable"
     },
     {
         "id":  "trello",

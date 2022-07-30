@@ -1,0 +1,36 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" x="40" y="61">
+    <value name="TEXT">
+      <shadow type="text">
+        <field name="TEXT">For authentication see Blockly Advanced=&gt; Request =&gt; AddHeaders </field>
+      </shadow>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">For Windows authentication see Blockly Advanced=&gt; Request =&gt; HttpWithCred</field>
+          </shadow>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <shadow type="text">
+                <field name="TEXT">See your API blocks in Swagger - down left  </field>
+              </shadow>
+            </value>
+            <next>
+              <block type="text_message">
+                <value name="TEXT">
+                  <block type="text">
+                    <field name="TEXT">Enjoy! </field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

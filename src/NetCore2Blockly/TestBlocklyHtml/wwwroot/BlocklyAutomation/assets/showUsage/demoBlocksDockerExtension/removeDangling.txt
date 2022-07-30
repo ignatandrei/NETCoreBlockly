@@ -1,0 +1,121 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="y(;gdM%fmHFp9-aS=b1[">danglingImages</variable>
+    <variable id="/?#kf%Ed1]@,hl{1aYY*">image</variable>
+    <variable id="T%G4;||A^z{)MSpI8#A#">i</variable>
+  </variables>
+  <block type="variables_set" x="62" y="31">
+    <field name="VAR" id="y(;gdM%fmHFp9-aS=b1[">danglingImages</field>
+    <value name="VALUE">
+      <block type="dockerImagesList">
+        <value name="all">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+        </value>
+        <value name="filter">
+          <shadow type="text">
+            <field name="TEXT">dangling=true</field>
+          </shadow>
+        </value>
+        <value name="digests">
+          <shadow type="logic_boolean">
+            <field name="BOOL">FALSE</field>
+          </shadow>
+        </value>
+        <value name="transform">
+          <shadow type="text">
+            <field name="TEXT">"{{json .}}"</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="variables_get">
+            <field name="VAR" id="y(;gdM%fmHFp9-aS=b1[">danglingImages</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set">
+            <field name="VAR" id="y(;gdM%fmHFp9-aS=b1[">danglingImages</field>
+            <value name="VALUE">
+              <block type="converttojson">
+                <value name="ValueToConvert">
+                  <block type="variables_get">
+                    <field name="VAR" id="y(;gdM%fmHFp9-aS=b1[">danglingImages</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="controls_forEach">
+                <field name="VAR" id="/?#kf%Ed1]@,hl{1aYY*">image</field>
+                <value name="LIST">
+                  <block type="variables_get">
+                    <field name="VAR" id="y(;gdM%fmHFp9-aS=b1[">danglingImages</field>
+                  </block>
+                </value>
+                <statement name="DO">
+                  <block type="text_print">
+                    <value name="TEXT">
+                      <block type="converttostring">
+                        <value name="ValueToConvert">
+                          <block type="variables_get">
+                            <field name="VAR" id="/?#kf%Ed1]@,hl{1aYY*">image</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set">
+                        <field name="VAR" id="T%G4;||A^z{)MSpI8#A#">i</field>
+                        <value name="VALUE">
+                          <block type="getproperty">
+                            <field name="objectName">object</field>
+                            <field name="prop">property</field>
+                            <value name="ObjectToChange">
+                              <block type="variables_get">
+                                <field name="VAR" id="/?#kf%Ed1]@,hl{1aYY*">image</field>
+                              </block>
+                            </value>
+                            <value name="PropertyName">
+                              <shadow type="text">
+                                <field name="TEXT">ID</field>
+                              </shadow>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="text_print">
+                            <value name="TEXT">
+                              <block type="dockercommandv1" inline="false">
+                                <field name="commands">'rmi'</field>
+                                <field name="outputJson">FALSE</field>
+                                <value name="commandArgs">
+                                  <block type="lists_create_with">
+                                    <mutation items="1"></mutation>
+                                    <value name="ADD0">
+                                      <block type="variables_get">
+                                        <field name="VAR" id="T%G4;||A^z{)MSpI8#A#">i</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

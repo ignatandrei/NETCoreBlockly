@@ -1,0 +1,119 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="(#0Qz;hs1*g@hQJdu{u3">list</variable>
+    <variable id="OUgGAhS)x!43r%:BUm6e">i</variable>
+  </variables>
+  <block type="text_print" x="58" y="109">
+    <value name="TEXT">
+      <block type="convertToTable">
+        <value name="ArrayToConvert">
+          <block type="dockerInfo">
+            <value name="transform">
+              <shadow type="text">
+                <field name="TEXT">"{{json .}}"</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="(#0Qz;hs1*g@hQJdu{u3">list</field>
+        <value name="VALUE">
+          <block type="dockerVersion">
+            <value name="transform">
+              <shadow type="text">
+                <field name="TEXT">"{{json .}}"</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set">
+            <field name="VAR" id="(#0Qz;hs1*g@hQJdu{u3">list</field>
+            <value name="VALUE">
+              <block type="converttojson">
+                <value name="ValueToConvert">
+                  <block type="variables_get">
+                    <field name="VAR" id="(#0Qz;hs1*g@hQJdu{u3">list</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set">
+                <field name="VAR" id="OUgGAhS)x!43r%:BUm6e">i</field>
+                <value name="VALUE">
+                  <block type="lists_getIndex">
+                    <mutation statement="false" at="true"></mutation>
+                    <field name="MODE">GET</field>
+                    <field name="WHERE">FROM_START</field>
+                    <value name="VALUE">
+                      <block type="variables_get">
+                        <field name="VAR" id="(#0Qz;hs1*g@hQJdu{u3">list</field>
+                      </block>
+                    </value>
+                    <value name="AT">
+                      <block type="math_number">
+                        <field name="NUM">1</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print">
+                    <value name="TEXT">
+                      <block type="converttostring">
+                        <value name="ValueToConvert">
+                          <block type="getproperty">
+                            <field name="objectName">object</field>
+                            <field name="prop">property</field>
+                            <value name="ObjectToChange">
+                              <block type="variables_get">
+                                <field name="VAR" id="OUgGAhS)x!43r%:BUm6e">i</field>
+                              </block>
+                            </value>
+                            <value name="PropertyName">
+                              <block type="text">
+                                <field name="TEXT">Client</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="text_print">
+                        <value name="TEXT">
+                          <block type="converttostring">
+                            <value name="ValueToConvert">
+                              <block type="getproperty">
+                                <field name="objectName">object</field>
+                                <field name="prop">property</field>
+                                <value name="ObjectToChange">
+                                  <block type="variables_get">
+                                    <field name="VAR" id="OUgGAhS)x!43r%:BUm6e">i</field>
+                                  </block>
+                                </value>
+                                <value name="PropertyName">
+                                  <block type="text">
+                                    <field name="TEXT">Server</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

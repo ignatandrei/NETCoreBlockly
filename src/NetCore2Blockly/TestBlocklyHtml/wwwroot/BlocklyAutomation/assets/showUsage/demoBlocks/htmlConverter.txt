@@ -21,7 +21,7 @@
           <block type="variables_set" inline="true">
             <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
             <value name="VALUE">
-              <block type="convertHtml">
+              <block type="convertToTable">
                 <value name="ArrayToConvert">
                   <block type="get__WeatherForecast"></block>
                 </value>

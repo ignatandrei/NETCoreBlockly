@@ -1,0 +1,105 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="qgZ|q+eIwwBk_AA/`[U.">imageList</variable>
+    <variable id="3/mYYX#)J?g=oZl6$x:w">image</variable>
+    <variable id="00IIdholgBN;%2O`#csW">name</variable>
+  </variables>
+  <block type="variables_set" x="-10" y="14">
+    <field name="VAR" id="qgZ|q+eIwwBk_AA/`[U.">imageList</field>
+    <value name="VALUE">
+      <block type="dockerImagesList">
+        <value name="all">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+        </value>
+        <value name="filter">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+        <value name="digests">
+          <shadow type="logic_boolean">
+            <field name="BOOL">FALSE</field>
+          </shadow>
+        </value>
+        <value name="transform">
+          <shadow type="text">
+            <field name="TEXT">"{{json .}}"</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="convertToTable">
+            <value name="ArrayToConvert">
+              <block type="variables_get">
+                <field name="VAR" id="qgZ|q+eIwwBk_AA/`[U.">imageList</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="controls_forEach">
+            <field name="VAR" id="3/mYYX#)J?g=oZl6$x:w">image</field>
+            <value name="LIST">
+              <block type="converttojson">
+                <value name="ValueToConvert">
+                  <block type="variables_get">
+                    <field name="VAR" id="qgZ|q+eIwwBk_AA/`[U.">imageList</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="variables_set">
+                <field name="VAR" id="00IIdholgBN;%2O`#csW">name</field>
+                <value name="VALUE">
+                  <block type="getproperty">
+                    <field name="objectName">object</field>
+                    <field name="prop">property</field>
+                    <value name="ObjectToChange">
+                      <block type="variables_get">
+                        <field name="VAR" id="3/mYYX#)J?g=oZl6$x:w">image</field>
+                      </block>
+                    </value>
+                    <value name="PropertyName">
+                      <shadow type="text">
+                        <field name="TEXT">Repository</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="ttsBlock">
+                    <field name="voiceSelected">voice0</field>
+                    <value name="NAME">
+                      <shadow type="text">
+                        <field name="TEXT">Hello</field>
+                      </shadow>
+                      <block type="text_join">
+                        <mutation items="2"></mutation>
+                        <value name="ADD0">
+                          <block type="text">
+                            <field name="TEXT">Image name</field>
+                          </block>
+                        </value>
+                        <value name="ADD1">
+                          <block type="variables_get">
+                            <field name="VAR" id="00IIdholgBN;%2O`#csW">name</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

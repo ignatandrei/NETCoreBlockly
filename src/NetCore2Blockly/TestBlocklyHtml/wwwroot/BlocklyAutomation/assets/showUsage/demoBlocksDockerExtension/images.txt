@@ -1,0 +1,32 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" x="-10" y="36">
+    <value name="TEXT">
+      <block type="convertToTable">
+        <value name="ArrayToConvert">
+          <block type="dockerImagesList">
+            <value name="all">
+              <shadow type="logic_boolean">
+                <field name="BOOL">TRUE</field>
+              </shadow>
+            </value>
+            <value name="filter">
+              <shadow type="text">
+                <field name="TEXT"></field>
+              </shadow>
+            </value>
+            <value name="digests">
+              <shadow type="logic_boolean">
+                <field name="BOOL">FALSE</field>
+              </shadow>
+            </value>
+            <value name="transform">
+              <shadow type="text">
+                <field name="TEXT">"{{json .}}"</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+  </block>
+</xml>
