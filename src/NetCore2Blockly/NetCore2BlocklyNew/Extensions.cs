@@ -16,7 +16,7 @@ namespace NetCore2BlocklyNew
     public static class Extensions
     {
         public static IEndpointRouteBuilder UseBlocklyAutomation(this IEndpointRouteBuilder endpoints)
-        {
+        {            
             //endpoints.MapFallbackToFile("BlocklyAutomation/{**:nonfile}", "BlocklyAutomation/index.html");
             endpoints.Map("BlocklyAutomation/{**:nonfile}", async ctx =>
             {
@@ -33,8 +33,14 @@ namespace NetCore2BlocklyNew
             return endpoints;
         }
         public static IFileProvider FileProvider { get; set; }
-        public static void UseBlocklyUI(this IApplicationBuilder appBuilder, IWebHostEnvironment environment)
+        public static void UseBlocklyUI(this IApplicationBuilder appBuilder, IWebHostEnvironment environment, bool registerStaticAndDefaultFiles=true)
         {
+            if (registerStaticAndDefaultFiles)
+            {
+                appBuilder.UseDefaultFiles();
+                appBuilder.UseStaticFiles();
+            }
+
             if (FileProvider == null)
             {
                 var manifestEmbeddedProvider =
