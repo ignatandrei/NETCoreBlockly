@@ -1,0 +1,12 @@
+[
+	
+{
+	"id":"MySiteSpring",
+	"link":"/v2/api-docs"
+}
+,
+{
+	"id":"_MyPC",
+	"link":"http://localhost:37283/swagger/v1/swagger.json"
+}
+]

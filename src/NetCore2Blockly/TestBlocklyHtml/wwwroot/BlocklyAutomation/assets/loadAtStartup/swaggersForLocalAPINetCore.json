@@ -1,0 +1,10 @@
+[
+{
+	"id":"MySite",
+	"link":"/swagger/v1/swagger.json"
+},
+{
+	"id":"_MyPC",
+	"link":"http://localhost:37283/swagger/v1/swagger.json"
+}
+]

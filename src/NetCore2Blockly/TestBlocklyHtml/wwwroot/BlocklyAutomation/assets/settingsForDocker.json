@@ -1,5 +1,5 @@
 {
-    "title": "Automate Blockly -  https://github.com/ignatandrei/BlocklyAutomation",
+    "title": "BlocklyAutomation - https://github.com/ignatandrei/BlocklyAutomation",
     "footer": "Please give us a star on https://github.com/ignatandrei/BlocklyAutomation",
     "localAPI": "http://localhost:37283/",
     "startBlocks":[
@@ -7,31 +7,24 @@
 "  <block type='text_print' x='40' y='61'>",
 "    <value name='TEXT'>",
 "      <shadow type='text'>",
-"        <field name='TEXT'>For authentication see Blockly Advanced=&gt; Request =&gt; AddHeaders </field>",
+"        <field name='TEXT'>See images , containers, general categories on the left </field>",
 "      </shadow>",
 "    </value>",
 "    <next>",
 "      <block type='text_print'>",
 "        <value name='TEXT'>",
 "          <shadow type='text'>",
-"            <field name='TEXT'>For Windows authentication see Blockly Advanced=&gt; Request =&gt; HttpWithCred</field>",
+"            <field name='TEXT'>For executing docker commands see General </field>",
 "          </shadow>",
 "        </value>",
 "        <next>",
 "          <block type='text_print'>",
 "            <value name='TEXT'>",
 "              <shadow type='text'>",
-"                <field name='TEXT'>See your API blocks in Swagger - down left  </field>",
+"                <field name='TEXT'>Click Load blocks to see more demos</field>",
 "              </shadow>",
 "            </value>",
 "            <next>",
-"              <block type='text_message'>",
-"                <value name='TEXT'>",
-"                  <block type='text'>",
-"                    <field name='TEXT'>Enjoy! </field>",
-"                  </block>",
-"                </value>",
-"              </block>",
 "            </next>",
 "          </block>",
 "        </next>",
@@ -41,7 +34,7 @@
 "</xml>"
       
     ],
-    "hideMenu":false,
+    "hideMenu":true,
   "tourSteps":
     [
       {
@@ -53,15 +46,7 @@
           "query":"#demos"
       },
       {
-        "text":"You can download the app from here ",
-        "query":"#download"
-      },
-      {
-          "text":"to reuse you can download the blocks from here",
-          "query":"#downloadBlocks"
-      },
-      {
-          "text":"Press the run button to see the result of blocks",
+          "text":"Press the Execute button to see the result of blocks",
           "query":"#runButton"
       }
   ]

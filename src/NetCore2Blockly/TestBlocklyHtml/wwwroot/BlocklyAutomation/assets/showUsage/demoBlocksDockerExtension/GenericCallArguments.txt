@@ -1,0 +1,48 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" x="64" y="51">
+    <value name="TEXT">
+      <shadow type="text">
+        <field name="TEXT">please click on HTML tab</field>
+      </shadow>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="convertToTable">
+            <value name="ArrayToConvert">
+              <block type="dockercommandv1" inline="false">
+                <field name="commands">'container'</field>
+                <field name="outputJson">TRUE</field>
+                <value name="commandArgs">
+                  <block type="lists_create_with">
+                    <mutation items="4"></mutation>
+                    <value name="ADD0">
+                      <block type="text">
+                        <field name="TEXT">ls</field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="text">
+                        <field name="TEXT">--all</field>
+                      </block>
+                    </value>
+                    <value name="ADD2">
+                      <block type="text">
+                        <field name="TEXT">--format </field>
+                      </block>
+                    </value>
+                    <value name="ADD3">
+                      <block type="text">
+                        <field name="TEXT">"{{json .}}"</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>
