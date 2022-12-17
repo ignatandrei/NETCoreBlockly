@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30002.166
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A190D5B6-C2BF-4EAF-8ACC-FC8CAF7710CA}"
 EndProject
@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore2BlocklyUnitTests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore2BlocklyStorage.Sqlite", "NetCore2BlocklyStorage.Sqlite\NetCore2BlocklyStorage.Sqlite.csproj", "{DC8D0F30-C574-4B22-9357-3A42F651E9C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore2BlocklyNew", "NetCore2BlocklyNew\NetCore2BlocklyNew.csproj", "{8DE4C48C-9CF7-487F-8854-B34FA818EB23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore2BlocklyNew", "NetCore2BlocklyNew\NetCore2BlocklyNew.csproj", "{8DE4C48C-9CF7-487F-8854-B34FA818EB23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeploySampleSiteAzure", "DeploySampleSiteAzure\DeploySampleSiteAzure.csproj", "{11787BD7-05F3-4CB4-AF6B-FB6DBD88A5E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{8DE4C48C-9CF7-487F-8854-B34FA818EB23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DE4C48C-9CF7-487F-8854-B34FA818EB23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DE4C48C-9CF7-487F-8854-B34FA818EB23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11787BD7-05F3-4CB4-AF6B-FB6DBD88A5E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11787BD7-05F3-4CB4-AF6B-FB6DBD88A5E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11787BD7-05F3-4CB4-AF6B-FB6DBD88A5E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11787BD7-05F3-4CB4-AF6B-FB6DBD88A5E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -20,13 +20,21 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '7.x'
-          include-prerelease: true
+          include-prerelease: false
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: |
+          cd src
+          cd NetCore2Blockly
+          cd DeploySampleSiteAzure
+          dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: |
+          cd src
+          cd NetCore2Blockly
+          cd DeploySampleSiteAzure
+          dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
