@@ -1,4 +1,5 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+name: Nuget publish
 
 trigger:
 - master
