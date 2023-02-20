@@ -25,7 +25,7 @@ using OdataToEntity.EfCore.DynamicDataContext.InformationSchema;
 using OdataToEntity.AspNetCore;
 using Microsoft.AspNet.OData.Formatter;
 using Microsoft.Net.Http.Headers;
-using Hellang.Middleware.ProblemDetails;
+//using Hellang.Middleware.ProblemDetails;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using TestBlocklyHtml.resolveAtRuntime;
@@ -217,7 +217,7 @@ namespace TestBlocklyHtml
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseProblemDetails();
+            //app.UseProblemDetails();
             #region odata
             IEdmModel edmModel = ModelDB();
             #endregion
