@@ -11,7 +11,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  deployNuget: '0'
+  deployNuget: '1'
 
 steps:
 - task: NuGetToolInstaller@1
