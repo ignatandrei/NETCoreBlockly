@@ -4,9 +4,9 @@
 name: Build and deploy ASP.Net Core app to Azure Web App - netcoreblockly
 
 on:
-  push:
-    branches:
-      - master
+  push:    
+    tags:
+      - "vNever*"
   workflow_dispatch:
 
 jobs:
