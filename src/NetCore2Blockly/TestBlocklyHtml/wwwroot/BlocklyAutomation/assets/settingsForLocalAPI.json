@@ -1,5 +1,5 @@
 {
-    "title": "Automate Blockly -  https://github.com/ignatandrei/BlocklyAutomation",
+    "title": "Visual API",
     "footer": "Please give us a star on https://github.com/ignatandrei/BlocklyAutomation",
     "localAPI": "http://localhost:37283/",
     "startBlocks":[
@@ -45,7 +45,7 @@
   "tourSteps":
     [
       {
-          "text":"This is the introduction to automate",
+          "text":"This is the introduction to automate3",
           "query":".blocklyWorkspace"
       },
       {

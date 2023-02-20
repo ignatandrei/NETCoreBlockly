@@ -11,7 +11,7 @@
           <block type="get__WeatherForecast">
             <value name="override_Host">
               <block type="text">
-                <field name="TEXT">netcoreblockly.herokuapp.com</field>
+                <field name="TEXT">visualapi.azurewebsites.net</field>
               </block>
             </value>
             <value name="override_Port">

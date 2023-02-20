@@ -2,7 +2,7 @@
   <block type="headersbeforehttp" x="82" y="33">
     <value name="HttpDomain">
       <shadow type="text">
-        <field name="TEXT">netcoreblockly.herokuapp.com</field>
+        <field name="TEXT">visualapi.azurewebsites.net</field>
       </shadow>
     </value>
     <value name="HeaderName">
@@ -27,7 +27,7 @@
             <field name="TypeRequest">POST</field>
             <value name="TheUrl">
               <shadow type="text">
-                <field name="TEXT">https://netcoreblockly.herokuapp.com/api/Registration</field>
+                <field name="TEXT">https://visualapi.azurewebsites.net/api/Registration</field>
               </shadow>
             </value>
             <value name="Data">
@@ -47,7 +47,7 @@
             <field name="TypeRequest">GET</field>
             <value name="TheUrl">
               <shadow type="text">
-                <field name="TEXT">https://netcoreblockly.herokuapp.com/api/RestrictedAccess/CustomJWT</field>
+                <field name="TEXT">https://visualapi.azurewebsites.net/api/RestrictedAccess/CustomJWT</field>
               </shadow>
             </value>
           </block>

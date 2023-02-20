@@ -55,12 +55,10 @@
               </shadow>
             </value>
             <next>
-              <block type="wait">
-                <value name="VALUE">
-                  <shadow type="math_number">
-                    <field name="NUM">1</field>
-                  </shadow>
-                </value>
+              <block type="wait_seconds">
+                <field name="SECONDS">1
+                  
+                </field>
               </block>
             </next>
           </block>

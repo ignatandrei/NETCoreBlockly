@@ -338,9 +338,9 @@
                     <next>
                       <block type="text_print">
                         <value name="TEXT">
-                          <block type="post__api_v1_File_WriteAllText1">
+                          <block type="post__api_v1_File_WriteAllTextOK">
                             <value name="val_values">
-                              <block type="recFileController_WriteAllText1_184363713">
+                              <block type="recPathContent">
                                 <value name="val_path">
                                   <block type="text">
                                     <field name="TEXT">E:\a.html</field>

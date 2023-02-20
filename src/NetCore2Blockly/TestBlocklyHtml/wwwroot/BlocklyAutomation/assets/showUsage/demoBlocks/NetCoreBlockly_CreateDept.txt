@@ -22,7 +22,7 @@
         <field name="VAR" id="5;47gpsWUe91G}.~H]Om">var_Int64</field>
         <value name="VALUE">
           <block type="math_number">
-            <field name="NUM">23</field>
+            <field name="NUM">0</field>
           </block>
         </value>
         <next>

@@ -1,0 +1,60 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="vyn6X#2)eWiZsWMcz5[h">obj</variable>
+    <variable id="~,SsYiG[?_``T[p#JU`.">template</variable>
+  </variables>
+  <block type="variables_set" x="170" y="-53">
+    <field name="VAR" id="vyn6X#2)eWiZsWMcz5[h">obj</field>
+    <value name="VALUE">
+      <block type="object_create">
+        <mutation xmlns="http://www.w3.org/1999/xhtml" num_fields="2">
+          <field name="LastName"></field>
+          <field name="FirstName"></field>
+        </mutation>
+        <field name="field1">Blog</field>
+        <field name="field2">GitSources</field>
+        <value name="field_input1">
+          <block type="text">
+            <field name="TEXT">http://msprogrammer.serviciipeweb.ro/</field>
+          </block>
+        </value>
+        <value name="field_input2">
+          <block type="text">
+            <field name="TEXT">https://github.com/ignatandrei/blocklyAutomation/</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="~,SsYiG[?_``T[p#JU`.">template</field>
+        <value name="VALUE">
+          <block type="text_multiline">
+            <field name="TEXT">You can find the sources at ${GitSources} . &amp;#10;&amp;#10;For more details, please see my blog at ${Blog}</field>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <shadow type="text">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="converterTemplate">
+                <value name="object">
+                  <block type="variables_get">
+                    <field name="VAR" id="vyn6X#2)eWiZsWMcz5[h">obj</field>
+                  </block>
+                </value>
+                <value name="text">
+                  <block type="variables_get">
+                    <field name="VAR" id="~,SsYiG[?_``T[p#JU`.">template</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

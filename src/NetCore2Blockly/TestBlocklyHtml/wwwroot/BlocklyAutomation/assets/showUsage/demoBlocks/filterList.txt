@@ -10,7 +10,7 @@
         <field name="TypeRequest">GET</field>
         <value name="TheUrl">
           <shadow type="text">
-            <field name="TEXT">https://netcoreblockly.herokuapp.com/WeatherForecast</field>
+            <field name="TEXT">https://visualapi.azurewebsites.net/WeatherForecast</field>
           </shadow>
         </value>
       </block>

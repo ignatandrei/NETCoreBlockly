@@ -6,8 +6,8 @@
       </block>
     </value>
     <next>
-      <block type="wait">
-        <field name="VALUE">2</field>
+      <block type="wait_seconds">
+        <field name="SECONDS">2</field>
         <next>
           <block type="text_print">
             <value name="TEXT">

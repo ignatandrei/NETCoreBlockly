@@ -38,7 +38,7 @@
   "tourSteps":
     [
       {
-          "text":"This is the introduction to automate",
+          "text":"This is the introduction to automate2",
           "query":".blocklyWorkspace"
       },
       {

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[6256],{37:s=>{s.exports=JSON.parse('{"label":"docusaurus","permalink":"/blocklyAutomation/help/blog/tags/docusaurus","allTagsPath":"/blocklyAutomation/help/blog/tags","count":4}')}}]);

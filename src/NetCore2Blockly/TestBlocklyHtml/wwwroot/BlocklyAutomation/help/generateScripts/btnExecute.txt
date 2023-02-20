@@ -1,0 +1,311 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="j8IV}zWXIPoy:R=8|coS">currentUrl</variable>
+    <variable id="VodOcE$BLp.WE|un5%zz">urlBrowser</variable>
+    <variable id="*n^H$b7MwVpU3OUbOeOe">content</variable>
+  </variables>
+  <block type="variables_set" x="97" y="-620">
+    <field name="VAR" id="j8IV}zWXIPoy:R=8|coS">currentUrl</field>
+    <value name="VALUE">
+      <block type="getproperty">
+        <field name="objectName">object</field>
+        <field name="prop">property</field>
+        <value name="ObjectToChange">
+          <block type="converttojson">
+            <value name="ValueToConvert">
+              <block type="windowBlock">
+                <field name="propWindow">location</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <value name="PropertyName">
+          <shadow type="text">
+            <field name="TEXT">enter property name</field>
+          </shadow>
+          <block type="text">
+            <field name="TEXT">href</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+        <value name="VALUE">
+          <block type="post__api_v1_WebPages_GetBrowserAndPage">
+            <value name="val_headless">
+              <block type="logic_boolean">
+                <field name="BOOL">FALSE</field>
+              </block>
+            </value>
+            <value name="val_browserType">
+              <block type="BrowserType">
+                <field name="val_BrowserType">1</field>
+              </block>
+            </value>
+            <value name="val_browserId">
+              <block type="text">
+                <field name="TEXT">andrei</field>
+              </block>
+            </value>
+            <value name="val_url">
+              <block type="variables_get">
+                <field name="VAR" id="j8IV}zWXIPoy:R=8|coS">currentUrl</field>
+              </block>
+            </value>
+            <value name="override_Host">
+              <block type="text">
+                <field name="TEXT">localhost</field>
+              </block>
+            </value>
+            <value name="override_Port">
+              <block type="math_number">
+                <field name="NUM">37283</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="variables_get">
+                <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set">
+                <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                <value name="VALUE">
+                  <block type="converttojson">
+                    <value name="ValueToConvert">
+                      <block type="variables_get">
+                        <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="wait_seconds">
+                    <field name="SECONDS">3</field>
+                    <next>
+                      <block type="text_print">
+                        <value name="TEXT">
+                          <block type="post__api_v1_WebPages_SendEscape">
+                            <value name="val_values">
+                              <block type="variables_get">
+                                <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                              </block>
+                            </value>
+                            <value name="override_Host">
+                              <block type="text">
+                                <field name="TEXT">localhost</field>
+                              </block>
+                            </value>
+                            <value name="override_Port">
+                              <block type="math_number">
+                                <field name="NUM">37283</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="wait_seconds">
+                            <field name="SECONDS">5</field>
+                            <next>
+                              <block type="text_print">
+                                <value name="TEXT">
+                                  <block type="post__api_v1_WebPages_ClickOn">
+                                    <value name="val_criteria">
+                                      <block type="SelectCriteria">
+                                        <field name="val_SelectCriteria">6</field>
+                                      </block>
+                                    </value>
+                                    <value name="val_selector">
+                                      <block type="text">
+                                        <field name="TEXT">Execute</field>
+                                      </block>
+                                    </value>
+                                    <value name="val_values">
+                                      <block type="variables_get">
+                                        <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                                      </block>
+                                    </value>
+                                    <value name="override_Host">
+                                      <block type="text">
+                                        <field name="TEXT">localhost</field>
+                                      </block>
+                                    </value>
+                                    <value name="override_Port">
+                                      <block type="math_number">
+                                        <field name="NUM">37283</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="wait_seconds">
+                                    <field name="SECONDS">5</field>
+                                    <next>
+                                      <block type="variables_set">
+                                        <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">content</field>
+                                        <value name="VALUE">
+                                          <block type="converttojson">
+                                            <value name="ValueToConvert">
+                                              <block type="post__api_v1_WebPagesScreenshot_GetScreenshotElement">
+                                                <value name="val_criteria">
+                                                  <block type="SelectCriteria">
+                                                    <field name="val_SelectCriteria">8</field>
+                                                  </block>
+                                                </value>
+                                                <value name="val_selector">
+                                                  <block type="text">
+                                                    <field name="TEXT">[id='execute']</field>
+                                                  </block>
+                                                </value>
+                                                <value name="val_values">
+                                                  <block type="variables_get">
+                                                    <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                                                  </block>
+                                                </value>
+                                                <value name="override_Host">
+                                                  <block type="text">
+                                                    <field name="TEXT">localhost</field>
+                                                  </block>
+                                                </value>
+                                                <value name="override_Port">
+                                                  <block type="math_number">
+                                                    <field name="NUM">37283</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="text_print">
+                                            <value name="TEXT">
+                                              <block type="post__api_v1_File_SaveByte">
+                                                <value name="val_values">
+                                                  <block type="recByteSave">
+                                                    <value name="val_content">
+                                                      <block type="getproperty">
+                                                        <field name="objectName">object</field>
+                                                        <field name="prop">property</field>
+                                                        <value name="ObjectToChange">
+                                                          <block type="variables_get">
+                                                            <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">content</field>
+                                                          </block>
+                                                        </value>
+                                                        <value name="PropertyName">
+                                                          <shadow type="text">
+                                                            <field name="TEXT">enter property name</field>
+                                                          </shadow>
+                                                          <block type="text">
+                                                            <field name="TEXT">data</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                    <value name="val_filePath">
+                                                      <block type="text">
+                                                        <field name="TEXT">C:\Users\Surface1\Documents\GitHub\BlocklyAutomation\src\Local\docs\static\img\generated\btnExecute.png</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                                <value name="override_Host">
+                                                  <block type="text">
+                                                    <field name="TEXT">localhost</field>
+                                                  </block>
+                                                </value>
+                                                <value name="override_Port">
+                                                  <block type="math_number">
+                                                    <field name="NUM">37283</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="text_print">
+                                                <value name="TEXT">
+                                                  <shadow type="text">
+                                                    <field name="TEXT">abc</field>
+                                                  </shadow>
+                                                  <block type="variables_get">
+                                                    <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">content</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="text_print">
+                                                    <value name="TEXT">
+                                                      <block type="post__api_v1_WebPages_CloseBrowser">
+                                                        <value name="val_id">
+                                                          <block type="getproperty">
+                                                            <field name="objectName">object</field>
+                                                            <field name="prop">property</field>
+                                                            <value name="ObjectToChange">
+                                                              <block type="variables_get">
+                                                                <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                                                              </block>
+                                                            </value>
+                                                            <value name="PropertyName">
+                                                              <shadow type="text">
+                                                                <field name="TEXT">enter property name</field>
+                                                              </shadow>
+                                                              <block type="text">
+                                                                <field name="TEXT">browserId</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                        <value name="override_Host">
+                                                          <block type="text">
+                                                            <field name="TEXT">localhost</field>
+                                                          </block>
+                                                        </value>
+                                                        <value name="override_Port">
+                                                          <block type="math_number">
+                                                            <field name="NUM">37283</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="text_print" disabled="true">
+                                                        <value name="TEXT">
+                                                          <shadow type="text">
+                                                            <field name="TEXT">abc</field>
+                                                          </shadow>
+                                                          <block type="variables_get">
+                                                            <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">content</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

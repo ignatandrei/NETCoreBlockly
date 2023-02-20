@@ -1,0 +1,115 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="}N:3#8}TL(iEuP8oCY6A">n</variable>
+    <variable id="O,1%AUW5Ub2UnM.+-),j">a</variable>
+    <variable id="Ro;$Xw+OPUiM_p0j!8oQ">var_Math2Values</variable>
+  </variables>
+  <block type="variables_set" x="129" y="-637">
+    <field name="VAR" id="O,1%AUW5Ub2UnM.+-),j">a</field>
+    <value name="VALUE">
+      <block type="object_create">
+        <mutation xmlns="http://www.w3.org/1999/xhtml" num_fields="2">
+          <field name="asd"></field>
+          <field name="asdasd"></field>
+        </mutation>
+        <field name="field1">Name</field>
+        <field name="field2">Age</field>
+        <value name="field_input1">
+          <block type="text">
+            <field name="TEXT">Andrei</field>
+          </block>
+        </value>
+        <value name="field_input2">
+          <block type="math_number">
+            <field name="NUM">52</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+          <block type="object_get">
+            <field name="field_name">Name</field>
+            <value name="object">
+              <block type="variables_get">
+                <field name="VAR" id="O,1%AUW5Ub2UnM.+-),j">a</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="object_set">
+            <field name="field_name">Age</field>
+            <value name="object_field">
+              <block type="variables_get">
+                <field name="VAR" id="O,1%AUW5Ub2UnM.+-),j">a</field>
+              </block>
+            </value>
+            <value name="value_field">
+              <block type="math_number">
+                <field name="NUM">53</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print">
+                <value name="TEXT">
+                  <shadow type="text">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="object_get">
+                    <field name="field_name">Age</field>
+                    <value name="object">
+                      <block type="variables_get">
+                        <field name="VAR" id="O,1%AUW5Ub2UnM.+-),j">a</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="variables_set" x="0" y="0">
+    <field name="VAR" id="}N:3#8}TL(iEuP8oCY6A">n</field>
+    <value name="VALUE">
+      <block type="math_number">
+        <field name="NUM">10000</field>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="Ro;$Xw+OPUiM_p0j!8oQ">var_Math2Values</field>
+        <value name="VALUE">
+          <block type="object_create">
+            <mutation xmlns="http://www.w3.org/1999/xhtml" num_fields="2">
+              <field name="y"></field>
+              <field name="x"></field>
+            </mutation>
+            <field name="field1">y</field>
+            <field name="field2">x</field>
+            <value name="field_input1">
+              <block type="math_number">
+                <field name="NUM">2</field>
+              </block>
+            </value>
+            <value name="field_input2">
+              <block type="math_number">
+                <field name="NUM">3</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print"></block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

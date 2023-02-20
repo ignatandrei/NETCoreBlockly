@@ -70,7 +70,7 @@
               <block type="headersbeforehttp">
                 <value name="HttpDomain">
                   <shadow type="text">
-                    <field name="TEXT">netcoreblockly.herokuapp.com</field>
+                    <field name="TEXT">visualapi.azurewebsites.net</field>
                   </shadow>
                 </value>
                 <value name="HeaderName">
@@ -105,7 +105,7 @@
                         <field name="TypeRequest">GET</field>
                         <value name="TheUrl">
                           <shadow type="text">
-                            <field name="TEXT">https://netcoreblockly.herokuapp.com/api/RestrictedAccess/Auth0Secret</field>
+                            <field name="TEXT">https://visualapi.azurewebsites.net/api/RestrictedAccess/Auth0Secret</field>
                           </shadow>
                         </value>
                       </block>

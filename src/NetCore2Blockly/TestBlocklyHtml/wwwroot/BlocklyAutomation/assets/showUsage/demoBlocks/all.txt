@@ -1,9 +1,27 @@
 ﻿[
     {
+        "id":  "template",
+        "description":  "execute templating",
+        "categories":  "api;list",
+        "blocks":  "object_create;text;text_multiline;text_print;converterTemplate"
+    },
+    {
+        "id":  "generateAPIList",
+        "description":  "generate api documentation",
+        "categories":  "api;list",
+        "blocks":  "procedures_defnoreturn;controls_if;logic_compare;logic_null;text_print;text;HTMLliStart;controls_forEach;getproperty;converttostring;text_join;text_changeCase;HTMLli;HTMLliStop;procedures_callnoreturn"
+    },
+    {
+        "id":  "displayJSON",
+        "description":  "show json output",
+        "categories":  "api;json",
+        "blocks":  "httprequest;getproperty;text;text_print;converttostring;wait_seconds"
+    },
+    {
         "id":  "githubRepoForUser",
         "description":  "github repo for user",
         "categories":  "github;api;user",
-        "blocks":  "procedures_defreturn;get__rate_limit;text;math_number;text_print;getproperty;text_join;controls_if;logic_compare;procedures_callreturn;convertToTable;get__users___username_repos"
+        "blocks":  "controls_if;logic_compare;math_number;procedures_callreturn;text_print;text;convertToTable;get__users___username_repos;procedures_defreturn;get__rate_limit;getproperty;text_join"
     },
     {
         "id":  "apiHtml",
@@ -57,7 +75,7 @@
         "id":  "FridayLinks",
         "description":  "FridayLinks",
         "categories":  "ignat;bookmarks;chrome;",
-        "blocks":  "converttojson;post__api_v1_Chrome_GetUrlsYear;math_number;text;text_print;text_length;HTMLheaders;controls_for;lists_getIndex;controls_if;logic_compare;math_modulo;text_append;text_join;math_arithmetic;math_round;HTMLliStart;converttostring;HTMLli;HTMLlink;getproperty;HTMLliStop;post__api_v1_File_WriteAllText1;recFileController_WriteAllText1_184363713"
+        "blocks":  "converttojson;post__api_v1_Chrome_GetUrlsYear;math_number;text;text_print;text_length;HTMLheaders;controls_for;lists_getIndex;controls_if;logic_compare;math_modulo;text_append;text_join;math_arithmetic;math_round;HTMLliStart;converttostring;HTMLli;HTMLlink;getproperty;HTMLliStop;post__api_v1_File_WriteAllTextOK;recPathContent"
     },
     {
         "id":  "EurRon",
@@ -69,7 +87,7 @@
         "id":  "chromeBookmarks",
         "description":  "export chrome bookmarks",
         "categories":  "chrome;bookmarks;localAPI",
-        "blocks":  "converttojson;post__api_v1_Chrome_GetUrlsYear;math_number;text;text_print;text_length;HTMLheaders;text_append;HTMLliStart;controls_for;lists_getIndex;converttostring;HTMLli;HTMLlink;getproperty;controls_flow_statements;HTMLliStop;post__api_v1_File_WriteAllText1;recFileController_WriteAllText1_184363713"
+        "blocks":  "converttojson;post__api_v1_Chrome_GetUrlsYear;math_number;text;text_print;text_length;HTMLheaders;text_append;HTMLliStart;controls_for;lists_getIndex;converttostring;HTMLli;HTMLlink;getproperty;controls_flow_statements;HTMLliStop;post__api_v1_File_WriteAllTextOK"
     },
     {
         "id":  "dockerImagesList",
@@ -81,13 +99,13 @@
         "id":  "joy",
         "description":  "ode to joy",
         "categories":  "audio",
-        "blocks":  "lists_split;text;controls_forEach;pianoBlock;wait"
+        "blocks":  "lists_split;text;controls_forEach;pianoBlock;wait_seconds"
     },
     {
         "id":  "parser",
         "description":  "parse tables, links, images , headers",
         "categories":  "parser",
-        "blocks":  "window_open;text;comment;text_print;httprequest;simpleHtmlparser;convertcsv;exportfile"
+        "blocks":  "window_open;text;text_print;httprequest;simpleHtmlparser;convertcsv;exportfile"
     },
     {
         "id":  "chuckStart",
@@ -111,7 +129,7 @@
         "id":  "piano",
         "description":  "piano test",
         "categories":  "audio",
-        "blocks":  "pianoBlock;controls_forEach;cmajor;text_print;wait"
+        "blocks":  "pianoBlock;controls_forEach;cmajor;text_print;wait_seconds"
     },
     {
         "id":  "voice",
@@ -177,7 +195,7 @@
         "id":  "wait",
         "description":  "simple wait",
         "categories":  "timer",
-        "blocks":  "math_number;controls_repeat_ext;math_change;text_print;wait"
+        "blocks":  "math_number;controls_repeat_ext;math_change;text_print;wait_seconds"
     },
     {
         "id":  "nasa",
@@ -224,7 +242,7 @@
         "id":  "testWait",
         "description":  "wait with dates",
         "categories":  "programming;dates",
-        "blocks":  "text_print;displayCurrentDate;wait"
+        "blocks":  "text_print;displayCurrentDate;wait_seconds"
     },
     {
         "id":  "dateFrom",
@@ -411,5 +429,17 @@
         "description":  "ipaddy",
         "categories":  "http call",
         "blocks":  "text_print;httprequest"
+    },
+    {
+        "id":  "arrayExample",
+        "description":  "example for advanced array",
+        "categories":  "array",
+        "blocks":  "get__api_DB_Departments;text;math_number;text_print;filterList;mapList;reduceList"
+    },
+    {
+        "id":  "objects",
+        "description":  "example for objects",
+        "categories":  "array",
+        "blocks":  "object_create;text;math_number;text_print;object_get;object_set"
     }
 ]

@@ -1,0 +1,96 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="cn8tD}b,qY^62JyI+IFE">list</variable>
+  </variables>
+  <block type="variables_set" x="16" y="29">
+    <field name="VAR" id="cn8tD}b,qY^62JyI+IFE">list</field>
+    <value name="VALUE">
+      <block type="get__api_DB_Departments">
+        <value name="override_Host">
+          <block type="text">
+            <field name="TEXT">visualapi.azurewebsites.net</field>
+          </block>
+        </value>
+        <value name="override_Port">
+          <block type="math_number">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print" disabled="true">
+        <value name="TEXT">
+          <block type="variables_get">
+            <field name="VAR" id="cn8tD}b,qY^62JyI+IFE">list</field>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="filterList">
+                <value name="LIST">
+                  <block type="variables_get">
+                    <field name="VAR" id="cn8tD}b,qY^62JyI+IFE">list</field>
+                  </block>
+                </value>
+                <value name="Logic">
+                  <block type="text">
+                    <field name="TEXT">item.iddepartment !=1  </field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="text_print">
+                <value name="TEXT">
+                  <block type="mapList">
+                    <value name="LIST">
+                      <block type="variables_get">
+                        <field name="VAR" id="cn8tD}b,qY^62JyI+IFE">list</field>
+                      </block>
+                    </value>
+                    <value name="Logic">
+                      <shadow type="text">
+                        <field name="TEXT">item.property</field>
+                      </shadow>
+                      <block type="text">
+                        <field name="TEXT">{x:item.iddepartment}</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print">
+                    <value name="TEXT">
+                      <block type="reduceList">
+                        <value name="LIST">
+                          <block type="variables_get">
+                            <field name="VAR" id="cn8tD}b,qY^62JyI+IFE">list</field>
+                          </block>
+                        </value>
+                        <value name="initValue">
+                          <block type="math_number">
+                            <field name="NUM">0</field>
+                          </block>
+                        </value>
+                        <value name="Logic">
+                          <shadow type="text">
+                            <field name="TEXT">...</field>
+                          </shadow>
+                          <block type="text">
+                            <field name="TEXT">return acc+=curVal.iddepartment</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
