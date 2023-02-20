@@ -26,6 +26,8 @@ jobs:
       run: |
         cd src
         cd NetCore2Blockly
+        dotnet tool restore --add-source https://myget.org/F/natemcmaster/api/v3/index.json 
+        pwsh ./setVersion.ps1 
         dotnet restore
         echo 'done restore'
         #dotnet tool restore --add-source https://myget.org/F/natemcmaster/api/v3/index.json
@@ -80,3 +82,7 @@ jobs:
         path: |
             src/NetCore2Blockly/NetCore2BlocklyNew/netcoreb
         retention-days: 1
+      
+    - name: push to nuget
+      run: |
+        dotnet nuget push ${{github.workspace}}/src/NetCore2Blockly/NetCore2BlocklyNew/netcoreb/*symb*.*pkg --api-key  ${{ secrets.NUGETAPIKEY }} --source https://api.nuget.org/v3/index.json
