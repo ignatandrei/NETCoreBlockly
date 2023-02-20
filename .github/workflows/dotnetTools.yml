@@ -82,4 +82,5 @@ jobs:
       
     - name: push to nuget
       run: |
-        dotnet nuget push ${{github.workspace}}\src\NetCore2Blockly\NetCore2BlocklyNew\netcoreb\*symb*.*pkg --api-key  ${{ secrets.NUGETAPIKEY }} --source https://api.nuget.org/v3/index.json
+        dir ${{github.workspace}}\src\NetCore2Blockly\NetCore2BlocklyNew\netcoreb\NetCore2Blockly*symbols.nupkg
+        dotnet nuget push ${{github.workspace}}\src\NetCore2Blockly\NetCore2BlocklyNew\netcoreb\NetCore2Blockly*symbols.nupkg --api-key  ${{ secrets.NUGETAPIKEY }} --source https://api.nuget.org/v3/index.json
