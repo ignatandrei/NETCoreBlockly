@@ -10,7 +10,7 @@
     <value name="VALUE">
       <block type="converttojson">
         <value name="ValueToConvert">
-          <block type="post__api_v1_Chrome_GetUrlsYear">
+          <block type="post__api_v__version_Chrome_GetUrlsYear">
             <value name="val_year">
               <block type="math_number">
                 <field name="NUM">2021</field>
@@ -338,7 +338,7 @@
                     <next>
                       <block type="text_print">
                         <value name="TEXT">
-                          <block type="post__api_v1_File_WriteAllTextOK">
+                          <block type="post__api_v__version_File_WriteAllTextOK">
                             <value name="val_values">
                               <block type="recPathContent">
                                 <value name="val_path">

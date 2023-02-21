@@ -89,7 +89,7 @@
   "tourSteps":
     [
       {
-          "text":"This is the introduction to VisualAPI",
+          "text":"This is the  help tour",
           "query":".blocklyWorkspace"          
       },
       {

@@ -75,7 +75,7 @@
         "id":  "FridayLinks",
         "description":  "FridayLinks",
         "categories":  "ignat;bookmarks;chrome;",
-        "blocks":  "converttojson;post__api_v1_Chrome_GetUrlsYear;math_number;text;text_print;text_length;HTMLheaders;controls_for;lists_getIndex;controls_if;logic_compare;math_modulo;text_append;text_join;math_arithmetic;math_round;HTMLliStart;converttostring;HTMLli;HTMLlink;getproperty;HTMLliStop;post__api_v1_File_WriteAllTextOK;recPathContent"
+        "blocks":  "converttojson;post__api_v__version_Chrome_GetUrlsYear;math_number;text;text_print;text_length;HTMLheaders;controls_for;lists_getIndex;controls_if;logic_compare;math_modulo;text_append;text_join;math_arithmetic;math_round;HTMLliStart;converttostring;HTMLli;HTMLlink;getproperty;HTMLliStop;post__api_v__version_File_WriteAllTextOK;recPathContent"
     },
     {
         "id":  "EurRon",
@@ -87,7 +87,7 @@
         "id":  "chromeBookmarks",
         "description":  "export chrome bookmarks",
         "categories":  "chrome;bookmarks;localAPI",
-        "blocks":  "converttojson;post__api_v1_Chrome_GetUrlsYear;math_number;text;text_print;text_length;HTMLheaders;text_append;HTMLliStart;controls_for;lists_getIndex;converttostring;HTMLli;HTMLlink;getproperty;controls_flow_statements;HTMLliStop;post__api_v1_File_WriteAllTextOK"
+        "blocks":  "converttojson;post__api_v__version_Chrome_GetUrlsYear;math_number;text;text_print;text_length;HTMLheaders;text_append;HTMLliStart;controls_for;lists_getIndex;converttostring;HTMLli;HTMLlink;getproperty;controls_flow_statements;HTMLliStop;post__api_v__version_File_WriteAllTextOK"
     },
     {
         "id":  "dockerImagesList",

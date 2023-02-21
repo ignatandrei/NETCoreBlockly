@@ -33,7 +33,7 @@
       <block type="variables_set">
         <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
         <value name="VALUE">
-          <block type="post__api_v1_WebPages_GetBrowserAndPage">
+          <block type="post__api_v__version_WebPages_GetBrowserAndPage">
             <value name="val_headless">
               <block type="logic_boolean">
                 <field name="BOOL">FALSE</field>
@@ -91,7 +91,7 @@
                     <next>
                       <block type="text_print">
                         <value name="TEXT">
-                          <block type="post__api_v1_WebPages_SendEscape">
+                          <block type="post__api_v__version_WebPages_SendEscape">
                             <value name="val_values">
                               <block type="variables_get">
                                 <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
@@ -115,7 +115,7 @@
                             <next>
                               <block type="text_print">
                                 <value name="TEXT">
-                                  <block type="post__api_v1_WebPages_Highlight">
+                                  <block type="post__api_v__version_WebPages_Highlight">
                                     <value name="val_criteria">
                                       <block type="SelectCriteria">
                                         <field name="val_SelectCriteria">6</field>
@@ -149,7 +149,7 @@
                                     <next>
                                       <block type="text_print">
                                         <value name="TEXT">
-                                          <block type="post__api_v1_WebPages_ClickOn">
+                                          <block type="post__api_v__version_WebPages_ClickOn">
                                             <value name="val_criteria">
                                               <block type="SelectCriteria">
                                                 <field name="val_SelectCriteria">6</field>
@@ -183,7 +183,7 @@
                                             <value name="VALUE">
                                               <block type="converttojson">
                                                 <value name="ValueToConvert">
-                                                  <block type="post__api_v1_WebPages_GetScreenshot">
+                                                  <block type="post__api_v__version_WebPages_GetScreenshot">
                                                     <value name="val_values">
                                                       <block type="variables_get">
                                                         <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
@@ -206,7 +206,7 @@
                                             <next>
                                               <block type="text_print">
                                                 <value name="TEXT">
-                                                  <block type="post__api_v1_File_SaveByte">
+                                                  <block type="post__api_v__version_File_SaveByte">
                                                     <value name="val_values">
                                                       <block type="recByteSave">
                                                         <value name="val_content">
@@ -297,7 +297,7 @@
                                                         <next>
                                                           <block type="text_print">
                                                             <value name="TEXT">
-                                                              <block type="post__api_v1_WebPages_CloseBrowser">
+                                                              <block type="post__api_v__version_WebPages_CloseBrowser">
                                                                 <value name="val_id">
                                                                   <block type="getproperty">
                                                                     <field name="objectName">object</field>
