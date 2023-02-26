@@ -1,4 +1,9 @@
 [
+  {
+    "id": "Z_NOTTouch",
+    "link": "assets/loadAtStartup/drupal_swagger.js",
+    "enabled": true
+  },
     {
       "id": "Demo_MSPC",
       "link": "https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json",
