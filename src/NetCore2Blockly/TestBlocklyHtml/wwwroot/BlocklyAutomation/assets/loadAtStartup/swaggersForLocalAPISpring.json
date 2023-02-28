@@ -2,11 +2,13 @@
 	
 {
 	"id":"MySiteSpring",
-	"link":"/v2/api-docs"
+	"link":"/v2/api-docs",
+	"enabled":true
 }
 ,
 {
 	"id":"_MyPC",
-	"link":"http://localhost:37283/swagger/v1/swagger.json"
+	"link":"http://localhost:37283/swagger/v1/swagger.json",
+	"enabled":true
 }
 ]

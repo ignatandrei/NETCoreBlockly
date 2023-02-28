@@ -5,14 +5,17 @@
 },
 {
 	"id":"MySiteExpress",
-	"link":"/docs-json"
+	"link":"/docs-json",
+	"enabled":true
 },
 {
 	"id":"MySiteKoa",
-	"link":"/swagger-json"
+	"link":"/swagger-json",
+	"enabled":true
 },
 {
 	"id":"_MyPC",
-	"link":"http://localhost:37283/swagger/v1/swagger.json"
+	"link":"http://localhost:37283/swagger/v1/swagger.json",
+	"enabled":true
 }
 ]

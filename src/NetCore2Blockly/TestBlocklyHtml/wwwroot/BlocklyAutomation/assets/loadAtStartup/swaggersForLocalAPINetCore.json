@@ -1,10 +1,12 @@
 [
 {
 	"id":"MySite",
-	"link":"/swagger/v1/swagger.json"
+	"link":"/swagger/v1/swagger.json",
+	"enabled":true
 },
 {
 	"id":"_MyPC",
-	"link":"http://localhost:37283/swagger/v1/swagger.json"
+	"link":"http://localhost:37283/swagger/v1/swagger.json",
+	"enabled":true
 }
 ]

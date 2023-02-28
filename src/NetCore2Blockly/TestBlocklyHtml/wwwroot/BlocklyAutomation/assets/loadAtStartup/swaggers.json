@@ -31,7 +31,8 @@
     },
     {
       "id": "github3.4",
-      "link": "assets/loadAtStartup/github3.4.json"
+      "link": "assets/loadAtStartup/github3.4.json",
+      "enabled":false
     },
     {
       "id": "AzureFunctions",
