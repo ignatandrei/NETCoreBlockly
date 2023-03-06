@@ -1,7 +1,8 @@
 [
 {
 	"id":"MySiteNest",
-	"link":"/api-json"
+	"link":"/api-json",
+	"enabled":true
 },
 {
 	"id":"MySiteExpress",
