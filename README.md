@@ -11,7 +11,7 @@
 # What it does
 NETCore2Blockly generates [Blockly](https://developers.google.com/blockly) blocks for each of your controller actions. 
 
-*Demo* at https://netcoreblockly.herokuapp.com/ 
+*Demo* at https://ignatandrei.github.io/BlocklyAutomation/ 
 
 *Demo* Video at https://www.youtube.com/watch?v=GptkNWjmCzk
 
@@ -133,25 +133,25 @@ TBC: create BlocklyAutomation/assets/loadAtStartup/swaggers.json
 
 ## For authentication  - JSON Web Tokens
  
-See Demos from https://netcoreblockly.herokuapp.com/ 
+See Demos from https://ignatandrei.github.io/BlocklyAutomation/ 
 
 Also, it works with Active Directory enabled - see Authentication category.
 
 ## For adding headers to Http requests
  
-See https://netcoreblockly.herokuapp.com/BlocklyAutomation/automation/loadexample/jwt
+See https://ignatandrei.github.io/BlocklyAutomation/BlocklyAutomation/automation/loadexample/jwt
 
 ## For exporting data as CSV
 
-See https://netcoreblockly.herokuapp.com/BlocklyAutomation/automation/loadexample/NetCoreBlockly_SaveCSV
+See https://ignatandrei.github.io/BlocklyAutomation/BlocklyAutomation/automation/loadexample/NetCoreBlockly_SaveCSV
 
 ## For exporting data as image
 
-See https://netcoreblockly.herokuapp.com/BlocklyAutomation/automation/loadexample/saveImage
+See https://ignatandrei.github.io/BlocklyAutomation/BlocklyAutomation/automation/loadexample/saveImage
 
 ## Making a simple CRUD ( create ,read, update , delete ) application
 
-See https://netcoreblockly.herokuapp.com/BlocklyAutomation/automation/loadexample/NetCoreBlockly_DeleteDepartment
+See https://ignatandrei.github.io/BlocklyAutomation/BlocklyAutomation/automation/loadexample/NetCoreBlockly_DeleteDepartment
 or search for department in demos
 
 ## Adding your blocks
