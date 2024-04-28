@@ -18,12 +18,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.IdentityModel.Logging;
 using System.Text.Json.Serialization;
-using Microsoft.AspNet.OData.Extensions;
 using Microsoft.OData.Edm;
 using OdataToEntity.EfCore.DynamicDataContext;
 using OdataToEntity.EfCore.DynamicDataContext.InformationSchema;
 using OdataToEntity.AspNetCore;
-using Microsoft.AspNet.OData.Formatter;
 using Microsoft.Net.Http.Headers;
 //using Hellang.Middleware.ProblemDetails;
 using System.Security.Claims;
@@ -84,7 +82,8 @@ namespace TestBlocklyHtml
                                       ;
                                   });
             });
-            services.AddOData();
+            //TODO: odata
+            //services.AddOData();
             services.AddSingleton<VisualizeDot>();
             services.AddControllers(
                 #region blockly optional
@@ -97,14 +96,15 @@ namespace TestBlocklyHtml
             #region for odata
             services.AddMvcCore(options =>
             {
-                foreach (var outputFormatter in options.OutputFormatters.OfType<ODataOutputFormatter>().Where(_ => _.SupportedMediaTypes.Count == 0))
-                {
-                    outputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/prs.odatatestxx-odata"));
-                }
-                foreach (var inputFormatter in options.InputFormatters.OfType<ODataInputFormatter>().Where(_ => _.SupportedMediaTypes.Count == 0))
-                {
-                    inputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/prs.odatatestxx-odata"));
-                }
+                //TODO: odata
+                //foreach (var outputFormatter in options.OutputFormatters.OfType<ODataOutputFormatter>().Where(_ => _.SupportedMediaTypes.Count == 0))
+                //{
+                //    outputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/prs.odatatestxx-odata"));
+                //}
+                //foreach (var inputFormatter in options.InputFormatters.OfType<ODataInputFormatter>().Where(_ => _.SupportedMediaTypes.Count == 0))
+                //{
+                //    inputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/prs.odatatestxx-odata"));
+                //}
             });
             #endregion
             #region blockly needed
@@ -136,9 +136,10 @@ namespace TestBlocklyHtml
                 });
                 
             });
-            services.AddScoped<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
-            services.AddGraphQL(o => { o.ExposeExceptions = true; })
-                            .AddGraphTypes(ServiceLifetime.Scoped);
+            //services.AddScoped<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
+            //TODO : graphql
+            //services.AddGraphQL(o => { o.ExposeExceptions = true; })
+            //                .AddGraphTypes(ServiceLifetime.Scoped);
 
             services.AddScoped<DepartmentRepository>();
             services.AddScoped<DepartmentSchema>();
@@ -219,7 +220,8 @@ namespace TestBlocklyHtml
         {
             //app.UseProblemDetails();
             #region odata
-            IEdmModel edmModel = ModelDB();
+            //todo  odata
+            //IEdmModel edmModel = ModelDB();
             #endregion
             if (env.IsDevelopment())
             {
@@ -283,8 +285,10 @@ namespace TestBlocklyHtml
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseBlocklyUI(env);
-            app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
-            app.UseGraphQL<DepartmentSchema>();
+            //TODO : graphql
+
+            //app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
+            //app.UseGraphQL<DepartmentSchema>();
             //app.UseBlocklyRegisterMiddleware();
             app.UseEndpoints(endpoints =>
             {
@@ -308,11 +312,12 @@ namespace TestBlocklyHtml
                 endpoints.MapGraph("/graph");
             });
             #region blockly optional
-            if (edmModel != null)
-            {
-                app.UseOdataToEntityMiddleware<OePageMiddleware>("/odataDB", edmModel);
-                //app.UseBlocklyOData("/odataDB","/odataDB");
-            }
+            //TODO : graphql
+            //if (edmModel != null)
+            //{
+            //    app.UseOdataToEntityMiddleware<OePageMiddleware>("/odataDB", edmModel);
+            //    //app.UseBlocklyOData("/odataDB","/odataDB");
+            //}
             //app.UseBlocklyGraphQL("localGraphql", "/graphql");
             #endregion
             #region blockly needed
@@ -323,7 +328,7 @@ namespace TestBlocklyHtml
             context.Database.EnsureCreated();
 
         }
-        private IEdmModel ModelDB()
+        private IEdmModel? ModelDB()
         {
             try
             {
@@ -340,10 +345,13 @@ namespace TestBlocklyHtml
                 //optionsBuilder = optionsBuilder.UseNpgsql(con);
                 //using (var providerSchema = new PostgreSqlSchema(optionsBuilder.Options))
                 {
-                    edmModel = DynamicMiddlewareHelper.CreateEdmModel(providerSchema, informationSchemaMapping: null);
+                    //TODO : graphql
+
+                    // edmModel = DynamicMiddlewareHelper.CreateEdmModel(providerSchema, informationSchemaMapping: null);
 
                 }
-                return edmModel;
+                //return edmModel;
+                return null;
                 #endregion 
 
             }

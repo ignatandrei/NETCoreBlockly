@@ -1,4 +1,5 @@
-﻿using GraphQL.Types;
+﻿using GraphQL;
+using GraphQL.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace TestBlocklyHtml.GraphQL
          */
         public Mutations(DepartmentRepository departmentRepository)
         {
+            //TODO : graphql
+
             //Use the same OGT
             Field<DepartmentOGT>(
                 "createDepartment",

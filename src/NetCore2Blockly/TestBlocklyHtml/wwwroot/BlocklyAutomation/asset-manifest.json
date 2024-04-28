@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/blocklyAutomation/static/css/main.90708069.css",
-    "main.js": "/blocklyAutomation/static/js/main.dd909ac0.js",
-    "static/js/988.d8553045.chunk.js": "/blocklyAutomation/static/js/988.d8553045.chunk.js",
-    "index.html": "/blocklyAutomation/index.html",
-    "main.90708069.css.map": "/blocklyAutomation/static/css/main.90708069.css.map",
-    "main.dd909ac0.js.map": "/blocklyAutomation/static/js/main.dd909ac0.js.map",
-    "988.d8553045.chunk.js.map": "/blocklyAutomation/static/js/988.d8553045.chunk.js.map"
+    "main.css": "/BlocklyAutomation/static/css/main.1636a4ef.css",
+    "main.js": "/BlocklyAutomation/static/js/main.2d9b1936.js",
+    "static/js/511.878759ab.chunk.js": "/BlocklyAutomation/static/js/511.878759ab.chunk.js",
+    "index.html": "/BlocklyAutomation/index.html",
+    "main.1636a4ef.css.map": "/BlocklyAutomation/static/css/main.1636a4ef.css.map",
+    "main.2d9b1936.js.map": "/BlocklyAutomation/static/js/main.2d9b1936.js.map",
+    "511.878759ab.chunk.js.map": "/BlocklyAutomation/static/js/511.878759ab.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.90708069.css",
-    "static/js/main.dd909ac0.js"
+    "static/css/main.1636a4ef.css",
+    "static/js/main.2d9b1936.js"
   ]
 }

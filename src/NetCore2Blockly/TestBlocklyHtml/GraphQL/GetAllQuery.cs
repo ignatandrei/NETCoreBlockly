@@ -1,4 +1,5 @@
-﻿using GraphQL.Types;
+﻿using GraphQL;
+using GraphQL.Types;
 
 namespace TestBlocklyHtml.GraphQL
 {
@@ -8,6 +9,8 @@ namespace TestBlocklyHtml.GraphQL
         {
             public GetAllQuery(DepartmentRepository departmentRepository)
             {
+                //TODO : graphql
+
                 Field<ListGraphType<DepartmentOGT>>(
                               "departmentQuery",
                               resolve: context => departmentRepository.GetDepartment()

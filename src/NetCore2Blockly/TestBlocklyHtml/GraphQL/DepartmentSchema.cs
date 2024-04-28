@@ -1,15 +1,18 @@
 ﻿using GraphQL;
 using GraphQL.Types;
+using System;
 using static TestBlocklyHtml.GraphQL.DepartmentOGT;
 
 namespace TestBlocklyHtml.GraphQL
 {
     public class DepartmentSchema : Schema
     {
-        public DepartmentSchema(IDependencyResolver resolver) : base(resolver)
+        public DepartmentSchema(IServiceProvider resolver) : base(resolver)
         {
-            Query = resolver.Resolve<GetAllQuery>();
-            Mutation = resolver.Resolve<Mutations>();
+            //TODO : graphql
+
+            //Query = resolver.GetService< IDependencyResolver>.Resolve<GetAllQuery>();
+            //Mutation = resolver.Resolve<Mutations>();
         }
     }
 }

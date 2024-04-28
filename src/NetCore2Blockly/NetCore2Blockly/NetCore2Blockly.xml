@@ -865,22 +865,5 @@
               <c>true</c> if this instance is value type; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="T:NetCore2Blockly.XAboutMySoftware_78102118701151191075774117121110119121135">
-            <summary>
-            this is the About My Software for 78102118701151191075774117121110119121135
-            </summary>
-        </member>
-        <member name="M:NetCore2Blockly.XAboutMySoftware_78102118701151191075774117121110119121135.Add_AboutMySoftware_78102118701151191075774117121110119121135">
-            <summary>
-            starts when this module is loaded and 
-            add the AMS tot the 
-            </summary>
-        </member>
-        <member name="M:NetCore2Blockly.XAboutMySoftware_78102118701151191075774117121110119121135.#ctor">
-            <summary>
-            constructor
-            for AMS 78102118701151191075774117121110119121135
-            </summary>
-        </member>
     </members>
 </doc>
