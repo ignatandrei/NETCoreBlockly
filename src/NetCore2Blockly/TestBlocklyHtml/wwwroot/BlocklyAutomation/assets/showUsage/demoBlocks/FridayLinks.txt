@@ -16,7 +16,13 @@
                 <field name="NUM">2021</field>
               </block>
             </value>
-            <value name="override_Host">
+            <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
               <block type="text">
                 <field name="TEXT">localhost</field>
               </block>
@@ -353,7 +359,13 @@
                                 </value>
                               </block>
                             </value>
-                            <value name="override_Host">
+                            <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
                               <block type="text">
                                 <field name="TEXT">localhost</field>
                               </block>

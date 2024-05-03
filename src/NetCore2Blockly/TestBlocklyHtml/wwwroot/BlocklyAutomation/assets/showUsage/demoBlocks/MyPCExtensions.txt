@@ -19,7 +19,13 @@
           <block type="converttojson">
             <value name="ValueToConvert">
               <block type="get__api_v1_MyTools_MyPCChromeExtensions">
-                <value name="override_Host">
+                <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
                   <block type="text">
                     <field name="TEXT">localhost</field>
                   </block>
@@ -55,7 +61,13 @@
               <block type="converttojson">
                 <value name="ValueToConvert">
                   <block type="get__api_v1_MyTools_FindVSCodeExtension">
+                    <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
                     <value name="override_Host">
+                    
                       <block type="text">
                         <field name="TEXT">localhost</field>
                       </block>
@@ -91,7 +103,13 @@
                   <block type="converttojson">
                     <value name="ValueToConvert">
                       <block type="get__api_v1_MyTools_PowershellModules">
-                        <value name="override_Host">
+                        <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
                           <block type="text">
                             <field name="TEXT">localhost</field>
                           </block>

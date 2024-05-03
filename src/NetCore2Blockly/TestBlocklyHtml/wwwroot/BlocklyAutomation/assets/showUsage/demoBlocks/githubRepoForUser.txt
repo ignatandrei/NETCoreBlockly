@@ -72,7 +72,13 @@
                         <field name="NUM">1</field>
                       </block>
                     </value>
+                    <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
                     <value name="override_Host">
+                    
                       <block type="text">
                         <field name="TEXT"></field>
                       </block>
@@ -99,7 +105,13 @@
         <field name="VAR" id="FfNPU5g_!0y)aC+Kp5%~">res</field>
         <value name="VALUE">
           <block type="get__rate_limit">
-            <value name="override_Host">
+            <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
               <block type="text">
                 <field name="TEXT"></field>
               </block>
