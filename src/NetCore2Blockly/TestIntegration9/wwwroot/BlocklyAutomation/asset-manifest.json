@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/BlocklyAutomation/static/css/main.1636a4ef.css",
+    "main.js": "/BlocklyAutomation/static/js/main.6fd40f7f.js",
+    "static/js/511.878759ab.chunk.js": "/BlocklyAutomation/static/js/511.878759ab.chunk.js",
+    "index.html": "/BlocklyAutomation/index.html",
+    "main.1636a4ef.css.map": "/BlocklyAutomation/static/css/main.1636a4ef.css.map",
+    "main.6fd40f7f.js.map": "/BlocklyAutomation/static/js/main.6fd40f7f.js.map",
+    "511.878759ab.chunk.js.map": "/BlocklyAutomation/static/js/511.878759ab.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1636a4ef.css",
+    "static/js/main.6fd40f7f.js"
+  ]
+}

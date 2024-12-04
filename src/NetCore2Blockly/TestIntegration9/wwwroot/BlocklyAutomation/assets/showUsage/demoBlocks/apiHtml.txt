@@ -1,0 +1,219 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="tN1o#/fr2(SEQn^Q#~j-">n</variable>
+    <variable id="}@Z0^pf,,U-PK*N?QWVv">categs</variable>
+    <variable id="[eReS!];z$]0x:$zKIuy">categ</variable>
+    <variable id="mZh:ds4sVLqLToa_h?OB">operations</variable>
+    <variable id="n901@kL6Jua730a*x{/m">operation</variable>
+  </variables>
+  <block type="variables_set" x="24" y="-220">
+    <field name="VAR" id="tN1o#/fr2(SEQn^Q#~j-">n</field>
+    <value name="VALUE">
+      <block type="meta_swagger_controllers_actions_Demo_Blocks"></block>
+    </value>
+    <next>
+      <block type="text_print" disabled="true">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+          <block type="converttostring">
+            <value name="ValueToConvert">
+              <block type="variables_get">
+                <field name="VAR" id="tN1o#/fr2(SEQn^Q#~j-">n</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="HTMLheaders">
+                <field name="NAME">H1</field>
+                <value name="NAME">
+                  <shadow type="text">
+                    <field name="TEXT"></field>
+                  </shadow>
+                  <block type="getproperty">
+                    <field name="objectName">object</field>
+                    <field name="prop">property</field>
+                    <value name="ObjectToChange">
+                      <block type="variables_get">
+                        <field name="VAR" id="tN1o#/fr2(SEQn^Q#~j-">n</field>
+                      </block>
+                    </value>
+                    <value name="PropertyName">
+                      <shadow type="text">
+                        <field name="TEXT">name</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set">
+                <field name="VAR" id="}@Z0^pf,,U-PK*N?QWVv">categs</field>
+                <value name="VALUE">
+                  <block type="getproperty">
+                    <field name="objectName">object</field>
+                    <field name="prop">property</field>
+                    <value name="ObjectToChange">
+                      <block type="variables_get">
+                        <field name="VAR" id="tN1o#/fr2(SEQn^Q#~j-">n</field>
+                      </block>
+                    </value>
+                    <value name="PropertyName">
+                      <shadow type="text">
+                        <field name="TEXT">categories</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_forEach">
+                    <field name="VAR" id="[eReS!];z$]0x:$zKIuy">categ</field>
+                    <value name="LIST">
+                      <block type="variables_get">
+                        <field name="VAR" id="}@Z0^pf,,U-PK*N?QWVv">categs</field>
+                      </block>
+                    </value>
+                    <statement name="DO">
+                      <block type="text_print">
+                        <value name="TEXT">
+                          <block type="HTMLheaders">
+                            <field name="NAME">H2</field>
+                            <value name="NAME">
+                              <shadow type="text">
+                                <field name="TEXT"></field>
+                              </shadow>
+                              <block type="text_join">
+                                <mutation items="2"></mutation>
+                                <value name="ADD0">
+                                  <block type="text">
+                                    <field name="TEXT">Controller:</field>
+                                  </block>
+                                </value>
+                                <value name="ADD1">
+                                  <block type="getproperty">
+                                    <field name="objectName">object</field>
+                                    <field name="prop">property</field>
+                                    <value name="ObjectToChange">
+                                      <block type="variables_get">
+                                        <field name="VAR" id="[eReS!];z$]0x:$zKIuy">categ</field>
+                                      </block>
+                                    </value>
+                                    <value name="PropertyName">
+                                      <shadow type="text">
+                                        <field name="TEXT">name</field>
+                                      </shadow>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="variables_set">
+                            <field name="VAR" id="mZh:ds4sVLqLToa_h?OB">operations</field>
+                            <value name="VALUE">
+                              <block type="getproperty">
+                                <field name="objectName">object</field>
+                                <field name="prop">property</field>
+                                <value name="ObjectToChange">
+                                  <block type="variables_get">
+                                    <field name="VAR" id="[eReS!];z$]0x:$zKIuy">categ</field>
+                                  </block>
+                                </value>
+                                <value name="PropertyName">
+                                  <shadow type="text">
+                                    <field name="TEXT">ops</field>
+                                  </shadow>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="HTMLlist">
+                                <field name="listType">ol</field>
+                                <statement name="Content">
+                                  <block type="controls_forEach">
+                                    <field name="VAR" id="n901@kL6Jua730a*x{/m">operation</field>
+                                    <value name="LIST">
+                                      <block type="variables_get">
+                                        <field name="VAR" id="mZh:ds4sVLqLToa_h?OB">operations</field>
+                                      </block>
+                                    </value>
+                                    <statement name="DO">
+                                      <block type="text_print">
+                                        <value name="TEXT">
+                                          <block type="HTMLli">
+                                            <value name="NAME">
+                                              <block type="text_join">
+                                                <mutation items="4"></mutation>
+                                                <value name="ADD0">
+                                                  <block type="text">
+                                                    <field name="TEXT">Method:</field>
+                                                  </block>
+                                                </value>
+                                                <value name="ADD1">
+                                                  <block type="getproperty">
+                                                    <field name="objectName">object</field>
+                                                    <field name="prop">property</field>
+                                                    <value name="ObjectToChange">
+                                                      <block type="variables_get">
+                                                        <field name="VAR" id="n901@kL6Jua730a*x{/m">operation</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="PropertyName">
+                                                      <shadow type="text">
+                                                        <field name="TEXT">methodAPI</field>
+                                                      </shadow>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                                <value name="ADD2">
+                                                  <block type="text">
+                                                    <field name="TEXT"> =&gt; </field>
+                                                  </block>
+                                                </value>
+                                                <value name="ADD3">
+                                                  <block type="getproperty">
+                                                    <field name="objectName">object</field>
+                                                    <field name="prop">property</field>
+                                                    <value name="ObjectToChange">
+                                                      <block type="variables_get">
+                                                        <field name="VAR" id="n901@kL6Jua730a*x{/m">operation</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="PropertyName">
+                                                      <shadow type="text">
+                                                        <field name="TEXT">id</field>
+                                                      </shadow>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </statement>
+                                  </block>
+                                </statement>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

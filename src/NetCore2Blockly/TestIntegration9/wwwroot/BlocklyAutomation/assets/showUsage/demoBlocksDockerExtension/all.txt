@@ -1,0 +1,39 @@
+﻿[
+    {
+        "id":  "GenericCallArguments",
+        "description":  "call any command",
+        "categories":  "command;call;",
+        "blocks":  "text_print;convertToTable;dockercommandv1;lists_create_with;text"
+    },
+    {
+        "id":  "images",
+        "description":  "list images",
+        "categories":  "images;list;",
+        "blocks":  "text_print;convertToTable;dockerImagesList"
+    },
+    {
+        "id":  "removeDangling",
+        "description":  "remove dangling images",
+        "categories":  "images;remove;",
+        "blocks":  "dockerImagesList;text_print;converttojson;controls_forEach;converttostring;getproperty;dockercommandv1;lists_create_with"
+    },
+    {
+        "id":  "startStopped",
+        "description":  "start stopped container",
+        "categories":  "containers;start;",
+        "blocks":  "dockerContainersList;controls_forEach;converttojson;getproperty;text_print;dockercommandv1;lists_create_with;convertToTable"
+    },
+    {
+        "id":  "readImageName",
+        "description":  "read image name",
+        "categories":  "images;read;",
+        "blocks":  "dockerImagesList;text_print;convertToTable;controls_forEach;converttojson;getproperty;ttsBlock;text_join;text"
+    },
+    {
+        "id":  "dockerVersionInfo",
+        "description":  "docker info and version",
+        "categories":  "version;info;",
+        "blocks":  ""
+    }
+
+]

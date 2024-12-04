@@ -1,0 +1,53 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="h$v},rO]y@QeH1Z3o-vi">data</variable>
+  </variables>
+  <block type="variables_set" x="29" y="-119">
+    <field name="VAR" id="h$v},rO]y@QeH1Z3o-vi">data</field>
+    <value name="VALUE">
+      <block type="httprequest">
+        <field name="TypeOutput">JSON</field>
+        <field name="TypeRequest">GET</field>
+        <value name="TheUrl">
+          <shadow type="text">
+            <field name="TEXT">https://datausa.io/api/data?drilldowns=Nation&amp;measures=Population</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="h$v},rO]y@QeH1Z3o-vi">data</field>
+        <value name="VALUE">
+          <block type="getproperty">
+            <field name="objectName">object</field>
+            <field name="prop">property</field>
+            <value name="ObjectToChange">
+              <block type="variables_get">
+                <field name="VAR" id="h$v},rO]y@QeH1Z3o-vi">data</field>
+              </block>
+            </value>
+            <value name="PropertyName">
+              <block type="text">
+                <field name="TEXT">data</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="converttostring">
+                <value name="ValueToConvert">
+                  <block type="variables_get">
+                    <field name="VAR" id="h$v},rO]y@QeH1Z3o-vi">data</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

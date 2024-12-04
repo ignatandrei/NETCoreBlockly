@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
+  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\NetCore2BlocklyNew\NetCore2BlocklyNew.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Include="wwwroot\index.html" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="wwwroot\BlocklyAutomation\" />
+	</ItemGroup>
+</Project>

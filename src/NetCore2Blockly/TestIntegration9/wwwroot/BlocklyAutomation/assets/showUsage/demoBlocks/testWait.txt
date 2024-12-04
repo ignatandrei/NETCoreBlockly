@@ -1,0 +1,23 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" x="20" y="20">
+    <value name="TEXT">
+      <block type="displayCurrentDate">
+        <field name="dateFormat">iso</field>
+      </block>
+    </value>
+    <next>
+      <block type="wait_seconds">
+        <field name="SECONDS">2</field>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="displayCurrentDate">
+                <field name="dateFormat">iso</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

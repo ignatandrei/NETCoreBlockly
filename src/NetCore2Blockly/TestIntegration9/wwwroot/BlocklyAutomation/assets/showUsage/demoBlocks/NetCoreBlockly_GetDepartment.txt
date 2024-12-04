@@ -1,0 +1,49 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="$l{IZ#6T!0KWuO$YamR8">var_Int64</variable>
+    <variable id="5$qv[vi$Yz%$3,`/CML7">var_Department</variable>
+  </variables>
+  <block type="variables_set" inline="true" x="20" y="20">
+    <field name="VAR" id="$l{IZ#6T!0KWuO$YamR8">var_Int64</field>
+    <value name="VALUE">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="5$qv[vi$Yz%$3,`/CML7">var_Department</field>
+        <value name="VALUE">
+          <block type="converttojson">
+            <value name="ValueToConvert">
+              <block type="get__api_DB_Departments___id">
+                <value name="val_id">
+                  <shadow type="System_Int64"></shadow>
+                  <block type="variables_get">
+                    <field name="VAR" id="$l{IZ#6T!0KWuO$YamR8">var_Int64</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <shadow type="text">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="converttostring">
+                <value name="ValueToConvert">
+                  <block type="variables_get">
+                    <field name="VAR" id="5$qv[vi$Yz%$3,`/CML7">var_Department</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

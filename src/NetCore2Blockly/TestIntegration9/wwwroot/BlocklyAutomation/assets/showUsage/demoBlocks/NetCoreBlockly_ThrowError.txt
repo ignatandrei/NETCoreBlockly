@@ -1,0 +1,29 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="tN1o#/fr2(SEQn^Q#~j-">n</variable>
+  </variables>
+  <block type="variables_set" inline="true" x="20" y="20">
+    <field name="VAR" id="tN1o#/fr2(SEQn^Q#~j-">n</field>
+    <value name="VALUE">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="post__api_MathOperations_ThrowError"></block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="variables_get">
+                <field name="VAR" id="tN1o#/fr2(SEQn^Q#~j-">n</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

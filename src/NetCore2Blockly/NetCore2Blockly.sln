@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore2BlocklyNew", "NetCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeploySampleSiteAzure", "DeploySampleSiteAzure\DeploySampleSiteAzure.csproj", "{11787BD7-05F3-4CB4-AF6B-FB6DBD88A5E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestIntegration9", "TestIntegration9\TestIntegration9.csproj", "{CFA655F6-F116-4D83-B424-EB3FD1975787}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{11787BD7-05F3-4CB4-AF6B-FB6DBD88A5E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11787BD7-05F3-4CB4-AF6B-FB6DBD88A5E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11787BD7-05F3-4CB4-AF6B-FB6DBD88A5E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFA655F6-F116-4D83-B424-EB3FD1975787}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFA655F6-F116-4D83-B424-EB3FD1975787}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFA655F6-F116-4D83-B424-EB3FD1975787}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFA655F6-F116-4D83-B424-EB3FD1975787}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8B074077-4862-41FD-8A4D-BF20FD9D91BC} = {A190D5B6-C2BF-4EAF-8ACC-FC8CAF7710CA}
 		{B20988FD-2873-49E5-8BFD-096E0345216C} = {A190D5B6-C2BF-4EAF-8ACC-FC8CAF7710CA}
+		{CFA655F6-F116-4D83-B424-EB3FD1975787} = {A190D5B6-C2BF-4EAF-8ACC-FC8CAF7710CA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3055D8D1-F3ED-4E38-83D9-6AB821AAE1FD}

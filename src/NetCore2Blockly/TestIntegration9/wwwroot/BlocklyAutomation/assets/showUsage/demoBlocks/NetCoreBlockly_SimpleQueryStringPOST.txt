@@ -1,0 +1,13 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" x="20" y="22">
+    <value name="TEXT">
+      <block type="post__api_RestWithArgs_PostWithArgs">
+        <value name="val_value">
+          <shadow type="text">
+            <field name="TEXT">Bring me back</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+  </block>
+</xml>

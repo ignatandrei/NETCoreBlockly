@@ -1,0 +1,76 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="*n^H$b7MwVpU3OUbOeOe">cards</variable>
+    <variable id="+AG~3OiQlt%aJ4aTKu)W">cardLoop</variable>
+  </variables>
+  <block type="variables_set" x="32" y="-61">
+    <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">cards</field>
+    <value name="VALUE">
+      <block type="httprequest">
+        <field name="TypeOutput">JSON</field>
+        <field name="TypeRequest">GET</field>
+        <value name="TheUrl">
+          <shadow type="text">
+            <field name="TEXT">https://api.trello.com/1/lists/5e144f19dc5b692fbad5f647/cards</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="HTMLlist">
+        <field name="listType">ol</field>
+        <statement name="Content">
+          <block type="controls_forEach">
+            <field name="VAR" id="+AG~3OiQlt%aJ4aTKu)W">cardLoop</field>
+            <value name="LIST">
+              <block type="variables_get">
+                <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">cards</field>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="text_print">
+                <value name="TEXT">
+                  <block type="HTMLli">
+                    <value name="NAME">
+                      <block type="HTMLlinkFromObject">
+                        <field name="targetDrop">_blank</field>
+                        <value name="objectProp">
+                          <block type="variables_get">
+                            <field name="VAR" id="+AG~3OiQlt%aJ4aTKu)W">cardLoop</field>
+                          </block>
+                        </value>
+                        <value name="textProp">
+                          <shadow type="text">
+                            <field name="TEXT">name</field>
+                          </shadow>
+                        </value>
+                        <value name="hrefProp">
+                          <shadow type="text">
+                            <field name="TEXT">shortUrl</field>
+                          </shadow>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print" disabled="true">
+                    <value name="TEXT">
+                      <block type="converttostring">
+                        <value name="ValueToConvert">
+                          <block type="variables_get">
+                            <field name="VAR" id="+AG~3OiQlt%aJ4aTKu)W">cardLoop</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

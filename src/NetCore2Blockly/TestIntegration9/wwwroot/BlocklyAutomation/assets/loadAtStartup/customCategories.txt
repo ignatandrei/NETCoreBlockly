@@ -1,0 +1,340 @@
+<category name='CategoriesLoaded'>
+      <variables>
+      <variable id="andreiTedt">nrDep</variable>
+      <variable id="varCateg_And_Actions_From_Meta_API">Categ_And_Actions_From_Meta_API</variable>
+    <variable id="varCateg">category</variable>
+    <variable id="varMessage">message</variable>
+
+    </variables>
+
+
+<variables>
+    <variable id="(Egutcxd8zcU--qjKQlk">Categ_And_Actions_From_Meta_API</variable>
+    <variable id="6eY#Z)h8NGTGTkIpx%Gg">category</variable>
+    <variable id="*n^H$b7MwVpU3OUbOeOe">operations</variable>
+    <variable id="mj!([vz^/N6I=Fn9MK*q">api</variable>
+  </variables>
+
+
+  <block type="procedures_defnoreturn" collapsed="true">
+    <mutation>
+      <arg name="Categ_And_Actions_From_Meta_API" varid="(Egutcxd8zcU--qjKQlk"></arg>
+    </mutation>
+    <field name="NAME">Generate_API_List</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="controls_if">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get">
+                <field name="VAR" id="(Egutcxd8zcU--qjKQlk">Categ_And_Actions_From_Meta_API</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="text">
+                <field name="TEXT">please add argument categ and actions from your swagger meta category</field>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="controls_forEach">
+            <field name="VAR" id="6eY#Z)h8NGTGTkIpx%Gg">category</field>
+            <value name="LIST">
+              <block type="getproperty">
+                <field name="objectName">object</field>
+                <field name="prop">property</field>
+                <value name="ObjectToChange">
+                  <block type="variables_get">
+                    <field name="VAR" id="(Egutcxd8zcU--qjKQlk">Categ_And_Actions_From_Meta_API</field>
+                  </block>
+                </value>
+                <value name="PropertyName">
+                  <block type="text">
+                    <field name="TEXT">categories</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="text_print">
+                <value name="TEXT">
+                  <block type="HTMLheaders">
+                    <field name="NAME">H1</field>
+                    <value name="NAME">
+                      <shadow type="text">
+                        <field name="TEXT"></field>
+                      </shadow>
+                      <block type="getproperty">
+                        <field name="objectName">object</field>
+                        <field name="prop">property</field>
+                        <value name="ObjectToChange">
+                          <block type="variables_get">
+                            <field name="VAR" id="6eY#Z)h8NGTGTkIpx%Gg">category</field>
+                          </block>
+                        </value>
+                        <value name="PropertyName">
+                          <block type="text">
+                            <field name="TEXT">name</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set">
+                    <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">operations</field>
+                    <value name="VALUE">
+                      <block type="getproperty">
+                        <field name="objectName">object</field>
+                        <field name="prop">property</field>
+                        <value name="ObjectToChange">
+                          <block type="variables_get">
+                            <field name="VAR" id="6eY#Z)h8NGTGTkIpx%Gg">category</field>
+                          </block>
+                        </value>
+                        <value name="PropertyName">
+                          <block type="text">
+                            <field name="TEXT">ops</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="text_print">
+                        <value name="TEXT">
+                          <shadow type="text">
+                            <field name="TEXT">abc</field>
+                          </shadow>
+                          <block type="text_multiline">
+                            <field name="TEXT">&lt;table border=1&gt;&lt;tr&gt;&lt;td&gt;Operation&lt;/td&gt;&lt;td&gt;Name&lt;/td&gt;&lt;/tr&gt;</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="controls_forEach">
+                            <field name="VAR" id="mj!([vz^/N6I=Fn9MK*q">api</field>
+                            <value name="LIST">
+                              <block type="variables_get">
+                                <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">operations</field>
+                              </block>
+                            </value>
+                            <statement name="DO">
+                              <block type="text_print">
+                                <value name="TEXT">
+                                  <shadow type="text">
+                                    <field name="TEXT">abc</field>
+                                  </shadow>
+                                  <block type="converterTemplate">
+                                    <value name="object">
+                                      <block type="variables_get">
+                                        <field name="VAR" id="mj!([vz^/N6I=Fn9MK*q">api</field>
+                                      </block>
+                                    </value>
+                                    <value name="text">
+                                      <block type="text_multiline">
+                                        <field name="TEXT">&lt;tr&gt;&amp;#10;&lt;td&gt;&lt;img width=50 height=50  src='/blocklyAutomation/assets/httpImages/${method}.png' /&gt;&lt;/td&gt;&lt;td&gt;${operation}&lt;/td&gt;&lt;/tr&gt;</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="text_print">
+                                <value name="TEXT">
+                                  <shadow type="text">
+                                    <field name="TEXT">abc</field>
+                                  </shadow>
+                                  <block type="text_multiline">
+                                    <field name="TEXT">&lt;/table&gt;</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </statement>
+        <next>
+          <block type="metadisplay">
+            <field name="what">4</field>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+
+<block type="procedures_defnoreturn" collapsed="true">
+    <mutation>
+      <arg name="Categ_And_Actions_From_Meta_API" varid="varCateg_And_Actions_From_Meta_API"></arg>
+    </mutation>
+    <field name="NAME">Generate_API_Table</field>
+    <comment pinned="false" h="80" w="160">Generate API doc definition</comment>
+    <statement name="STACK">
+      <block type="controls_if">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get">
+                <field name="VAR" id="varCateg_And_Actions_From_Meta_API">Categ_And_Actions_From_Meta_API</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="text">
+                <field name="TEXT">please add argument categ and actions from your swagger meta category</field>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="controls_forEach">
+            <field name="VAR" id="varCateg">category</field>
+            <value name="LIST">
+              <block type="getproperty">
+                <field name="objectName">object</field>
+                <field name="prop">property</field>
+                <value name="ObjectToChange">
+                  <block type="variables_get">
+                    <field name="VAR" id="varCateg_And_Actions_From_Meta_API">Categ_And_Actions_From_Meta_API</field>
+                  </block>
+                </value>
+                <value name="PropertyName">
+                  <block type="text">
+                    <field name="TEXT">categories</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="text_print">
+                <value name="TEXT">
+                  <block type="HTMLheaders">
+                    <field name="NAME">H1</field>
+                    <value name="NAME">
+                      <shadow type="text">
+                        <field name="TEXT"></field>
+                      </shadow>
+                      <block type="getproperty">
+                        <field name="objectName">object</field>
+                        <field name="prop">property</field>
+                        <value name="ObjectToChange">
+                          <block type="variables_get">
+                            <field name="VAR" id="varCateg">category</field>
+                          </block>
+                        </value>
+                        <value name="PropertyName">
+                          <block type="text">
+                            <field name="TEXT">name</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set">
+                    <field name="VAR" id="varMessage">message</field>
+                    <value name="VALUE">
+                      <block type="getproperty">
+                        <field name="objectName">object</field>
+                        <field name="prop">property</field>
+                        <value name="ObjectToChange">
+                          <block type="variables_get">
+                            <field name="VAR" id="varCateg">category</field>
+                          </block>
+                        </value>
+                        <value name="PropertyName">
+                          <block type="text">
+                            <field name="TEXT">ops</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="text_print">
+                        <value name="TEXT">
+                          <shadow type="text">
+                            <field name="TEXT">abc</field>
+                          </shadow>
+                          <block type="convertToTable">
+                            <value name="ArrayToConvert">
+                              <block type="converttostring">
+                                <value name="ValueToConvert">
+                                  <block type="variables_get">
+                                    <field name="VAR" id="varMessage">message</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+
+
+
+    <block  collapsed="true" type="procedures_defreturn">
+      <field name="NAME">NumberDepartments1</field>
+      <comment pinned="false" h="80" w="160">Describe this function...</comment>
+      <statement name="STACK">
+        <block type="variables_set">
+          <field name="VAR" id="andreiTedt">nrDep</field>
+          <value name="VALUE">
+            <block type="text_length">
+              <value name="VALUE">
+                <shadow type="text">
+                  <field name="TEXT">abc</field>
+                </shadow>
+                <block type="converttojson">
+                  <value name="ValueToConvert">
+                    <block type="get__api_DB_Departments"></block>
+                  </value>
+                </block>
+              </value>
+            </block>
+          </value>
+        </block>
+      </statement>
+      <value name="RETURN">
+        <block type="variables_get">
+          <field name="VAR" id="andreiTedt">nrDep</field>
+        </block>
+      </value>
+    </block>
+      </category>   
+      

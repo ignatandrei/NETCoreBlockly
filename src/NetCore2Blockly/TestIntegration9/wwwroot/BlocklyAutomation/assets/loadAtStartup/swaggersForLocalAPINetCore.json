@@ -1,0 +1,16 @@
+[
+
+	{
+		"id":"MySite",
+		"link":"/openapi/v1.json"
+	},
+	
+	{
+		"id":"MySite8",
+		"link":"/swagger/v1/swagger.json"
+	},
+	{
+		"id":"_MyPC",
+		"link":"http://localhost:37283/swagger/v1/swagger.json"
+	}
+	]

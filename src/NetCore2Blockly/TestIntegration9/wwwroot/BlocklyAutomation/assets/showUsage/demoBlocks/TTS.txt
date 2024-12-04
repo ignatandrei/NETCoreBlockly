@@ -1,0 +1,18 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="ttsBlock" x="63" y="-224">
+    <value name="NAME">
+      <shadow type="text">
+        <field name="TEXT">Program is done!</field>
+      </shadow>
+      <block type="text_prompt_ext">
+        <mutation type="TEXT"></mutation>
+        <field name="TYPE">TEXT</field>
+        <value name="TEXT">
+          <block type="text">
+            <field name="TEXT">What I should speak?</field>
+          </block>
+        </value>
+      </block>
+    </value>
+  </block>
+</xml>

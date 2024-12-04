@@ -1,0 +1,76 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="/C?5kL3l{.U8=@]wgXu^">weather</variable>
+  </variables>
+  <block type="variables_set" x="39" y="-167">
+    <field name="VAR" id="/C?5kL3l{.U8=@]wgXu^">weather</field>
+    <value name="VALUE">
+      <block type="get__WeatherForecast">
+        <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
+          <block type="text">
+            <field name="TEXT">visualapi.azurewebsites.net</field>
+          </block>
+        </value>
+        <value name="override_Port">
+          <block type="math_number">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="reduceList">
+            <value name="LIST">
+              <block type="variables_get">
+                <field name="VAR" id="/C?5kL3l{.U8=@]wgXu^">weather</field>
+              </block>
+            </value>
+            <value name="initValue">
+              <block type="text">
+                <field name="TEXT"></field>
+              </block>
+            </value>
+            <value name="Logic">
+              <shadow type="text">
+                <field name="TEXT">return acc+curVal.summary+";"</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="converttostring">
+                <value name="ValueToConvert">
+                  <block type="reduceList">
+                    <value name="LIST">
+                      <block type="variables_get">
+                        <field name="VAR" id="/C?5kL3l{.U8=@]wgXu^">weather</field>
+                      </block>
+                    </value>
+                    <value name="initValue">
+                      <block type="object_create"></block>
+                    </value>
+                    <value name="Logic">
+                      <shadow type="text">
+                        <field name="TEXT">var data=curVal.summary; if (!acc[data]) {        acc[data] = 1;    } else {        acc[data]++; }    return acc;</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

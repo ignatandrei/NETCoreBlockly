@@ -1,0 +1,23 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
+  </variables>
+  <block type="variables_set" inline="true" x="20" y="20">
+    <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+    <value name="VALUE">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+          <block type="get__WeatherForecast"></block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

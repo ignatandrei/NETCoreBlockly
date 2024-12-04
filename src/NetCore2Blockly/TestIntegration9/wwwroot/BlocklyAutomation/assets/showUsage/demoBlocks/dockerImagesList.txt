@@ -1,0 +1,102 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="7xa;m]`[[X+.UFDRu~rV">imageList</variable>
+    <variable id="2;e/86IeH?[l.*etaWOw">i</variable>
+  </variables>
+  <block type="trycatchfinally" x="70" y="13">
+    <statement name="TRY">
+      <block type="variables_set">
+        <field name="VAR" id="7xa;m]`[[X+.UFDRu~rV">imageList</field>
+        <value name="VALUE">
+          <block type="get__images_json">
+            <value name="val_all">
+              <block type="logic_boolean">
+                <field name="BOOL">TRUE</field>
+              </block>
+            </value>
+            <value name="val_filters">
+              <block type="text">
+                <field name="TEXT"></field>
+              </block>
+            </value>
+            <value name="val_digests">
+              <block type="logic_boolean">
+                <field name="BOOL">TRUE</field>
+              </block>
+            </value>
+            <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
+              <block type="text">
+                <field name="TEXT">http://localhost</field>
+              </block>
+            </value>
+            <value name="override_Port">
+              <block type="math_number">
+                <field name="NUM">2375</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print" disabled="true">
+            <value name="TEXT">
+              <block type="variables_get">
+                <field name="VAR" id="7xa;m]`[[X+.UFDRu~rV">imageList</field>
+              </block>
+            </value>
+            <next>
+              <block type="controls_forEach">
+                <field name="VAR" id="2;e/86IeH?[l.*etaWOw">i</field>
+                <value name="LIST">
+                  <block type="mapList">
+                    <value name="LIST">
+                      <block type="variables_get">
+                        <field name="VAR" id="7xa;m]`[[X+.UFDRu~rV">imageList</field>
+                      </block>
+                    </value>
+                    <value name="Logic">
+                      <shadow type="text">
+                        <field name="TEXT">item.RepoTags</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO">
+                  <block type="text_print">
+                    <value name="TEXT">
+                      <block type="HTMLheaders">
+                        <field name="NAME">H1</field>
+                        <value name="NAME">
+                          <shadow type="text">
+                            <field name="TEXT"></field>
+                          </shadow>
+                          <block type="variables_get">
+                            <field name="VAR" id="2;e/86IeH?[l.*etaWOw">i</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="CATCH">
+      <block type="window_open">
+        <value name="TEXT">
+          <block type="text">
+            <field name="TEXT">https://github.com/ignatandrei/BlocklyAutomation/wiki/Docker-Swagger</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+</xml>

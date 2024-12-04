@@ -1,0 +1,84 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="/C?5kL3l{.U8=@]wgXu^">weather</variable>
+  </variables>
+  <block type="variables_set" x="146" y="-144">
+    <field name="VAR" id="/C?5kL3l{.U8=@]wgXu^">weather</field>
+    <value name="VALUE">
+      <block type="text_print_return">
+        <field name="NAME"></field>
+        <value name="TEXT">
+          <block type="get__WeatherForecast">
+            <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
+              <block type="text">
+                <field name="TEXT">visualapi.azurewebsites.net</field>
+              </block>
+            </value>
+            <value name="override_Port">
+              <block type="math_number">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="chart_js">
+            <field name="ChartTypeValue">VBar</field>
+            <field name="ChartTitle">Title</field>
+            <field name="ChartLabels">Labels</field>
+            <field name="DataSetLabel1">DataSet1 Label</field>
+            <field name="DataSetData1">DataSet1 Data</field>
+            <value name="ChartTitleValue">
+              <block type="text">
+                <field name="TEXT">Weather</field>
+              </block>
+            </value>
+            <value name="LabelsValue">
+              <block type="mapList">
+                <value name="LIST">
+                  <block type="variables_get">
+                    <field name="VAR" id="/C?5kL3l{.U8=@]wgXu^">weather</field>
+                  </block>
+                </value>
+                <value name="Logic">
+                  <shadow type="text">
+                    <field name="TEXT">item.date</field>
+                  </shadow>
+                </value>
+              </block>
+            </value>
+            <value name="DataSet1Label">
+              <block type="text">
+                <field name="TEXT">Temperature</field>
+              </block>
+            </value>
+            <value name="DataSet1Data">
+              <block type="mapList">
+                <value name="LIST">
+                  <block type="variables_get">
+                    <field name="VAR" id="/C?5kL3l{.U8=@]wgXu^">weather</field>
+                  </block>
+                </value>
+                <value name="Logic">
+                  <shadow type="text">
+                    <field name="TEXT">item.temperatureC</field>
+                  </shadow>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

@@ -1,0 +1,41 @@
+[
+  {
+    "id": "Z_NOTTouch",
+    "link": "assets/loadAtStartup/drupal_swagger.js",
+    "enabled": true
+  },
+    {
+      "id": "Demo_MSPC",
+      "link": "https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json",
+      "enabled": false
+    },
+    {
+      "id": "Demo_Blocks",
+      "link": "https://visualapi.azurewebsites.net/swagger/v1/swagger.json",
+      "enabled": true
+    },
+    {
+      "id": "Demo_PetStore",
+      "link": "https://petstore.swagger.io/v2/swagger.json",
+      "enabled": true
+    },
+    {
+      "id": "Docker 1.41",
+      "link": "https://docs.docker.com/engine/api/v1.41.yaml",
+      "enabled": false
+    },
+    {
+      "id": "_MyPC",
+      "link": "http://localhost:37283/swagger/v1/swagger.json",
+      "enabled": true
+    },
+    {
+      "id": "github3.4",
+      "link": "assets/loadAtStartup/github3.4.json"
+    },
+    {
+      "id": "AzureFunctions",
+      "link": "https://net6azurefunctions20220514015914.azurewebsites.net/api/swagger/json",
+      "enabled": false
+    }
+  ]

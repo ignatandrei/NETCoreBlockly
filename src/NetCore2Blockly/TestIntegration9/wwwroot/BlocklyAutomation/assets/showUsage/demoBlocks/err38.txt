@@ -1,0 +1,24 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" x="6" y="-251">
+    <value name="TEXT">
+      <block type="AnEnum">
+        <field name="val_AnEnum">0</field>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="httprequest">
+            <field name="TypeOutput">JSON</field>
+            <field name="TypeRequest">GET</field>
+            <value name="TheUrl">
+              <shadow type="text">
+                <field name="TEXT">https://httpbin.org/get</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

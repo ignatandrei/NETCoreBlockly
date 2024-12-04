@@ -1,0 +1,105 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="Xbt9z*7Zq`lZCJ5#=J{!">currency</variable>
+    <variable id="*n^H$b7MwVpU3OUbOeOe">value</variable>
+  </variables>
+  <block type="variables_set" x="44" y="68">
+    <field name="VAR" id="Xbt9z*7Zq`lZCJ5#=J{!">currency</field>
+    <value name="VALUE">
+      <block type="text">
+        <field name="TEXT">EUR</field>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">value</field>
+        <value name="VALUE">
+          <block type="httprequest">
+            <field name="TypeOutput">Text</field>
+            <field name="TypeRequest">GET</field>
+            <value name="TheUrl">
+              <shadow type="text">
+                <field name="TEXT"></field>
+              </shadow>
+              <block type="text_join">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text">
+                    <field name="TEXT">http://infovalutar.ro/bnr/azi/</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="variables_get">
+                    <field name="VAR" id="Xbt9z*7Zq`lZCJ5#=J{!">currency</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="text_join">
+                <mutation items="4"></mutation>
+                <value name="ADD0">
+                  <block type="variables_get">
+                    <field name="VAR" id="Xbt9z*7Zq`lZCJ5#=J{!">currency</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="text">
+                    <field name="TEXT"> is </field>
+                  </block>
+                </value>
+                <value name="ADD2">
+                  <block type="variables_get">
+                    <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">value</field>
+                  </block>
+                </value>
+                <value name="ADD3">
+                  <block type="text">
+                    <field name="TEXT"> RON </field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="ttsBlock">
+                <field name="voiceSelected">voice0</field>
+                <value name="NAME">
+                  <shadow type="text">
+                    <field name="TEXT">Program is done!</field>
+                  </shadow>
+                  <block type="text_join">
+                    <mutation items="4"></mutation>
+                    <value name="ADD0">
+                      <block type="variables_get">
+                        <field name="VAR" id="Xbt9z*7Zq`lZCJ5#=J{!">currency</field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="text">
+                        <field name="TEXT"> IS </field>
+                      </block>
+                    </value>
+                    <value name="ADD2">
+                      <block type="variables_get">
+                        <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">value</field>
+                      </block>
+                    </value>
+                    <value name="ADD3">
+                      <block type="text">
+                        <field name="TEXT"> RON </field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

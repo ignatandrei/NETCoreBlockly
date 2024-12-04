@@ -1,0 +1,92 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="P|b0sa?k$1vcEdVj!+fn">n</variable>
+  </variables>
+  <block type="variables_set" x="19" y="-351">
+    <field name="VAR" id="P|b0sa?k$1vcEdVj!+fn">n</field>
+    <value name="VALUE">
+      <block type="post__pet">
+        <value name="val_body">
+          <block type="Pet">
+            <value name="val_id">
+              <block type="math_number">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <value name="val_category">
+              <block type="Category">
+                <value name="val_id">
+                  <block type="math_number">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+                <value name="val_name">
+                  <block type="text">
+                    <field name="TEXT">test</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="val_name">
+              <block type="text">
+                <field name="TEXT">name</field>
+              </block>
+            </value>
+            <value name="val_photoUrls">
+              <block type="lists_create_with">
+                <mutation items="0"></mutation>
+              </block>
+            </value>
+            <value name="val_tags">
+              <block type="lists_create_with">
+                <mutation items="0"></mutation>
+              </block>
+            </value>
+            <value name="val_status">
+              <block type="text">
+                <field name="TEXT">name</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="P|b0sa?k$1vcEdVj!+fn">n</field>
+        <value name="VALUE">
+          <block type="getproperty">
+            <field name="objectName">object</field>
+            <field name="prop">property</field>
+            <value name="ObjectToChange">
+              <block type="converttojson">
+                <value name="ValueToConvert">
+                  <block type="variables_get">
+                    <field name="VAR" id="P|b0sa?k$1vcEdVj!+fn">n</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="PropertyName">
+              <shadow type="text">
+                <field name="TEXT">id</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <shadow type="text">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="variables_get">
+                <field name="VAR" id="P|b0sa?k$1vcEdVj!+fn">n</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

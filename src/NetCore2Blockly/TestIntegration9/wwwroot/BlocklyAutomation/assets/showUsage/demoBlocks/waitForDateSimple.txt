@@ -1,0 +1,31 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" x="20" y="20">
+    <value name="TEXT">
+      <block type="displayCurrentDate">
+        <field name="dateFormat">iso</field>
+      </block>
+    </value>
+    <next>
+      <block type="wait_until">
+        <value name="VALUE">
+          <block type="DateFromText">
+            <value name="VALUE">
+              <shadow type="text">
+                <field name="TEXT">2021-11-13T12:26:36.380Z</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="displayCurrentDate">
+                <field name="dateFormat">iso</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

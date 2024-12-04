@@ -1,0 +1,445 @@
+﻿[
+    {
+        "id":  "template",
+        "description":  "execute templating",
+        "categories":  "api;list",
+        "blocks":  "object_create;text;text_multiline;text_print;converterTemplate"
+    },
+    {
+        "id":  "generateAPIList",
+        "description":  "generate api documentation",
+        "categories":  "api;list",
+        "blocks":  "procedures_defnoreturn;controls_if;logic_compare;logic_null;text_print;text;HTMLliStart;controls_forEach;getproperty;converttostring;text_join;text_changeCase;HTMLli;HTMLliStop;procedures_callnoreturn"
+    },
+    {
+        "id":  "displayJSON",
+        "description":  "show json output",
+        "categories":  "api;json",
+        "blocks":  "httprequest;getproperty;text;text_print;converttostring;wait_seconds"
+    },
+    {
+        "id":  "githubRepoForUser",
+        "description":  "github repo for user",
+        "categories":  "github;api;user",
+        "blocks":  "controls_if;logic_compare;math_number;procedures_callreturn;text_print;text;convertToTable;get__users___username_repos;procedures_defreturn;get__rate_limit;getproperty;text_join"
+    },
+    {
+        "id":  "apiHtml",
+        "description":  "html api",
+        "categories":  "meta;api",
+        "blocks":  "meta_swagger_controllers_actions_Demo_Blocks;text_print;converttostring;HTMLheaders;getproperty;controls_forEach;text_join;text;HTMLlist;HTMLli"
+    },
+    {
+        "id":  "api",
+        "description":  "show help for api",
+        "categories":  "javascript",
+        "blocks":  "text_print;text_message;text"
+    },
+    {
+        "id":  "javascript",
+        "description":  "javascript errors",
+        "categories":  "javascript",
+        "blocks":  "text;text_print;math_arithmetic"
+    },
+    {
+        "id":  "wikirandom",
+        "description":  "wikipedia random article",
+        "categories":  "httprequest",
+        "blocks":  "window_open;text"
+    },
+    {
+        "id":  "htmlConverter",
+        "description":  "html converter",
+        "categories":  "html;httprequest",
+        "blocks":  "get__WeatherForecast;text_print;convertToTable"
+    },
+    {
+        "id":  "trello",
+        "description":  "see trello cards",
+        "categories":  "trello;httprequest",
+        "blocks":  "httprequest;HTMLlist;controls_forEach;text_print;HTMLli;HTMLlinkFromObject;converttostring"
+    },
+    {
+        "id":  "MyPCExtensions",
+        "description":  "Extensions",
+        "categories":  "vscode;chrome;powershell;",
+        "blocks":  "text_print;procedures_callreturn;converttojson;get__api_v1_MyTools_MyPCChromeExtensions;text;math_number;get__api_v1_MyTools_FindVSCodeExtension;get__api_v1_MyTools_PowershellModules;procedures_defreturn;HTMLheaders;text_append;HTMLliStart;controls_forEach;HTMLli;HTMLlinkFromObject;converttostring;HTMLliStop"
+    },
+    {
+        "id":  "err38",
+        "description":  "Error 38",
+        "categories":  "error",
+        "blocks":  "text_print;AnEnum;httprequest"
+    },
+    {
+        "id":  "FridayLinks",
+        "description":  "FridayLinks",
+        "categories":  "ignat;bookmarks;chrome;",
+        "blocks":  "converttojson;post__api_v__version_Chrome_GetUrlsYear;math_number;text;text_print;text_length;HTMLheaders;controls_for;lists_getIndex;controls_if;logic_compare;math_modulo;text_append;text_join;math_arithmetic;math_round;HTMLliStart;converttostring;HTMLli;HTMLlink;getproperty;HTMLliStop;post__api_v__version_File_WriteAllTextOK;recPathContent"
+    },
+    {
+        "id":  "EurRon",
+        "description":  "exchange currency",
+        "categories":  "exchange;http;",
+        "blocks":  "text;httprequest;text_join;text_print;ttsBlock"
+    },
+    {
+        "id":  "chromeBookmarks",
+        "description":  "export chrome bookmarks",
+        "categories":  "chrome;bookmarks;localAPI",
+        "blocks":  "converttojson;post__api_v__version_Chrome_GetUrlsYear;math_number;text;text_print;text_length;HTMLheaders;text_append;HTMLliStart;controls_for;lists_getIndex;converttostring;HTMLli;HTMLlink;getproperty;controls_flow_statements;HTMLliStop;post__api_v__version_File_WriteAllTextOK"
+    },
+    {
+        "id":  "dockerImagesList",
+        "description":  "docker images",
+        "categories":  "docker",
+        "blocks":  "trycatchfinally;get__images_json;logic_boolean;text;math_number;text_print;controls_forEach;mapList;HTMLheaders;window_open"
+    },
+    {
+        "id":  "joy",
+        "description":  "ode to joy",
+        "categories":  "audio",
+        "blocks":  "lists_split;text;controls_forEach;pianoBlock;wait_seconds"
+    },
+    {
+        "id":  "parser",
+        "description":  "parse tables, links, images , headers",
+        "categories":  "parser",
+        "blocks":  "window_open;text;text_print;httprequest;simpleHtmlparser;convertcsv;exportfile"
+    },
+    {
+        "id":  "chuckStart",
+        "description":  "chuck norris voice",
+        "categories":  "funny",
+        "blocks":  "text;getproperty;httprequest;text_print;ttsBlock"
+    },
+    {
+        "id":  "chucktry",
+        "description":  "chuck norris try catch",
+        "categories":  "funny",
+        "blocks":  "text;trycatchfinally;getproperty;httprequest;text_print;ttsBlock"
+    },
+    {
+        "id":  "TTS",
+        "description":  "text to speech",
+        "categories":  "audio",
+        "blocks":  "ttsBlock;text_prompt_ext;text"
+    },
+    {
+        "id":  "piano",
+        "description":  "piano test",
+        "categories":  "audio",
+        "blocks":  "pianoBlock;controls_forEach;cmajor;text_print;wait_seconds"
+    },
+    {
+        "id":  "voice",
+        "description":  "simple speech",
+        "categories":  "audio",
+        "blocks":  "ttsBlock"
+    },
+    {
+        "id":  "header",
+        "description":  "header and meta swagger",
+        "categories":  "swagger;meta;html",
+        "blocks":  "text_print;converttostring;meta_swagger_controllers_Demo_MSPC;HTMLheaders;getproperty;controls_forEach"
+    },
+    {
+        "id":  "emailOpen",
+        "description":  "open local email",
+        "categories":  "email",
+        "blocks":  "blockemail;text_print;converttostring;window_open;text"
+    },
+    {
+        "id":  "sendinblue",
+        "description":  "send in blue email",
+        "categories":  "email;http call",
+        "blocks":  "blockemail;text_print;converttostring;sendinblue;headersbeforehttp;text;httprequest;converttojson"
+    },
+    {
+        "id":  "reduce",
+        "description":  "show reduce usage",
+        "categories":  "http call;reduce;array",
+        "blocks":  "get__WeatherForecast;text;math_number;text_print;reduceList;converttostring;object_create"
+    },
+    {
+        "id":  "weatherChart",
+        "description":  "show fake weather chart",
+        "categories":  "http call;chart",
+        "blocks":  "text_print_return;get__WeatherForecast;text;math_number;text_print;chart_js;mapList"
+    },
+    {
+        "id":  "chart",
+        "description":  "show chart USA population",
+        "categories":  "http call;chart",
+        "blocks":  "httprequest;getproperty;text;text_print;converttostring;chart_js;mapList"
+    },
+    {
+        "id":  "data_io",
+        "description":  "USA population from data.io",
+        "categories":  "http call",
+        "blocks":  "httprequest;getproperty;text;text_print;converttostring"
+    },
+    {
+        "id":  "chuck_norris",
+        "description":  "joke with Chuck Norris",
+        "categories":  "funny;http call",
+        "blocks":  "text;httprequest;text_print;getproperty"
+    },
+    {
+        "id":  "petstore",
+        "description":  "official pet store swagger",
+        "categories":  "swagger;petstore",
+        "blocks":  "post__pet;Pet;math_number;Category;text;lists_create_with;getproperty;converttojson;text_print"
+    },
+    {
+        "id":  "wait",
+        "description":  "simple wait",
+        "categories":  "timer",
+        "blocks":  "math_number;controls_repeat_ext;math_change;text_print;wait_seconds"
+    },
+    {
+        "id":  "nasa",
+        "description":  "Nasa today image",
+        "categories":  "http call;image",
+        "blocks":  "text;httprequest;text_print;getproperty;window_open"
+    },
+    {
+        "id":  "saveImage",
+        "description":  "How to save images",
+        "categories":  "http call;image",
+        "blocks":  "httprequest;converttojson;converttostring;getproperty;text;text_print;exportfile"
+    },
+    {
+        "id":  "CSV",
+        "description":  "How to export to CSV",
+        "categories":  "export;csv",
+        "blocks":  "httprequest;text_print;converttostring;convertcsv;exportfile"
+    },
+    {
+        "id":  "ObjModif",
+        "description":  "work with objects",
+        "categories":  "programming",
+        "blocks":  "math_number;object_create;text_print;converttostring;modifyproperty;text"
+    },
+    {
+        "id":  "currentDate",
+        "description":  "work with currentdate",
+        "categories":  "programming;dates",
+        "blocks":  "text_print;displayCurrentDate"
+    },
+    {
+        "id":  "verifyGrid",
+        "description":  "verify multiple objects show in Grid",
+        "blocks":  "text_print;converttostring;httprequest"
+    },
+    {
+        "id":  "filterList",
+        "description":  "filter results",
+        "categories":  "programming",
+        "blocks":  "httprequest;converttostring;converttojson;filterList;text_print"
+    },
+    {
+        "id":  "testWait",
+        "description":  "wait with dates",
+        "categories":  "programming;dates",
+        "blocks":  "text_print;displayCurrentDate;wait_seconds"
+    },
+    {
+        "id":  "dateFrom",
+        "description":  "date from string",
+        "categories":  "programming;dates",
+        "blocks":  "text_print;DateFromText"
+    },
+    {
+        "id":  "waitForDate",
+        "description":  "wait until the date with procedure",
+        "categories":  "programming;dates",
+        "blocks":  "procedures_defreturn;math_arithmetic;displayCurrentDate;text_print;wait;procedures_callreturn;DateFromText"
+    },
+    {
+        "id":  "waitForDateSimple",
+        "description":  "wait until simple",
+        "categories":  "programming;dates",
+        "blocks":  "text_print;displayCurrentDate;wait_until;DateFromText"
+    },
+    {
+        "id":  "map",
+        "description":  "map list",
+        "categories":  "programming;array",
+        "blocks":  "httprequest;mapList;text_print;converttostring"
+    },
+    {
+        "id":  "comments",
+        "description":  "comments",
+        "categories":  "programming",
+        "blocks":  "comment"
+    },
+    {
+        "id":  "auth0",
+        "description":  "AuthZero",
+        "categories":  "authentication",
+        "blocks":  "httprequest;auth0webapidata;getproperty;text;text_print;headersbeforehttp;text_join"
+    },
+    {
+        "id":  "jwt",
+        "description":  "get JWT and use",
+        "categories":  "authentication",
+        "blocks":  "headersbeforehttp;text_join;text;httprequest;text_print"
+    },
+    {
+        "id":  "NetCoreBlockly_DemoImage",
+        "description":  "demo image",
+        "categories":  "extensive;image",
+        "blocks":  "get__api_TestImage_GetImageSprite;converttojson;getproperty;text;text_print;exportfile"
+    },
+    {
+        "id":  "NetCoreBlockly_ConvertCSV",
+        "description":  "demo convert csv",
+        "categories":  "extensive;csv",
+        "blocks":  "get__WeatherForecast;text_print;convertcsv"
+    },
+    {
+        "id":  "NetCoreBlockly_SaveCSV",
+        "description":  "demo save csv",
+        "categories":  "extensive;export;csv",
+        "blocks":  "get__WeatherForecast;text_print;convertcsv;exportfile"
+    },
+    {
+        "id":  "NetCoreBlockly_ModifyProp",
+        "description":  "modify prop",
+        "categories":  "extensive;programming;",
+        "blocks":  "math_number;Math2Values;text_print;converttostring;modifyproperty;text"
+    },
+    {
+        "id":  "NetCoreBlockly_WeatherSimple",
+        "description":  "simple weather test",
+        "categories":  "extensive",
+        "blocks":  "math_number;text_print;get__WeatherForecast"
+    },
+    {
+        "id":  "NetCoreBlockly_FirstLastInArray",
+        "description":  "first last in array",
+        "categories":  "extensive;programming;array",
+        "blocks":  "math_number;converttojson;get__api_MathDivideRest;lists_getIndex;text_print;converttostring"
+    },
+    {
+        "id":  "NetCoreBlockly_GETPOST",
+        "description":  "get and post",
+        "categories":  "extensive",
+        "blocks":  "math_number;converttojson;get__api_MathDivideRest___id;text_print;converttostring;post__api_MathDivideRest"
+    },
+    {
+        "id":  "NetCoreBlockly_PUTPOST",
+        "description":  "put and post",
+        "categories":  "extensive",
+        "blocks":  "math_number;Math2Values;text_print;converttostring;post__api_MathDivideRest;put__api_MathDivideRest___id;converttojson"
+    },
+    {
+        "id":  "NetCoreBlockly_dynamicDelete",
+        "description":  "delete",
+        "categories":  "extensive",
+        "blocks":  "text_prompt_ext;text_print;delete__api_MathDivideRest___id;text_join;text"
+    },
+    {
+        "id":  "NetCoreBlockly_Multiply",
+        "description":  "multiply",
+        "categories":  "extensive",
+        "blocks":  "math_number;text_print;get__api_MathOperations_Multiply___x___y"
+    },
+    {
+        "id":  "NetCoreBlockly_Divide0",
+        "description":  "divide by 0",
+        "categories":  "extensive",
+        "blocks":  "math_number;post__api_MathOperations_Divide;Math2Values;text_print;text_join;text"
+    },
+    {
+        "id":  "NetCoreBlockly_CreateDept",
+        "description":  "create department",
+        "categories":  "extensive",
+        "blocks":  "text_prompt_ext;math_number;Department;lists_create_with;post__api_DB_Departments;text_print;get__api_DB_Departments"
+    },
+    {
+        "id":  "NetCoreBlockly_GetDepartment",
+        "description":  "find department",
+        "categories":  "extensive",
+        "blocks":  "math_number;converttojson;get__api_DB_Departments___id;text_print;converttostring"
+    },
+    {
+        "id":  "NetCoreBlockly_ModifyName",
+        "description":  "modify name department",
+        "categories":  "extensive",
+        "blocks":  "math_number;converttojson;get__api_DB_Departments___id;text_print;converttostring;text;text_append;getproperty;text_prompt_ext;modifyproperty;put__api_DB_Departments___id"
+    },
+    {
+        "id":  "NetCoreBlockly_DeleteDepartment",
+        "description":  "delete department",
+        "categories":  "extensive",
+        "blocks":  "text_print;text_length;converttojson;get__api_DB_Departments;text_prompt_ext;math_number;Department;lists_create_with;post__api_DB_Departments;getproperty;delete__api_DB_Departments___id"
+    },
+    {
+        "id":  "NetCoreBlockly_SaveNewDepartment",
+        "description":  "save new department",
+        "categories":  "extensive",
+        "blocks":  "text_print;get__api_DB_Departments;post__api_DB_Departments;Department;math_number;text;lists_create_with"
+    },
+    {
+        "id":  "NetCoreBlockly_PlayWithEnum",
+        "description":  "enum demo",
+        "categories":  "extensive",
+        "blocks":  "Operation;text_print;post__api_MathOperations_Operation___id___x;math_number;Math2Values"
+    },
+    {
+        "id":  "NetCoreBlockly_ThrowError",
+        "description":  "see the error",
+        "categories":  "extensive",
+        "blocks":  "math_number;text_print;post__api_MathOperations_ThrowError"
+    },
+    {
+        "id":  "NetCoreBlockly_SimpleQueryStringPOST",
+        "description":  "post with query string",
+        "categories":  "extensive",
+        "blocks":  "text_print;post__api_RestWithArgs_PostWithArgs"
+    },
+    {
+        "id":  "NetCoreBlockly_Functions",
+        "description":  "Rest Functions",
+        "categories":  "extensive;functions",
+        "blocks":  "procedures_callnoreturn;text_prompt_ext;text_print;text_join;text;procedures_callreturn;delete__api_DB_Departments___id;procedures_defnoreturn;text_length;converttojson;get__api_DB_Departments;procedures_defreturn;math_number;Department;lists_create_with;post__api_DB_Departments;getproperty"
+    },
+    {
+        "id":  "ipecho",
+        "description":  "IP Echo",
+        "categories":  "http call",
+        "blocks":  "text_print;httprequest"
+    },
+    {
+        "id":  "identme",
+        "description":  "identme",
+        "categories":  "http call",
+        "blocks":  "text_print;httprequest"
+    },
+    {
+        "id":  "ipify",
+        "description":  "ipify",
+        "categories":  "http call",
+        "blocks":  "text_print;httprequest"
+    },
+    {
+        "id":  "ipaddy",
+        "description":  "ipaddy",
+        "categories":  "http call",
+        "blocks":  "text_print;httprequest"
+    },
+    {
+        "id":  "arrayExample",
+        "description":  "example for advanced array",
+        "categories":  "array",
+        "blocks":  "get__api_DB_Departments;text;math_number;text_print;filterList;mapList;reduceList"
+    },
+    {
+        "id":  "objects",
+        "description":  "example for objects",
+        "categories":  "array",
+        "blocks":  "object_create;text;math_number;text_print;object_get;object_set"
+    }
+]

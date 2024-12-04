@@ -1,0 +1,9 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="window_open" x="94" y="-24">
+    <value name="TEXT">
+      <block type="text">
+        <field name="TEXT">https://en.wikipedia.org/wiki/Special:Random</field>
+      </block>
+    </value>
+  </block>
+</xml>

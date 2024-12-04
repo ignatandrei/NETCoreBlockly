@@ -1,0 +1,87 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="9]SFc)y}%}W9;2r02Mcu">i</variable>
+  </variables>
+  <block type="text_print" disabled="true" x="-66" y="-216">
+    <value name="TEXT">
+      <block type="converttostring">
+        <value name="ValueToConvert">
+          <block type="meta_swagger_controllers_Demo_MSPC"></block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="HTMLheaders">
+            <field name="NAME">H1</field>
+            <value name="NAME">
+              <shadow type="text">
+                <field name="TEXT">MSPC</field>
+              </shadow>
+              <block type="getproperty">
+                <field name="objectName">object</field>
+                <field name="prop">property</field>
+                <value name="ObjectToChange">
+                  <block type="meta_swagger_controllers_Demo_MSPC"></block>
+                </value>
+                <value name="PropertyName">
+                  <shadow type="text">
+                    <field name="TEXT">name</field>
+                  </shadow>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="controls_forEach">
+            <field name="VAR" id="9]SFc)y}%}W9;2r02Mcu">i</field>
+            <value name="LIST">
+              <block type="getproperty">
+                <field name="objectName">object</field>
+                <field name="prop">property</field>
+                <value name="ObjectToChange">
+                  <block type="meta_swagger_controllers_Demo_MSPC"></block>
+                </value>
+                <value name="PropertyName">
+                  <shadow type="text">
+                    <field name="TEXT">categories</field>
+                  </shadow>
+                </value>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="text_print">
+                <value name="TEXT">
+                  <block type="HTMLheaders">
+                    <field name="NAME">H2</field>
+                    <value name="NAME">
+                      <shadow type="text">
+                        <field name="TEXT">MSPC</field>
+                      </shadow>
+                      <block type="getproperty">
+                        <field name="objectName">object</field>
+                        <field name="prop">property</field>
+                        <value name="ObjectToChange">
+                          <block type="variables_get">
+                            <field name="VAR" id="9]SFc)y}%}W9;2r02Mcu">i</field>
+                          </block>
+                        </value>
+                        <value name="PropertyName">
+                          <shadow type="text">
+                            <field name="TEXT">name</field>
+                          </shadow>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

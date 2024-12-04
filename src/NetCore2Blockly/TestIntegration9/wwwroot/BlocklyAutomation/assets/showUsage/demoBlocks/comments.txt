@@ -1,0 +1,20 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="comment" x="20" y="30">
+    <field name="NAME"></field>
+    <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">this is a comment</field>
+          </shadow>      
+    </value>
+    <next>
+      <block type="comment">
+        <field name="NAME"></field>
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">this is another comment</field>
+          </shadow>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

@@ -1,0 +1,50 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="text_print" x="-150" y="-41">
+    <value name="TEXT">
+      <shadow type="text">
+        <field name="TEXT">abc</field>
+      </shadow>
+      <block type="get__api_DB_Departments"></block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+          <block type="post__api_DB_Departments">
+            <value name="val_values">
+              <block type="Department">
+                <value name="val_iddepartment">
+                  <block type="math_number">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+                <value name="val_name">
+                  <block type="text">
+                    <field name="TEXT">asdasd</field>
+                  </block>
+                </value>
+                <value name="val_employee">
+                  <block type="lists_create_with">
+                    <mutation items="0"></mutation>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <shadow type="text">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="get__api_DB_Departments"></block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

@@ -1,0 +1,73 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="^HqtU]3:/R^Xs!?,#:]m">n</variable>
+  </variables>
+  <block type="variables_set" inline="true" x="20" y="20">
+    <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+    <value name="VALUE">
+      <block type="math_number">
+        <field name="NUM">2</field>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set" inline="true">
+        <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+        <value name="VALUE">
+          <block type="post__api_MathOperations_Divide">
+            <value name="val_values">
+              <block type="Math2Values">
+                <value name="val_x">
+                  <block type="math_number">
+                    <field name="NUM">20</field>
+                  </block>
+                </value>
+                <value name="val_y">
+                  <block type="variables_get">
+                    <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <shadow type="text">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text_join">
+                <mutation items="3"></mutation>
+                <value name="ADD0">
+                  <block type="text">
+                    <field name="TEXT">The result is</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="variables_get">
+                    <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+                  </block>
+                </value>
+                <value name="ADD2">
+                  <block type="text">
+                    <field name="TEXT">Now, what happens if we divide by 0?</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" inline="true">
+                <field name="VAR" id="^HqtU]3:/R^Xs!?,#:]m">n</field>
+                <value name="VALUE">
+                  <block type="math_number">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

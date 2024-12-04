@@ -1,0 +1,193 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="P|b0sa?k$1vcEdVj!+fn">n</variable>
+    <variable id="5;47gpsWUe91G}.~H]Om">var_Int64</variable>
+    <variable id="nIdI=p;YaqO~NJ428@8h">var_Department</variable>
+  </variables>
+  <block type="text_print" x="20" y="20">
+    <value name="TEXT">
+      <shadow type="text">
+        <field name="TEXT">abc</field>
+      </shadow>
+      <block type="text_length">
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+          <block type="converttojson">
+            <value name="ValueToConvert">
+              <block type="get__api_DB_Departments"></block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set" inline="true">
+        <field name="VAR" id="P|b0sa?k$1vcEdVj!+fn">n</field>
+        <value name="VALUE">
+          <block type="text_prompt_ext">
+            <mutation type="TEXT"></mutation>
+            <field name="TYPE">TEXT</field>
+            <value name="TEXT">
+              <shadow type="text">
+                <field name="TEXT">Please give name of the new Department</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set">
+            <field name="VAR" id="5;47gpsWUe91G}.~H]Om">var_Int64</field>
+            <value name="VALUE">
+              <block type="math_number">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set">
+                <field name="VAR" id="nIdI=p;YaqO~NJ428@8h">var_Department</field>
+                <value name="VALUE">
+                  <block type="Department">
+                    <value name="val_iddepartment">
+                      <block type="variables_get">
+                        <field name="VAR" id="5;47gpsWUe91G}.~H]Om">var_Int64</field>
+                      </block>
+                    </value>
+                    <value name="val_name">
+                      <block type="variables_get">
+                        <field name="VAR" id="P|b0sa?k$1vcEdVj!+fn">n</field>
+                      </block>
+                    </value>
+                    <value name="val_employee">
+                      <block type="lists_create_with">
+                        <mutation items="0"></mutation>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" inline="true">
+                    <field name="VAR" id="P|b0sa?k$1vcEdVj!+fn">n</field>
+                    <value name="VALUE">
+                      <block type="post__api_DB_Departments">
+                        <value name="val_values">
+                          <block type="variables_get">
+                            <field name="VAR" id="nIdI=p;YaqO~NJ428@8h">var_Department</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="text_print">
+                        <value name="TEXT">
+                          <shadow type="text">
+                            <field name="TEXT">abc</field>
+                          </shadow>
+                          <block type="variables_get">
+                            <field name="VAR" id="P|b0sa?k$1vcEdVj!+fn">n</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="variables_set" inline="true">
+                            <field name="VAR" id="5;47gpsWUe91G}.~H]Om">var_Int64</field>
+                            <value name="VALUE">
+                              <block type="getproperty">
+                                <field name="objectName">object</field>
+                                <field name="prop">property</field>
+                                <value name="ObjectToChange">
+                                  <block type="variables_get">
+                                    <field name="VAR" id="P|b0sa?k$1vcEdVj!+fn">n</field>
+                                  </block>
+                                </value>
+                                <value name="PropertyName">
+                                  <shadow type="text">
+                                    <field name="TEXT">iddepartment</field>
+                                  </shadow>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="text_print">
+                                <value name="TEXT">
+                                  <shadow type="text">
+                                    <field name="TEXT">abc</field>
+                                  </shadow>
+                                  <block type="variables_get">
+                                    <field name="VAR" id="5;47gpsWUe91G}.~H]Om">var_Int64</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="text_print">
+                                    <value name="TEXT">
+                                      <shadow type="text">
+                                        <field name="TEXT">abc</field>
+                                      </shadow>
+                                      <block type="text_length">
+                                        <value name="VALUE">
+                                          <shadow type="text">
+                                            <field name="TEXT">abc</field>
+                                          </shadow>
+                                          <block type="converttojson">
+                                            <value name="ValueToConvert">
+                                              <block type="get__api_DB_Departments"></block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="text_print">
+                                        <value name="TEXT">
+                                          <shadow type="text">
+                                            <field name="TEXT">abc</field>
+                                          </shadow>
+                                          <block type="delete__api_DB_Departments___id">
+                                            <value name="val_id">
+                                              <block type="variables_get">
+                                                <field name="VAR" id="5;47gpsWUe91G}.~H]Om">var_Int64</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="text_print">
+                                            <value name="TEXT">
+                                              <shadow type="text">
+                                                <field name="TEXT">abc</field>
+                                              </shadow>
+                                              <block type="text_length">
+                                                <value name="VALUE">
+                                                  <shadow type="text">
+                                                    <field name="TEXT">abc</field>
+                                                  </shadow>
+                                                  <block type="converttojson">
+                                                    <value name="ValueToConvert">
+                                                      <block type="get__api_DB_Departments"></block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
