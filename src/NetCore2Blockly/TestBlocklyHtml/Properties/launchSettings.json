@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "blockly.html",
+      "launchUrl": "blocklyAutomation/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +20,7 @@
     "TestBlocklyHtml": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "blockly.html",
+      "launchUrl": "blocklyAutomation/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -29,7 +29,7 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/blockly.html",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/blocklyAutomation/",
       "publishAllPorts": true
     }
   }
