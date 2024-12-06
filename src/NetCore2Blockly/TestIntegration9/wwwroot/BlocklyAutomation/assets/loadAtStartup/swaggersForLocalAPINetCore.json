@@ -2,15 +2,18 @@
 
 	{
 		"id":"MySite",
-		"link":"/openapi/v1.json"
+		"link":"/openapi/v1.json",
+		"enabled":true
 	},
 	
 	{
 		"id":"MySite8",
-		"link":"/swagger/v1/swagger.json"
+		"link":"/swagger/v1/swagger.json",
+		"enabled":true
 	},
 	{
 		"id":"_MyPC",
-		"link":"http://localhost:37283/swagger/v1/swagger.json"
+		"link":"http://localhost:37283/swagger/v1/swagger.json",
+		"enabled":true
 	}
 	]
