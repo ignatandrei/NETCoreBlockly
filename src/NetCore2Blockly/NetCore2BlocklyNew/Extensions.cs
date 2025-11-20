@@ -44,7 +44,7 @@ namespace NetCore2BlocklyNew
             if (FileProvider == null)
             {
                 var manifestEmbeddedProvider =
-                        new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
+                            new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
                 var service = appBuilder.ApplicationServices;
                 FileProvider = manifestEmbeddedProvider;
                 if (environment != null)
