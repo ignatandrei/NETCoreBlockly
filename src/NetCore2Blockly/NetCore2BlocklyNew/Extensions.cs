@@ -40,11 +40,14 @@ namespace NetCore2BlocklyNew
                 appBuilder.UseDefaultFiles();
                 appBuilder.UseStaticFiles();
             }
-
-            if (FileProvider == null)
+            var manifestEmbeddedProvider =
+                        new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
+            if (FileProvider != null)
             {
-                var manifestEmbeddedProvider =
-                            new ManifestEmbeddedFileProvider(Assembly.GetExecutingAssembly());
+                FileProvider = new CompositeFileProvider(FileProvider, manifestEmbeddedProvider);
+            }
+            else //file provder is not set, try to find from embedded resource and wwwroot if exists
+            {
                 var service = appBuilder.ApplicationServices;
                 FileProvider = manifestEmbeddedProvider;
                 if (environment != null)

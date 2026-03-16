@@ -18,7 +18,7 @@
 	</ItemGroup>
 	<PropertyGroup>
 		<PackageId>NetCore2Blockly</PackageId>
-		<Version>10.2026.316.437</Version>
+		<Version>10.2026.316.550</Version>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
