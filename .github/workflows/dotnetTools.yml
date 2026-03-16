@@ -1,5 +1,6 @@
 name: build
-
+permissions:
+  id-token: write   # required for GitHub OIDC
 on:
   push:
     branches: [ master ]
@@ -11,15 +12,16 @@ jobs:
   build:
 
     runs-on: windows-latest
+    permissions:
+      id-token: write
+      contents: write
 
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core 
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: |
-          8.0.x
-          9.0.x
           10.0.x
 
     - name: Install dependencies
@@ -81,8 +83,15 @@ jobs:
     #     path: |
     #         src/NetCore2Blockly/NetCore2BlocklyNew/netcoreb
     #     retention-days: 1
+
       
+    - name: NuGet Login
+      uses: NuGet/login@v1
+      id: login
+      with:
+          user: ignatandrei
+    
     - name: push to nuget
       run: |
         dir ${{github.workspace}}\src\NetCore2Blockly\NetCore2BlocklyNew\netcoreb\NetCore2Blockly*symbols.nupkg
-        dotnet nuget push ${{github.workspace}}\src\NetCore2Blockly\NetCore2BlocklyNew\netcoreb\NetCore2Blockly*symbols.nupkg --api-key  ${{ secrets.NUGETAPIKEY }} --source https://api.nuget.org/v3/index.json
+        dotnet nuget push ${{github.workspace}}\src\NetCore2Blockly\NetCore2BlocklyNew\netcoreb\NetCore2Blockly*symbols.nupkg --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json
