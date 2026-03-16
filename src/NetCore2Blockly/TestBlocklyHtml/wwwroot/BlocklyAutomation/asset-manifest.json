@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/BlocklyAutomation/static/css/main.1636a4ef.css",
-    "main.js": "/BlocklyAutomation/static/js/main.ca4d4d62.js",
+    "main.js": "/BlocklyAutomation/static/js/main.d882f144.js",
     "static/js/511.8c9fcd1c.chunk.js": "/BlocklyAutomation/static/js/511.8c9fcd1c.chunk.js",
     "index.html": "/BlocklyAutomation/index.html",
     "main.1636a4ef.css.map": "/BlocklyAutomation/static/css/main.1636a4ef.css.map",
-    "main.ca4d4d62.js.map": "/BlocklyAutomation/static/js/main.ca4d4d62.js.map",
+    "main.d882f144.js.map": "/BlocklyAutomation/static/js/main.d882f144.js.map",
     "511.8c9fcd1c.chunk.js.map": "/BlocklyAutomation/static/js/511.8c9fcd1c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1636a4ef.css",
-    "static/js/main.ca4d4d62.js"
+    "static/js/main.d882f144.js"
   ]
 }
